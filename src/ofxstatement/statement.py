@@ -1,5 +1,7 @@
 """Statement model"""
 
+from datetime import datetime
+
 class Statement(object):
     """Statement object containing statement items"""
     lines = None
@@ -8,25 +10,33 @@ class Statement(object):
     bankId = None
     accountId = None
 
-    def __init__(self, bankId, accountId, currency):
+    def __init__(self, bankId=None, accountId=None, currency=None):
         self.lines = []
         self.bankId = bankId
         self.accountId = accountId
         self.currency = currency
 
 class StatementLine(object):
-    """Statement line data"""
-    id = None
-    date = None
-    memo = None
-    amount = None
+    """Statement line data.
+
+    All fields are initialized with some sample data so that field type may be
+    determined by interested parties. Constructor will reinitialize them to
+    None (by default)
+    """
+    id = ""
+    date = datetime.now()
+    memo = ""
+    amount = 0.0
 
     # additional fields
-    dateUser = None
-    payee = None
+    dateUser = ""
+    payee = ""
 
-    def __init__(self, id, date, memo, amount):
+    def __init__(self, id=None, date=None, memo=None, amount=None):
         self.id = id
         self.date = date
         self.memo = memo
         self.amount = amount
+
+        self.dateUser = None
+        self.payee = None

@@ -24,6 +24,8 @@ def doctest_OfxWriter():
 
     Create writer:
         >>> writer = ofx.OfxWriter(statement)
+
+    Set the generation time so it is always predictable
         >>> writer.genTime = datetime(2012, 3, 3, 0, 0, 0)
 
     Produce OFX output:
