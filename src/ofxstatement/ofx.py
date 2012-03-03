@@ -70,8 +70,8 @@ class OfxWriter(object):
         tb.end("BANKTRANLIST")
 
         tb.start("LEDGERBAL", {})
-        self.buildAmount("BALAMT", 0)  # TODO: fix
-        self.buildDateTime("DTASOF" , self.genTime)
+        self.buildAmount("BALAMT", self.statement.endingBalance, False)
+        self.buildDateTime("DTASOF" , self.statement.endingBalanceDate, False)
         tb.end("LEDGERBAL")
 
         tb.end("STMTRS")
@@ -108,9 +108,15 @@ class OfxWriter(object):
     def buildDateTime(self, tag, dt, skipEmpty=True):
         if not dt and skipEmpty:
             return
-        self.buildText(tag, dt.strftime("%Y%m%d%H%M%S"))
+        if dt is None:
+            self.buildText(tag, "", skipEmpty)
+        else:
+            self.buildText(tag, dt.strftime("%Y%m%d%H%M%S"))
 
     def buildAmount(self, tag, amount, skipEmpty=True):
-        if amount == None and skipEmpty:
+        if amount is None and skipEmpty:
             return
-        self.buildText(tag, "%.2f" % amount)
+        if amount is None:
+            self.buildText(tag, "", skipEmpty)
+        else:
+            self.buildText(tag, "%.2f" % amount)

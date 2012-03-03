@@ -109,12 +109,8 @@ def doctest_OfxWriter():
                             </STMTTRN>
                         </BANKTRANLIST>
                         <LEDGERBAL>
-                            <BALAMT>
-                                0.00
-                            </BALAMT>
-                            <DTASOF>
-                                20120303000000
-                            </DTASOF>
+                            <BALAMT/>
+                            <DTASOF/>
                         </LEDGERBAL>
                     </STMTRS>
                 </STMTTRNRS>
