@@ -10,6 +10,12 @@ class Statement(object):
     bankId = None
     accountId = None
 
+    startingBalance = None
+    startingBalanceDate = None
+
+    endingBalance = None
+    endingBalanceDate = None
+
     def __init__(self, bankId=None, accountId=None, currency=None):
         self.lines = []
         self.bankId = bankId

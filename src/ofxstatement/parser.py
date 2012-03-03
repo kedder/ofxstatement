@@ -15,6 +15,24 @@ class StatementParser(object):
 
         Return Statement object
         """
+        reader = self.createReader()
+        for line in reader:
+            self.currentLine += 1
+            if not line:
+                continue
+            stmtLine = self.parseLine(line)
+            if (stmtLine):
+                self.statement.lines.append(stmtLine)
+        return self.statement
+
+    def createReader(self):
+        """Return iterable object consisting of a line per transaction
+        """
+        raise NotImplementedError
+
+    def parseLine(self, line):
+        """Parse given transaction line and return StatementLine object
+        """
         raise NotImplementedError
 
     def parseValue(self, value, field):
@@ -40,12 +58,6 @@ class CsvStatementParser(StatementParser):
     fin = None  # file input stream
 
     # 0-based csv column mapping to StatementLine field
-    #mappings = {2: "date",
-    #            3: "payee",
-    #            4: "memo",
-    #            5: "amount",
-    #            7: "id"
-    #            }
     mappings = {}
 
     currentLine = 0
@@ -53,17 +65,6 @@ class CsvStatementParser(StatementParser):
     def __init__(self, fin):
         self.statement = Statement()
         self.fin = fin
-
-    def parse(self):
-        reader = self.createReader()
-        for line in reader:
-            self.currentLine += 1
-            if not line:
-                continue
-            stmtLine = self.parseLine(line)
-            if (stmtLine):
-                self.statement.lines.append(stmtLine)
-        return self.statement
 
     def createReader(self):
         return csv.reader(self.fin)
