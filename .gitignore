@@ -6,3 +6,5 @@ dist
 src/ofxstatement.egg-info
 bin
 parts
+tags
+misc
