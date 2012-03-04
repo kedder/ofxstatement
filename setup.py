@@ -21,6 +21,8 @@ setup(
                      'Natural Language :: English',
                      'Operating System :: OS Independent'],
       packages = find_packages('src'),
+      entry_points = {'ofxstatement':
+                      ['ofxstatement = ofxstatement.tool:run']},
       package_dir = {'':'src'},
       install_requires = [
                           'setuptools',

@@ -18,7 +18,7 @@ def doctest_SwedbankCsvStatementParser():
         >>> statement.accountId
         'LT797300010XXXXXXXXX'
         >>> len(statement.lines)
-        3
+        4
         >>> statement.startingBalance
         2123.82
         >>> statement.startingBalanceDate
@@ -27,11 +27,13 @@ def doctest_SwedbankCsvStatementParser():
         3917.3
         >>> statement.endingBalanceDate
         datetime.datetime(2012, 1, 31, 0, 0)
+        >>> statement.currency
+        'LTL'
 
     Check first line
         >>> l = statement.lines[0]
         >>> l.amount
-        14.34
+        -14.34
         >>> l.payee
         "McDonald's restoranas AKR Vilnius"
         >>> l.memo
@@ -44,11 +46,22 @@ def doctest_SwedbankCsvStatementParser():
         >>> l.id
         '2012012600096815'
         >>> l.amount
-        12.2
+        -12.2
         >>> l.payee
         'UAB "Naktida"'
         >>> l.memo
         'PIRKINYS NNNNNNNNNNNNNNNN ... UAB "Naktida" ... 00000'
+
+    Check income line:
+        >>> l = statement.lines[3]
+        >>> l.id
+        '2012011000673562'
+        >>> l.amount
+        1600.0
+        >>> l.payee
+        'Company'
+        >>> l.memo
+        'Salary'
 
     """
 
