@@ -37,6 +37,7 @@ class StatementLine(object):
     # additional fields
     dateUser = ""
     payee = ""
+    checkNumber = ""
 
     def __init__(self, id=None, date=None, memo=None, amount=None):
         self.id = id
@@ -46,3 +47,4 @@ class StatementLine(object):
 
         self.dateUser = None
         self.payee = None
+        self.checkNumber = None

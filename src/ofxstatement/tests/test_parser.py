@@ -16,11 +16,11 @@ def doctest_CsvStatementParser():
 
     Create and configure csv parser:
         >>> parser = CsvStatementParser(f)
-        >>> parser.mappings = {0: "date",
-        ...                    1: "payee",
-        ...                    2: "memo",
-        ...                    3: "amount",
-        ...                    4: "id"}
+        >>> parser.mappings = {"date": 0,
+        ...                    "payee": 1,
+        ...                    "memo": 2,
+        ...                    "amount": 3,
+        ...                    "id": 4}
 
     And parse csv:
         >>> statement = parser.parse()

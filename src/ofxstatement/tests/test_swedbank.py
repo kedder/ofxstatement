@@ -40,6 +40,8 @@ def doctest_SwedbankCsvStatementParser():
         "PIRKINYS ... 00000"
         >>> l.id
         '2012010200041787'
+        >>> l.checkNumber
+        '2012010200041787'
 
     Check line with awkward quotation marks:
         >>> l = statement.lines[2]

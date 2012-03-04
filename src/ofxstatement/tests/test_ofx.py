@@ -31,10 +31,24 @@ def doctest_OfxWriter():
     Produce OFX output:
         >>> prettyPrint(writer.toxml())
         <?xml version="1.0" ?>
+        <!-- 
+        OFXHEADER:100
+        DATA:OFXSGML
+        VERSION:102
+        SECURITY:NONE
+        ENCODING:UTF-8
+        CHARSET:NONE
+        COMPRESSION:NONE
+        OLDFILEUID:NONE
+        NEWFILEUID:NONE
+        -->
         <OFX>
             <SIGNONMSGSRSV1>
                 <SONRS>
                     <STATUS>
+                        <CODE>
+                            0
+                        </CODE>
                         <SEVERITY>
                             INFO
                         </SEVERITY>
@@ -53,6 +67,9 @@ def doctest_OfxWriter():
                         0
                     </TRNUID>
                     <STATUS>
+                        <CODE>
+                            0
+                        </CODE>
                         <SEVERITY>
                             INFO
                         </SEVERITY>
@@ -73,6 +90,8 @@ def doctest_OfxWriter():
                             </ACCTTYPE>
                         </BANKACCTFROM>
                         <BANKTRANLIST>
+                            <DTSTART/>
+                            <DTEND/>
                             <STMTTRN>
                                 <TRNTYPE>
                                     CHECKING

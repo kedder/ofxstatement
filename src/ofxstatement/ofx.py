@@ -15,7 +15,19 @@ class OfxWriter(object):
         et = self.buildDocument()
         encoded = etree.tostring(et.getroot(), "utf-8")
         encoded = str(encoded, "utf-8")
-        return encoded
+        header = ("<!-- \n"
+                  "OFXHEADER:100\n"
+                  "DATA:OFXSGML\n"
+                  "VERSION:102\n"
+                  "SECURITY:NONE\n"
+                  "ENCODING:UTF-8\n"
+                  "CHARSET:NONE\n"
+                  "COMPRESSION:NONE\n"
+                  "OLDFILEUID:NONE\n"
+                  "NEWFILEUID:NONE\n"
+                  "-->\n\n")
+
+        return header + encoded
 
     def buildDocument(self):
         tb = self.tb
@@ -33,7 +45,7 @@ class OfxWriter(object):
         tb.start("SIGNONMSGSRSV1", {})
         tb.start("SONRS", {})
         tb.start("STATUS", {})
-        self.buildText("CODE", 0)
+        self.buildText("CODE", "0")
         self.buildText("SEVERITY", "INFO")
         tb.end("STATUS")
 
@@ -50,19 +62,21 @@ class OfxWriter(object):
 
         self.buildText("TRNUID", "0")
         tb.start("STATUS", {})
-        self.buildText("CODE", 0)
+        self.buildText("CODE", "0")
         self.buildText("SEVERITY", "INFO")
         tb.end("STATUS")
 
         tb.start("STMTRS", {})
         self.buildText("CURDEF", self.statement.currency)
         tb.start("BANKACCTFROM", {})
-        self.buildText("BANKID", self.statement.bankId)
-        self.buildText("ACCTID", self.statement.accountId)
+        self.buildText("BANKID", self.statement.bankId, False)
+        self.buildText("ACCTID", self.statement.accountId, False)
         self.buildText("ACCTTYPE", "CHECKING")
         tb.end("BANKACCTFROM")
 
         tb.start("BANKTRANLIST", {})
+        self.buildDate("DTSTART", self.statement.startingBalanceDate, False)
+        self.buildDate("DTEND", self.statement.endingBalanceDate, False)
 
         for line in self.statement.lines:
             self.buildTransaction(line)
@@ -86,24 +100,28 @@ class OfxWriter(object):
         self.buildDate("DTPOSTED", line.date)
         self.buildAmount("TRNAMT", line.amount)
         self.buildText("FITID", line.id)
+        self.buildText("CHECKNUM", line.checkNumber)
+        self.buildText("NAME", line.payee)
         self.buildText("MEMO", line.memo)
         #self.buildText("CURRENCY", line.currency)
-        self.buildText("NAME", line.payee)
 
         tb.end("STMTTRN")
 
 
     def buildText(self, tag, text, skipEmpty=True):
-        if not text and skipEmpty:
+        if text is None and skipEmpty:
             return
         self.tb.start(tag, {})
-        self.tb.data(text)
+        self.tb.data(text or "")
         self.tb.end(tag)
 
     def buildDate(self, tag, dt, skipEmpty=True):
         if not dt and skipEmpty:
             return
-        self.buildText(tag, dt.strftime("%Y%m%d"))
+        if dt is None:
+            self.buildText(tag, "", skipEmpty)
+        else:
+            self.buildText(tag, dt.strftime("%Y%m%d"))
 
     def buildDateTime(self, tag, dt, skipEmpty=True):
         if not dt and skipEmpty:

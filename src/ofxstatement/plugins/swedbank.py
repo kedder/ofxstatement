@@ -9,11 +9,12 @@ LINETYPE_STARTBALANCE = "10"
 LINETYPE_ENDBALANCE = "86"
 
 class SwedbankCsvStatementParser(CsvStatementParser):
-    mappings = {2: "date",
-                3: "payee",
-                4: "memo",
-                5: "amount",
-                8: "id"}
+    mappings = {"date": 2,
+                "payee": 3,
+                "memo": 4,
+                "amount": 5,
+                "id": 8,
+                "checkNumber": 8}
 
     def createReader(self):
         # We cannot parse swedbank csv as regular csv because swedbanks format

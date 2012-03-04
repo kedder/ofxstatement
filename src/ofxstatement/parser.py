@@ -71,7 +71,7 @@ class CsvStatementParser(StatementParser):
 
     def parseLine(self, line):
         stmtLine = StatementLine()
-        for col, field in self.mappings.items():
+        for field, col in self.mappings.items():
             rawvalue = line[col]
             value = self.parseValue(rawvalue, field)
             setattr(stmtLine, field, value)
