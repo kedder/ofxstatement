@@ -110,7 +110,7 @@ class OfxWriter(object):
 
 
     def buildText(self, tag, text, skipEmpty=True):
-        if text is None and skipEmpty:
+        if not text and skipEmpty:
             return
         self.tb.start(tag, {})
         self.tb.data(text or "")

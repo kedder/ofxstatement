@@ -18,7 +18,7 @@ def doctest_SwedbankCsvStatementParser():
         >>> statement.accountId
         'LT797300010XXXXXXXXX'
         >>> len(statement.lines)
-        4
+        5
         >>> statement.startingBalance
         2123.82
         >>> statement.startingBalanceDate
@@ -68,6 +68,14 @@ def doctest_SwedbankCsvStatementParser():
         'Company'
         >>> l.memo
         'Salary'
+
+    Check line with empty payee:
+        >>> l = statement.lines[4]
+        >>> l.id
+        '2012022900875660'
+        >>> l.payee
+        ''
+
 
     """
 

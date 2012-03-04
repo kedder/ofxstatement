@@ -19,8 +19,9 @@ def doctest_OfxWriter():
         >>> statement = Statement("BID", "ACCID", "LTL")
         >>> statement.lines.append(StatementLine(
         ...     "1", datetime(2012, 2, 12), "Sample 1", 15.4))
-        >>> statement.lines.append(StatementLine(
-        ...     "2", datetime(2012, 2, 12), "Sample 2", 25.0))
+        >>> line = StatementLine("2", datetime(2012, 2, 12), "Sample 2", 25.0)
+        >>> line.payee = ''
+        >>> statement.lines.append(line)
 
     Create writer:
         >>> writer = ofx.OfxWriter(statement)
