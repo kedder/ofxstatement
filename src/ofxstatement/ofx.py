@@ -98,6 +98,7 @@ class OfxWriter(object):
 
         self.buildText("TRNTYPE", "CHECKING")  # TODO: fix
         self.buildDate("DTPOSTED", line.date)
+        self.buildDate("DTUSER", line.dateUser)
         self.buildAmount("TRNAMT", line.amount)
         self.buildText("FITID", line.id)
         self.buildText("CHECKNUM", line.checkNumber)

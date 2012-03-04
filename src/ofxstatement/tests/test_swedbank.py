@@ -41,7 +41,11 @@ def doctest_SwedbankCsvStatementParser():
         >>> l.id
         '2012010200041787'
         >>> l.checkNumber
-        '2012010200041787'
+        '059553'
+        >>> l.date
+        datetime.datetime(2012, 1, 2, 0, 0)
+        >>> l.dateUser
+        datetime.datetime(2011, 12, 30, 0, 0)
 
     Check line with awkward quotation marks:
         >>> l = statement.lines[2]
@@ -52,7 +56,7 @@ def doctest_SwedbankCsvStatementParser():
         >>> l.payee
         'UAB "Naktida"'
         >>> l.memo
-        'PIRKINYS NNNNNNNNNNNNNNNN ... UAB "Naktida" ... 00000'
+        'PIRKINYS 0000000000000000 ... UAB "Naktida" ... 00000'
 
     Check income line:
         >>> l = statement.lines[3]

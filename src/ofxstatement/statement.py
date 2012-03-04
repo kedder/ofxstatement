@@ -35,8 +35,8 @@ class StatementLine(object):
     amount = 0.0
 
     # additional fields
-    dateUser = ""
     payee = ""
+    dateUser = ""
     checkNumber = ""
 
     def __init__(self, id=None, date=None, memo=None, amount=None):
