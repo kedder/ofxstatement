@@ -16,7 +16,7 @@ setup(
       description = ("Tool to convert proprietary bank statement to "
                      "OFX format, suitable for importing to GnuCash"),
       license = "GPL",
-      keywords = "ofx banking statement",
+      keywords = ["ofx", "banking", "statement"],
       classifiers = [
                      'Development Status :: 3 - Alpha',
                      'Programming Language :: Python :: 3',
