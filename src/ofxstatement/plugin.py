@@ -50,6 +50,9 @@ class Autoregisterable(type):
 
 
 class Plugin(metaclass=Autoregisterable):
+    ui = None
+    settings = None
+
     def __init__(self, ui, settings):
         self.ui = ui
         self.settings = settings

@@ -4,6 +4,7 @@ import sys
 import csv
 
 from ofxstatement.parser import CsvStatementParser
+from ofxstatement.plugin import Plugin
 
 LINETIME_HEADER = "000"
 LINETYPE_TRANSACTION = "010"
@@ -66,3 +67,10 @@ class DnBCsvStatementParser(CsvStatementParser):
                 self.statement.endingBalanceDate = self.parseDateTime(line[2])
             return None
 
+class DnBPlugin(Plugin):
+     name = "dnb"
+
+     def get_parser(self, fin):
+         encoding = self.settings.get('charset', 'utf-8')
+         f = open(fin, encoding=encoding)
+         return DnBCsvStatementParser(f)
