@@ -41,18 +41,20 @@ class SwedbankCsvStatementParser(CsvStatementParser):
         lineType = parts[1]
 
         if lineType == LINETYPE_TRANSACTION:
-            line = super(SwedbankCsvStatementParser, self).parseLine(parts)
+            # parse transaction line in standard fasion
+            stmtline = super(SwedbankCsvStatementParser, self).parseLine(parts)
             if parts[7] == "D":
-                line.amount = -line.amount
+                stmtline.amount = -stmtline.amount
 
-            m = CARD_PURCHASE_RE.match(line.memo)
+            m = CARD_PURCHASE_RE.match(stmtline.memo)
             if m:
                 # this is an electronic purchase. extract some useful
                 # information from memo field
-                line.dateUser = self.parseDateTime(m.group(1).replace(".", "-"))
-                line.checkNumber = m.group(2)
+                dt = m.group(1).replace(".", "-")
+                stmtline.dateUser = self.parseDateTime(dt)
+                stmtline.checkNumber = m.group(2)
 
-            return line
+            return stmtline
 
         elif lineType == LINETYPE_ENDBALANCE:
             self.statement.endingBalance = self.parseFloat(parts[5])

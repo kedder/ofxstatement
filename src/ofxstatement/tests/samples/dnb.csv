@@ -1,0 +1,11 @@
+000	20120304		AGBLLT2XXXX	AB DNB banko Vilniaus sk.	40100	Vilniaus 18, Vilnius				Bill Gates	00000000000	Gedinimo-1 Vilnius, LIETUVA			AB DNB banko Vilniaus sk.	LT000000000000000000	LTL
+020	LikutisPR	20120101		25175	25175																			
+010	8511	20120127		100	100	D			08511	1987555498			Mokestis uþ sàskaitos aptarnavimà	AGBLLT2XXXX	AB DNB banko Vilniaus skyrius	6960321	AB DNB BANKAS								
+010	LT_K01	20120131		26305	26305	D			31211648	1991119229			Palûkanø uþ paskolà mokëjimas pagal sandorá Nr. A24-111111	AGBLLT2XXXX	AB DNB banko Vilniaus skyrius	643214605	Bill Gates								
+010	1636	20120131		16141	16141	D			31211648	1991119235			Paskolos dalies gràþinimas pagal sandorá Nr. A24-111111	AGBLLT2XXXX	AB DNB banko Vilniaus skyrius	602170641	Bill Gates								
+010	2300	20120217		30000	30000	C			66	2003969289			Hello World	HABALT22XXX	"Swedbank" AB	LT222222222222222222	LINUS TORVALDS	00000000000							
+010	8230	20120217		120	120	D			172036	2004694477			Mokestis uþ tarpbankines áplaukas	AGBLLT2XXXX	AB DNB banko Vilniaus skyrius	960821	AB DNB BANKAS								
+010	8511	20120227		100	100	D			08511	2011570956			Mokestis uþ sàskaitos aptarnavimà	AGBLLT2XXXX	AB DNB banko Vilniaus skyrius	6960321	AB DNB BANKAS								
+010	1510	20120103		12400	12400	D			15	1969435215	37902161153		Ámokos uþ UAB DK "PZU Lietuva" paslaugas	AGBLLT2XXXX	AB DNB banko Vilniaus skyrius	LT111111111111111111	UAB DK "PZU Lietuva"	110057869			Bill Gates	37902161153	LT111111111111111111		
+020	LikutisPB	20120304		7483	7483																				
+999	510350

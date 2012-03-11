@@ -11,8 +11,9 @@ def doctest_SwedbankCsvStatementParser():
         ...                        'samples', 'swedbank.csv')
 
     Create parser object and parse:
-        >>> swedbank = SwedbankCsvStatementParser(open(csvfile, 'r'))
-        >>> statement = swedbank.parse()
+        >>> fin = open(csvfile, 'r', encoding='utf-8')
+        >>> parser = SwedbankCsvStatementParser(fin)
+        >>> statement = parser.parse()
 
     Check what we've got:
         >>> statement.accountId

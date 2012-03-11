@@ -10,6 +10,8 @@ class StatementParser(object):
     Defines interface for all parser implementation
     """
 
+    dateFormat = "%Y-%m-%d"
+
     def parse(self):
         """Read and parse statement
 
@@ -45,7 +47,7 @@ class StatementParser(object):
             return value
 
     def parseDateTime(self, value):
-        return datetime.strptime(value, "%Y-%m-%d")
+        return datetime.strptime(value, self.dateFormat)
 
     def parseFloat(self, value):
         return float(value)
