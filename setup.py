@@ -7,6 +7,9 @@
 """
 from setuptools import setup, find_packages
 
+with open('README.txt') as f:
+    long_description = f.read()
+
 setup(
       name='ofxstatement',
       version='0.1.0',
@@ -15,7 +18,8 @@ setup(
       url = "https://github.com/kedder/ofxstatement",
       description = ("Tool to convert proprietary bank statement to "
                      "OFX format, suitable for importing to GnuCash"),
-      license = "GPL",
+      long_description = long_description,
+      license = "GPLv3",
       keywords = ["ofx", "banking", "statement"],
       classifiers = [
                      'Development Status :: 3 - Alpha',
@@ -28,7 +32,7 @@ setup(
                      'License :: OSI Approved :: GNU Affero General Public License v3'
                      ],
       packages = find_packages('src'),
-      entry_points = {'ofxstatement':
+      entry_points = {'console_scripts':
                       ['ofxstatement = ofxstatement.tool:run']},
       package_dir = {'':'src'},
       install_requires = [
