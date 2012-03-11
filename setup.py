@@ -9,10 +9,12 @@ from setuptools import setup, find_packages
 
 setup(
       name='ofxstatement',
-      version='0.1.0-dev',
+      version='0.1.0',
       author = "Andrey Lebedev",
       author_email = "andrey@lebedev.lt",
-      description = "Proprietary bank statement to OFX converter",
+      url = "https://github.com/kedder/ofxstatement",
+      description = ("Tool to convert proprietary bank statement to "
+                     "OFX format, suitable for importing to GnuCash"),
       license = "GPL",
       keywords = "ofx banking statement",
       classifiers = [
