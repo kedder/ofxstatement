@@ -16,16 +16,22 @@ setup(
       license = "GPL",
       keywords = "ofx banking statement",
       classifiers = [
-                     'Development Status :: 4 - Beta',
-                     'Programming Language :: Python',
+                     'Development Status :: 3 - Alpha',
+                     'Programming Language :: Python :: 3',
                      'Natural Language :: English',
-                     'Operating System :: OS Independent'],
+                     'Topic :: Office/Business :: Financial :: Accounting',
+                     'Topic :: Utilities',
+                     'Environment :: Console',
+                     'Operating System :: OS Independent',
+                     'License :: OSI Approved :: GNU Affero General Public License v3'
+                     ],
       packages = find_packages('src'),
       entry_points = {'ofxstatement':
                       ['ofxstatement = ofxstatement.tool:run']},
       package_dir = {'':'src'},
       install_requires = [
                           'setuptools',
+                          'appdirs'
                           ],
       include_package_data = True,
       zip_safe = True

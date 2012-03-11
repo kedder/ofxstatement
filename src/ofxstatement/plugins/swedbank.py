@@ -4,12 +4,14 @@ import sys
 import re
 
 from ofxstatement.parser import CsvStatementParser
+from ofxstatement.plugin import Plugin
 
 LINETYPE_TRANSACTION = "20"
 LINETYPE_STARTBALANCE = "10"
 LINETYPE_ENDBALANCE = "86"
 
-CARD_PURCHASE_RE = re.compile(r"PIRKINYS \d+ (\d\d\d\d\.\d\d\.\d\d) .* \((\d+)\).*")
+CARD_PURCHASE_RE = re.compile(
+                    r"PIRKINYS \d+ (\d\d\d\d\.\d\d\.\d\d) .* \((\d+)\).*")
 
 class SwedbankCsvStatementParser(CsvStatementParser):
     mappings = {"date": 2,
@@ -63,3 +65,10 @@ class SwedbankCsvStatementParser(CsvStatementParser):
         elif lineType == LINETYPE_STARTBALANCE:
             self.statement.startingBalance = self.parseFloat(parts[5])
             self.statement.startingBalanceDate = self.parseDateTime(parts[2])
+
+class SwedbankPlugin(Plugin):
+    name = "swedbank"
+
+    def get_parser(self, fin):
+        f = open(fin, "r")
+        return SwedbankCsvStatementParser(f)

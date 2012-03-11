@@ -2,18 +2,67 @@
 """
 import os
 import sys
+import argparse
 
-from ofxstatement.plugins.swedbank import SwedbankCsvStatementParser
-from ofxstatement.plugins.dnb import DnBCsvStatementParser
+import ofxstatement.plugins
+
+from ofxstatement.ui import UI
+from ofxstatement import configuration
+from ofxstatement import plugin
 from ofxstatement.ofx import OfxWriter
+from ofxstatement.exceptions import Abort
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+                description='Convert proprietary bank statement to OFX format.')
+
+    parser.add_argument("-t", "--type",
+                        required=True,
+                        help="Input file type. This type must be present as a "
+                        " section in your config file.")
+    parser.add_argument("input", help="Input file to process")
+    parser.add_argument("output", help="Output (OFX) file to produce")
+    return parser.parse_args()
+
+def process(args, ui):
+    # read configuration
+    config = configuration.read(ui)
+
+    if args.type not in config:
+        raise Abort("No section named %s in config file" % section)
+
+    settings = config[args.type]
+
+    pname = settings.get('plugin', None)
+    if not pname:
+        raise Abort("Specify 'plugin' setting for section %s" % args.type)
+
+    # pick and configure plugin 
+    try:
+        p = plugin.get_plugin(pname, ui, settings)
+    except plugin.PluginNotRegistered as e:
+        raise Abort("No plugin named '%s' is found" % e) from e
+
+    # process the input and produce output
+    parser = p.get_parser(args.input)
+    statement = parser.parse()
+
+    with open(args.output, "w") as out:
+        writer = OfxWriter(statement)
+        out.write(writer.toxml())
+
+    ui.status("Conversion completed: %s" % args.input)
+
 
 def run():
-    infname = sys.argv[1]
-    outfname = sys.argv[2]
+    # parse command line options
+    args = parse_args()
 
-    with open(infname, 'r', encoding='cp1257') as fin, open(outfname, 'w') as fout:
-        parser = DnBCsvStatementParser(fin)
-        statement = parser.parse()
-        writer = OfxWriter(statement)
-        fout.write(writer.toxml())
-    print("Done")
+    # set up user interface
+    ui = UI()
+
+    try:
+        process(args, ui)
+    except Abort as e:
+        ui.error(e)
+

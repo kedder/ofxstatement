@@ -29,6 +29,11 @@ class Registry(object):
 
 registry = Registry()
 
+def get_plugin(name, ui, settings):
+    pcls = registry.get(name)
+    plugin = pcls(ui, settings)
+    return plugin
+
 class PluginAlreadyRegistered(Exception):
     """Raised on attpemt to register an already registered plugin
     """
@@ -45,4 +50,9 @@ class Autoregisterable(type):
 
 
 class Plugin(metaclass=Autoregisterable):
-    pass
+    def __init__(self, ui, settings):
+        self.ui = ui
+        self.settings = settings
+
+    def get_parser(self, filename):
+        raise NotImplementedError()
