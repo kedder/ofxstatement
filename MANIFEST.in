@@ -1,1 +1,2 @@
+include README.rst
 graft src/ofxstatement/tests/samples
