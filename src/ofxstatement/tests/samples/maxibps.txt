@@ -1,0 +1,41 @@
+﻿Pohyby na účtu č.: 211202112, ze dne 18.03.2012 16:08
+
+datum zaúčtování:  14.3.2012
+částka:            1743.00
+měna:              CZK
+zůstatek:          10000.87
+konstantní symbol: 0138
+variabilní symbol: 0000000009
+specifický symbol: 
+označení operace:  Došlá platba
+název protiúčtu:   RED HAT CZECH S.R.O.
+protiúčet:         1000453303/3500
+poznámka:          SALARY PRAHA 5                                                        
+                                                                                         
+
+datum zaúčtování:  12.3.2012
+částka:            -804.68
+měna:              CZK
+zůstatek:          1000.87
+konstantní symbol: 0308
+variabilní symbol: 1234512345
+specifický symbol: 3620245785
+označení operace:  Odchozí inkasní platba
+název protiúčtu:   TELEFONICA CZECH REP
+protiúčet:         500114004/2700
+poznámka:          TELEFONICA CZECH REPUBLIC, A.S. ZA BRUMLOVKOU 266, 2 PRAHA 4 362024578
+                   5                                                                     
+
+datum zaúčtování:  12.1.2012
+částka:            -784.68
+měna:              CZK
+zůstatek:          10006.80
+konstantní symbol: 0308
+variabilní symbol: 1234567890
+specifický symbol: 3620245785
+označení operace:  Odchozí inkasní platba
+název protiúčtu:   TELEFONICA CZECH REP
+protiúčet:         500114004/2700
+poznámka:          TELEFONICA O2 CZECH REPUBLIC, A.S. ZA BRUMLOVKOU 266, 2 PRAHA 4 362024
+                   5785                                                                  
+

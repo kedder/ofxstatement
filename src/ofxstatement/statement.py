@@ -48,3 +48,11 @@ class StatementLine(object):
         self.dateUser = None
         self.payee = None
         self.checkNumber = None
+
+    def __str__(self):
+        return """
+        ID: %s, date: %s, amount: %s, payee: %s
+        memo: %s
+        check no.: %s
+        """ % (self.id, self.date, self.amount, self.payee, self.memo,
+            self.checkNumber)
