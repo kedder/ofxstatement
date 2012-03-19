@@ -29,7 +29,7 @@ def process(args, ui):
     config = configuration.read(ui)
 
     if args.type not in config:
-        raise Abort("No section named %s in config file" % section)
+        raise Abort("No section named %s in config file" % args.type)
 
     settings = config[args.type]
 
