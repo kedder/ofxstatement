@@ -1,5 +1,4 @@
 """Parser for the statement of Poštovní spořitelna"""
-
 from ofxstatement.parser import StatementParser
 from ofxstatement.plugin import Plugin
 from ofxstatement.statement import Statement, StatementLine
@@ -32,6 +31,8 @@ class PSTextFormatParser(StatementParser):
         StatementParser.__init__(self)
         # bankId=None, accountId=None, currency=None
         self.statement = Statement(currency="CZK")
+        self.statement.startingBalanceDate = datetime.date.fromtimestamp(0)
+        self.statement.endingBalanceDate = datetime.date.today()
         self.fin = fname
 
     def createReader(self):
