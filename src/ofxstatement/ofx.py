@@ -96,7 +96,7 @@ class OfxWriter(object):
         tb = self.tb
         tb.start("STMTTRN", {})
 
-        self.buildText("TRNTYPE", "CHECKING")  # TODO: fix
+        self.buildText("TRNTYPE", "CHECK")  # TODO: fix
         self.buildDate("DTPOSTED", line.date)
         self.buildDate("DTUSER", line.dateUser)
         self.buildAmount("TRNAMT", line.amount)

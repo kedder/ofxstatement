@@ -95,7 +95,7 @@ def doctest_OfxWriter():
                             <DTEND/>
                             <STMTTRN>
                                 <TRNTYPE>
-                                    CHECKING
+                                    CHECK
                                 </TRNTYPE>
                                 <DTPOSTED>
                                     20120212
@@ -112,7 +112,7 @@ def doctest_OfxWriter():
                             </STMTTRN>
                             <STMTTRN>
                                 <TRNTYPE>
-                                    CHECKING
+                                    CHECK
                                 </TRNTYPE>
                                 <DTPOSTED>
                                     20120212
