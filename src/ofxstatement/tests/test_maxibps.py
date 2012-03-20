@@ -5,8 +5,8 @@ from ofxstatement.plugins.maxibps import PSTextFormatParser
 
 class Test_Parser(unittest.TestCase):
     def setUp(self):
-        self.test_file = os.path.join(os.path.dirname(__file__),
-            "samples", "maxibps.txt")
+        self.test_file = open(os.path.join(os.path.dirname(__file__),
+            "samples", "maxibps.txt"))
 
     def test_parser(self):
         parser = PSTextFormatParser(self.test_file)

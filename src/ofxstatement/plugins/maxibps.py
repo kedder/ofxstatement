@@ -30,7 +30,8 @@ class PSTextFormatParser(StatementParser):
 
     def __init__(self, fname):
         StatementParser.__init__(self)
-        self.statement = Statement()
+        # bankId=None, accountId=None, currency=None
+        self.statement = Statement(currency="CZK")
         self.fin = fname
 
     def createReader(self):
