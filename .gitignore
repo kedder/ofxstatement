@@ -9,3 +9,5 @@ parts
 tags
 misc
 build
+.project
+.pydevproject
