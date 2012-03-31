@@ -74,6 +74,9 @@ class CsvStatementParser(StatementParser):
     def parseLine(self, line):
         stmtLine = StatementLine()
         for field, col in self.mappings.items():
+            if col >= len(line):
+                raise ValueError("Cannot find column %s in line of %s items " \
+                                 % (col, len(line)))
             rawvalue = line[col]
             value = self.parseValue(rawvalue, field)
             setattr(stmtLine, field, value)
