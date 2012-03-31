@@ -9,7 +9,7 @@ class DanskeCsvStatementParser(CsvStatementParser):
                 "memo": 4,
                 "amount": 8
                 }
-    dateFormat = "%Y:%m:%d"
+    date_format = "%Y:%m:%d"
 
     def parse(self):
         stmt = super(DanskeCsvStatementParser, self).parse()
@@ -41,8 +41,8 @@ class DanskePlugin(Plugin):
         f = open(fin, 'r', encoding=encoding)
         parser = DanskeCsvStatementParser(f)
         parser.statement.currency = self.settings['currency']
-        parser.statement.accountId = self.settings['account']
-        parser.statement.bankId = self.settings.get('bank', 'Danske')
+        parser.statement.account_id = self.settings['account']
+        parser.statement.bank_id = self.settings.get('bank', 'Danske')
         if self.settings.getboolean('use-details-for-memo'):
             parser.use_details_for_memo()
         return parser

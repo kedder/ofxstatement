@@ -23,7 +23,7 @@ class DnBCsvDialect(object):
     quoting = csv.QUOTE_NONE
 
 class DnBCsvStatementParser(CsvStatementParser):
-    dateFormat = "%Y%m%d"
+    date_format = "%Y%m%d"
     mappings = {"date": 2,
                 "amount": 4,
                 "id": 10,
@@ -41,31 +41,31 @@ class DnBCsvStatementParser(CsvStatementParser):
     def parse_record(self, line):
         # print(line)
 
-        lineType = line[0]
+        linetype = line[0]
         stmt = self.statement
 
-        if lineType == LINETIME_HEADER:
+        if linetype == LINETIME_HEADER:
             # Get basic account information
             stmt.currency = line[17]
-            stmt.bankId = line[3]
-            stmt.accountId = line[16]
+            stmt.bank_id = line[3]
+            stmt.account_id = line[16]
             return None
 
-        elif lineType == LINETYPE_TRANSACTION:
+        elif linetype == LINETYPE_TRANSACTION:
             # parse transaction line in standard fasion
             stmtline = super(DnBCsvStatementParser, self).parse_record(line)
             if line[6] == "D":
                 stmtline.amount = -stmtline.amount
             return stmtline
 
-        elif lineType == LINETYPE_SUMMARY:
-            summaryType = line[1]
-            if summaryType == SUMMARY_START:
-                stmt.startingBalance = self.parse_float(line[4])
-                stmt.startingBalanceDate = self.parse_datetime(line[2])
-            elif summaryType == SUMMARY_END:
-                stmt.endingBalance = self.parse_float(line[4])
-                stmt.endingBalanceDate = self.parse_datetime(line[2])
+        elif linetype == LINETYPE_SUMMARY:
+            summarytype = line[1]
+            if summarytype == SUMMARY_START:
+                stmt.start_balance = self.parse_float(line[4])
+                stmt.start_date = self.parse_datetime(line[2])
+            elif summarytype == SUMMARY_END:
+                stmt.end_balance = self.parse_float(line[4])
+                stmt.end_date = self.parse_datetime(line[2])
             return None
 
 class DnBPlugin(Plugin):

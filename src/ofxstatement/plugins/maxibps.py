@@ -29,10 +29,10 @@ class PSTextFormatParser(StatementParser):
 
     def __init__(self, fname):
         StatementParser.__init__(self)
-        # bankId=None, accountId=None, currency=None
+        # bank_id=None, account_id=None, currency=None
         self.statement = Statement(currency="CZK")
-        self.statement.startingBalanceDate = datetime.date.fromtimestamp(0)
-        self.statement.endingBalanceDate = datetime.date.today()
+        self.statement.start_date = datetime.date.fromtimestamp(0)
+        self.statement.end_date = datetime.date.today()
         self.fin = fname
 
     def split_records(self):
@@ -66,7 +66,7 @@ class PSTextFormatParser(StatementParser):
         # According to OFX spec this could be "check (or other reference) no."
         # I don't see any requirement on monotonicity or uniqueness, but
         # I wonder how GnuCash understands that
-        stat_line.checkNumber = res_dict['variabilní symbol']
+        stat_line.check_no = res_dict['variabilní symbol']
         logging.debug("stat_line:\n%s", str(stat_line))
         return stat_line
 

@@ -7,19 +7,19 @@ class Statement(object):
     lines = None
 
     currency = None
-    bankId = None
-    accountId = None
+    bank_id = None
+    account_id = None
 
-    startingBalance = None
-    startingBalanceDate = None
+    start_balance = None
+    start_date = None
 
-    endingBalance = None
-    endingBalanceDate = None
+    end_balance = None
+    end_date = None
 
-    def __init__(self, bankId=None, accountId=None, currency=None):
+    def __init__(self, bank_id=None, account_id=None, currency=None):
         self.lines = []
-        self.bankId = bankId
-        self.accountId = accountId
+        self.bank_id = bank_id
+        self.account_id = account_id
         self.currency = currency
 
 class StatementLine(object):
@@ -36,8 +36,8 @@ class StatementLine(object):
 
     # additional fields
     payee = ""
-    dateUser = ""
-    checkNumber = ""
+    date_user = ""
+    check_no = ""
 
     def __init__(self, id=None, date=None, memo=None, amount=None):
         self.id = id
@@ -45,9 +45,9 @@ class StatementLine(object):
         self.memo = memo
         self.amount = amount
 
-        self.dateUser = None
+        self.date_user = None
         self.payee = None
-        self.checkNumber = None
+        self.check_no = None
 
     def __str__(self):
         return """
@@ -55,18 +55,18 @@ class StatementLine(object):
         memo: %s
         check no.: %s
         """ % (self.id, self.date, self.amount, self.payee, self.memo,
-            self.checkNumber)
+               self.check_no)
 
 
-def generate_transaction_id(statementLine):
+def generate_transaction_id(stmt_line):
     """Generate pseudo-unique id for given statement line.
 
     This function can be used in statement parsers when real transaction id is
     not available in source statement.
     """
-    return str(abs(hash((statementLine.date,
-                         statementLine.memo,
-                         StatementLine.amount))))
+    return str(abs(hash((stmt_line.date,
+                         stmt_line.memo,
+                         stmt_line.amount))))
 
 def recalculate_balance(stmt):
     """Recalculate statement starting and ending dates and balances.
@@ -79,7 +79,7 @@ def recalculate_balance(stmt):
 
     total_amount = sum(sl.amount for sl in stmt.lines)
 
-    stmt.startingBalance = stmt.startingBalance or 0.0
-    stmt.endingBalance = stmt.startingBalance + total_amount;
-    stmt.startingBalanceDate = min(sl.date for sl in stmt.lines)
-    stmt.endingBalanceDate = max(sl.date for sl in stmt.lines)
+    stmt.start_balance = stmt.start_balance or 0.0
+    stmt.end_balance = stmt.start_balance + total_amount;
+    stmt.start_date = min(sl.date for sl in stmt.lines)
+    stmt.end_date = max(sl.date for sl in stmt.lines)

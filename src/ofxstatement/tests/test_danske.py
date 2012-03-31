@@ -19,13 +19,13 @@ def doctest_DanskeCsvStatementParser():
     Check what we've got:
         >>> len(statement.lines)
         4
-        >>> statement.startingBalance
+        >>> statement.start_balance
         0.0
-        >>> statement.endingBalance
+        >>> statement.end_balance
         0.0
-        >>> statement.startingBalanceDate
+        >>> statement.start_date
         datetime.datetime(2012, 3, 1, 0, 0)
-        >>> statement.endingBalanceDate
+        >>> statement.end_date
         datetime.datetime(2012, 3, 7, 0, 0)
 
     First line is a payment for incoming transaction:
@@ -37,7 +37,7 @@ def doctest_DanskeCsvStatementParser():
         >>> l.date
         datetime.datetime(2012, 3, 1, 0, 0)
         >>> l.id
-        '8585175472216523258'
+        '5865011796238881019'
 
     Second line is incoming money
         >>> l = statement.lines[1]

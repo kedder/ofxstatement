@@ -10,7 +10,7 @@ class StatementParser(object):
     Defines interface for all parser implementation
     """
 
-    dateFormat = "%Y-%m-%d"
+    date_format = "%Y-%m-%d"
 
     def parse(self):
         """Read and parse statement
@@ -22,9 +22,9 @@ class StatementParser(object):
             self.currentLine += 1
             if not line:
                 continue
-            stmtLine = self.parse_record(line)
-            if (stmtLine):
-                self.statement.lines.append(stmtLine)
+            stmt_line = self.parse_record(line)
+            if (stmt_line):
+                self.statement.lines.append(stmt_line)
         return self.statement
 
     def split_records(self):
@@ -47,7 +47,7 @@ class StatementParser(object):
             return value
 
     def parse_datetime(self, value):
-        return datetime.strptime(value, self.dateFormat)
+        return datetime.strptime(value, self.date_format)
 
     def parse_float(self, value):
         return float(value)
@@ -72,12 +72,12 @@ class CsvStatementParser(StatementParser):
         return csv.reader(self.fin)
 
     def parse_record(self, line):
-        stmtLine = StatementLine()
+        stmt_line = StatementLine()
         for field, col in self.mappings.items():
             if col >= len(line):
                 raise ValueError("Cannot find column %s in line of %s items " \
                                  % (col, len(line)))
             rawvalue = line[col]
             value = self.parse_value(rawvalue, field)
-            setattr(stmtLine, field, value)
-        return stmtLine
+            setattr(stmt_line, field, value)
+        return stmt_line

@@ -35,8 +35,8 @@ class SwedbankCsvStatementParser(CsvStatementParser):
 
         # Split line to the parts and strip quotes around fields
         parts = [l[1:] for l in line.split('",')]
-        if not self.statement.accountId:
-            self.statement.accountId = parts[0]
+        if not self.statement.account_id:
+            self.statement.account_id = parts[0]
         if not self.statement.currency:
             self.statement.currency = parts[6]
 
@@ -53,18 +53,18 @@ class SwedbankCsvStatementParser(CsvStatementParser):
                 # this is an electronic purchase. extract some useful
                 # information from memo field
                 dt = m.group(1).replace(".", "-")
-                stmtline.dateUser = self.parse_datetime(dt)
-                stmtline.checkNumber = m.group(2)
+                stmtline.date_user = self.parse_datetime(dt)
+                stmtline.check_no = m.group(2)
 
             return stmtline
 
         elif lineType == LINETYPE_ENDBALANCE:
-            self.statement.endingBalance = self.parse_float(parts[5])
-            self.statement.endingBalanceDate = self.parse_datetime(parts[2])
+            self.statement.end_balance = self.parse_float(parts[5])
+            self.statement.end_date = self.parse_datetime(parts[2])
 
         elif lineType == LINETYPE_STARTBALANCE:
-            self.statement.startingBalance = self.parse_float(parts[5])
-            self.statement.startingBalanceDate = self.parse_datetime(parts[2])
+            self.statement.start_balance = self.parse_float(parts[5])
+            self.statement.start_date = self.parse_datetime(parts[2])
 
 class SwedbankPlugin(Plugin):
     name = "swedbank"

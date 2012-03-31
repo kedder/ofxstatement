@@ -69,14 +69,14 @@ class OfxWriter(object):
         tb.start("STMTRS", {})
         self.buildText("CURDEF", self.statement.currency)
         tb.start("BANKACCTFROM", {})
-        self.buildText("BANKID", self.statement.bankId, False)
-        self.buildText("ACCTID", self.statement.accountId, False)
+        self.buildText("BANKID", self.statement.bank_id, False)
+        self.buildText("ACCTID", self.statement.account_id, False)
         self.buildText("ACCTTYPE", "CHECKING")
         tb.end("BANKACCTFROM")
 
         tb.start("BANKTRANLIST", {})
-        self.buildDate("DTSTART", self.statement.startingBalanceDate, False)
-        self.buildDate("DTEND", self.statement.endingBalanceDate, False)
+        self.buildDate("DTSTART", self.statement.start_date, False)
+        self.buildDate("DTEND", self.statement.end_date, False)
 
         for line in self.statement.lines:
             self.buildTransaction(line)
@@ -84,8 +84,8 @@ class OfxWriter(object):
         tb.end("BANKTRANLIST")
 
         tb.start("LEDGERBAL", {})
-        self.buildAmount("BALAMT", self.statement.endingBalance, False)
-        self.buildDateTime("DTASOF" , self.statement.endingBalanceDate, False)
+        self.buildAmount("BALAMT", self.statement.end_balance, False)
+        self.buildDateTime("DTASOF" , self.statement.end_date, False)
         tb.end("LEDGERBAL")
 
         tb.end("STMTRS")
@@ -98,10 +98,10 @@ class OfxWriter(object):
 
         self.buildText("TRNTYPE", "CHECK")  # TODO: fix
         self.buildDate("DTPOSTED", line.date)
-        self.buildDate("DTUSER", line.dateUser)
+        self.buildDate("DTUSER", line.date_user)
         self.buildAmount("TRNAMT", line.amount)
         self.buildText("FITID", line.id)
-        self.buildText("CHECKNUM", line.checkNumber)
+        self.buildText("CHECKNUM", line.check_no)
         self.buildText("NAME", line.payee)
         self.buildText("MEMO", line.memo)
         #self.buildText("CURRENCY", line.currency)

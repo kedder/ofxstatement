@@ -17,17 +17,17 @@ def doctest_DnBCsvStatementParser():
         >>> statement = parser.parse()
 
     Check what we've got:
-        >>> statement.accountId
+        >>> statement.account_id
         'LT000000000000000000'
         >>> len(statement.lines)
         7
-        >>> statement.startingBalance
+        >>> statement.start_balance
         251.75
-        >>> statement.startingBalanceDate
+        >>> statement.start_date
         datetime.datetime(2012, 1, 1, 0, 0)
-        >>> statement.endingBalance
+        >>> statement.end_balance
         74.83
-        >>> statement.endingBalanceDate
+        >>> statement.end_date
         datetime.datetime(2012, 3, 4, 0, 0)
         >>> statement.currency
         'LTL'

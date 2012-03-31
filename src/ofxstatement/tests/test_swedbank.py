@@ -16,17 +16,17 @@ def doctest_SwedbankCsvStatementParser():
         >>> statement = parser.parse()
 
     Check what we've got:
-        >>> statement.accountId
+        >>> statement.account_id
         'LT797300010XXXXXXXXX'
         >>> len(statement.lines)
         5
-        >>> statement.startingBalance
+        >>> statement.start_balance
         2123.82
-        >>> statement.startingBalanceDate
+        >>> statement.start_date
         datetime.datetime(2012, 1, 1, 0, 0)
-        >>> statement.endingBalance
+        >>> statement.end_balance
         3917.3
-        >>> statement.endingBalanceDate
+        >>> statement.end_date
         datetime.datetime(2012, 1, 31, 0, 0)
         >>> statement.currency
         'LTL'
@@ -41,11 +41,11 @@ def doctest_SwedbankCsvStatementParser():
         "PIRKINYS ... 00000"
         >>> l.id
         '2012010200041787'
-        >>> l.checkNumber
+        >>> l.check_no
         '059553'
         >>> l.date
         datetime.datetime(2012, 1, 2, 0, 0)
-        >>> l.dateUser
+        >>> l.date_user
         datetime.datetime(2011, 12, 30, 0, 0)
 
     Check line with awkward quotation marks:
