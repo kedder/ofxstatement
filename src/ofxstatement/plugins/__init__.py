@@ -4,3 +4,4 @@
 from . import dnb
 from . import swedbank
 from . import maxibps
+from . import danske

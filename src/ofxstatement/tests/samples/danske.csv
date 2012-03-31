@@ -1,0 +1,7 @@
+Date,Bank,Branch,Address,City,Country,Name,Memo,MemoConv,MemoDet,Amount,
+2012:03:01,,"",",Vilnius08500,LT","Paslaugø ir komisiniø pajamos uþ gaunamus tarptautinius pervedimus USD","Mokestis uþ lëðø áskaitymo administravimà pagal mokëjimo nurodymà XXX, mokëjimo paskirtis:    .
+Uþsienio banko mokesèiai: SHA USD0,    (pradinë suma: USD0001,01)",,"Mokëjimo operacija: suma 0001,01 USD,  dokumento Nr.112,  vykdymo data 2012.03.01. Mokesèio suma 20.00 LTL, valiutos keitimo kursas: 2.5649 USD/LTL.",-7.8,
+2012:03:01,CITIBANK NA NYBD CITICORP DATA SYS,"",",Vilnius08500,LT","ACME LLC","Mokëjimo nurodymas Nr.S000000000000000, siuntëjas:          /009957370826 ACME LLC , mokëjimo paskirtis:    .
+Uþsienio bankø mokesèiai: SHA USD0,    (pradinë suma: USD0001,01)",,,889.81,
+2012:03:06,,"",",,","","Mokestis uþ lëðø, gautø ið kitø LR registruotø bankø, áskaitymo administravimà uþ 2012.03.06",,"Mokëjimo operacija: suma 500 LTL,  dokumento Nr.7,  vykdymo data 2012.03.06. Mokesèio suma 1.20 LTL, valiutos keitimo kursas: 2.6167 USD/LTL.",-.46,
+2012:03:07,,"",",Vilnius08500,LT","John Doe",,2.6014 USD/LTL ,,-881.55,

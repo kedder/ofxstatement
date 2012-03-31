@@ -56,3 +56,14 @@ class StatementLine(object):
         check no.: %s
         """ % (self.id, self.date, self.amount, self.payee, self.memo,
             self.checkNumber)
+
+
+def generate_transaction_id(statementLine):
+    """Generate pseudo-unique id for given statement line.
+
+    This method can be used in statement parsers when real transaction id is
+    not available in source statement.
+    """
+    return str(hash((statementLine.date,
+                     statementLine.memo,
+                     StatementLine.amount)))

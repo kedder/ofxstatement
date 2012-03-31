@@ -72,5 +72,5 @@ class DnBPlugin(Plugin):
 
      def get_parser(self, fin):
          encoding = self.settings.get('charset', 'utf-8')
-         f = open(fin, encoding=encoding)
+         f = open(fin, 'r', encoding=encoding)
          return DnBCsvStatementParser(f)
