@@ -61,9 +61,25 @@ class StatementLine(object):
 def generate_transaction_id(statementLine):
     """Generate pseudo-unique id for given statement line.
 
-    This method can be used in statement parsers when real transaction id is
+    This function can be used in statement parsers when real transaction id is
     not available in source statement.
     """
     return str(hash((statementLine.date,
                      statementLine.memo,
                      StatementLine.amount)))
+
+def recalculate_balance(stmt):
+    """Recalculate statement starting and ending dates and balances.
+
+    When starting balance is not available, it will be assumed to be 0.
+
+    This function can be used in statement parsers when balance information is
+    not available in source statement.
+    """
+
+    total_amount = sum(sl.amount for sl in stmt.lines)
+
+    stmt.startingBalance = stmt.startingBalance or 0.0
+    stmt.endingBalance = stmt.startingBalance + total_amount;
+    stmt.startingBalanceDate = min(sl.date for sl in stmt.lines)
+    stmt.endingBalanceDate = max(sl.date for sl in stmt.lines)
