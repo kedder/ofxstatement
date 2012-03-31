@@ -16,12 +16,12 @@ class DanskeCsvStatementParser(CsvStatementParser):
         statement.recalculate_balance(stmt)
         return stmt
 
-    def parseLine(self, line):
+    def parse_record(self, line):
         if self.currentLine == 1:
             return None
 
         # fill statement line according to mappings
-        sl = super(DanskeCsvStatementParser, self).parseLine(line)
+        sl = super(DanskeCsvStatementParser, self).parse_record(line)
 
         # generate transaction id out of available data
         sl.id = statement.generate_transaction_id(sl)

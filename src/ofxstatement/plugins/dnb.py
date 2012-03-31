@@ -32,13 +32,13 @@ class DnBCsvStatementParser(CsvStatementParser):
                 }
     charset = 'cp1257'
 
-    def parseFloat(self, value):
+    def parse_float(self, value):
         return int(value) / 100.0
 
-    def createReader(self):
+    def split_records(self):
         return csv.reader(self.fin, dialect=DnBCsvDialect)
 
-    def parseLine(self, line):
+    def parse_record(self, line):
         # print(line)
 
         lineType = line[0]
@@ -52,7 +52,7 @@ class DnBCsvStatementParser(CsvStatementParser):
 
         elif lineType == LINETYPE_TRANSACTION:
             # parse transaction line in standard fasion
-            stmtline = super(DnBCsvStatementParser, self).parseLine(line)
+            stmtline = super(DnBCsvStatementParser, self).parse_record(line)
             if line[6] == "D":
                 stmtline.amount = -stmtline.amount
             return stmtline
@@ -60,11 +60,11 @@ class DnBCsvStatementParser(CsvStatementParser):
         elif lineType == LINETYPE_SUMMARY:
             summaryType = line[1]
             if summaryType == SUMMARY_START:
-                self.statement.startingBalance = self.parseFloat(line[4])
-                self.statement.startingBalanceDate = self.parseDateTime(line[2])
+                self.statement.startingBalance = self.parse_float(line[4])
+                self.statement.startingBalanceDate = self.parse_datetime(line[2])
             elif summaryType == SUMMARY_END:
-                self.statement.endingBalance = self.parseFloat(line[4])
-                self.statement.endingBalanceDate = self.parseDateTime(line[2])
+                self.statement.endingBalance = self.parse_float(line[4])
+                self.statement.endingBalanceDate = self.parse_datetime(line[2])
             return None
 
 class DnBPlugin(Plugin):

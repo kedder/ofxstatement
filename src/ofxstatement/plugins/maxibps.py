@@ -35,11 +35,11 @@ class PSTextFormatParser(StatementParser):
         self.statement.endingBalanceDate = datetime.date.today()
         self.fin = fname
 
-    def createReader(self):
+    def split_records(self):
         # uses self.fin
         return RecordParseRE.split(self.fin.read().strip())[1:]
 
-    def parseLine(self, rec):
+    def parse_record(self, rec):
         MultilineRecRE = re.compile(r"\n\s+")
         SplitItemRE = re.compile(r":\s+")
         # join together multiline items

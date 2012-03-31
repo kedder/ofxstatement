@@ -20,12 +20,12 @@ class SwedbankCsvStatementParser(CsvStatementParser):
                 "amount": 5,
                 "id": 8}
 
-    def createReader(self):
+    def split_records(self):
         # We cannot parse swedbank csv as regular csv because swedbanks format
         # uses unescaped quote symbols.
         return self.fin.readlines()
 
-    def parseLine(self, line):
+    def parse_record(self, line):
         if not line.strip():
             return None
 
@@ -44,7 +44,7 @@ class SwedbankCsvStatementParser(CsvStatementParser):
 
         if lineType == LINETYPE_TRANSACTION:
             # parse transaction line in standard fasion
-            stmtline = super(SwedbankCsvStatementParser, self).parseLine(parts)
+            stmtline = super(SwedbankCsvStatementParser, self).parse_record(parts)
             if parts[7] == "D":
                 stmtline.amount = -stmtline.amount
 
@@ -53,18 +53,18 @@ class SwedbankCsvStatementParser(CsvStatementParser):
                 # this is an electronic purchase. extract some useful
                 # information from memo field
                 dt = m.group(1).replace(".", "-")
-                stmtline.dateUser = self.parseDateTime(dt)
+                stmtline.dateUser = self.parse_datetime(dt)
                 stmtline.checkNumber = m.group(2)
 
             return stmtline
 
         elif lineType == LINETYPE_ENDBALANCE:
-            self.statement.endingBalance = self.parseFloat(parts[5])
-            self.statement.endingBalanceDate = self.parseDateTime(parts[2])
+            self.statement.endingBalance = self.parse_float(parts[5])
+            self.statement.endingBalanceDate = self.parse_datetime(parts[2])
 
         elif lineType == LINETYPE_STARTBALANCE:
-            self.statement.startingBalance = self.parseFloat(parts[5])
-            self.statement.startingBalanceDate = self.parseDateTime(parts[2])
+            self.statement.startingBalance = self.parse_float(parts[5])
+            self.statement.startingBalanceDate = self.parse_datetime(parts[2])
 
 class SwedbankPlugin(Plugin):
     name = "swedbank"

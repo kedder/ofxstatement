@@ -17,39 +17,39 @@ class StatementParser(object):
 
         Return Statement object
         """
-        reader = self.createReader()
+        reader = self.split_records()
         for line in reader:
             self.currentLine += 1
             if not line:
                 continue
-            stmtLine = self.parseLine(line)
+            stmtLine = self.parse_record(line)
             if (stmtLine):
                 self.statement.lines.append(stmtLine)
         return self.statement
 
-    def createReader(self):
+    def split_records(self):
         """Return iterable object consisting of a line per transaction
         """
         raise NotImplementedError
 
-    def parseLine(self, line):
+    def parse_record(self, line):
         """Parse given transaction line and return StatementLine object
         """
         raise NotImplementedError
 
-    def parseValue(self, value, field):
+    def parse_value(self, value, field):
         tp = type(getattr(StatementLine, field))
         if tp == datetime:
-            return self.parseDateTime(value)
+            return self.parse_datetime(value)
         elif tp == float:
-            return self.parseFloat(value)
+            return self.parse_float(value)
         else:
             return value
 
-    def parseDateTime(self, value):
+    def parse_datetime(self, value):
         return datetime.strptime(value, self.dateFormat)
 
-    def parseFloat(self, value):
+    def parse_float(self, value):
         return float(value)
 
 
@@ -68,16 +68,16 @@ class CsvStatementParser(StatementParser):
         self.statement = Statement()
         self.fin = fin
 
-    def createReader(self):
+    def split_records(self):
         return csv.reader(self.fin)
 
-    def parseLine(self, line):
+    def parse_record(self, line):
         stmtLine = StatementLine()
         for field, col in self.mappings.items():
             if col >= len(line):
                 raise ValueError("Cannot find column %s in line of %s items " \
                                  % (col, len(line)))
             rawvalue = line[col]
-            value = self.parseValue(rawvalue, field)
+            value = self.parse_value(rawvalue, field)
             setattr(stmtLine, field, value)
         return stmtLine

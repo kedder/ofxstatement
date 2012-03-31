@@ -10,13 +10,13 @@ class Test_Parser(unittest.TestCase):
 
     def test_parser(self):
         parser = PSTextFormatParser(self.test_file)
-        records = parser.createReader()
+        records = parser.split_records()
         self.assertEqual(len(records), 3, "split the input file into records")
 
-    def test_parseLine(self):
+    def test_parse_record(self):
         parser = PSTextFormatParser(self.test_file)
-        for rec_str in parser.createReader():
-            rec = parser.parseLine(rec_str)
+        for rec_str in parser.split_records():
+            rec = parser.parse_record(rec_str)
             self.assertIsNotNone(rec, "StatementLine created")
 
 if __name__ == "__main__":
