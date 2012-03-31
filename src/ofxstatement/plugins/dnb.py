@@ -42,12 +42,13 @@ class DnBCsvStatementParser(CsvStatementParser):
         # print(line)
 
         lineType = line[0]
+        stmt = self.statement
 
         if lineType == LINETIME_HEADER:
             # Get basic account information
-            self.statement.currency = line[17]
-            self.statement.bankId = line[3]
-            self.statement.accountId = line[16]
+            stmt.currency = line[17]
+            stmt.bankId = line[3]
+            stmt.accountId = line[16]
             return None
 
         elif lineType == LINETYPE_TRANSACTION:
@@ -60,11 +61,11 @@ class DnBCsvStatementParser(CsvStatementParser):
         elif lineType == LINETYPE_SUMMARY:
             summaryType = line[1]
             if summaryType == SUMMARY_START:
-                self.statement.startingBalance = self.parse_float(line[4])
-                self.statement.startingBalanceDate = self.parse_datetime(line[2])
+                stmt.startingBalance = self.parse_float(line[4])
+                stmt.startingBalanceDate = self.parse_datetime(line[2])
             elif summaryType == SUMMARY_END:
-                self.statement.endingBalance = self.parse_float(line[4])
-                self.statement.endingBalanceDate = self.parse_datetime(line[2])
+                stmt.endingBalance = self.parse_float(line[4])
+                stmt.endingBalanceDate = self.parse_datetime(line[2])
             return None
 
 class DnBPlugin(Plugin):
