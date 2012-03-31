@@ -64,9 +64,9 @@ def generate_transaction_id(statementLine):
     This function can be used in statement parsers when real transaction id is
     not available in source statement.
     """
-    return str(hash((statementLine.date,
-                     statementLine.memo,
-                     StatementLine.amount)))
+    return str(abs(hash((statementLine.date,
+                         statementLine.memo,
+                         StatementLine.amount))))
 
 def recalculate_balance(stmt):
     """Recalculate statement starting and ending dates and balances.

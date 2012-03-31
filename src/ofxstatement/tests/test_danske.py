@@ -32,20 +32,18 @@ def doctest_DanskeCsvStatementParser():
         >>> l = statement.lines[0]
         >>> l.amount
         -7.8
-        >>> l.payee
-        'Paslaugų ir komisinių pajamos už gaunamus tarptautinius pervedimus USD'
         >>> l.memo
-        'Mokestis už lėšų įskaitymo ... (pradinė suma: USD0001,01)'
+        'Paslaugų ir komisinių pajamos už gaunamus tarptautinius pervedimus USD'
         >>> l.date
         datetime.datetime(2012, 3, 1, 0, 0)
         >>> l.id
-        '1437605828036350742'
+        '8585175472216523258'
 
     Second line is incoming money
         >>> l = statement.lines[1]
         >>> l.amount
         889.81
-        >>> l.payee
+        >>> l.memo
         'ACME LLC'
         >>> l.date
         datetime.datetime(2012, 3, 1, 0, 0)
@@ -54,17 +52,13 @@ def doctest_DanskeCsvStatementParser():
         >>> l = statement.lines[2]
         >>> l.amount
         -0.46
-        >>> l.payee
-        ''
         >>> l.memo
         'Mokestis už lėšų, gautų iš kitų LR registruotų bankų, ... 2012.03.06'
 
     Fourth is a transfer to other account
         >>> l = statement.lines[3]
-        >>> l.payee
-        'John Doe'
         >>> l.memo
-        ''
+        'John Doe'
         >>> l.amount
         -881.55
     """
