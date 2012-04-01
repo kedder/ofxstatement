@@ -17,7 +17,7 @@ class DanskeCsvStatementParser(CsvStatementParser):
         return stmt
 
     def parse_record(self, line):
-        if self.currentLine == 1:
+        if self.cur_record == 1:
             return None
 
         # fill statement line according to mappings

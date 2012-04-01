@@ -29,7 +29,7 @@ class SwedbankCsvStatementParser(CsvStatementParser):
         if not line.strip():
             return None
 
-        if self.currentLine == 1:
+        if self.cur_record == 1:
             # Skip header line
             return None
 
