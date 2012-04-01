@@ -12,7 +12,7 @@ with open('README.rst') as f:
 
 setup(
       name='ofxstatement',
-      version='0.2.0',
+      version='0.3.0-dev',
       author = "Andrey Lebedev",
       author_email = "andrey@lebedev.lt",
       url = "https://github.com/kedder/ofxstatement",
