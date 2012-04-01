@@ -11,6 +11,7 @@ class StatementParser(object):
     """
 
     date_format = "%Y-%m-%d"
+    cur_record = 0
 
     def parse(self):
         """Read and parse statement
@@ -19,7 +20,7 @@ class StatementParser(object):
         """
         reader = self.split_records()
         for line in reader:
-            self.currentLine += 1
+            self.cur_record += 1
             if not line:
                 continue
             stmt_line = self.parse_record(line)
@@ -61,8 +62,6 @@ class CsvStatementParser(StatementParser):
 
     # 0-based csv column mapping to StatementLine field
     mappings = {}
-
-    currentLine = 0
 
     def __init__(self, fin):
         self.statement = Statement()
