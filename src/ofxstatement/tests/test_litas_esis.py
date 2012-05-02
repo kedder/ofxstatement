@@ -18,7 +18,7 @@ def doctest_LitasEsisCsvStatementParser():
 
     Check what we've got:
         >>> statement.account_id
-        'LT000000000000000000'
+        'LT000000000000000000LTL'
         >>> len(statement.lines)
         7
         >>> statement.start_balance

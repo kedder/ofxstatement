@@ -48,7 +48,7 @@ class LitasEsisCsvStatementParser(CsvStatementParser):
             # Get basic account information
             stmt.currency = line[17]
             stmt.bank_id = line[3]
-            stmt.account_id = line[16]
+            stmt.account_id = line[16] + line[17]
             return None
 
         elif linetype == LINETYPE_TRANSACTION:
