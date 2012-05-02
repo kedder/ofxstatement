@@ -47,85 +47,43 @@ def doctest_OfxWriter():
             <SIGNONMSGSRSV1>
                 <SONRS>
                     <STATUS>
-                        <CODE>
-                            0
-                        </CODE>
-                        <SEVERITY>
-                            INFO
-                        </SEVERITY>
+                        <CODE>0</CODE>
+                        <SEVERITY>INFO</SEVERITY>
                     </STATUS>
-                    <DTSERVER>
-                        20120303000000
-                    </DTSERVER>
-                    <LANGUAGE>
-                        ENG
-                    </LANGUAGE>
+                    <DTSERVER>20120303000000</DTSERVER>
+                    <LANGUAGE>ENG</LANGUAGE>
                 </SONRS>
             </SIGNONMSGSRSV1>
             <BANKMSGSRSV1>
                 <STMTTRNRS>
-                    <TRNUID>
-                        0
-                    </TRNUID>
+                    <TRNUID>0</TRNUID>
                     <STATUS>
-                        <CODE>
-                            0
-                        </CODE>
-                        <SEVERITY>
-                            INFO
-                        </SEVERITY>
+                        <CODE>0</CODE>
+                        <SEVERITY>INFO</SEVERITY>
                     </STATUS>
                     <STMTRS>
-                        <CURDEF>
-                            LTL
-                        </CURDEF>
+                        <CURDEF>LTL</CURDEF>
                         <BANKACCTFROM>
-                            <BANKID>
-                                BID
-                            </BANKID>
-                            <ACCTID>
-                                ACCID
-                            </ACCTID>
-                            <ACCTTYPE>
-                                CHECKING
-                            </ACCTTYPE>
+                            <BANKID>BID</BANKID>
+                            <ACCTID>ACCID</ACCTID>
+                            <ACCTTYPE>CHECKING</ACCTTYPE>
                         </BANKACCTFROM>
                         <BANKTRANLIST>
                             <DTSTART/>
                             <DTEND/>
                             <STMTTRN>
-                                <TRNTYPE>
-                                    CHECK
-                                </TRNTYPE>
-                                <DTPOSTED>
-                                    20120212
-                                </DTPOSTED>
-                                <TRNAMT>
-                                    15.40
-                                </TRNAMT>
-                                <FITID>
-                                    1
-                                </FITID>
-                                <MEMO>
-                                    Sample 1
-                                </MEMO>
+                                <TRNTYPE>CHECK</TRNTYPE>
+                                <DTPOSTED>20120212</DTPOSTED>
+                                <TRNAMT>15.40</TRNAMT>
+                                <FITID>1</FITID>
+                                <MEMO>Sample 1</MEMO>
                             </STMTTRN>
                             <STMTTRN>
-                                <TRNTYPE>
-                                    CHECK
-                                </TRNTYPE>
-                                <DTPOSTED>
-                                    20120212
-                                </DTPOSTED>
-                                <TRNAMT>
-                                    25.00
-                                </TRNAMT>
-                                <FITID>
-                                    2
-                                </FITID>
-                                <MEMO>
-                                    Sample 2
-                                </MEMO>
+                                <TRNTYPE>CHECK</TRNTYPE>
+                                <DTPOSTED>20120212</DTPOSTED>
+                                <TRNAMT>25.00</TRNAMT>
+                                <FITID>2</FITID>
+                                <MEMO>Sample 2</MEMO>
                             </STMTTRN>
                         </BANKTRANLIST>
                         <LEDGERBAL>
