@@ -1,19 +1,19 @@
 import doctest
 
-from ofxstatement.plugins.dnb import DnBCsvStatementParser
+from ofxstatement.plugins.litas_esis import LitasEsisCsvStatementParser
 
 
-def doctest_DnBCsvStatementParser():
-    """Test DnBCsvStatementParser
+def doctest_LitasEsisCsvStatementParser():
+    """Test LitasEsisCsvStatementParser
 
     Open sample csv to parse
         >>> import os
         >>> csvfile = os.path.join(os.path.dirname(__file__),
-        ...                        'samples', 'dnb.csv')
+        ...                        'samples', 'litas_esis.acc')
 
     Create parser object and parse:
         >>> fin = open(csvfile, 'r', encoding='cp1257')
-        >>> parser = DnBCsvStatementParser(fin)
+        >>> parser = LitasEsisCsvStatementParser(fin)
         >>> statement = parser.parse()
 
     Check what we've got:

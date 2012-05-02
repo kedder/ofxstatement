@@ -1,4 +1,4 @@
-"""Parser for DnB csv statement"""
+"""Parser for LITAS-ESIS csv statement"""
 
 import sys
 import csv
@@ -13,7 +13,7 @@ LINETYPE_SUMMARY = "020"
 SUMMARY_START = "LikutisPR"
 SUMMARY_END = "LikutisPB"
 
-class DnBCsvDialect(object):
+class LitasEsisCsvDialect(object):
     delimiter = "\t"
     quotechar = None
     escapechar = None
@@ -22,7 +22,7 @@ class DnBCsvDialect(object):
     lineterminator = '\r\n'
     quoting = csv.QUOTE_NONE
 
-class DnBCsvStatementParser(CsvStatementParser):
+class LitasEsisCsvStatementParser(CsvStatementParser):
     date_format = "%Y%m%d"
     mappings = {"date": 2,
                 "amount": 4,
@@ -36,7 +36,7 @@ class DnBCsvStatementParser(CsvStatementParser):
         return int(value) / 100.0
 
     def split_records(self):
-        return csv.reader(self.fin, dialect=DnBCsvDialect)
+        return csv.reader(self.fin, dialect=LitasEsisCsvDialect)
 
     def parse_record(self, line):
         # print(line)
@@ -53,7 +53,7 @@ class DnBCsvStatementParser(CsvStatementParser):
 
         elif linetype == LINETYPE_TRANSACTION:
             # parse transaction line in standard fasion
-            stmtline = super(DnBCsvStatementParser, self).parse_record(line)
+            stmtline = super(LitasEsisCsvStatementParser, self).parse_record(line)
             if line[6] == "D":
                 stmtline.amount = -stmtline.amount
             return stmtline
@@ -68,10 +68,10 @@ class DnBCsvStatementParser(CsvStatementParser):
                 stmt.end_date = self.parse_datetime(line[2])
             return None
 
-class DnBPlugin(Plugin):
-     name = "dnb"
+class LitasEsisPlugin(Plugin):
+     name = "litas-esis"
 
      def get_parser(self, fin):
          encoding = self.settings.get('charset', 'utf-8')
          f = open(fin, 'r', encoding=encoding)
-         return DnBCsvStatementParser(f)
+         return LitasEsisCsvStatementParser(f)
