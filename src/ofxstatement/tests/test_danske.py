@@ -63,9 +63,10 @@ def doctest_DanskeCsvStatementParser():
         -881.55
     """
 
-def test_suite():
+def test_suite(*args):
     return doctest.DocTestSuite(optionflags=(doctest.NORMALIZE_WHITESPACE|
                                              doctest.ELLIPSIS|
                                              doctest.REPORT_ONLY_FIRST_FAILURE|
                                              doctest.REPORT_NDIFF
                                              ))
+load_tests = test_suite

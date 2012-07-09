@@ -6,10 +6,11 @@ def doctest_sample():
         4
     """
 
-def test_suite():
+def test_suite(*args):
     return doctest.DocTestSuite(optionflags=(doctest.NORMALIZE_WHITESPACE|
                                              doctest.ELLIPSIS|
                                              doctest.REPORT_ONLY_FIRST_FAILURE|
                                              doctest.REPORT_NDIFF
                                              ))
 
+load_tests = test_suite

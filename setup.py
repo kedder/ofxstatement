@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 ###############################################################################
 #
 # Copyright 2011 by CipherHealth, LLC
@@ -6,6 +7,27 @@
 """Setup
 """
 from setuptools import setup, find_packages
+from distutils.core import setup, Command
+import unittest
+
+class RunTests(Command):
+    """New setup.py command to run all tests for the package.
+    """
+    description = "run all tests for the package"
+
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        tests = unittest.TestLoader().discover('src')
+        runner = unittest.TextTestRunner(verbosity=2)
+        runner.run(tests)
+
 
 with open('README.rst') as f:
     long_description = f.read()
@@ -21,6 +43,7 @@ setup(
       long_description = long_description,
       license = "GPLv3",
       keywords = ["ofx", "banking", "statement"],
+      cmdclass={'test': RunTests},
       classifiers = [
                      'Development Status :: 3 - Alpha',
                      'Programming Language :: Python :: 3',
