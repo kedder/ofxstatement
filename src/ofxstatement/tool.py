@@ -6,11 +6,15 @@ import argparse
 
 import ofxstatement.plugins
 
+import ofxstatement
 from ofxstatement.ui import UI
 from ofxstatement import configuration
 from ofxstatement import plugin
 from ofxstatement.ofx import OfxWriter
 from ofxstatement.exceptions import Abort
+
+def get_version():
+    return ofxstatement.__version__
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -20,6 +24,9 @@ def parse_args():
                         required=True,
                         help="Input file type. This type must be present as a "
                         " section in your config file.")
+    parser.add_argument("--version", action="version",
+                        version='ofxstatement %s' % get_version(),
+                        help="Show current version")
     parser.add_argument("input", help="Input file to process")
     parser.add_argument("output", help="Output (OFX) file to produce")
     return parser.parse_args()

@@ -28,13 +28,19 @@ class RunTests(Command):
         runner = unittest.TextTestRunner(verbosity=2)
         runner.run(tests)
 
+def get_version():
+    initfname = 'src/ofxstatement/__init__.py'
+    v = {}
+    exec(compile(open(initfname).read(), initfname, 'exec'),
+         globals(), v)
+    return v['__version__']
 
 with open('README.rst') as f:
     long_description = f.read()
 
 setup(
       name='ofxstatement',
-      version='0.3.0-dev',
+      version=get_version(),
       author = "Andrey Lebedev",
       author_email = "andrey@lebedev.lt",
       url = "https://github.com/kedder/ofxstatement",
