@@ -55,6 +55,27 @@ def doctest_LitasEsisCsvStatementParser():
         '2003969289'
 
     """
+def doctest_LitasEsisCsvStatementParser_swap_payee_memo():
+    """Test ability to swap payee and memo in LitasEsisCsvStatementParser
+
+    Open sample csv to parse
+        >>> import os
+        >>> csvfile = os.path.join(os.path.dirname(__file__),
+        ...                        'samples', 'litas_esis.acc')
+
+    Create parser object and parse:
+        >>> fin = open(csvfile, 'r', encoding='cp1257')
+        >>> parser = LitasEsisCsvStatementParser(fin)
+        >>> parser.swap_payee_and_memo()
+        >>> statement = parser.parse()
+
+    Memo and payee should be swapped
+        >>> l = statement.lines[3]
+        >>> l.memo
+        'LINUS TORVALDS'
+        >>> l.payee
+        'Hello World'
+    """
 
 def test_suite(*args):
     return doctest.DocTestSuite(optionflags=(doctest.NORMALIZE_WHITESPACE|

@@ -68,10 +68,18 @@ class LitasEsisCsvStatementParser(CsvStatementParser):
                 stmt.end_date = self.parse_datetime(line[2])
             return None
 
+    def swap_payee_and_memo(self):
+        payee, memo = self.mappings['payee'], self.mappings['memo']
+        self.mappings['payee'] = memo
+        self.mappings['memo'] = payee
+
 class LitasEsisPlugin(Plugin):
      name = "litas-esis"
 
      def get_parser(self, fin):
          encoding = self.settings.get('charset', 'utf-8')
          f = open(fin, 'r', encoding=encoding)
-         return LitasEsisCsvStatementParser(f)
+         parser = LitasEsisCsvStatementParser(f)
+         if self.settings.getboolean('swap-payee-and-memo'):
+            parser.swap_payee_and_memo()
+         return parser
