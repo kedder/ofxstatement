@@ -36,8 +36,9 @@ def doctest_DanskeCsvStatementParser():
         'Paslaugų ir komisinių pajamos už gaunamus tarptautinius pervedimus USD'
         >>> l.date
         datetime.datetime(2012, 3, 1, 0, 0)
-        >>> l.id
-        '5865011796238881019'
+        >>> hash_expected = str(abs(hash((l.date,l.memo,l.amount))))
+        >>> l.id == hash_expected
+        True
 
     Second line is incoming money
         >>> l = statement.lines[1]
