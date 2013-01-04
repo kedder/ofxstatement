@@ -1,8 +1,10 @@
 import os
 import doctest
 
-from ofxstatement import configuration
+#from ofxstatement import configuration
+import ofxstatement.configuration as configuration
 from ofxstatement.ui import UI
+
 
 def doctest_configuration():
     """Test configuration routines
@@ -15,6 +17,7 @@ def doctest_configuration():
         'swedbank'
 
     """
+
 
 def test_suite(*args):
     return doctest.DocTestSuite(optionflags=(doctest.NORMALIZE_WHITESPACE|
