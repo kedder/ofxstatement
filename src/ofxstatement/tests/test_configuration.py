@@ -1,8 +1,7 @@
 import os
 import doctest
 
-#from ofxstatement import configuration
-import ofxstatement.configuration as configuration
+from ofxstatement import configuration
 from ofxstatement.ui import UI
 
 
