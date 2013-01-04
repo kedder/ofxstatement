@@ -6,9 +6,11 @@
 ###############################################################################
 """Setup
 """
-from setuptools import setup, find_packages
+from setuptools import find_packages
 from distutils.core import setup, Command
 import unittest
+import sys
+
 
 class RunTests(Command):
     """New setup.py command to run all tests for the package.
@@ -26,7 +28,8 @@ class RunTests(Command):
     def run(self):
         tests = unittest.TestLoader().discover('src')
         runner = unittest.TextTestRunner(verbosity=2)
-        runner.run(tests)
+        res = runner.run(tests)
+        sys.exit(not res.wasSuccessful())
 
 def get_version():
     initfname = 'src/ofxstatement/__init__.py'
@@ -46,11 +49,11 @@ setup(
       url = "https://github.com/kedder/ofxstatement",
       description = ("Tool to convert proprietary bank statement to "
                      "OFX format, suitable for importing to GnuCash"),
-      long_description = long_description,
-      license = "GPLv3",
-      keywords = ["ofx", "banking", "statement"],
+      long_description=long_description,
+      license="GPLv3",
+      keywords=["ofx", "banking", "statement"],
       cmdclass={'test': RunTests},
-      classifiers = [
+      classifiers=[
                      'Development Status :: 3 - Alpha',
                      'Programming Language :: Python :: 3',
                      'Natural Language :: English',
@@ -60,14 +63,14 @@ setup(
                      'Operating System :: OS Independent',
                      'License :: OSI Approved :: GNU Affero General Public License v3'
                      ],
-      packages = find_packages('src'),
-      entry_points = {'console_scripts':
+      packages=find_packages('src'),
+      entry_points={'console_scripts':
                       ['ofxstatement = ofxstatement.tool:run']},
-      package_dir = {'':'src'},
-      install_requires = [
+      package_dir={'':'src'},
+      install_requires=[
                           'setuptools',
                           'appdirs'
                           ],
-      include_package_data = True,
-      zip_safe = True
+      include_package_data=True,
+      zip_safe=True
       )

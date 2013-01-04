@@ -1,0 +1,6 @@
+# Configuration script to Travis-CI
+language: python
+python:
+  - "3.2"
+install: python3 setup.py install
+script:  python3 setup.py test
