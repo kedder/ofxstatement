@@ -1,0 +1,15 @@
+"Kreditkarte:";"1234********1234 Kreditkarte";
+
+"Von:";"07.02.2012";
+"Bis:";"05.02.2013";
+"Saldo:";"-76.77 EUR";
+"Datum:";"04.02.2013";
+
+"Umsatz abgerechnet";"Wertstellung";"Belegdatum";"Umsatzbeschreibung";"Betrag (EUR)";"Ursprünglicher Betrag";
+"Nein";"04.02.2013";"02.02.2013";"MY BANK FIL";"-95,00";"";
+"Nein";"28.01.2013";"26.01.2013";"MY BANK FIL";"-95,00";"";
+"Ja";"23.01.2013";"22.01.2013";"HabenzinsenZ 000000057 T 031   0000";"0,21";"";
+"Ja";"21.01.2013";"19.01.2013";"MY BANK FIL";"-95,00";"";
+"Ja";"05.03.2012";"05.03.2012";"Einzahlung";"200,00";"";
+"Ja";"02.03.2012";"01.03.2012";"COMMERZBANK ATMMYTOWN 82";"-100,00";"";
+"Ja";"23.02.2012";"22.02.2012";"HabenzinsenZ 000000015 T 033   0000";"0,09";"";
