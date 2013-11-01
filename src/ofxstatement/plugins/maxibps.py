@@ -69,7 +69,6 @@ class PSTextFormatParser(StatementParser):
 
 
 class PSPlugin(Plugin):
-    name = "maxibps"
 
     def get_parser(self, fin):
         encoding = self.settings.get('charset', 'utf-8-sig')

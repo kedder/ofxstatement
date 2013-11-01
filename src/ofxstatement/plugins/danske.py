@@ -35,7 +35,6 @@ class DanskeCsvStatementParser(CsvStatementParser):
 
 
 class DanskePlugin(Plugin):
-    name = "danske"
 
     def get_parser(self, fin):
         encoding = self.settings.get('charset', 'utf-8')

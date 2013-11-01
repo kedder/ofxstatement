@@ -27,7 +27,6 @@ class LbbAmazonCsvStatementParser(CsvStatementParser):
 
 
 class LbbAmazonPlugin(Plugin):
-    name = "lbbamazon"
 
     def get_parser(self, fin):
         f = open(fin, "r", encoding='iso-8859-1')

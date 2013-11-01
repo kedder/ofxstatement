@@ -68,7 +68,6 @@ class SwedbankCsvStatementParser(CsvStatementParser):
 
 
 class SwedbankPlugin(Plugin):
-    name = "swedbank"
 
     def get_parser(self, fin):
         f = open(fin, "r")

@@ -62,8 +62,18 @@ setup(name='ofxstatement',
           'Operating System :: OS Independent',
           'License :: OSI Approved :: GNU Affero General Public License v3'],
       packages=find_packages('src'),
-      entry_points={'console_scripts':
-                    ['ofxstatement = ofxstatement.tool:run']},
+      entry_points={
+          'console_scripts':
+          ['ofxstatement = ofxstatement.tool:run'],
+
+          'ofxstatement':
+          ['litas-esis = ofxstatement.plugins.litas_esis:LitasEsisPlugin',
+           'swedbank = ofxstatement.plugins.swedbank:SwedbankPlugin',
+           'danske = ofxstatement.plugins.danske:DanskePlugin',
+           'maxibps = ofxstatement.plugins.maxibps:PSPlugin',
+           'dkb_cc = ofxstatement.plugins.dkb_cc:DKBCCPlugin',
+           'lbbamazon = ofxstatement.plugins.lbbamazon:LbbAmazonPlugin']
+          },
       package_dir={'': 'src'},
       install_requires=['setuptools',
                         'appdirs'
