@@ -1,8 +1,8 @@
-import sys
 import csv
 from datetime import datetime
 
 from ofxstatement.statement import Statement, StatementLine
+
 
 class StatementParser(object):
     """Abstract statement parser.
@@ -74,7 +74,7 @@ class CsvStatementParser(StatementParser):
         stmt_line = StatementLine()
         for field, col in self.mappings.items():
             if col >= len(line):
-                raise ValueError("Cannot find column %s in line of %s items " \
+                raise ValueError("Cannot find column %s in line of %s items "
                                  % (col, len(line)))
             rawvalue = line[col]
             value = self.parse_value(rawvalue, field)

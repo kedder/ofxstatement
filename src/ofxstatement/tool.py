@@ -13,12 +13,14 @@ from ofxstatement import plugin
 from ofxstatement.ofx import OfxWriter
 from ofxstatement.exceptions import Abort
 
+
 def get_version():
     return ofxstatement.__version__
 
+
 def parse_args():
     parser = argparse.ArgumentParser(
-                description='Convert proprietary bank statement to OFX format.')
+        description='Convert proprietary bank statement to OFX format.')
 
     parser.add_argument("-t", "--type",
                         required=True,
@@ -30,6 +32,7 @@ def parse_args():
     parser.add_argument("input", help="Input file to process")
     parser.add_argument("output", help="Output (OFX) file to produce")
     return parser.parse_args()
+
 
 def process(args, ui):
     # read configuration
@@ -44,7 +47,7 @@ def process(args, ui):
     if not pname:
         raise Abort("Specify 'plugin' setting for section %s" % args.type)
 
-    # pick and configure plugin 
+    # pick and configure plugin
     try:
         p = plugin.get_plugin(pname, ui, settings)
     except plugin.PluginNotRegistered as e:

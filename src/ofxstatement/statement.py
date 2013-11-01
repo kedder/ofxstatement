@@ -2,6 +2,7 @@
 
 from datetime import datetime
 
+
 class Statement(object):
     """Statement object containing statement items"""
     lines = None
@@ -21,6 +22,7 @@ class Statement(object):
         self.bank_id = bank_id
         self.account_id = account_id
         self.currency = currency
+
 
 class StatementLine(object):
     """Statement line data.
@@ -68,6 +70,7 @@ def generate_transaction_id(stmt_line):
                          stmt_line.memo,
                          stmt_line.amount))))
 
+
 def recalculate_balance(stmt):
     """Recalculate statement starting and ending dates and balances.
 
@@ -80,6 +83,6 @@ def recalculate_balance(stmt):
     total_amount = sum(sl.amount for sl in stmt.lines)
 
     stmt.start_balance = stmt.start_balance or 0.0
-    stmt.end_balance = stmt.start_balance + total_amount;
+    stmt.end_balance = stmt.start_balance + total_amount
     stmt.start_date = min(sl.date for sl in stmt.lines)
     stmt.end_date = max(sl.date for sl in stmt.lines)

@@ -1,6 +1,5 @@
 from ofxstatement.parser import CsvStatementParser
 from ofxstatement.plugin import Plugin
-from ofxstatement import statement
 import csv
 
 
@@ -10,30 +9,30 @@ class LbbAmazonCsvStatementParser(CsvStatementParser):
 
     def split_records(self):
         return csv.reader(self.fin, delimiter=';')
- 
+
     def parse_record(self, line):
         #Free Headerline
         if self.cur_record <= 1:
             return None
 
         # Empty transactions to include amazon points
-        if line[6]=='':
-            line[6]='0,00'
+        if line[6] == '':
+            line[6] = '0,00'
         #Change decimalsign from , to .
-        line[6]=line[6].replace(',','.')
-            
+        line[6] = line[6].replace(',', '.')
+
         # fill statement line according to mappings
         sl = super(LbbAmazonCsvStatementParser, self).parse_record(line)
-        return sl    
+        return sl
 
 
 class LbbAmazonPlugin(Plugin):
     name = "lbbamazon"
+
     def get_parser(self, fin):
-        f = open(fin, "r",encoding='iso-8859-1')
-        parser=LbbAmazonCsvStatementParser(f)
+        f = open(fin, "r", encoding='iso-8859-1')
+        parser = LbbAmazonCsvStatementParser(f)
         parser.statement.account_id = self.settings['account']
         parser.statement.currency = self.settings['currency']
-        parser.statement.bank_id = self.settings.get('bank', 'LBB_Amazon') 
+        parser.statement.bank_id = self.settings.get('bank', 'LBB_Amazon')
         return parser
-

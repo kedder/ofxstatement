@@ -29,18 +29,22 @@ class Registry(object):
 
 registry = Registry()
 
+
 def get_plugin(name, ui, settings):
     pcls = registry.get(name)
     plugin = pcls(ui, settings)
     return plugin
 
+
 class PluginAlreadyRegistered(Exception):
     """Raised on attpemt to register an already registered plugin
     """
 
+
 class PluginNotRegistered(Exception):
     """Raised on attempt to get plugin, missing from the registry.
     """
+
 
 class Autoregisterable(type):
     def __init__(cls, name, bases, dict):

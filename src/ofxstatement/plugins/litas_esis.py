@@ -1,6 +1,5 @@
 """Parser for LITAS-ESIS csv statement"""
 
-import sys
 import csv
 
 from ofxstatement.parser import CsvStatementParser
@@ -13,6 +12,7 @@ LINETYPE_SUMMARY = "020"
 SUMMARY_START = "LikutisPR"
 SUMMARY_END = "LikutisPB"
 
+
 class LitasEsisCsvDialect(object):
     delimiter = "\t"
     quotechar = None
@@ -21,6 +21,7 @@ class LitasEsisCsvDialect(object):
     skipinitialspace = False
     lineterminator = '\r\n'
     quoting = csv.QUOTE_NONE
+
 
 class LitasEsisCsvStatementParser(CsvStatementParser):
     date_format = "%Y%m%d"
@@ -73,13 +74,14 @@ class LitasEsisCsvStatementParser(CsvStatementParser):
         self.mappings['payee'] = memo
         self.mappings['memo'] = payee
 
-class LitasEsisPlugin(Plugin):
-     name = "litas-esis"
 
-     def get_parser(self, fin):
-         encoding = self.settings.get('charset', 'utf-8')
-         f = open(fin, 'r', encoding=encoding)
-         parser = LitasEsisCsvStatementParser(f)
-         if self.settings.getboolean('swap-payee-and-memo'):
+class LitasEsisPlugin(Plugin):
+    name = "litas-esis"
+
+    def get_parser(self, fin):
+        encoding = self.settings.get('charset', 'utf-8')
+        f = open(fin, 'r', encoding=encoding)
+        parser = LitasEsisCsvStatementParser(f)
+        if self.settings.getboolean('swap-payee-and-memo'):
             parser.swap_payee_and_memo()
-         return parser
+        return parser

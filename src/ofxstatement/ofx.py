@@ -1,6 +1,7 @@
 from datetime import datetime
 from xml.etree import ElementTree as etree
 
+
 class OfxWriter(object):
     statement = None
     tb = None
@@ -85,7 +86,7 @@ class OfxWriter(object):
 
         tb.start("LEDGERBAL", {})
         self.buildAmount("BALAMT", self.statement.end_balance, False)
-        self.buildDateTime("DTASOF" , self.statement.end_date, False)
+        self.buildDateTime("DTASOF", self.statement.end_date, False)
         tb.end("LEDGERBAL")
 
         tb.end("STMTRS")
@@ -107,7 +108,6 @@ class OfxWriter(object):
         #self.buildText("CURRENCY", line.currency)
 
         tb.end("STMTTRN")
-
 
     def buildText(self, tag, text, skipEmpty=True):
         if not text and skipEmpty:

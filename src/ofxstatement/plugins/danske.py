@@ -4,6 +4,7 @@ from ofxstatement import statement
 
 DETAILS_FIELD = 5
 
+
 class DanskeCsvStatementParser(CsvStatementParser):
     mappings = {"date": 0,
                 "memo": 4,

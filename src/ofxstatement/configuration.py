@@ -7,9 +7,11 @@ from ofxstatement.exceptions import Abort
 APP_NAME = 'ofxstatement'
 APP_AUTHOR = 'ofx'
 
+
 def get_default_location():
     cdir = appdirs.user_data_dir(APP_NAME, APP_AUTHOR)
     return os.path.join(cdir, 'config.ini')
+
 
 def read(ui, location=None):
     if not location:
@@ -21,6 +23,7 @@ def read(ui, location=None):
     config = configparser.SafeConfigParser()
     config.read(location)
     return config
+
 
 def get_settings(ui, config, section):
     if not config.has_section(section):
