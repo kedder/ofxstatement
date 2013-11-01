@@ -76,6 +76,7 @@ class LitasEsisCsvStatementParser(CsvStatementParser):
 
 
 class LitasEsisPlugin(Plugin):
+    """Standard Lithuanian LITAS-ESIS format"""
 
     def get_parser(self, fin):
         encoding = self.settings.get('charset', 'utf-8')
