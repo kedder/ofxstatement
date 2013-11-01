@@ -68,6 +68,7 @@ setup(name='ofxstatement',
       install_requires=['setuptools',
                         'appdirs'
                         ],
+      extras_require={"test": ['mock']},
       include_package_data=True,
       zip_safe=True
       )
