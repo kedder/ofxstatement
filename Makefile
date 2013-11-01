@@ -5,6 +5,7 @@ all: bin/ofxstatement
 
 bin/buildout: .venv
 	.venv/bin/python bootstrap.py
+	touch bin/buildout
 
 bin/ofxstatement: bin/buildout buildout.cfg setup.py
 	./bin/buildout
