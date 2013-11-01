@@ -17,6 +17,15 @@ def get_plugin(name, ui, settings):
     return plugin
 
 
+def list_plugins():
+    """Return list of all plugin classes registered as a list of tuples:
+
+        [(name, plugin_class)]
+    """
+    plugin_eps = pkg_resources.iter_entry_points('ofxstatement')
+    return sorted((ep.name, ep.load()) for ep in plugin_eps)
+
+
 class PluginNotRegistered(Exception):
     """Raised on attempt to get plugin, missing from the registry.
     """

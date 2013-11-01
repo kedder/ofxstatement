@@ -3,6 +3,8 @@
 import os
 import sys
 import argparse
+import tempfile
+import subprocess
 
 import ofxstatement.plugins
 
@@ -18,23 +20,64 @@ def get_version():
     return ofxstatement.__version__
 
 
-def parse_args():
+def make_args_parser():
     parser = argparse.ArgumentParser(
-        description='Convert proprietary bank statement to OFX format.')
-
-    parser.add_argument("-t", "--type",
-                        required=True,
-                        help="Input file type. This type must be present as a "
-                        " section in your config file.")
+        description='Tool to convert proprietary bank statement to OFX format.')
     parser.add_argument("--version", action="version",
-                        version='ofxstatement %s' % get_version(),
-                        help="Show current version")
-    parser.add_argument("input", help="Input file to process")
-    parser.add_argument("output", help="Output (OFX) file to produce")
-    return parser.parse_args()
+                        version='%%(prog)s %s' % get_version(),
+                        help="show current version")
+
+    subparsers = parser.add_subparsers(title="action")
+
+    # convert
+    parser_convert = subparsers.add_parser("convert",
+                                           help="convert to OFX")
+
+    parser_convert.add_argument("-t", "--type",
+                                required=True,
+                                help=("input file type. This type must be "
+                                      "present as a section in your config "
+                                      "file."))
+    parser_convert.add_argument("input", help="input file to process")
+    parser_convert.add_argument("output", help="output (OFX) file to produce")
+    parser_convert.set_defaults(func=process)
+
+    # list-plugins
+    parser_list = subparsers.add_parser("list-plugins",
+                                        help="list available plugins")
+    parser_list.set_defaults(func=list_plugins)
+
+    # edit-config
+    parser_edit = subparsers.add_parser("edit-config",
+                                        help=("Open configuration file in "
+                                              "default editor"))
+    parser_edit.set_defaults(func=edit_config)
+
+    return parser
 
 
-def process(args, ui):
+def list_plugins(args):
+    print("The following plugins are available: ")
+    print()
+    for name, plclass in plugin.list_plugins():
+        if plclass.__doc__:
+            title = plclass.__doc__.splitlines()[0]
+        else:
+            title = ""
+        print("  %-16s %s" % (name, title))
+
+
+def edit_config(args):
+    editor = os.environ.get('EDITOR', 'vim')
+    configfname = configuration.get_default_location()
+    configdir = os.path.dirname(configfname)
+    if not os.path.exists(configdir):
+        os.makedirs(configdir, mode=0o700)
+    subprocess.call([editor, configfname])
+
+
+def process(args):
+    ui = UI()
     # read configuration
     config = configuration.read(ui)
 
@@ -65,14 +108,14 @@ def process(args, ui):
 
 
 def run():
-    # parse command line options
-    args = parse_args()
+    parser = make_args_parser()
+    args = parser.parse_args()
 
-    # set up user interface
-    ui = UI()
+    if not hasattr(args, "func"):
+        parser.print_usage()
+        parser.exit(1)
 
     try:
-        process(args, ui)
+        return args.func(args)
     except Abort as e:
         ui.error(e)
-
