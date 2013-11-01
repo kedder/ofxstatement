@@ -49,7 +49,7 @@ def make_args_parser():
 
     # edit-config
     parser_edit = subparsers.add_parser("edit-config",
-                                        help=("Open configuration file in "
+                                        help=("open configuration file in "
                                               "default editor"))
     parser_edit.set_defaults(func=edit_config)
 
