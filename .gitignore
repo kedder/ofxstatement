@@ -9,5 +9,8 @@ parts
 tags
 misc
 build
+eggs
+.venv
 .project
 .pydevproject
+*.sublime*
