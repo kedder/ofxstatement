@@ -26,6 +26,5 @@ def get_settings(ui, config, section):
     if not config.has_section(section):
         raise Abort("No section named %s in config file" % section)
 
-    import pdb; pdb.set_trace();
     opts = config.get_options(section)
     return zip([(o, config.get(section, o)) for o in opts])
