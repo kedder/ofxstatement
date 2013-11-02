@@ -54,8 +54,7 @@ setup(name='ofxstatement',
           ['ofxstatement = ofxstatement.tool:run'],
 
           'ofxstatement':
-          ['maxibps = ofxstatement.plugins.maxibps:PSPlugin',
-           'dkb_cc = ofxstatement.plugins.dkb_cc:DKBCCPlugin',
+          ['dkb_cc = ofxstatement.plugins.dkb_cc:DKBCCPlugin',
            'lbbamazon = ofxstatement.plugins.lbbamazon:LbbAmazonPlugin']
           },
       package_dir={'': 'src'},
