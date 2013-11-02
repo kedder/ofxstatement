@@ -58,14 +58,20 @@ def make_args_parser():
 
 
 def list_plugins(args):
-    print("The following plugins are available: ")
-    print()
-    for name, plclass in plugin.list_plugins():
-        if plclass.__doc__:
-            title = plclass.__doc__.splitlines()[0]
-        else:
-            title = ""
-        print("  %-16s %s" % (name, title))
+    available_plugins = plugin.list_plugins()
+    if not available_plugins:
+        print("No plugins available. Install plugin eggs or create your own.")
+        print("See https://github.com/kedder/ofxstatement for more info.")
+
+    else:
+        print("The following plugins are available: ")
+        print()
+        for name, plclass in available_plugins:
+            if plclass.__doc__:
+                title = plclass.__doc__.splitlines()[0]
+            else:
+                title = ""
+            print("  %-16s %s" % (name, title))
 
 
 def edit_config(args):
