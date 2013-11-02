@@ -4,10 +4,11 @@ python:
   - "3.2"
   - "3.3"
 install:
-  # - python3 setup.py install
+# - python3 setup.py install
   - pip install coverage --use-mirrors
   - pip install python-coveralls --use-mirrors
 script:
-  coverage run --source=ofxstatement setup.py test
+  - coverage run --source=ofxstatement setup.py test
+  - python setup.py install
 after_success:
   coveralls
