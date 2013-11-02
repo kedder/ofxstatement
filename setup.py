@@ -1,11 +1,4 @@
 #!/usr/bin/python3
-###############################################################################
-#
-# Copyright 2011 by CipherHealth, LLC
-#
-###############################################################################
-"""Setup
-"""
 from setuptools import find_packages
 from distutils.core import setup, Command
 import unittest
