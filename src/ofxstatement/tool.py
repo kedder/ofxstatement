@@ -6,7 +6,7 @@ import argparse
 import tempfile
 import subprocess
 
-import ofxstatement.plugins
+import pkg_resources
 
 import ofxstatement
 from ofxstatement.ui import UI
@@ -17,7 +17,8 @@ from ofxstatement.exceptions import Abort
 
 
 def get_version():
-    return ofxstatement.__version__
+    dist = pkg_resources.get_distribution("ofxstatement")
+    return dist.version
 
 
 def make_args_parser():

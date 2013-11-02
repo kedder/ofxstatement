@@ -24,18 +24,13 @@ class RunTests(Command):
         res = runner.run(tests)
         sys.exit(not res.wasSuccessful())
 
-
-def get_version():
-    initfname = 'src/ofxstatement/__init__.py'
-    v = {}
-    exec(compile(open(initfname).read(), initfname, 'exec'), globals(), v)
-    return v['__version__']
+version = "0.5.0-dev"
 
 with open("CHANGES.rst") as chlogf, open('README.rst') as rdmef:
     long_description = chlogf.read() + "\n\n" + rdmef.read()
 
 setup(name='ofxstatement',
-      version=get_version(),
+      version=version,
       author="Andrey Lebedev",
       author_email="andrey@lebedev.lt",
       url="https://github.com/kedder/ofxstatement",
@@ -55,6 +50,7 @@ setup(name='ofxstatement',
           'Operating System :: OS Independent',
           'License :: OSI Approved :: GNU Affero General Public License v3'],
       packages=find_packages('src'),
+      namespace_packages=["ofxstatement", "ofxstatement.plugins"],
       entry_points={
           'console_scripts':
           ['ofxstatement = ofxstatement.tool:run'],
