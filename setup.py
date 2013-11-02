@@ -38,8 +38,8 @@ def get_version():
     exec(compile(open(initfname).read(), initfname, 'exec'), globals(), v)
     return v['__version__']
 
-with open('README.rst') as f:
-    long_description = f.read()
+with open("CHANGES.rst") as chlogf, open('README.rst') as rdmef:
+    long_description = chlogf.read() + "\n\n" + rdmef.read()
 
 setup(name='ofxstatement',
       version=get_version(),

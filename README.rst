@@ -1,3 +1,7 @@
+~~~~~~~~~~~~~
+OFX Statement
+~~~~~~~~~~~~~
+
 Package provides single command line tool to run: ``ofxstatement``. Run
 ``ofxstatement -h`` to see basic usage description. ``ofxstatement`` works
 under Python 3 and is not compatible with Python 2.

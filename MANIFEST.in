@@ -1,2 +1,2 @@
-include README.rst
+include CHANGES.rst README.rst
 graft src/ofxstatement/tests/samples
