@@ -1,8 +1,9 @@
 import os
 import unittest
-from unittest import mock
 import tempfile
 import shutil
+
+import mock
 
 from ofxstatement import tool, statement
 

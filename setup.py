@@ -1,25 +1,23 @@
 #!/usr/bin/python3
 from setuptools import find_packages
-from distutils.core import setup, Command
+from setuptools.command.test import test as TestCommand
+from distutils.core import setup
 import unittest
 import sys
 
 
-class RunTests(Command):
+class RunTests(TestCommand):
     """New setup.py command to run all tests for the package.
     """
     description = "run all tests for the package"
 
-    user_options = []
-
-    def initialize_options(self):
-        pass
-
     def finalize_options(self):
-        pass
+        super(RunTests, self).finalize_options()
+        self.test_args = []
+        self.test_suite = True
 
-    def run(self):
-        tests = unittest.TestLoader().discover('src')
+    def run_tests(self):
+        tests = unittest.TestLoader().discover('src/ofxstatement')
         runner = unittest.TextTestRunner(verbosity=2)
         res = runner.run(tests)
         sys.exit(not res.wasSuccessful())
@@ -67,6 +65,8 @@ setup(name='ofxstatement',
       install_requires=['setuptools',
                         'appdirs'
                         ],
+      extras_require={'test': ["mock"]},
+      tests_require=["mock"],
       include_package_data=True,
       zip_safe=True
       )
