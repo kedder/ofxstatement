@@ -2,6 +2,9 @@
 OFX Statement
 ~~~~~~~~~~~~~
 
+.. image:: https://travis-ci.org/kedder/ofxstatement.png?branch=master  
+    :target: https://travis-ci.org/kedder/ofxstatement
+
 Package provides single command line tool to run: ``ofxstatement``. Run
 ``ofxstatement -h`` to see basic usage description. ``ofxstatement`` works
 under Python 3 and is not compatible with Python 2.
