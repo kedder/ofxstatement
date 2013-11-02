@@ -10,6 +10,8 @@ tags
 misc
 build
 eggs
+*.egg
+.coverage
 .venv
 .project
 .pydevproject
