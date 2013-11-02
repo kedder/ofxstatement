@@ -9,7 +9,7 @@ import subprocess
 import pkg_resources
 
 import ofxstatement
-from ofxstatement.ui import UI
+from ofxstatement import ui
 from ofxstatement import configuration
 from ofxstatement import plugin
 from ofxstatement.ofx import OfxWriter
@@ -36,12 +36,12 @@ def make_args_parser():
 
     parser_convert.add_argument("-t", "--type",
                                 required=True,
-                                help=("input file type. This type must be "
-                                      "present as a section in your config "
-                                      "file."))
+                                help=("input file type. This is a section in "
+                                      "config file, or plugin name if you "
+                                      "have no config file."))
     parser_convert.add_argument("input", help="input file to process")
     parser_convert.add_argument("output", help="output (OFX) file to produce")
-    parser_convert.set_defaults(func=process)
+    parser_convert.set_defaults(func=convert)
 
     # list-plugins
     parser_list = subparsers.add_parser("list-plugins",
@@ -77,25 +77,31 @@ def edit_config(args):
     subprocess.call([editor, configfname])
 
 
-def process(args):
-    ui = UI()
+def convert(args):
+    appui = ui.UI()
     # read configuration
-    config = configuration.read(ui)
+    config = configuration.read()
 
-    if args.type not in config:
-        raise Abort("No section named %s in config file" % args.type)
+    if config is None:
+        # No configuration mode
+        settings = {}
+        pname = args.type
+    else:
+        # Configuration is loaded
+        if args.type not in config:
+            raise Abort("No section named %s in config file" % args.type)
 
-    settings = config[args.type]
+        settings = dict(config[args.type])
 
-    pname = settings.get('plugin', None)
-    if not pname:
-        raise Abort("Specify 'plugin' setting for section %s" % args.type)
+        pname = settings.get('plugin', None)
+        if not pname:
+            raise Abort("Specify 'plugin' setting for section %s" % args.type)
 
     # pick and configure plugin
     try:
-        p = plugin.get_plugin(pname, ui, settings)
+        p = plugin.get_plugin(pname, appui, settings)
     except plugin.PluginNotRegistered as e:
-        raise Abort("No plugin named '%s' is found" % e) from e
+        raise Abort("No plugin named '%s' is found" % pname) from e
 
     # process the input and produce output
     parser = p.get_parser(args.input)
@@ -105,7 +111,8 @@ def process(args):
         writer = OfxWriter(statement)
         out.write(writer.toxml())
 
-    ui.status("Conversion completed: %s" % args.input)
+    appui.status("Conversion completed: %s" % args.input)
+    return 0  # success
 
 
 def run():
@@ -116,7 +123,4 @@ def run():
         parser.print_usage()
         parser.exit(1)
 
-    try:
-        return args.func(args)
-    except Abort as e:
-        ui.error(e)
+    return args.func(args)

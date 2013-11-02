@@ -13,19 +13,19 @@ def get_default_location():
     return os.path.join(cdir, 'config.ini')
 
 
-def read(ui, location=None):
+def read(location=None):
     if not location:
         location = get_default_location()
 
     if not os.path.exists(location):
-        raise Abort("Cannot load configuration from %s. " % location)
+        return None
 
     config = configparser.SafeConfigParser()
     config.read(location)
     return config
 
 
-def get_settings(ui, config, section):
+def get_settings(config, section):
     if not config.has_section(section):
         raise Abort("No section named %s in config file" % section)
 

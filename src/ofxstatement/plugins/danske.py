@@ -45,6 +45,6 @@ class DanskePlugin(Plugin):
         parser.statement.currency = self.settings['currency']
         parser.statement.account_id = self.settings['account']
         parser.statement.bank_id = self.settings.get('bank', 'Danske')
-        if self.settings.getboolean('use-details-for-memo'):
+        if 'use-details-for-memo' in self.settings:
             parser.use_details_for_memo()
         return parser

@@ -16,3 +16,6 @@ Changes
     * ``ofxstatement convert``: perform conversion to OFX
     * ``ofxstatement list-plugins``: list available conversion plugins
     * ``ofxstatement edit-config``: launch default editor to edit configuration file
+
+- ``ofxstatement convert`` can be run without any configuration. Plugin name
+  to use is specified using ``-t TYPE`` parameter in this case.

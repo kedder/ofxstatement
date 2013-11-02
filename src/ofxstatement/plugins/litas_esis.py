@@ -82,6 +82,6 @@ class LitasEsisPlugin(Plugin):
         encoding = self.settings.get('charset', 'utf-8')
         f = open(fin, 'r', encoding=encoding)
         parser = LitasEsisCsvStatementParser(f)
-        if self.settings.getboolean('swap-payee-and-memo'):
+        if 'swap-payee-and-memo' in self.settings:
             parser.swap_payee_and_memo()
         return parser

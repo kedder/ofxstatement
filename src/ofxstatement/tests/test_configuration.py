@@ -1,27 +1,17 @@
 import os
-import doctest
+import unittest
 
 from ofxstatement import configuration
-from ofxstatement.ui import UI
 
 
-def doctest_configuration():
-    """Test configuration routines
+class ConfigurationTest(unittest.TestCase):
 
-        >>> ui = UI()
-        >>> cfname = os.path.join(os.path.dirname(__file__),
-        ...                       'samples', 'config.ini')
-        >>> config = configuration.read(ui, cfname)
-        >>> config['swedbank']['plugin']
-        'swedbank'
+    def test_configuration(self):
+        here = os.path.dirname(__file__)
+        cfname = os.path.join(here, 'samples', 'config.ini')
+        config = configuration.read(cfname)
+        self.assertEqual(config['swedbank']['plugin'], 'swedbank')
 
-    """
-
-
-def test_suite(*args):
-    return doctest.DocTestSuite(optionflags=(doctest.NORMALIZE_WHITESPACE|
-                                             doctest.ELLIPSIS|
-                                             doctest.REPORT_ONLY_FIRST_FAILURE|
-                                             doctest.REPORT_NDIFF
-                                             ))
-load_tests = test_suite
+    def test_missing_configuration(self):
+        config = configuration.read("missing.ini")
+        self.assertIsNone(config)
