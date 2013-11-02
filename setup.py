@@ -54,10 +54,7 @@ setup(name='ofxstatement',
           ['ofxstatement = ofxstatement.tool:run'],
 
           'ofxstatement':
-          ['litas-esis = ofxstatement.plugins.litas_esis:LitasEsisPlugin',
-           'swedbank = ofxstatement.plugins.swedbank:SwedbankPlugin',
-           'danske = ofxstatement.plugins.danske:DanskePlugin',
-           'maxibps = ofxstatement.plugins.maxibps:PSPlugin',
+          ['maxibps = ofxstatement.plugins.maxibps:PSPlugin',
            'dkb_cc = ofxstatement.plugins.dkb_cc:DKBCCPlugin',
            'lbbamazon = ofxstatement.plugins.lbbamazon:LbbAmazonPlugin']
           },
