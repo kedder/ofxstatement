@@ -3,6 +3,27 @@
 from datetime import datetime
 
 
+TRANSACTION_TYPES = [
+    "CREDIT",       # Generic credit
+    "DEBIT",        # Generic debit
+    "INT",          # Interest earned or paid
+    "DIV",          # Dividend
+    "FEE",          # FI fee
+    "SRVCHG",       # Service charge
+    "DEP",          # Deposit
+    "ATM",          # ATM debit or credit
+    "POS",          # Point of sale debit or credit
+    "XFER",         # Transfer
+    "CHECK",        # Check
+    "PAYMENT",      # Electronic payment
+    "CASH",         # Cash withdrawal
+    "DIRECTDEP",    # Direct deposit
+    "DIRECTDEBIT",  # Merchant initiated debit
+    "REPEATPMT",    # Repeating payment/standing order
+    "OTHER"         # Other
+]
+
+
 class Statement(object):
     """Statement object containing statement items"""
     lines = None
@@ -32,14 +53,28 @@ class StatementLine(object):
     None (by default)
     """
     id = ""
+    # Date transaction was posted to account
     date = datetime.now()
     memo = ""
+
+    # Amount of transaction
     amount = 0.0
 
     # additional fields
     payee = ""
+
+    # Date user initiated transaction, if known
     date_user = ""
+
+    # Check (or other reference) number
     check_no = ""
+
+    # Reference number that uniquely identifies the transaction. Can be used in
+    # addition to or instead of a check_no
+    refnum = ""
+
+    # Transaction type, must be one of TRANSACTION_TYPES
+    trntype = "CHECK"
 
     def __init__(self, id=None, date=None, memo=None, amount=None):
         self.id = id
@@ -50,6 +85,7 @@ class StatementLine(object):
         self.date_user = None
         self.payee = None
         self.check_no = None
+        self.refnum = None
 
     def __str__(self):
         return """
@@ -58,6 +94,12 @@ class StatementLine(object):
         check no.: %s
         """ % (self.id, self.date, self.amount, self.payee, self.memo,
                self.check_no)
+
+    def assert_valid(self):
+        """Ensure that fields have valid values
+        """
+        assert self.trntype in TRANSACTION_TYPES, \
+            "trntype must be one of %s" % TRANSACTION_TYPES
 
 
 def generate_transaction_id(stmt_line):

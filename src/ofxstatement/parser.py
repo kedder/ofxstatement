@@ -24,7 +24,8 @@ class StatementParser(object):
             if not line:
                 continue
             stmt_line = self.parse_record(line)
-            if (stmt_line):
+            if stmt_line:
+                stmt_line.assert_valid()
                 self.statement.lines.append(stmt_line)
         return self.statement
 
