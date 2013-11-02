@@ -52,10 +52,6 @@ setup(name='ofxstatement',
       entry_points={
           'console_scripts':
           ['ofxstatement = ofxstatement.tool:run'],
-
-          'ofxstatement':
-          ['dkb_cc = ofxstatement.plugins.dkb_cc:DKBCCPlugin',
-           'lbbamazon = ofxstatement.plugins.lbbamazon:LbbAmazonPlugin']
           },
       package_dir={'': 'src'},
       install_requires=['setuptools',
