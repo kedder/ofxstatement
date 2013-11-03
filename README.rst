@@ -26,7 +26,7 @@ To bridge the gap between them, ofxstatement tool was created.
 .. _GnuCash: http://gnucash.org/
 .. _OFX: http://en.wikipedia.org/wiki/Open_Financial_Exchange
 
-Mode of operation
+Mode of Operation
 =================
 
 The ``ofxstatement`` tool is intended to be used in the following workflow:
@@ -127,7 +127,7 @@ To convert proprietary ``danske.csv`` to OFX ``danske.ofx``, run::
 Note, that configuration parameters are plugin specific. See particular plugin
 documentation for more info.
 
-Writing your own plugin
+Writing your own Plugin
 =======================
 
 If plugin for your bank is not yet developed (see `Known plugins`_ section
