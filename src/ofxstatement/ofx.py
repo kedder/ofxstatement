@@ -105,6 +105,7 @@ class OfxWriter(object):
         self.buildText("CHECKNUM", line.check_no)
         self.buildText("NAME", line.payee)
         self.buildText("MEMO", line.memo)
+        self.buildText("REFNUM", line.refnum)
         #self.buildText("CURRENCY", line.currency)
 
         tb.end("STMTTRN")
