@@ -7,15 +7,16 @@ OFX Statement
 .. image:: https://coveralls.io/repos/kedder/ofxstatement/badge.png?branch=master
     :target: https://coveralls.io/r/kedder/ofxstatement?branch=master
 
-Package provides single command line tool to run: ``ofxstatement``. Run
-``ofxstatement -h`` to see basic usage description. ``ofxstatement`` works
-under Python 3 and is not compatible with Python 2.
+Ofxstatement is a tool to convert proprietary bank statement to OFX format,
+suitable for importing to GnuCash. Package provides single command line tool to
+run: ``ofxstatement``. Run ``ofxstatement -h`` to see basic usage description.
+``ofxstatement`` works under Python 3 and is not compatible with Python 2.
 
 
 Rationale
 =========
 
-Most internet banking systems are capable of exporting account transaction to
+Most internet banking systems are capable of exporting account transactions to
 some sort of computer readable formats, but few supports standard data formats,
 like `OFX`_.  On the other hand, personal accounting tools, such as `GnuCash`_
 support standard formats only, and will probably never support proprietary
