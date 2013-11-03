@@ -40,13 +40,62 @@ The ``ofxstatement`` tool is intended to be used in the following workflow:
 
 3. Import generated OFX files to GnuCash or other accounting system.
 
+Installation and Usage
+======================
 
-Configuration
+Before using ``ofxstatement``, you have to install plugin for your bank (or
+write your own!). Plugins are installed as regular python eggs, with
+easy_install or pip, for example::
+
+  $ pip3 install ofxstatement-lithuanian
+
+Note, that ofxstatement itself will be installed automatically this way. After
+installation, ``ofxstatement`` utility should be available. You can check it
+is working by running::
+
+  $ ofxstatement list-plugins
+
+You should get a list of your installed plugins printed.
+
+After installation, usage is simple::
+
+  $ ofxstatement convert -t <plugin> bank_statement.csv statement.ofx
+
+Resulting ``statement.ofx`` is then ready to be imported to GnuCash or other
+financial program you use.
+
+
+Known Plugins
 =============
 
-Before first use, ofxstatement should be configured to know about particular
-format of your statement files. Configuration file is stored in
-``~/.config/ofxstatement/config.ini`` and must be created before first use.
+There are several user-developed plugins available:
+
+=========================== ==================================================
+Plugin                      Description
+=========================== ==================================================
+`ofxstatement-lithuanian`_  Plugins for several banks, operating in
+                            Lithuania: Swedbank, Danske and common Lithuanian
+                            exchange format - LITAS-ESIS.
+
+`ofxstatement-czech`_       Plugin for Poštovní spořitelna (``maxibps``)
+
+`ofxstatement-bubbas`_      Set of plugins, developed by @bubbas: ``dkb_cc``
+                            and ``lbbamazon``.
+=========================== ==================================================
+
+.. _ofxstatement-lithuanian: https://github.com/kedder/ofxstatement-lithuanian
+.. _ofxstatement-czech: https://github.com/kedder/ofxstatement-czech
+.. _ofxstatement-bubbas: https://github.com/kedder/ofxstatement-bubbas
+
+Advanced Configuration
+======================
+
+While ofxstatement can be used without any configuration, some plugins may
+accept additional configuration parameters. These parameters can be specified
+in configuration file. Configuration file can be edited using ``edit-config``
+command, that brings your favored editor with configuration file open::
+
+  $ ofxstatement edit-config
 
 Configuration file format is a standard .ini format. Configuration is divided
 to sections, that corresponds to ``--type`` command line parameter. Each
@@ -58,53 +107,33 @@ Sample configuration file::
     [swedbank]
     plugin = swedbank
 
-    [dnb]
-    plugin = dnb
+    [dabske:usd]
+    plugin = litas-esis
     charset = cp1257
+    currency = USD
+    account = LT123456789012345678
+
 
 Such configuration will let ofxstatement to know about two statement file
-format, handled by plugins ``swedbank`` and ``dnb``. ``dnb`` plugin will load
-statements using ``cp1257`` charset.
+format, handled by plugins ``swedbank`` and ``litas-esis``. ``litas-esis``
+plugin will load statements using ``cp1257`` charset and set custom currency
+and custom account number. This way, GnuCash will automatically associate
+imported .ofx statement with particular GnuCash account.
 
-To convert proprietary ``dnb.csv`` to OFX ``dnb.ofx``, run::
+To convert proprietary ``danske.csv`` to OFX ``danske.ofx``, run::
 
-    $ ofxstatement -t dnb dnb.csv dnb.ofx
+    $ ofxstatement -t danske:usd danske.csv danske.ofx
+
+Note, that configuration parameters are plugin specific. See particular plugin
+documentation for more info.
 
 Writing your own plugin
 =======================
 
-Statement plugins, included in ofxstatement, are very specific to proprietary
-bank formats they are dealing with. This means that, most likely, you will not
-find support for your bank' specific format in distribution.  However, it is
-easy (for anyone with basic knowledge of programming in python) to add support
-for converting of almost any proprietary bank statement format to standard OFX
-representation.
+If plugin for your bank is not yet developed (see `Known plugins`_ section
+above), you can easily write your own, provided some knowledge about python
+programming language. There is an `ofxstatement-sample`_ plugin project
+available, that provides sample boilerplate and describes plugin development
+process in detail.
 
-Creation of new plugin involves the following steps:
-
-1. Create ``StatementParser`` class in
-   ``src/ofxstatement/plugins/yourformat.py``, that will be responsible for
-   reading statement file and extracting information from it;
-
-2. Create ``Plugin`` class in ``src/ofxstatement/plugins/yourformat.py``, that
-   will configure the parser according to user settings;
-
-3. Register new plugin by importing it in
-   ``src/ofxstatement/plugins/__init__.py``.
-
-``StatementParser`` is the main object that does all the hard work. It has only
-one public method: ``parse()``, that should return
-``ofxstatement.statement.Statement`` object, filled with data from given input.
-The default implementation, however, splits this work into two parts:
-``split_records()`` to split the whole file into logical parts, e.g.
-transaction records, and ``parse_record()`` to extract information from
-individual record. See ``src/ofxstatement/parser.py`` for details. If your
-statement' format looks like CSV file, you might find ``CsvStatementParser``
-class useful: it simplifies mapping bettween CSV columns and ``StatementLine``
-attributes.
-
-``Plugin`` interface consists of ``name`` attribute, by which plugin is
-identified in configuration file, and ``get_parser()`` method, that returns
-configured StatementParser object for given input filename.
-
-See ``src/ofxstatement/plugins`` for examples.
+.. _ofxstatement-sample: https://github.com/kedder/ofxstatement-sample
