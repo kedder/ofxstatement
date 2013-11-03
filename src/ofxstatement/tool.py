@@ -7,10 +7,7 @@ import logging
 
 import pkg_resources
 
-from ofxstatement import ui
-from ofxstatement import configuration
-from ofxstatement import plugin
-from ofxstatement.ofx import OfxWriter
+from ofxstatement import ui, configuration, plugin, ofx, exceptions
 
 
 log = logging.getLogger(__name__)
@@ -122,10 +119,14 @@ def convert(args):
 
     # process the input and produce output
     parser = p.get_parser(args.input)
-    statement = parser.parse()
+    try:
+        statement = parser.parse()
+    except exceptions.ParseError as e:
+        log.error("Parse error on line %s: %s" % (e.lineno, e.message))
+        return 2  # error
 
     with open(args.output, "w") as out:
-        writer = OfxWriter(statement)
+        writer = ofx.OfxWriter(statement)
         out.write(writer.toxml())
 
     log.info("Conversion completed: %s" % args.input)

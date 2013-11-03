@@ -17,6 +17,8 @@ class StatementParser(object):
         """Read and parse statement
 
         Return Statement object
+
+        May raise exceptions.ParseException on malformed input.
         """
         reader = self.split_records()
         for line in reader:

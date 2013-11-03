@@ -8,7 +8,7 @@ import shutil
 
 import mock
 
-from ofxstatement import tool, statement, configuration
+from ofxstatement import tool, statement, configuration, parser, exceptions
 
 
 class ToolTests(unittest.TestCase):
@@ -63,6 +63,31 @@ class ToolTests(unittest.TestCase):
         self.assertEqual(
             self.log.getvalue().splitlines(),
             ["INFO: Conversion completed: %s" % inputfname])
+
+    def test_convert_parseerror(self):
+        inputfname = os.path.join(self.tmpdir, "input")
+        outputfname = os.path.join(self.tmpdir, "output")
+
+        class FailingParser(parser.StatementParser):
+            def parse(self):
+                raise exceptions.ParseError(23, "Catastrophic error")
+
+        sample_plugin = mock.Mock()
+        sample_plugin.get_parser.return_value = FailingParser()
+
+        noconfigpatch = mock.patch("ofxstatement.configuration.read",
+                                   return_value=None)
+
+        pluginpatch = mock.patch("ofxstatement.plugin.get_plugin",
+                                 return_value=sample_plugin)
+
+        with noconfigpatch, pluginpatch:
+            ret = tool.run(['convert', '-t test', inputfname, outputfname])
+
+        self.assertEqual(ret, 2)
+        self.assertEqual(
+            self.log.getvalue().splitlines(),
+            ['ERROR: Parse error on line 23: Catastrophic error'])
 
     def test_list_plugins_plugins(self):
         pl1 = mock.Mock(__doc__="Plugin one")
