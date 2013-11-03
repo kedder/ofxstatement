@@ -11,3 +11,8 @@ bin/ofxstatement: bin/buildout buildout.cfg setup.py
 	./bin/buildout
 	./bin/python setup.py develop
 	touch bin/ofxstatement
+
+.PHONY: coverage
+coverage: bin/ofxstatement
+	./bin/coverage run --source=src/ofxstatement ./bin/test
+	./bin/coverage report
