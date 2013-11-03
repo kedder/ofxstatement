@@ -1,9 +1,14 @@
+import logging
+
+log = logging.getLogger(__name__)
+
+
 class UI(object):
     def status(self, message):
-        print(message)
+        log.info(message)
 
     def warning(self, message):
-        print("WARNING: %s" % message)
+        log.warn(message)
 
     def error(self, message):
-        print("*** ERROR: %s" % message)
+        log.error(message)

@@ -1,24 +1,29 @@
 """Command line tool for converting statements to OFX format
 """
 import os
-import sys
 import argparse
-import tempfile
 import subprocess
+import logging
 
 import pkg_resources
 
-import ofxstatement
 from ofxstatement import ui
 from ofxstatement import configuration
 from ofxstatement import plugin
 from ofxstatement.ofx import OfxWriter
-from ofxstatement.exceptions import Abort
+
+
+log = logging.getLogger(__name__)
 
 
 def get_version():
     dist = pkg_resources.get_distribution("ofxstatement")
     return dist.version
+
+
+def configure_logging(args):
+    format = '%(levelname)s: %(message)s'
+    logging.basicConfig(format=format, level=logging.INFO)
 
 
 def make_args_parser():
@@ -65,7 +70,7 @@ def list_plugins(args):
 
     else:
         print("The following plugins are available: ")
-        print()
+        print("")
         for name, plclass in available_plugins:
             if plclass.__doc__:
                 title = plclass.__doc__.splitlines()[0]
@@ -79,13 +84,14 @@ def edit_config(args):
     configfname = configuration.get_default_location()
     configdir = os.path.dirname(configfname)
     if not os.path.exists(configdir):
+        log.info("Creating confugration directory: %s" % configdir)
         os.makedirs(configdir, mode=0o700)
+    log.info("Running editor: %s %s" % (editor, configfname))
     subprocess.call([editor, configfname])
 
 
 def convert(args):
     appui = ui.UI()
-    # read configuration
     config = configuration.read()
 
     if config is None:
@@ -95,19 +101,24 @@ def convert(args):
     else:
         # Configuration is loaded
         if args.type not in config:
-            raise Abort("No section named %s in config file" % args.type)
+            log.error("No section '%s' in config file." % args.type)
+            log.error("Edit configuration using ofxstatement edit-config and "
+                      "add section [%s]." % args.type)
+            return 1  # error
 
         settings = dict(config[args.type])
 
         pname = settings.get('plugin', None)
         if not pname:
-            raise Abort("Specify 'plugin' setting for section %s" % args.type)
+            log.error("Specify 'plugin' setting for section [%s]" % args.type)
+            return 1  # error
 
     # pick and configure plugin
     try:
         p = plugin.get_plugin(pname, appui, settings)
-    except plugin.PluginNotRegistered as e:
-        raise Abort("No plugin named '%s' is found" % pname) from e
+    except plugin.PluginNotRegistered:
+        log.error("No plugin named '%s' is found" % pname)
+        return 1  # error
 
     # process the input and produce output
     parser = p.get_parser(args.input)
@@ -117,13 +128,14 @@ def convert(args):
         writer = OfxWriter(statement)
         out.write(writer.toxml())
 
-    appui.status("Conversion completed: %s" % args.input)
+    log.info("Conversion completed: %s" % args.input)
     return 0  # success
 
 
-def run():
+def run(args=None):
     parser = make_args_parser()
-    args = parser.parse_args()
+    args = parser.parse_args(args)
+    configure_logging(args)
 
     if not hasattr(args, "func"):
         parser.print_usage()
