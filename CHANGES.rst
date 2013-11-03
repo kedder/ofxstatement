@@ -2,7 +2,11 @@
 Changes
 ~~~~~~~
 
-0.5.0 (unreleased)
+0.6.0 (unreleased)
+==================
+
+
+0.5.0 (2013-11-03)
 ==================
 
 - Plugins are now registered via setuptools' entry-points mechanism. This

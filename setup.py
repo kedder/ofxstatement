@@ -22,7 +22,7 @@ class RunTests(TestCommand):
         res = runner.run(tests)
         sys.exit(not res.wasSuccessful())
 
-version = "0.5.0"
+version = "0.6.0.dev"
 
 with open("CHANGES.rst") as chlogf, open('README.rst') as rdmef:
     long_description = chlogf.read() + "\n\n" + rdmef.read()
