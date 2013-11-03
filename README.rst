@@ -2,8 +2,10 @@
 OFX Statement
 ~~~~~~~~~~~~~
 
-.. image:: https://travis-ci.org/kedder/ofxstatement.png?branch=master  
+.. image:: https://travis-ci.org/kedder/ofxstatement.png?branch=master
     :target: https://travis-ci.org/kedder/ofxstatement
+.. image:: https://coveralls.io/repos/kedder/ofxstatement/badge.png?branch=master
+    :target: https://coveralls.io/r/kedder/ofxstatement?branch=master
 
 Package provides single command line tool to run: ``ofxstatement``. Run
 ``ofxstatement -h`` to see basic usage description. ``ofxstatement`` works
