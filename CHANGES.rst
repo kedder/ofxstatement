@@ -14,9 +14,10 @@ Changes
 - Command line interface changed: ``ofxstatement`` now accepts "action"
   parameter and few actions were added:
 
-    * ``ofxstatement convert``: perform conversion to OFX
-    * ``ofxstatement list-plugins``: list available conversion plugins
-    * ``ofxstatement edit-config``: launch default editor to edit configuration file
+  * ``ofxstatement convert``: perform conversion to OFX
+  * ``ofxstatement list-plugins``: list available conversion plugins
+  * ``ofxstatement edit-config``: launch default editor to edit configuration
+    file
 
 - ``ofxstatement convert`` can be run without any configuration. Plugin name
   to use is specified using ``-t TYPE`` parameter in this case (#12).
