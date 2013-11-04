@@ -71,22 +71,24 @@ Known Plugins
 
 There are several user-developed plugins available:
 
-=========================== ==================================================
-Plugin                      Description
-=========================== ==================================================
-`ofxstatement-lithuanian`_  Plugins for several banks, operating in
-                            Lithuania: Swedbank, Danske and common Lithuanian
-                            exchange format - LITAS-ESIS.
+================================= ============================================
+Plugin                            Description
+================================= ============================================
+`ofxstatement-lithuanian`_        Plugins for several banks, operating in
+                                  Lithuania: Swedbank, Danske and common Lithuanian exchange format - LITAS-ESIS.
 
-`ofxstatement-czech`_       Plugin for Poštovní spořitelna (``maxibps``)
+`ofxstatement-czech`_             Plugin for Poštovní spořitelna (``maxibps``)
 
-`ofxstatement-bubbas`_      Set of plugins, developed by @bubbas: ``dkb_cc``
-                            and ``lbbamazon``.
-=========================== ==================================================
+`ofxstatement-bubbas`_            Set of plugins, developed by @bubbas:
+                                  ``dkb_cc`` and ``lbbamazon``.
+
+`banking.statements.osuuspankki`_ Finnish Osuuspankki bank
+================================= ============================================
 
 .. _ofxstatement-lithuanian: https://github.com/kedder/ofxstatement-lithuanian
 .. _ofxstatement-czech: https://github.com/mcepl/ofxstatement-czech
 .. _ofxstatement-bubbas: https://github.com/kedder/ofxstatement-bubbas
+.. _banking.statements.osuuspankki: https://github.com/koodaamo/banking.statements.osuuspankki
 
 Advanced Configuration
 ======================
