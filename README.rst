@@ -85,7 +85,7 @@ Plugin                      Description
 =========================== ==================================================
 
 .. _ofxstatement-lithuanian: https://github.com/kedder/ofxstatement-lithuanian
-.. _ofxstatement-czech: https://github.com/kedder/ofxstatement-czech
+.. _ofxstatement-czech: https://github.com/mcepl/ofxstatement-czech
 .. _ofxstatement-bubbas: https://github.com/kedder/ofxstatement-bubbas
 
 Advanced Configuration
