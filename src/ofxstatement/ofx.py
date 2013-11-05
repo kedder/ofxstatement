@@ -108,7 +108,7 @@ class OfxWriter(object):
         self.buildText("REFNUM", line.refnum)
         #self.buildText("CURRENCY", line.currency)
         if line.bank_account_to:
-            tb.start("BANKACCTTO")
+            tb.start("BANKACCTTO", {})
             self.buildBankAccount(line.bank_account_to)
             tb.end("BANKACCTTO")
 
