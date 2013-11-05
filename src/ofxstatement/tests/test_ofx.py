@@ -4,7 +4,7 @@ import xml.dom.minidom
 
 from datetime import datetime
 
-from ofxstatement.statement import Statement, StatementLine
+from ofxstatement.statement import Statement, StatementLine, BankAccount
 from ofxstatement import ofx
 
 def prettyPrint(xmlstr):
@@ -21,6 +21,8 @@ def doctest_OfxWriter():
         ...     "1", datetime(2012, 2, 12), "Sample 1", 15.4))
         >>> line = StatementLine("2", datetime(2012, 2, 12), "Sample 2", 25.0)
         >>> line.payee = ''
+        >>> line.bank_account_to = BankAccount("SNORAS", "LT1232")
+        >>> line.bank_account_to.branch_id = "VNO"
         >>> statement.lines.append(line)
 
     Create writer:
@@ -32,7 +34,7 @@ def doctest_OfxWriter():
     Produce OFX output:
         >>> prettyPrint(writer.toxml())
         <?xml version="1.0" ?>
-        <!-- 
+        <!--
         OFXHEADER:100
         DATA:OFXSGML
         VERSION:102
@@ -84,7 +86,13 @@ def doctest_OfxWriter():
                                 <TRNAMT>25.00</TRNAMT>
                                 <FITID>2</FITID>
                                 <MEMO>Sample 2</MEMO>
-                            </STMTTRN>
+                                <BANKACCTTO>
+                                    <BANKID>SNORAS</BANKID>
+                                    <BRANCHID>VNO</BRANCHID>
+                                    <ACCTID>LT1232</ACCTID>
+                                    <ACCTTYPE>CHECKING</ACCTTYPE>
+                                </BANKACCTTO>
+                             </STMTTRN>
                         </BANKTRANLIST>
                         <LEDGERBAL>
                             <BALAMT/>

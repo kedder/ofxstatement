@@ -107,8 +107,19 @@ class OfxWriter(object):
         self.buildText("MEMO", line.memo)
         self.buildText("REFNUM", line.refnum)
         #self.buildText("CURRENCY", line.currency)
+        if line.bank_account_to:
+            tb.start("BANKACCTTO")
+            self.buildBankAccount(line.bank_account_to)
+            tb.end("BANKACCTTO")
 
         tb.end("STMTTRN")
+
+    def buildBankAccount(self, account):
+        self.buildText("BANKID", account.bank_id)
+        self.buildText("BRANCHID", account.branch_id)
+        self.buildText("ACCTID", account.acct_id)
+        self.buildText("ACCTTYPE", account.acct_type)
+        self.buildText("ACCTKEY", account.acct_key)
 
     def buildText(self, tag, text, skipEmpty=True):
         if not text and skipEmpty:

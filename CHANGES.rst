@@ -5,6 +5,9 @@ Changes
 0.6.0 (unreleased)
 ==================
 
+- Support for specifying account information for each parsed satatement
+  line and translate it to BANKACCTTO aggregate in OFX.
+
 
 0.5.0 (2013-11-03)
 ==================

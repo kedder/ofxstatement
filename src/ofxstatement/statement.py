@@ -23,6 +23,13 @@ TRANSACTION_TYPES = [
     "OTHER"         # Other
 ]
 
+ACCOUNT_TYPE = [
+    "CHECKING",     # Checking
+    "SAVINGS",      # Savings
+    "MONEYMRKT",    # Money Market
+    "CREDITLINE",   # Line of credit
+]
+
 
 class Statement(object):
     """Statement object containing statement items"""
@@ -76,6 +83,9 @@ class StatementLine(object):
     # Transaction type, must be one of TRANSACTION_TYPES
     trntype = "CHECK"
 
+    # Optional BankAccount instance
+    bank_account_to = None
+
     def __init__(self, id=None, date=None, memo=None, amount=None):
         self.id = id
         self.date = date
@@ -100,6 +110,41 @@ class StatementLine(object):
         """
         assert self.trntype in TRANSACTION_TYPES, \
             "trntype must be one of %s" % TRANSACTION_TYPES
+
+        if self.bank_account_to:
+            self.bank_account_to.assert_valid()
+
+
+class BankAccount(object):
+    """Structure corresponding to BANKACCTTO and BANKACCTFROM elements from OFX
+
+    Open Financial Exchange uses the Banking Account aggregate to identify an
+    account at an FI. The aggregate contains enough information to uniquely
+    identify an account for the purposes of statement.
+    """
+
+    # Routing and transit number
+    bank_id = ""
+    # Bank identifier for international banks
+    branch_id = ""
+    # Account number
+    acct_id = ""
+    # Type of account, must be one of ACCOUNT_TYPE
+    acct_type = ""
+    # Checksum for international banks
+    acct_key = ""
+
+    def __init__(self, bank_id, acct_id, acct_type="CHECKING"):
+        self.bank_id = bank_id
+        self.acct_id = acct_id
+        self.acct_type = acct_type
+
+        self.branch_id = None
+        self.acct_key = None
+
+    def assert_valid(self):
+        assert self.acct_type in ACCOUNT_TYPE, \
+            "acct_type must be one of %s" % ACCOUNT_TYPE
 
 
 def generate_transaction_id(stmt_line):
