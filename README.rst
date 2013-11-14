@@ -84,6 +84,7 @@ Plugin                            Description
 
 `banking.statements.osuuspankki`_ Finnish Osuuspankki bank
 `banking.statements.nordea`_      Nordea bank (at least Finnish branch of it)
+`ofxstatement-1822direkt`_        German bank 1822direk.com
 ================================= ============================================
 
 
@@ -92,6 +93,7 @@ Plugin                            Description
 .. _ofxstatement-bubbas: https://github.com/kedder/ofxstatement-bubbas
 .. _banking.statements.osuuspankki: https://github.com/koodaamo/banking.statements.osuuspankki
 .. _banking.statements.nordea: https://github.com/koodaamo/banking.statements.nordea
+.. _ofxstatement-1822direkt: https://github.com/MirkoDziadzka/ofxstatement-1822direkt
 
 Advanced Configuration
 ======================
