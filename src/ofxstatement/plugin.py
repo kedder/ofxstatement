@@ -35,7 +35,7 @@ def get_plugin(name, ui, settings):
     return plugin
 
 class PluginAlreadyRegistered(Exception):
-    """Raised on attpemt to register an already registered plugin
+    """Raised on attempt to register an already registered plugin
     """
 
 class PluginNotRegistered(Exception):

@@ -91,7 +91,7 @@ The default implementation, however, splits this work into two parts:
 transaction records, and ``parse_record()`` to extract information from
 individual record. See ``src/ofxstatement/parser.py`` for details. If your
 statement' format looks like CSV file, you might find ``CsvStatementParser``
-class useful: it simplifies mapping bettween CSV columns and ``StatementLine``
+class useful: it simplifies mapping between CSV columns and ``StatementLine``
 attributes.
 
 ``Plugin`` interface consists of ``name`` attribute, by which plugin is
