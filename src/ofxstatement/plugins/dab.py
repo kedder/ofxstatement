@@ -23,7 +23,6 @@ class DABCsvStatementParser(CsvStatementParser):
 
         if self.cur_record == 2:
             self.statement.currency = line[5].strip('Betrag in ')
-            print(self.statement.currency)
             return None
 
         if self.cur_record <= 2:
@@ -39,7 +38,6 @@ class DABCsvStatementParser(CsvStatementParser):
 
         # fill statement line according to mappings
         sl = super(DABCsvStatementParser, self).parse_record(line)
-        print(sl)
         return sl
 
 
