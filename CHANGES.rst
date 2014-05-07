@@ -8,6 +8,8 @@ Changes
 - Support for specifying account information for each parsed satatement
   line and translate it to BANKACCTTO aggregate in OFX.
 
+- Command line option to display debugging information (--debug).
+
 
 0.5.0 (2013-11-03)
 ==================
