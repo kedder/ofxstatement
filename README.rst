@@ -77,7 +77,10 @@ Plugin                            Description
 `ofxstatement-lithuanian`_        Plugins for several banks, operating in
                                   Lithuania: Swedbank, Danske and common Lithuanian exchange format - LITAS-ESIS.
 
-`ofxstatement-czech`_             Plugin for Poštovní spořitelna (``maxibps``)
+`ofxstatement-czech`_             Plugin for Poštovní spořitelna
+                                  (``maxibps``) and banks using GPC
+                                  format (e.g., FIO banka, module
+                                  ``gpc``).
 
 `ofxstatement-bubbas`_            Set of plugins, developed by @bubbas:
                                   ``dkb_cc`` and ``lbbamazon``.
