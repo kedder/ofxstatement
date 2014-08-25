@@ -88,6 +88,8 @@ Plugin                            Description
 `banking.statements.osuuspankki`_ Finnish Osuuspankki bank
 `banking.statements.nordea`_      Nordea bank (at least Finnish branch of it)
 `ofxstatement-1822direkt`_        German bank 1822direk.com
+`ofxstatement-austrian`_          Plugins for several banks, operating in Austria:
+                                  Easybank, ING-Diba, Livebank, Raiffeisenbank.
 ================================= ============================================
 
 
@@ -97,6 +99,7 @@ Plugin                            Description
 .. _banking.statements.osuuspankki: https://github.com/koodaamo/banking.statements.osuuspankki
 .. _banking.statements.nordea: https://github.com/koodaamo/banking.statements.nordea
 .. _ofxstatement-1822direkt: https://github.com/MirkoDziadzka/ofxstatement-1822direkt
+.. _ofxstatement-austrian: https://github.com/nblock/ofxstatement-austrian
 
 Advanced Configuration
 ======================
