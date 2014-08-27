@@ -3,6 +3,7 @@ language: python
 python:
   - "3.2"
   - "3.3"
+  - "3.4"
 install:
 # - python3 setup.py install
   - pip install coverage --use-mirrors
