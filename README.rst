@@ -90,6 +90,7 @@ Plugin                            Description
 `ofxstatement-1822direkt`_        German bank 1822direk.com
 `ofxstatement-austrian`_          Plugins for several banks, operating in Austria:
                                   Easybank, ING-Diba, Livebank, Raiffeisenbank.
+`ofxstatement-postfinance`_       Swiss PostFinance (E-Finance Java text based bank/credit statements).
 ================================= ============================================
 
 
