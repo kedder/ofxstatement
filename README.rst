@@ -101,6 +101,7 @@ Plugin                            Description
 .. _banking.statements.nordea: https://github.com/koodaamo/banking.statements.nordea
 .. _ofxstatement-1822direkt: https://github.com/MirkoDziadzka/ofxstatement-1822direkt
 .. _ofxstatement-austrian: https://github.com/nblock/ofxstatement-austrian
+.. _ofxstatement-postfinance: https://pypi.python.org/pypi/ofxstatement-postfinance
 
 Advanced Configuration
 ======================
