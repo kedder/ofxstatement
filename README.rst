@@ -135,7 +135,7 @@ Sample configuration file::
     [swedbank]
     plugin = swedbank
 
-    [dabske:usd]
+    [danske:usd]
     plugin = litas-esis
     charset = cp1257
     currency = USD
