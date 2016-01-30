@@ -96,6 +96,7 @@ Plugin                            Description
 `ofxstatement-betterment`_        Betterment (https://www.betterment.com/)
 `ofxstatement-simple`_            Simple (the bank, https://www.simple.com/) JSON financial statement format
 `ofxstatement-latvian`_           Latvian banks
+`ofxstatement-iso20022`_          Support for generic ISO-20022 format
 ================================= ============================================
 
 
@@ -112,6 +113,7 @@ Plugin                            Description
 .. _ofxstatement-betterment: https://github.com/cmayes/ofxstatement-betterment
 .. _ofxstatement-simple: https://github.com/cmayes/ofxstatement-simple
 .. _ofxstatement-latvian: https://github.com/gintsmurans/ofxstatement-latvian
+.. _ofxstatement-iso20022: https://github.com/kedder/ofxstatement-iso20022
 
 Advanced Configuration
 ======================
