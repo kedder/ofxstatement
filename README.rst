@@ -94,6 +94,7 @@ Plugin                            Description
 `ofxstatement-mbank-sk`_          MBank.sk
 `ofxstatement-be-keytrade`_       KeytradeBank (Belgium)
 `ofxstatement-betterment`_        Betterment (https://www.betterment.com/)
+`ofxstatement-latvian`_           Latvian banks
 ================================= ============================================
 
 
@@ -108,6 +109,7 @@ Plugin                            Description
 .. _ofxstatement-mbank-sk: https://github.com/epitheton/ofxstatement-mbank-sk
 .. _ofxstatement-be-keytrade: https://github.com/Scotchy49/ofxstatement-be-keytrade
 .. _ofxstatement-betterment: https://github.com/cmayes/ofxstatement-betterment
+.. _ofxstatement-latvian: https://github.com/gintsmurans/ofxstatement-latvian
 
 Advanced Configuration
 ======================
