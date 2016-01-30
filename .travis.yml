@@ -1,7 +1,6 @@
 # Configuration script to Travis-CI
 language: python
 python:
-  - "3.2"
   - "3.3"
   - "3.4"
 install:
