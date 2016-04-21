@@ -98,6 +98,7 @@ Plugin                            Description
 `ofxstatement-latvian`_           Latvian banks
 `ofxstatement-iso20022`_          Support for generic ISO-20022 format
 `ofxstatement-seb`_               SEB (Sweden), it parses Export.xlsx for private accounts
+`ofxstatement-alfabank`_          AlfaBank (Russia), it parses movementList.csv for private accounts
 ================================= ============================================
 
 
@@ -116,6 +117,7 @@ Plugin                            Description
 .. _ofxstatement-latvian: https://github.com/gintsmurans/ofxstatement-latvian
 .. _ofxstatement-iso20022: https://github.com/kedder/ofxstatement-iso20022
 .. _ofxstatement-seb: https://github.com/themalkolm/ofxstatement-seb
+.. _ofxstatement-alfabank: https://github.com/themalkolm/ofxstatement-alfabank
 Advanced Configuration
 ======================
 
