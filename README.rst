@@ -93,6 +93,7 @@ Plugin                            Description
 `ofxstatement-postfinance`_       Swiss PostFinance (E-Finance Java text based bank/credit statements).
 `ofxstatement-mbank-sk`_          MBank.sk
 `ofxstatement-be-keytrade`_       KeytradeBank (Belgium)
+`ofxstatement-be-ing`_            ING (Belgium)
 `ofxstatement-betterment`_        Betterment (https://www.betterment.com/)
 `ofxstatement-simple`_            Simple (the bank, https://www.simple.com/) JSON financial statement format
 `ofxstatement-latvian`_           Latvian banks
@@ -112,6 +113,7 @@ Plugin                            Description
 .. _ofxstatement-postfinance: https://pypi.python.org/pypi/ofxstatement-postfinance
 .. _ofxstatement-mbank-sk: https://github.com/epitheton/ofxstatement-mbank-sk
 .. _ofxstatement-be-keytrade: https://github.com/Scotchy49/ofxstatement-be-keytrade
+.. _ofxstatement-be-ing: https://github.com/TheoMarescaux/ofxstatement-be-ing
 .. _ofxstatement-betterment: https://github.com/cmayes/ofxstatement-betterment
 .. _ofxstatement-simple: https://github.com/cmayes/ofxstatement-simple
 .. _ofxstatement-latvian: https://github.com/gintsmurans/ofxstatement-latvian
