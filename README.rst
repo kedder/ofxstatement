@@ -101,6 +101,7 @@ Plugin                            Description
 `ofxstatement-seb`_               SEB (Sweden), it parses Export.xlsx for private accounts
 `ofxstatement-alfabank`_          AlfaBank (Russia), it parses movementList.csv for private accounts
 `ofxstatement-paypal`_            PayPal, it parses *.csv for private accounts
+`ofxstatement-polish`_            Support for some Polish banks and financial institutions
 ================================= ============================================
 
 
@@ -122,6 +123,7 @@ Plugin                            Description
 .. _ofxstatement-seb: https://github.com/themalkolm/ofxstatement-seb
 .. _ofxstatement-alfabank: https://github.com/themalkolm/ofxstatement-alfabank
 .. _ofxstatement-paypal: https://github.com/themalkolm/ofxstatement-paypal
+.. _ofxstatement-polish: https://github.com/yay6/ofxstatement-polish
 Advanced Configuration
 ======================
 
