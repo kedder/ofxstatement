@@ -102,6 +102,7 @@ Plugin                            Description
 `ofxstatement-alfabank`_          AlfaBank (Russia), it parses movementList.csv for private accounts
 `ofxstatement-paypal`_            PayPal, it parses *.csv for private accounts
 `ofxstatement-polish`_            Support for some Polish banks and financial institutions
+`ofxstatement-russian`_           Support for several Russian banks: Avangard, Tinkoff, Sberbank (debit).
 ================================= ============================================
 
 
@@ -124,6 +125,7 @@ Plugin                            Description
 .. _ofxstatement-alfabank: https://github.com/themalkolm/ofxstatement-alfabank
 .. _ofxstatement-paypal: https://github.com/themalkolm/ofxstatement-paypal
 .. _ofxstatement-polish: https://github.com/yay6/ofxstatement-polish
+.. _ofxstatement-russian: https://github.com/gerasiov/ofxstatement-russian
 Advanced Configuration
 ======================
 
