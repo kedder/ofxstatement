@@ -107,7 +107,7 @@ Plugin                            Description
 
 
 .. _ofxstatement-lithuanian: https://github.com/kedder/ofxstatement-lithuanian
-.. _ofxstatement-czech: https://github.com/mcepl/ofxstatement-czech
+.. _ofxstatement-czech: https://gitlab.com/mcepl/ofxstatement-czech
 .. _ofxstatement-bubbas: https://github.com/bubbas/ofxstatement-bubbas
 .. _banking.statements.osuuspankki: https://github.com/koodaamo/banking.statements.osuuspankki
 .. _banking.statements.nordea: https://github.com/koodaamo/banking.statements.nordea
