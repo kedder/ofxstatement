@@ -9,7 +9,7 @@ APP_AUTHOR = 'ofx'
 
 
 def get_default_location():
-    cdir = appdirs.user_data_dir(APP_NAME, APP_AUTHOR)
+    cdir = appdirs.user_config_dir(APP_NAME, APP_AUTHOR)
     return os.path.join(cdir, 'config.ini')
 
 
