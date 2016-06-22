@@ -82,6 +82,7 @@ Plugin                            Description
                                   format (e.g., FIO banka, module
                                   ``gpc``).
 
+`ofxstatement-unicreditcz`_       Plugin for UniCredit Bank Czech Republic and Slovakia
 `ofxstatement-bubbas`_            Set of plugins, developed by @bubbas:
                                   ``dkb_cc`` and ``lbbamazon``.
 
@@ -108,6 +109,7 @@ Plugin                            Description
 
 .. _ofxstatement-lithuanian: https://github.com/kedder/ofxstatement-lithuanian
 .. _ofxstatement-czech: https://gitlab.com/mcepl/ofxstatement-czech
+.. _ofxstatement-unicreditcz: https://github.com/milankni/ofxstatement-unicreditcz
 .. _ofxstatement-bubbas: https://github.com/bubbas/ofxstatement-bubbas
 .. _banking.statements.osuuspankki: https://github.com/koodaamo/banking.statements.osuuspankki
 .. _banking.statements.nordea: https://github.com/koodaamo/banking.statements.nordea
