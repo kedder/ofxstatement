@@ -106,6 +106,7 @@ Plugin                            Description
 `ofxstatement-paypal`_            PayPal, it parses *.csv for private accounts
 `ofxstatement-polish`_            Support for some Polish banks and financial institutions
 `ofxstatement-russian`_           Support for several Russian banks: Avangard, Tinkoff, Sberbank (debit).
+`ofxstatement-dab`_               DAB Bank (Germany)
 ================================= ============================================
 
 
@@ -132,6 +133,7 @@ Plugin                            Description
 .. _ofxstatement-paypal: https://github.com/themalkolm/ofxstatement-paypal
 .. _ofxstatement-polish: https://github.com/yay6/ofxstatement-polish
 .. _ofxstatement-russian: https://github.com/gerasiov/ofxstatement-russian
+.. _ofxstatement-dab: https://github.com/JohannesKlug/ofxstatement-dab
 Advanced Configuration
 ======================
 
