@@ -55,7 +55,7 @@ setup(name='ofxstatement',
           },
       package_dir={'': 'src'},
       install_requires=['setuptools',
-                        'appdirs'
+                        'appdirs>=1.3.0'
                         ],
       extras_require={'test': ["mock"]},
       tests_require=["mock"],
