@@ -2,6 +2,7 @@
 """
 import os
 import argparse
+import shlex
 import subprocess
 import logging
 
@@ -89,7 +90,7 @@ def edit_config(args):
         log.info("Creating confugration directory: %s" % configdir)
         os.makedirs(configdir, mode=0o700)
     log.info("Running editor: %s %s" % (editor, configfname))
-    subprocess.call([editor, configfname])
+    subprocess.call(shlex.split(editor) + [configfname])
 
 
 def convert(args):
