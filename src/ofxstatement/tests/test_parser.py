@@ -27,7 +27,7 @@ def doctest_CsvStatementParser():
         >>> len(statement.lines)
         2
         >>> statement.lines[0].amount
-        243.32
+        Decimal('243.32')
         >>> statement.lines[1].payee
         'Google'
 

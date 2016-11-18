@@ -1,6 +1,7 @@
 """Statement model"""
 
 from datetime import datetime
+from decimal import Decimal as D
 
 
 TRANSACTION_TYPES = [
@@ -65,7 +66,7 @@ class StatementLine(object):
     memo = ""
 
     # Amount of transaction
-    amount = 0.0
+    amount = D(0)
 
     # additional fields
     payee = ""
@@ -169,7 +170,7 @@ def recalculate_balance(stmt):
 
     total_amount = sum(sl.amount for sl in stmt.lines)
 
-    stmt.start_balance = stmt.start_balance or 0.0
+    stmt.start_balance = stmt.start_balance or D(0)
     stmt.end_balance = stmt.start_balance + total_amount
     stmt.start_date = min(sl.date for sl in stmt.lines)
     stmt.end_date = max(sl.date for sl in stmt.lines)
