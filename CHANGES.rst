@@ -2,7 +2,7 @@
 Changes
 ~~~~~~~
 
-0.6.0 (unreleased)
+0.6.0 (2016-12-02)
 ==================
 
 - Support for specifying account information for each parsed satatement
@@ -10,6 +10,7 @@ Changes
 
 - Command line option to display debugging information (--debug).
 
+- Fix config file location for appdirs >= 1.3.0
 
 0.5.0 (2013-11-03)
 ==================
