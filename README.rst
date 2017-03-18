@@ -51,8 +51,14 @@ easy_install or pip, for example::
   $ pip3 install ofxstatement-lithuanian
 
 Note, that ofxstatement itself will be installed automatically this way. After
-installation, ``ofxstatement`` utility should be available. You can check it
-is working by running::
+installation, ``ofxstatement`` utility should be available.
+
+Users of *Ubuntu* and *Debian* operating systems can install ofxstatement from 
+official package repositories::
+
+  $ apt install ofxstatement ofxstatement-plugins 
+
+You can check ofxstatement is working by running::
 
   $ ofxstatement list-plugins
 
