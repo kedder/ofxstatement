@@ -1,2 +1,3 @@
 include CHANGES.rst README.rst
+include src/ofxstatement/plugins/README.txt
 graft src/ofxstatement/tests/samples
