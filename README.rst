@@ -88,6 +88,8 @@ Plugin                            Description
                                   format (e.g., FIO banka, module
                                   ``gpc``).
 
+`ofxstatement-airbankcz`_         Plugin for Air Bank a.s.(Czech Republic)
+`ofxstatement-raiffeisencz`_      Plugin for Raiffeisenbank a.s.(Czech Republic)
 `ofxstatement-unicreditcz`_       Plugin for UniCredit Bank Czech Republic and Slovakia
 `ofxstatement-otp`_               Plugin for OTP Bank, operating in Hungary
 `ofxstatement-bubbas`_            Set of plugins, developed by @bubbas:
