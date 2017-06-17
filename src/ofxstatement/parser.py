@@ -1,4 +1,5 @@
 import csv
+from decimal import Decimal, Decimal as D
 from datetime import datetime
 
 from ofxstatement.statement import Statement, StatementLine
@@ -45,8 +46,8 @@ class StatementParser(object):
         tp = type(getattr(StatementLine, field))
         if tp == datetime:
             return self.parse_datetime(value)
-        elif tp == float:
-            return self.parse_float(value)
+        elif tp == Decimal:
+            return self.parse_decimal(value)
         else:
             return value
 
@@ -54,7 +55,12 @@ class StatementParser(object):
         return datetime.strptime(value, self.date_format)
 
     def parse_float(self, value):
-        return float(value)
+        # compatibility wrapper for old plugins
+        return self.parse_decimal(value)
+
+    def parse_decimal(self, value):
+        # some plugins pass localised numbers, clean them up
+        return D(value.replace(",", ".").replace(" ", ""))
 
 
 class CsvStatementParser(StatementParser):
