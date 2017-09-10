@@ -72,7 +72,7 @@ class StatementLine(object):
     payee = ""
 
     # Date user initiated transaction, if known
-    date_user = ""
+    date_user = datetime.now()
 
     # Check (or other reference) number
     check_no = ""
