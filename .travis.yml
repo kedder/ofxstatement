@@ -1,15 +1,13 @@
 # Configuration script to Travis-CI
 language: python
 python:
-  - "3.3"
   - "3.4"
   - "3.5"
+  - "3.6"
 install:
-# - python3 setup.py install
-  - pip install coverage
+  - pip install -e .[test]
   - pip install python-coveralls
 script:
-  - coverage run --source=src/ofxstatement setup.py test
-  - python setup.py install
+  - pytest --cov src/ofxstatement
 after_success:
   coveralls
