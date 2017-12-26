@@ -5,23 +5,6 @@ from distutils.core import setup
 import unittest
 import sys
 
-
-class RunTests(TestCommand):
-    """New setup.py command to run all tests for the package.
-    """
-    description = "run all tests for the package"
-
-    def finalize_options(self):
-        super(RunTests, self).finalize_options()
-        self.test_args = []
-        self.test_suite = True
-
-    def run_tests(self):
-        tests = unittest.TestLoader().discover('src/ofxstatement')
-        runner = unittest.TextTestRunner(verbosity=2)
-        res = runner.run(tests)
-        sys.exit(not res.wasSuccessful())
-
 version = "0.6.2.dev1"
 
 with open("CHANGES.rst") as chlogf, open('README.rst', encoding='utf-8') as rdmef:
@@ -37,7 +20,6 @@ setup(name='ofxstatement',
       long_description=long_description,
       license="GPLv3",
       keywords=["ofx", "banking", "statement"],
-      cmdclass={'test': RunTests},
       classifiers=[
           'Development Status :: 3 - Alpha',
           'Programming Language :: Python :: 3',
@@ -57,7 +39,7 @@ setup(name='ofxstatement',
       install_requires=['setuptools',
                         'appdirs>=1.3.0'
                         ],
-      extras_require={'test': ["mock"]},
+      extras_require={'test': ["mock", "pytest", "pytest-cov"]},
       tests_require=["mock"],
       include_package_data=True,
       zip_safe=True

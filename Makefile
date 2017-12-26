@@ -1,18 +1,29 @@
-all: bin/ofxstatement
+VENV=$(abspath .venv)
+PIP=$(VENV)/bin/pip
 
-.venv:
-	virtualenv -p python3 --no-site-packages .venv
+all: bin/ofxstatement bin/pytest
 
-bin/buildout: .venv
-	.venv/bin/python bootstrap.py
-	touch bin/buildout
+$(VENV):
+	virtualenv -p python3 --no-site-packages $(VENV)
 
-bin/ofxstatement: bin/buildout buildout.cfg setup.py
-	./bin/buildout
-	./bin/python setup.py develop
-	touch bin/ofxstatement
+bin:
+	mkdir $@
 
-.PHONY: coverage
-coverage: bin/ofxstatement
-	./bin/coverage run --source=src/ofxstatement ./bin/test
-	./bin/coverage report
+bin/ofxstatement: $(VENV)/bin/ofxstatement | bin
+	ln -sf $(VENV)/bin/ofxstatement $@
+	touch $@
+
+bin/pytest: $(VENV)/bin/ofxstatement | bin
+	ln -sf $(VENV)/bin/pytest $@
+	touch $@
+
+$(VENV)/bin/ofxstatement: $(VENV) setup.py
+	$(PIP) install --editable .[test]
+
+PHONY: test
+test: bin/pytest
+	bin/pytest
+
+PHONY: coverage
+coverage: bin/pytest
+	./bin/pytest --cov src/ofxstatement
