@@ -22,9 +22,9 @@ class RunTests(TestCommand):
         res = runner.run(tests)
         sys.exit(not res.wasSuccessful())
 
-version = "0.6.1"
+version = "0.6.2.dev1"
 
-with open("CHANGES.rst") as chlogf, open('README.rst', encoding = 'utf-8') as rdmef:
+with open("CHANGES.rst") as chlogf, open('README.rst', encoding='utf-8') as rdmef:
     long_description = chlogf.read() + "\n\n" + rdmef.read()
 
 setup(name='ofxstatement',
