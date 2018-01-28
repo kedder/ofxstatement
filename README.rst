@@ -116,6 +116,7 @@ Plugin                            Description
 `ofxstatement-russian`_           Support for several Russian banks: Avangard, Tinkoff, Sberbank (debit).
 `ofxstatement-dab`_               DAB Bank (Germany)
 `ofxstatement-is-arionbanki`_     Arion bank in Iceland
+`ofxstatement-be-triodos`_        Triodos Bank CSV statements
 ================================= ============================================
 
 
@@ -146,6 +147,7 @@ Plugin                            Description
 .. _ofxstatement-russian: https://github.com/gerasiov/ofxstatement-russian
 .. _ofxstatement-dab: https://github.com/JohannesKlug/ofxstatement-dab
 .. _ofxstatement-is-arionbanki: https://github.com/Dagur/ofxstatement-is-arionbanki
+.. _ofxstatement-be-triodos: https://github.com/renardeau/ofxstatement-be-triodos
 
 Advanced Configuration
 ======================
