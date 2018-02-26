@@ -117,6 +117,7 @@ Plugin                            Description
 `ofxstatement-dab`_               DAB Bank (Germany)
 `ofxstatement-is-arionbanki`_     Arion bank in Iceland
 `ofxstatement-be-triodos`_        Triodos Bank CSV statements
+`ofxstatement-lfs`_               Länsförsäkringar (Sweden), it parses Kontoutdrag.xls for private accounts
 ================================= ============================================
 
 
@@ -148,6 +149,7 @@ Plugin                            Description
 .. _ofxstatement-dab: https://github.com/JohannesKlug/ofxstatement-dab
 .. _ofxstatement-is-arionbanki: https://github.com/Dagur/ofxstatement-is-arionbanki
 .. _ofxstatement-be-triodos: https://github.com/renardeau/ofxstatement-be-triodos
+.. _ofxstatement-lfs: https://github.com/themalkolm/ofxstatement-lfs
 
 Advanced Configuration
 ======================
