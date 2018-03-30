@@ -118,6 +118,7 @@ Plugin                            Description
 `ofxstatement-is-arionbanki`_     Arion bank in Iceland
 `ofxstatement-be-triodos`_        Triodos Bank CSV statements
 `ofxstatement-lfs`_               Länsförsäkringar (Sweden), it parses Kontoutdrag.xls for private accounts
+`ofxstatement-revolut`_           Revolut Mastercard
 ================================= ============================================
 
 
@@ -150,6 +151,7 @@ Plugin                            Description
 .. _ofxstatement-is-arionbanki: https://github.com/Dagur/ofxstatement-is-arionbanki
 .. _ofxstatement-be-triodos: https://github.com/renardeau/ofxstatement-be-triodos
 .. _ofxstatement-lfs: https://github.com/themalkolm/ofxstatement-lfs
+.. _ofxstatement-revolut: https://github.com/mlaitinen/ofxstatement-revolut
 
 Advanced Configuration
 ======================
