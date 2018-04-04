@@ -119,6 +119,7 @@ Plugin                            Description
 `ofxstatement-be-triodos`_        Triodos Bank CSV statements
 `ofxstatement-lfs`_               Länsförsäkringar (Sweden), it parses Kontoutdrag.xls for private accounts
 `ofxstatement-revolut`_           Revolut Mastercard
+`ofxstatement-sp-freiburg`_       Sparkasse Freiburg-Nördlicher Breisgau (Germany)
 ================================= ============================================
 
 
@@ -152,6 +153,7 @@ Plugin                            Description
 .. _ofxstatement-be-triodos: https://github.com/renardeau/ofxstatement-be-triodos
 .. _ofxstatement-lfs: https://github.com/themalkolm/ofxstatement-lfs
 .. _ofxstatement-revolut: https://github.com/mlaitinen/ofxstatement-revolut
+.. _ofxstatement-sp-freiburg: https://github.com/omarkohl/ofxstatement-sparkasse-freiburg
 
 Advanced Configuration
 ======================
