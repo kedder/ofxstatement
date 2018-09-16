@@ -117,7 +117,7 @@ Plugin                            Description
 `ofxstatement-dab`_               DAB Bank (Germany)
 `ofxstatement-is-arionbanki`_     Arion bank in Iceland
 `ofxstatement-be-triodos`_        Triodos Bank CSV statements
-`ofxstatement-lfs`_               Länsförsäkringar (Sweden), it parses Kontoutdrag.xls for private accounts
+`ofxstatement-lansforsakringar`_  Länsförsäkringar (Sweden), it parses Kontoutdrag.xls for private accounts
 `ofxstatement-revolut`_           Revolut Mastercard
 `ofxstatement-sp-freiburg`_       Sparkasse Freiburg-Nördlicher Breisgau (Germany)
 ================================= ============================================
@@ -151,7 +151,7 @@ Plugin                            Description
 .. _ofxstatement-dab: https://github.com/JohannesKlug/ofxstatement-dab
 .. _ofxstatement-is-arionbanki: https://github.com/Dagur/ofxstatement-is-arionbanki
 .. _ofxstatement-be-triodos: https://github.com/renardeau/ofxstatement-be-triodos
-.. _ofxstatement-lfs: https://github.com/themalkolm/ofxstatement-lfs
+.. _ofxstatement-lansforsakringar: https://github.com/lbschenkel/ofxstatement-lansforsakringar
 .. _ofxstatement-revolut: https://github.com/mlaitinen/ofxstatement-revolut
 .. _ofxstatement-sp-freiburg: https://github.com/omarkohl/ofxstatement-sparkasse-freiburg
 
