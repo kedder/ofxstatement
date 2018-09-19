@@ -120,6 +120,7 @@ Plugin                            Description
 `ofxstatement-lansforsakringar`_  Länsförsäkringar (Sweden), it parses Kontoutdrag.xls for private accounts
 `ofxstatement-revolut`_           Revolut Mastercard
 `ofxstatement-sp-freiburg`_       Sparkasse Freiburg-Nördlicher Breisgau (Germany)
+`ofxstatement-al_bank`_           Arbejdernes Landsbank (Denmark)
 ================================= ============================================
 
 
@@ -154,6 +155,7 @@ Plugin                            Description
 .. _ofxstatement-lansforsakringar: https://github.com/lbschenkel/ofxstatement-lansforsakringar
 .. _ofxstatement-revolut: https://github.com/mlaitinen/ofxstatement-revolut
 .. _ofxstatement-sp-freiburg: https://github.com/omarkohl/ofxstatement-sparkasse-freiburg
+.. _ofxstatement-al_bank: https://github.com/lbschenkel/ofxstatement-al_bank
 
 Advanced Configuration
 ======================
