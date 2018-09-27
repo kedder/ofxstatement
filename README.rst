@@ -121,6 +121,7 @@ Plugin                            Description
 `ofxstatement-revolut`_           Revolut Mastercard
 `ofxstatement-sp-freiburg`_       Sparkasse Freiburg-Nördlicher Breisgau (Germany)
 `ofxstatement-al_bank`_           Arbejdernes Landsbank (Denmark)
+`ofxstatement-fineco`_            FinecoBank (Italy)
 ================================= ============================================
 
 
@@ -156,6 +157,7 @@ Plugin                            Description
 .. _ofxstatement-revolut: https://github.com/mlaitinen/ofxstatement-revolut
 .. _ofxstatement-sp-freiburg: https://github.com/omarkohl/ofxstatement-sparkasse-freiburg
 .. _ofxstatement-al_bank: https://github.com/lbschenkel/ofxstatement-al_bank
+.. _ofxstatement-fineco: https://github.com/frankIT/ofxstatement-fineco
 
 Advanced Configuration
 ======================
