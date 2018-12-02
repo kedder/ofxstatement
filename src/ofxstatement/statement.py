@@ -39,6 +39,8 @@ class Statement(object):
     currency = None
     bank_id = None
     account_id = None
+    # Type of account, must be one of ACCOUNT_TYPE
+    account_type = "CHECKING"
 
     start_balance = None
     start_date = None
