@@ -72,7 +72,7 @@ class OfxWriter(object):
         tb.start("BANKACCTFROM", {})
         self.buildText("BANKID", self.statement.bank_id, False)
         self.buildText("ACCTID", self.statement.account_id, False)
-        self.buildText("ACCTTYPE", "CHECKING")
+        self.buildText("ACCTTYPE", self.statement.account_type)
         tb.end("BANKACCTFROM")
 
         tb.start("BANKTRANLIST", {})
