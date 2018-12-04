@@ -40,7 +40,7 @@ class Statement(object):
     bank_id = None
     account_id = None
     # Type of account, must be one of ACCOUNT_TYPE
-    account_type = "CHECKING"
+    account_type = None
 
     start_balance = None
     start_date = None
@@ -48,11 +48,13 @@ class Statement(object):
     end_balance = None
     end_date = None
 
-    def __init__(self, bank_id=None, account_id=None, currency=None):
+    def __init__(self, bank_id=None, account_id=None,
+                 currency=None, account_type="CHECKING"):
         self.lines = []
         self.bank_id = bank_id
         self.account_id = account_id
         self.currency = currency
+        self.account_type = account_type
 
 
 class StatementLine(object):
