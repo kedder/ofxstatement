@@ -122,6 +122,7 @@ Plugin                            Description
 `ofxstatement-sp-freiburg`_       Sparkasse Freiburg-Nördlicher Breisgau (Germany)
 `ofxstatement-al_bank`_           Arbejdernes Landsbank (Denmark)
 `ofxstatement-fineco`_            FinecoBank (Italy)
+`ofxstatement-intesasp`_          Intesa San Paolo (xlsx balance file)
 ================================= ============================================
 
 
@@ -158,6 +159,7 @@ Plugin                            Description
 .. _ofxstatement-sp-freiburg: https://github.com/omarkohl/ofxstatement-sparkasse-freiburg
 .. _ofxstatement-al_bank: https://github.com/lbschenkel/ofxstatement-al_bank
 .. _ofxstatement-fineco: https://github.com/frankIT/ofxstatement-fineco
+.. _ofxstatement-intesasp: https://github.com/Jacotsu/ofxstatement-intesasp
 
 Advanced Configuration
 ======================
