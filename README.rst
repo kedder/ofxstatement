@@ -123,6 +123,7 @@ Plugin                            Description
 `ofxstatement-al_bank`_           Arbejdernes Landsbank (Denmark)
 `ofxstatement-fineco`_            FinecoBank (Italy)
 `ofxstatement-intesasp`_          Intesa San Paolo (xlsx balance file)
+`ofxstatement-de-ing`_            Ing Diba Bank (Germany)
 ================================= ============================================
 
 
@@ -160,6 +161,8 @@ Plugin                            Description
 .. _ofxstatement-al_bank: https://github.com/lbschenkel/ofxstatement-al_bank
 .. _ofxstatement-fineco: https://github.com/frankIT/ofxstatement-fineco
 .. _ofxstatement-intesasp: https://github.com/Jacotsu/ofxstatement-intesasp
+.. _ofxstatement-de-ing: https://github.com/fabolhak/ofxstatement-de-ing
+
 
 Advanced Configuration
 ======================
