@@ -2,6 +2,7 @@
 
 from datetime import datetime
 from decimal import Decimal as D
+from hashlib import sha1
 
 
 TRANSACTION_TYPES = [
@@ -158,9 +159,11 @@ def generate_transaction_id(stmt_line):
     This function can be used in statement parsers when real transaction id is
     not available in source statement.
     """
-    return str(abs(hash((stmt_line.date,
-                         stmt_line.memo,
-                         stmt_line.amount))))
+    h = sha1()
+    h.update(stmt_line.date.strftime("%Y-%m-%d %H:%M:%S").encode("utf8"))
+    h.update(stmt_line.memo.encode("utf8"))
+    h.update(str(stmt_line.amount).encode("utf8"))
+    return h.hexdigest()
 
 
 def recalculate_balance(stmt):
