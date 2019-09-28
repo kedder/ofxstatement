@@ -71,6 +71,15 @@ After installation, usage is simple::
 Resulting ``statement.ofx`` is then ready to be imported to GnuCash or other
 financial program you use.
 
+Plugins could have download capability in this case you can download
+statements from bank site::
+
+  $ ofxstatement download -t <plugin> --date-from 01/01/2019 --date-to 01/02/2019 out.xls
+
+Resulting file ``out.xls`` is then ready to be converted with the 
+``ofxstatement convert`` command.
+Note, that download functionality is plugin specific. See particular plugin
+documentation for more info.
 
 Known Plugins
 =============
@@ -201,7 +210,7 @@ imported .ofx statement with particular GnuCash account.
 
 To convert proprietary ``danske.csv`` to OFX ``danske.ofx``, run::
 
-    $ ofxstatement -t danske:usd danske.csv danske.ofx
+    $ ofxstatement convert -t danske:usd danske.csv danske.ofx
 
 Note, that configuration parameters are plugin specific. See particular plugin
 documentation for more info.

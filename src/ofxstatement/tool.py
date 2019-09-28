@@ -8,6 +8,7 @@ import logging
 
 import pkg_resources
 
+from datetime import datetime
 from ofxstatement import ui, configuration, plugin, ofx, exceptions
 
 
@@ -61,6 +62,26 @@ def make_args_parser():
                                         help=("open configuration file in "
                                               "default editor"))
     parser_edit.set_defaults(func=edit_config)
+
+    # download
+    parser_download = subparsers.add_parser("download",
+                                           help="download statement file.")
+
+    parser_download.add_argument("-t", "--type",
+                                required=True,
+                                help=("bank type. This is a section in "
+					"config file, or plugin name if you "
+					"have no config file."))
+    parser_download.add_argument("--date-from",
+                                required=True, metavar="DD/MM/YYYY",
+                                help=("Start date for web data "
+                                        "retrieval from the bank account"))
+    parser_download.add_argument("--date-to",
+                                required=True, metavar="DD/MM/YYYY",
+                                help=("End date for web data "
+                                        "retrieval from the bank account"))
+    parser_download.add_argument("output", help="output file to produce")
+    parser_download.set_defaults(func=download)
 
     return parser
 
@@ -138,6 +159,66 @@ def convert(args):
     log.info("Conversion completed: %s" % args.input)
     return 0  # success
 
+def download(args):
+    appui = ui.UI()
+    config = configuration.read()
+
+    # Check valid date
+    try:
+        date_from = datetime.strptime(args.date_from, "%d/%m/%Y")
+        date_to = datetime.strptime(args.date_to, "%d/%m/%Y")
+    except ValueError:
+        log.error("Wrong date format: %s" % args.date_from)
+        return 1
+    
+    # Check date consistency
+    if date_to < date_from:
+        log.error("End date before start date")
+        return 1
+
+    if config is None:
+        # No configuration mode
+        settings = {}
+        pname = args.type
+    else:
+        # Configuration is loaded
+        if args.type not in config:
+            log.error("No section '%s' in config file." % args.type)
+            log.error("Edit configuration using ofxstatement edit-config and "
+                      "add section [%s]." % args.type)
+            return 1  # error
+
+        settings = dict(config[args.type])
+
+        pname = settings.get('plugin', None)
+        if not pname:
+            log.error("Specify 'plugin' setting for section [%s]" % args.type)
+            return 1  # error
+
+    # pick and configure plugin
+    try:
+        p = plugin.get_plugin(pname, appui, settings)
+    except plugin.PluginNotRegistered:
+        log.error("No plugin named '%s' is found" % pname)
+        return 1  # error
+
+    # open downloader class
+    try:
+        downloader = p.get_downloader(args.output, date_from, date_to)
+    except NotImplementedError:
+        log.error("Plugin '%s' has no download capability" % pname)
+        return 1  # error        
+
+    # process the input and produce output    
+    try:
+        log.info("[%s] Download started" % args.type)
+        downloader.download()
+    except exceptions.DownloadError as e:
+        log.error("Download error: %s" % (e.message))
+        return 2  # error
+
+    log.info("Download completed: %s" % args.output)
+    return 0  # success
 
 def run(args=None):
     parser = make_args_parser()

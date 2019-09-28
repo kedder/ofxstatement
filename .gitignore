@@ -16,3 +16,4 @@ eggs
 .project
 .pydevproject
 *.sublime*
+.vscode

@@ -45,4 +45,7 @@ class Plugin(object):
         self.settings = settings
 
     def get_parser(self, filename):
-        raise NotImplementedError()
+        raise NotImplementedError
+
+    def get_downloader(self, filename, date_from, date_to):
+        raise NotImplementedError
