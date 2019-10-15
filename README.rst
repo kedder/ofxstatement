@@ -155,6 +155,7 @@ Plugin                            Description
 .. _ofxstatement-polish: https://github.com/yay6/ofxstatement-polish
 .. _ofxstatement-russian: https://github.com/gerasiov/ofxstatement-russian
 .. _ofxstatement-dab: https://github.com/JohannesKlug/ofxstatement-dab
+.. _ofxstatement-consors: https://github.com/JohannesKlug/ofxstatement-consors
 .. _ofxstatement-is-arionbanki: https://github.com/Dagur/ofxstatement-is-arionbanki
 .. _ofxstatement-be-triodos: https://github.com/renardeau/ofxstatement-be-triodos
 .. _ofxstatement-lansforsakringar: https://github.com/lbschenkel/ofxstatement-lansforsakringar
