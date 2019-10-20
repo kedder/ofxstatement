@@ -116,6 +116,7 @@ Plugin                            Description
 `ofxstatement-polish`_            Support for some Polish banks and financial institutions
 `ofxstatement-russian`_           Support for several Russian banks: Avangard, Tinkoff, Sberbank (debit).
 `ofxstatement-dab`_               DAB Bank (Germany)
+`ofxstatement-consors`_           Consorsbank (Germany)
 `ofxstatement-is-arionbanki`_     Arion bank in Iceland
 `ofxstatement-be-triodos`_        Triodos Bank CSV statements
 `ofxstatement-lansforsakringar`_  Länsförsäkringar (Sweden), it parses Kontoutdrag.xls for private accounts
