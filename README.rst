@@ -168,7 +168,7 @@ Plugin                            Description
 .. _ofxstatement-fineco: https://github.com/frankIT/ofxstatement-fineco
 .. _ofxstatement-intesasp: https://github.com/Jacotsu/ofxstatement-intesasp
 .. _ofxstatement-de-ing: https://github.com/fabolhak/ofxstatement-de-ing
-
+.. _ofxstatement-1822direkt: https://github.com/MirkoDziadzka/ofxstatement-1822direkt
 
 Advanced Configuration
 ======================
