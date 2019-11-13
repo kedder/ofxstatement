@@ -97,7 +97,7 @@ Plugin                            Description
 
 `banking.statements.osuuspankki`_ Finnish Osuuspankki bank
 `banking.statements.nordea`_      Nordea bank (at least Finnish branch of it)
-`ofxstatement-1822direkt`_        German bank 1822direkt.com
+`ofxstatement-germany`_           Plugin for several german banks (1822direkt and Postbank at the moment)
 `ofxstatement-austrian`_          Plugins for several banks, operating in Austria:
                                   Easybank, ING-Diba, Livebank, Raiffeisenbank.
 `ofxstatement-postfinance`_       Swiss PostFinance (E-Finance Java text based bank/credit statements).
@@ -168,7 +168,7 @@ Plugin                            Description
 .. _ofxstatement-fineco: https://github.com/frankIT/ofxstatement-fineco
 .. _ofxstatement-intesasp: https://github.com/Jacotsu/ofxstatement-intesasp
 .. _ofxstatement-de-ing: https://github.com/fabolhak/ofxstatement-de-ing
-.. _ofxstatement-1822direkt: https://github.com/MirkoDziadzka/ofxstatement-1822direkt
+.. _ofxstatement-germany: https://github.com/MirkoDziadzka/ofxstatement-germany
 
 Advanced Configuration
 ======================
