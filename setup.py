@@ -18,6 +18,7 @@ setup(name='ofxstatement',
       description=("Tool to convert proprietary bank statement to "
                    "OFX format, suitable for importing to GnuCash"),
       long_description=long_description,
+      long_description_content_type="text/markdown",
       license="GPLv3",
       keywords=["ofx", "banking", "statement"],
       classifiers=[
