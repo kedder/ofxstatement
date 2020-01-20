@@ -127,6 +127,7 @@ Plugin                            Description
 `ofxstatement-fineco`_            FinecoBank (Italy)
 `ofxstatement-intesasp`_          Intesa San Paolo (xlsx balance file)
 `ofxstatement-de-ing`_            Ing Diba Bank (Germany)
+`ofxstatement-us-first-republic`_ First Republic Bank (USA)
 `ofxstatement-cz-komercni`_       Komerční banka (Czech Republic)
 ================================= ============================================
 
@@ -170,6 +171,7 @@ Plugin                            Description
 .. _ofxstatement-intesasp: https://github.com/Jacotsu/ofxstatement-intesasp
 .. _ofxstatement-de-ing: https://github.com/fabolhak/ofxstatement-de-ing
 .. _ofxstatement-germany: https://github.com/MirkoDziadzka/ofxstatement-germany
+.. _ofxstatement-us-first-republic: https://github.com/medovina/ofxstatement-us-first-republic
 .. _ofxstatement-cz-komercni: https://github.com/medovina/ofxstatement-cz-komercni
 
 Advanced Configuration
