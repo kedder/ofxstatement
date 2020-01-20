@@ -4,7 +4,7 @@ PIP=$(VENV)/bin/pip
 all: bin/ofxstatement bin/pytest
 
 $(VENV):
-	virtualenv -p python3 --no-site-packages $(VENV)
+	python3 -m venv $(VENV)
 
 bin:
 	mkdir $@
