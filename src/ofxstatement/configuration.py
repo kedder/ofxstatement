@@ -20,7 +20,7 @@ def read(location=None):
     if not os.path.exists(location):
         return None
 
-    config = configparser.SafeConfigParser()
+    config = configparser.ConfigParser()
     config.read(location)
     return config
 
