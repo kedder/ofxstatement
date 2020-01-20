@@ -2,7 +2,18 @@
 Changes
 ~~~~~~~
 
+0.6.2 (2020-01-20)
+==================
+
+- Better `EDITOR` environment variable handling for `edit-config` command
+- Support Python-3.7
+- API: type of StatementLine.date_user (date when user initiated transaction)
+  will not be a string by default.
+- API: More unique generated transaction ids (when one is not available from
+  the statement file)
+
 0.6.1 (2017-05-07)
+==================
 
 - Fix installation problem on python-3.5 (#55)
 
