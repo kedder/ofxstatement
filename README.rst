@@ -129,6 +129,8 @@ Plugin                            Description
 `ofxstatement-de-ing`_            Ing Diba Bank (Germany)
 `ofxstatement-us-first-republic`_ First Republic Bank (USA)
 `ofxstatement-cz-komercni`_       Komerční banka (Czech Republic)
+`ofxstatement-cd-tmb`_            Trust Merchant Bank (DRC)
+`ofxstatement-zm-stanbic`_        Stanbic Bank (Zambia)
 ================================= ============================================
 
 
@@ -173,6 +175,8 @@ Plugin                            Description
 .. _ofxstatement-germany: https://github.com/MirkoDziadzka/ofxstatement-germany
 .. _ofxstatement-us-first-republic: https://github.com/medovina/ofxstatement-us-first-republic
 .. _ofxstatement-cz-komercni: https://github.com/medovina/ofxstatement-cz-komercni
+.. _ofxstatement-cd-tmb: https://github.com/BIZ4Africa/ofxstatement-cd-tmb
+.. _ofxstatement-zm-stanbic: https://github.com/BIZ4Africa/ofxstatement-zm-stanbic
 
 Advanced Configuration
 ======================
