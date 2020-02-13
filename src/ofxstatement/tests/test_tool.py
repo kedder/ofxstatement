@@ -132,12 +132,13 @@ class ToolTests(unittest.TestCase):
         mkdirspatch = mock.patch("os.makedirs", makedirs)
         subprocesspatch = mock.patch("subprocess.call", call)
         envpatch = mock.patch("os.environ", {"EDITOR": "notepad.exe"})
+        osnamepatch = mock.patch("os.name", "nt")
 
-        with locpatch, envpatch, mkdirspatch, subprocesspatch:
+        with locpatch, envpatch, mkdirspatch, subprocesspatch, osnamepatch:
             tool.run(['edit-config'])
 
         makedirs.assert_called_once_with(confdir, mode=0o700)
-        call.assert_called_once_with(["notepad.exe", confpath])
+        call.assert_called_once_with(["notepad.exe", confpath], posix=False)
 
     def test_editconfig_existing(self):
         # config directory already exists
@@ -156,7 +157,7 @@ class ToolTests(unittest.TestCase):
             tool.run(['edit-config'])
 
         self.assertEqual(makedirs.mock_calls, [])
-        call.assert_called_once_with(["vim", confpath])
+        call.assert_called_once_with(["vim", confpath], posix=True)
 
     def setUp(self):
         self.tmpdir = tempfile.mkdtemp(suffix='ofxstatement')
