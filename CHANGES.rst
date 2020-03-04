@@ -2,7 +2,7 @@
 Changes
 ~~~~~~~
 
-0.6.4 (unreleased)
+0.6.4 (2020-03-04)
 ==================
 
 - Fix regression introduced in 0.6.3 - `edit-config` command stopped working.
