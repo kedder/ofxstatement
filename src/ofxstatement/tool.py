@@ -90,7 +90,7 @@ def edit_config(args):
         log.info("Creating confugration directory: %s" % configdir)
         os.makedirs(configdir, mode=0o700)
     log.info("Running editor: %s %s" % (editor, configfname))
-    subprocess.call(shlex.split(editor) + [configfname])
+    subprocess.call(shlex.split(editor, posix=os.name=='posix') + [configfname])
 
 
 def convert(args):
