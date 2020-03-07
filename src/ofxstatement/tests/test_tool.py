@@ -88,6 +88,133 @@ class ToolTests(unittest.TestCase):
         self.assertEqual(
             self.log.getvalue().splitlines(),
             ['ERROR: Parse error on line 23: Catastrophic error'])
+    
+    def test_download_date_wrong(self):
+        outputfname = os.path.join(self.tmpdir, "output")
+        args = mock.Mock(type="test", date_from="01/13/2019", 
+                            date_to="01/02/2019", output=outputfname)
+
+        config = {"test": {"plugin": "sample"}}
+
+        sample_plugin = mock.Mock()
+        sample_plugin.get_parser.return_value = parser
+
+        configpatch = mock.patch("ofxstatement.configuration.read",
+                                 return_value=config)
+
+        pluginpatch = mock.patch("ofxstatement.plugin.get_plugin",
+                                 return_value=sample_plugin)
+
+        with configpatch, pluginpatch:
+            ret = tool.download(args)
+
+        self.assertEqual(ret, 1)
+        self.assertEqual(
+            self.log.getvalue().splitlines(),
+            ["ERROR: Wrong date format: %s" % "01/13/2019"])
+
+    def test_download_date_consistency(self):
+        outputfname = os.path.join(self.tmpdir, "output")
+        args = mock.Mock(type="test", date_from="02/01/2019", 
+                            date_to="01/01/2019", output=outputfname)
+
+        config = {"test": {"plugin": "sample"}}
+
+        sample_plugin = mock.Mock()
+        sample_plugin.get_parser.return_value = parser
+
+        configpatch = mock.patch("ofxstatement.configuration.read",
+                                 return_value=config)
+
+        pluginpatch = mock.patch("ofxstatement.plugin.get_plugin",
+                                 return_value=sample_plugin)
+
+        with configpatch, pluginpatch:
+            ret = tool.download(args)
+
+        self.assertEqual(ret, 1)
+        self.assertEqual(
+            self.log.getvalue().splitlines(),
+            ["ERROR: End date before start date"])
+
+    def test_download_configured(self):
+        outputfname = os.path.join(self.tmpdir, "output")
+        args = mock.Mock(type="test", date_from="01/01/2019", date_to="01/02/2019", output=outputfname)
+
+        config = {"test": {"plugin": "sample"}}
+
+        parser = mock.Mock()
+        parser.parse.return_value = statement.Statement()
+
+        sample_plugin = mock.Mock()
+        sample_plugin.get_parser.return_value = parser
+
+        configpatch = mock.patch("ofxstatement.configuration.read",
+                                 return_value=config)
+
+        pluginpatch = mock.patch("ofxstatement.plugin.get_plugin",
+                                 return_value=sample_plugin)
+
+        with configpatch, pluginpatch:
+            ret = tool.download(args)
+
+        self.assertEqual(ret, 0)
+        self.assertEqual(
+            self.log.getvalue().splitlines(),
+            ["INFO: [%s] Download started" % "test",
+            "INFO: Download completed: %s" % outputfname])
+
+    def test_download_noconf(self):
+        outputfname = os.path.join(self.tmpdir, "output")
+        args = mock.Mock(type="test", date_from="01/01/2019", date_to="01/02/2019", output=outputfname)
+
+        parser = mock.Mock()
+        parser.parse.return_value = statement.Statement()
+
+        sample_plugin = mock.Mock()
+        sample_plugin.get_parser.return_value = parser
+
+        noconfigpatch = mock.patch("ofxstatement.configuration.read",
+                                   return_value=None)
+        pluginpatch = mock.patch("ofxstatement.plugin.get_plugin",
+                                 return_value=sample_plugin)
+
+        with noconfigpatch, pluginpatch:
+            ret = tool.download(args)
+
+        self.assertEqual(ret, 0)
+
+        self.assertEqual(
+            self.log.getvalue().splitlines(),
+            ["INFO: [%s] Download started" % "test",
+            "INFO: Download completed: %s" % outputfname])
+
+    def test_download_no_download(self):
+        outputfname = os.path.join(self.tmpdir, "output")
+        args = mock.Mock(type="test", date_from="01/01/2019", date_to="01/02/2019", output=outputfname)
+
+        config = {"test": {"plugin": "sample"}}
+
+        parser = mock.Mock()
+        parser.parse.return_value = statement.Statement()
+
+        sample_plugin = mock.Mock()
+        sample_plugin.get_parser.return_value = parser
+        sample_plugin.get_downloader.side_effect = NotImplementedError
+
+        configpatch = mock.patch("ofxstatement.configuration.read",
+                                 return_value=config)
+
+        pluginpatch = mock.patch("ofxstatement.plugin.get_plugin",
+                                 return_value=sample_plugin)
+
+        with configpatch, pluginpatch:
+            ret = tool.download(args)
+
+        self.assertEqual(ret, 1)
+        self.assertEqual(
+            self.log.getvalue().splitlines(),
+            ["ERROR: Plugin '%s' has no download capability" % "sample"])
 
     def test_list_plugins_plugins(self):
         pl1 = mock.Mock(__doc__="Plugin one")
