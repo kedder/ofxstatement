@@ -76,9 +76,10 @@ accounting system.
 Development / test
 ==================
 
-When you want to develop, first fork this repository and then::
+When you want to develop, first fork this repository to your GitHub
+environment and then::
 
-  $ git clone https://github.com/<yourname>/ofxstatement.git
+  $ git clone https://github.com/<your_account>/ofxstatement.git
   $ cd ofxstatement
   $ pip install -e .
 
