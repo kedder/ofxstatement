@@ -64,10 +64,10 @@ def make_args_parser():
     parser_convert.add_argument("-t", "--type",
                                 required=True,
                                 help=("input file type. This is a section in "
-                                      "config file, or plugin name if you "
+                                      "the config file or plugin name if you "
                                       "have no config file."))
     parser_convert.add_argument("input", help="input file to process")
-    parser_convert.add_argument("output", help="output (OFX) file to produce")
+    parser_convert.add_argument("output", help="output (OFX) file to produce where a minus (-) means writing to standard output instead")
     parser_convert.set_defaults(func=convert)
 
     # list-plugins
