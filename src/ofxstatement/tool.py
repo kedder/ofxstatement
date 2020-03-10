@@ -5,6 +5,9 @@ import argparse
 import shlex
 import subprocess
 import logging
+import platform
+import sys
+import contextlib
 
 import pkg_resources
 
@@ -12,6 +15,22 @@ from ofxstatement import ui, configuration, plugin, ofx, exceptions
 
 
 log = logging.getLogger(__name__)
+
+
+@contextlib.contextmanager
+def smart_open(filename=None):
+    """See https://stackoverflow.com/questions/17602878/how-to-handle-both-with-open-and-sys-stdout-nicely
+    """
+    if filename and filename != '-':
+        fh = open(filename, 'w')
+    else:
+        fh = sys.stdout
+
+    try:
+        yield fh
+    finally:
+        if fh is not sys.stdout:
+            fh.close()
 
 
 def get_version():
@@ -45,10 +64,10 @@ def make_args_parser():
     parser_convert.add_argument("-t", "--type",
                                 required=True,
                                 help=("input file type. This is a section in "
-                                      "config file, or plugin name if you "
+                                      "the config file or plugin name if you "
                                       "have no config file."))
     parser_convert.add_argument("input", help="input file to process")
-    parser_convert.add_argument("output", help="output (OFX) file to produce")
+    parser_convert.add_argument("output", help="output (OFX) file to produce where a minus (-) means writing to standard output instead")
     parser_convert.set_defaults(func=convert)
 
     # list-plugins
@@ -83,14 +102,15 @@ def list_plugins(args):
 
 
 def edit_config(args):
-    editor = os.environ.get('EDITOR', 'vim')
+    editors = { 'Linux': 'vim', 'Darwin': 'vi', 'Windows': 'notepad' }
+    editor = os.environ.get('EDITOR', editors[platform.system()])
     configfname = configuration.get_default_location()
     configdir = os.path.dirname(configfname)
     if not os.path.exists(configdir):
         log.info("Creating confugration directory: %s" % configdir)
         os.makedirs(configdir, mode=0o700)
     log.info("Running editor: %s %s" % (editor, configfname))
-    subprocess.call(shlex.split(editor, posix=os.name=='posix') + [configfname])
+    subprocess.call(shlex.split(editor, posix=(os.name=='posix')) + [configfname])
 
 
 def convert(args):
@@ -131,7 +151,7 @@ def convert(args):
         log.error("Parse error on line %s: %s" % (e.lineno, e.message))
         return 2  # error
 
-    with open(args.output, "w") as out:
+    with smart_open(args.output) as out:
         writer = ofx.OfxWriter(statement)
         out.write(writer.toxml())
 

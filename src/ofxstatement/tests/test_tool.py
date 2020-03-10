@@ -1,4 +1,5 @@
 import os
+import platform
 import unittest
 import tempfile
 import io
@@ -156,7 +157,8 @@ class ToolTests(unittest.TestCase):
             tool.run(['edit-config'])
 
         self.assertEqual(makedirs.mock_calls, [])
-        call.assert_called_once_with(["vim", confpath])
+        editors = { 'Linux': 'vim', 'Darwin': 'vi', 'Windows': 'notepad' }
+        call.assert_called_once_with([editors[platform.system()], confpath])
 
     def setUp(self):
         self.tmpdir = tempfile.mkdtemp(suffix='ofxstatement')

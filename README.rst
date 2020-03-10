@@ -7,22 +7,23 @@ OFX Statement
 .. image:: https://coveralls.io/repos/kedder/ofxstatement/badge.png?branch=master
     :target: https://coveralls.io/r/kedder/ofxstatement?branch=master
 
-Ofxstatement is a tool to convert proprietary bank statement to OFX format,
-suitable for importing to GnuCash. Package provides single command line tool to
-run: ``ofxstatement``. Run ``ofxstatement -h`` to see basic usage description.
-``ofxstatement`` works under Python 3 and is not compatible with Python 2.
+Ofxstatement is a tool to convert proprietary bank statements to OFX format,
+suitable for importing into personal accounting systems like GnuCash. This
+package provides a command line tool to run: ``ofxstatement``. Run
+``ofxstatement -h`` for more help.  ``ofxstatement`` works under Python 3 and
+is not compatible with Python 2.
 
 
 Rationale
 =========
 
 Most internet banking systems are capable of exporting account transactions to
-some sort of computer readable formats, but few supports standard data formats,
-like `OFX`_.  On the other hand, personal accounting tools, such as `GnuCash`_
+some sort of computer readable format, but few support standard data formats,
+like `OFX`_.  On the other hand, personal accounting systems such as `GnuCash`_
 support standard formats only, and will probably never support proprietary
 statement formats of online banking systems.
 
-To bridge the gap between them, ofxstatement tool was created.
+To bridge the gap between them, this ofxstatement tool was created.
 
 .. _GnuCash: http://gnucash.org/
 .. _OFX: http://en.wikipedia.org/wiki/Open_Financial_Exchange
@@ -33,44 +34,64 @@ Mode of Operation
 The ``ofxstatement`` tool is intended to be used in the following workflow:
 
 1. At the end of each month, use your online banking service to export
-   statements from all of your bank accounts to files in formats, known to
+   statements from all of your bank accounts in a format known to
    ofxstatement.
 
-2. Run ``ofxstatement`` on each exported file to convert it to standard OFX
-   format.  Shell scripts or Makefile may help to automate this routine.
+2. Run ``ofxstatement`` on each exported file to convert it to OFX.
+   Shell scripts or a Makefile may help to automate this routine.
 
-3. Import generated OFX files to GnuCash or other accounting system.
+3. Import the generated OFX file into your personal accounting system.
 
 Installation and Usage
 ======================
 
-Before using ``ofxstatement``, you have to install plugin for your bank (or
+Before using ``ofxstatement``, you have to install a plugin for your bank (or
 write your own!). Plugins are installed as regular python eggs, with
 easy_install or pip, for example::
 
   $ pip3 install ofxstatement-lithuanian
 
-Note, that ofxstatement itself will be installed automatically this way. After
-installation, ``ofxstatement`` utility should be available.
+Note that ofxstatement itself will be installed automatically this way. After
+the installation, the ``ofxstatement`` utility will be available.
 
 Users of *Ubuntu* and *Debian* operating systems can install ofxstatement from 
 official package repositories::
 
   $ apt install ofxstatement ofxstatement-plugins 
 
-You can check ofxstatement is working by running::
+You can check that ofxstatement is working by running::
 
   $ ofxstatement list-plugins
 
-You should get a list of your installed plugins printed.
+You should get a list of your installed plugins.
 
-After installation, usage is simple::
+After installation, the usage is simple::
 
   $ ofxstatement convert -t <plugin> bank_statement.csv statement.ofx
 
-Resulting ``statement.ofx`` is then ready to be imported to GnuCash or other
-financial program you use.
+The resulting ``statement.ofx`` is then ready to be imported into a personal
+accounting system.
 
+
+Development / test
+==================
+
+When you want to develop, first fork this repository to your GitHub
+environment and then::
+
+  $ git clone https://github.com/<your_account>/ofxstatement.git
+  $ cd ofxstatement
+  $ pip install -e .
+
+Now you can install the test requirements::
+
+  $ pip install -r test_requirements.txt
+
+And finally run your test::
+
+  $ py.test
+
+When satisfied, you may create a pull request.
 
 Known Plugins
 =============
@@ -183,17 +204,19 @@ Advanced Configuration
 
 While ofxstatement can be used without any configuration, some plugins may
 accept additional configuration parameters. These parameters can be specified
-in configuration file. Configuration file can be edited using ``edit-config``
-command, that brings your favored editor with configuration file open::
+in a configuration file. The configuration file can be edited using the ``edit-config``
+command that opens your favorite editor (defined by environment variable
+EDITOR or else the default for your platform) with the configuration file::
 
   $ ofxstatement edit-config
 
-Configuration file format is a standard .ini format. Configuration is divided
-to sections, that corresponds to ``--type`` command line parameter. Each
-section must provide ``plugin`` option that points to one of the registered
-conversion plugins. Other parameters are plugin specific.
+The configuration file format is in the standard .ini format. The
+configuration is divided into sections that correspond to the ``--type``
+command line parameter. Each section must provide a ``plugin`` option that
+points to one of the registered conversion plugins. Other parameters are
+plugin specific.
 
-Sample configuration file::
+A sample configuration file::
 
     [swedbank]
     plugin = swedbank
@@ -205,26 +228,26 @@ Sample configuration file::
     account = LT123456789012345678
 
 
-Such configuration will let ofxstatement to know about two statement file
-format, handled by plugins ``swedbank`` and ``litas-esis``. ``litas-esis``
-plugin will load statements using ``cp1257`` charset and set custom currency
-and custom account number. This way, GnuCash will automatically associate
-imported .ofx statement with particular GnuCash account.
+Such a configuration will let ofxstatement know about two statement file
+formats handled by the plugins ``swedbank`` and ``litas-esis``. The ``litas-esis``
+plugin will load statements using the ``cp1257`` charset and set a custom currency
+and account number. This way, GnuCash will automatically associate the
+generated .ofx file with a particular GnuCash account.
 
-To convert proprietary ``danske.csv`` to OFX ``danske.ofx``, run::
+To convert the proprietary CSV file ``danske.csv`` into the OFX file ``danske.ofx``, run::
 
     $ ofxstatement -t danske:usd danske.csv danske.ofx
 
-Note, that configuration parameters are plugin specific. See particular plugin
+Note that configuration parameters are plugin specific. See the plugin
 documentation for more info.
 
 Writing your own Plugin
 =======================
 
-If plugin for your bank is not yet developed (see `Known plugins`_ section
-above), you can easily write your own, provided some knowledge about python
-programming language. There is an `ofxstatement-sample`_ plugin project
-available, that provides sample boilerplate and describes plugin development
-process in detail.
+If the plugin for your bank has not been developed yet (see `Known plugins`_
+section above) you can easily write your own, provided you have some knowledge
+about the Python programming language. There is an `ofxstatement-sample`_
+plugin project available that provides sample boilerplate and describes the
+plugin development process in detail.
 
 .. _ofxstatement-sample: https://github.com/kedder/ofxstatement-sample
