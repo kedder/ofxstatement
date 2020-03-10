@@ -6,6 +6,8 @@ import shlex
 import subprocess
 import logging
 import platform
+import sys
+import contextlib
 
 import pkg_resources
 
@@ -13,6 +15,22 @@ from ofxstatement import ui, configuration, plugin, ofx, exceptions
 
 
 log = logging.getLogger(__name__)
+
+
+@contextlib.contextmanager
+def smart_open(filename=None):
+    """See https://stackoverflow.com/questions/17602878/how-to-handle-both-with-open-and-sys-stdout-nicely
+    """
+    if filename and filename != '-':
+        fh = open(filename, 'w')
+    else:
+        fh = sys.stdout
+
+    try:
+        yield fh
+    finally:
+        if fh is not sys.stdout:
+            fh.close()
 
 
 def get_version():
@@ -133,7 +151,7 @@ def convert(args):
         log.error("Parse error on line %s: %s" % (e.lineno, e.message))
         return 2  # error
 
-    with open(args.output, "w") as out:
+    with smart_open(args.output) as out:
         writer = ofx.OfxWriter(statement)
         out.write(writer.toxml())
 
