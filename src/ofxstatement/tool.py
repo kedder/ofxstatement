@@ -5,6 +5,7 @@ import argparse
 import shlex
 import subprocess
 import logging
+import platform
 
 import pkg_resources
 
@@ -83,14 +84,15 @@ def list_plugins(args):
 
 
 def edit_config(args):
-    editor = os.environ.get('EDITOR', 'vim')
+    editors = { 'Linux': 'vim', 'Darwin': 'vi', 'Windows': 'notepad' }
+    editor = os.environ.get('EDITOR', editors[platform.system()])
     configfname = configuration.get_default_location()
     configdir = os.path.dirname(configfname)
     if not os.path.exists(configdir):
         log.info("Creating confugration directory: %s" % configdir)
         os.makedirs(configdir, mode=0o700)
     log.info("Running editor: %s %s" % (editor, configfname))
-    subprocess.call(shlex.split(editor, posix=os.name=='posix') + [configfname])
+    subprocess.call(shlex.split(editor, posix=(os.name=='posix')) + [configfname])
 
 
 def convert(args):
