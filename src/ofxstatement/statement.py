@@ -32,6 +32,18 @@ ACCOUNT_TYPE = [
     "CREDITLINE",   # Line of credit
 ]
 
+# 2020-03-12 Gert-Jan Paulissen
+#
+# Note: generation of an id
+#
+# A list of statement line id's to ensure uniqueness in an OFX.
+# Recreated each time a Statement is initialised.
+# Not the most elegant solution but necessary since the generation of an id
+# occurs in the context of a statement line and then the statement is not
+# accessible.
+# The need to clear _ids is due to testing several creations of a Statement.
+_ids = None
+
 
 class Statement(object):
     """Statement object containing statement items"""
@@ -51,11 +63,28 @@ class Statement(object):
 
     def __init__(self, bank_id=None, account_id=None,
                  currency=None, account_type="CHECKING"):
+        global _ids
+
         self.lines = []
         self.bank_id = bank_id
         self.account_id = account_id
         self.currency = currency
         self.account_type = account_type
+        # See note generation of an id above
+        _ids = {}
+
+    def recalculate_balance(self):
+        recalculate_balance(self)
+
+    def assert_valid(self):
+        if self.start_balance and self.end_balance:
+            total_amount = sum(sl.amount for sl in self.lines)
+
+            msg = "Start balance ({0) plus the total amount ({1) \
+should be equal to the end balance ({2)".format(self.start_balance,
+                                                total_amount,
+                                                self.end_balance)
+            assert self.start_balance + total_amount == self.end_balance, msg
 
 
 class StatementLine(object):
@@ -120,6 +149,15 @@ class StatementLine(object):
         if self.bank_account_to:
             self.bank_account_to.assert_valid()
 
+        assert(self.id or self.check_no or self.refnum)
+
+    def generate_transaction_id(self):
+        global _ids
+
+        assert(_ids is not None)
+        self.id = generate_transaction_id(self)
+        assert(self.id not in _ids)
+        _ids[self.id] = None
 
 class BankAccount(object):
     """Structure corresponding to BANKACCTTO and BANKACCTFROM elements from OFX

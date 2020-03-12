@@ -14,6 +14,9 @@ class StatementParser(object):
     date_format = "%Y-%m-%d"
     cur_record = 0
 
+    def __init__(self):
+        self.statement = Statement()
+        
     def parse(self):
         """Read and parse statement
 
@@ -21,6 +24,8 @@ class StatementParser(object):
 
         May raise exceptions.ParseException on malformed input.
         """
+        assert hasattr(self, 'statement'), "StatementParser.__init__() not called"
+        
         reader = self.split_records()
         for line in reader:
             self.cur_record += 1
@@ -73,7 +78,7 @@ class CsvStatementParser(StatementParser):
     mappings = {}
 
     def __init__(self, fin):
-        self.statement = Statement()
+        super().__init__()
         self.fin = fin
 
     def split_records(self):

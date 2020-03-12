@@ -151,6 +151,13 @@ def convert(args):
         log.error("Parse error on line %s: %s" % (e.lineno, e.message))
         return 2  # error
 
+    # Validate the statement
+    try:
+        statement.assert_valid()
+    except Exception as e:
+        log.error("Statement validation error: %s" % (str(e)))
+        return 3  # error
+
     with smart_open(args.output) as out:
         writer = ofx.OfxWriter(statement)
         out.write(writer.toxml())
