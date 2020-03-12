@@ -155,6 +155,8 @@ def convert(args):
     try:
         statement.assert_valid()
     except Exception as e:
+        import traceback
+        traceback.print_exc()                
         log.error("Statement validation error: %s" % (str(e)))
         return 3  # error
 

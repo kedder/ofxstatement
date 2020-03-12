@@ -80,8 +80,8 @@ class Statement(object):
         if self.start_balance and self.end_balance:
             total_amount = sum(sl.amount for sl in self.lines)
 
-            msg = "Start balance ({0) plus the total amount ({1) \
-should be equal to the end balance ({2)".format(self.start_balance,
+            msg = "Start balance ({0}) plus the total amount ({1}) \
+should be equal to the end balance ({2})".format(self.start_balance,
                                                 total_amount,
                                                 self.end_balance)
             assert self.start_balance + total_amount == self.end_balance, msg
