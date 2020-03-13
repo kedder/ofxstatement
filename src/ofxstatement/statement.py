@@ -67,9 +67,6 @@ class Statement(Printable):
         self.currency = currency
         self.account_type = account_type
 
-    def recalculate_balance(self):
-        recalculate_balance(self)
-
     def assert_valid(self):
         if not(self.start_balance is None or self.end_balance is None):
             total_amount = sum(sl.amount for sl in self.lines)
