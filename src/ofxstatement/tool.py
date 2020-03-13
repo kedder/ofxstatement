@@ -149,16 +149,21 @@ def convert(args):
         statement = parser.parse()
     except exceptions.ParseError as e:
         log.error("Parse error on line %s: %s" % (e.lineno, e.message))
-        return 2  # error
+        return 2  # parse error
+    except exceptions.ValidationError as e:  # any assert_valid() may raise it
+        appui.warning("Problem with user input")
+        # log the exception with a traceback
+        log.exception(e)
+        return 3  # validation error
 
     # Validate the statement
     try:
         statement.assert_valid()
-    except Exception as e:
-        import traceback
-        traceback.print_exc()                
-        log.error("Statement validation error: %s" % (str(e)))
-        return 3  # error
+    except exceptions.ValidationError as e:
+        appui.warning("Problem with user input")
+        # log the exception with a traceback
+        log.exception(e)
+        return 3  # validation error
 
     with smart_open(args.output) as out:
         writer = ofx.OfxWriter(statement)

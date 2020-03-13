@@ -3,7 +3,9 @@
 from datetime import datetime
 from decimal import Decimal as D
 from hashlib import sha1
+from pprint import pformat
 
+from ofxstatement import exceptions
 
 TRANSACTION_TYPES = [
     "CREDIT",       # Generic credit
@@ -32,20 +34,16 @@ ACCOUNT_TYPE = [
     "CREDITLINE",   # Line of credit
 ]
 
-# 2020-03-12 Gert-Jan Paulissen
-#
-# Note: generation of an id
-#
-# A list of statement line id's to ensure uniqueness in an OFX.
-# Recreated each time a Statement is initialised.
-# Not the most elegant solution but necessary since the generation of an id
-# occurs in the context of a statement line and then the statement is not
-# accessible.
-# The need to clear _ids is due to testing several creations of a Statement.
-_ids = None
+
+# Inspired by "How to print instances of a class using print()?"
+# on stackoverflow.com
+class Printable:
+    def __repr__(self):
+        return "<" + type(self).__name__\
+            + "> " + pformat(vars(self), indent=4, width=1)
 
 
-class Statement(object):
+class Statement(Printable):
     """Statement object containing statement items"""
     lines = None
 
@@ -63,31 +61,29 @@ class Statement(object):
 
     def __init__(self, bank_id=None, account_id=None,
                  currency=None, account_type="CHECKING"):
-        global _ids
-
         self.lines = []
         self.bank_id = bank_id
         self.account_id = account_id
         self.currency = currency
         self.account_type = account_type
-        # See note generation of an id above
-        _ids = {}
 
     def recalculate_balance(self):
         recalculate_balance(self)
 
     def assert_valid(self):
-        if self.start_balance and self.end_balance:
+        if not(self.start_balance is None or self.end_balance is None):
             total_amount = sum(sl.amount for sl in self.lines)
 
             msg = "Start balance ({0}) plus the total amount ({1}) \
 should be equal to the end balance ({2})".format(self.start_balance,
                                                 total_amount,
-                                                self.end_balance)
-            assert self.start_balance + total_amount == self.end_balance, msg
+                                                 self.end_balance)
+            if self.start_balance + total_amount != self.end_balance:
+                raise exceptions.ValidationError(msg, self)
 
 
-class StatementLine(object):
+
+class StatementLine(Printable):
     """Statement line data.
 
     All fields are initialized with some sample data so that field type may be
@@ -151,15 +147,53 @@ class StatementLine(object):
 
         assert(self.id or self.check_no or self.refnum)
 
-    def generate_transaction_id(self):
-        global _ids
+    def generate_transaction_id(self, unique_id_set):
+        """
+        Generate a transaction id.
 
-        assert(_ids is not None)
-        self.id = generate_transaction_id(self)
-        assert(self.id not in _ids)
-        _ids[self.id] = None
+        A bit of background: the problem with these transaction id's is that
+        they do do not only have to be unique, they also have to stay the same
+        for the same transaction every time you generate the statement.  So
+        generating random ids will not work, even though they will be unique,
+        GnuCash or beancount will recognize these transaction as "new" if you
+        happen to generate and import the same statement twice or import two
+        statements with overlapping periods.
 
-class BankAccount(object):
+        The current module function (generate_transaction_id() below) is
+        deterministic, but does not necesserily generate an unique id.
+
+        Therefore this method function improves on it since you can create a
+        really unique id by adding an increment to the generated id (a string)
+        and keep on incrementing till it succeeds.
+
+        These are the steps:
+        1) supply a unique id set you want to use for checking uniqueness
+        2) next you generate an initial id by calling
+           generate_transaction_id(self)
+        3) assign the initial id to the current id (self.id)
+        4) increment a counter while the current id is a member of the set and
+           add the counter to the initial id and assign that to the current id
+        5) add the current id to the unique id set
+        6) return a list of the current id and the counter
+
+        The counter is returned in order to enable the caller to modify
+        its statement line, for example the memo field.
+
+        """
+
+        assert type(unique_id_set) is set
+        # Save the initial id
+        self.id = initial_id = generate_transaction_id(self)
+        counter = 0
+        while self.id in unique_id_set:
+            counter += 1
+            self.id = initial_id + str(counter)
+
+        unique_id_set.add(self.id)
+        return [self.id, counter]
+
+
+class BankAccount(Printable):
     """Structure corresponding to BANKACCTTO and BANKACCTFROM elements from OFX
 
     Open Financial Exchange uses the Banking Account aggregate to identify an
