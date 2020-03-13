@@ -178,7 +178,7 @@ class StatementLine(Printable):
 
         """
 
-        assert type(unique_id_set) is set
+        assert isinstance(unique_id_set, set)
         # Save the initial id
         self.id = initial_id = generate_transaction_id(self)
         counter = 0
