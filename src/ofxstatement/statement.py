@@ -144,52 +144,6 @@ class StatementLine(Printable):
 
         assert(self.id or self.check_no or self.refnum)
 
-    def generate_transaction_id(self, unique_id_set):
-        """
-        Generate a transaction id.
-
-        A bit of background: the problem with these transaction id's is that
-        they do do not only have to be unique, they also have to stay the same
-        for the same transaction every time you generate the statement.  So
-        generating random ids will not work, even though they will be unique,
-        GnuCash or beancount will recognize these transaction as "new" if you
-        happen to generate and import the same statement twice or import two
-        statements with overlapping periods.
-
-        The current module function (generate_transaction_id() below) is
-        deterministic, but does not necesserily generate an unique id.
-
-        Therefore this method function improves on it since you can create a
-        really unique id by adding an increment to the generated id (a string)
-        and keep on incrementing till it succeeds.
-
-        These are the steps:
-        1) supply a unique id set you want to use for checking uniqueness
-        2) next you generate an initial id by calling
-           generate_transaction_id(self)
-        3) assign the initial id to the current id (self.id)
-        4) increment a counter while the current id is a member of the set and
-           add the counter to the initial id and assign that to the current id
-        5) add the current id to the unique id set
-        6) return a list of the current id and the counter
-
-        The counter is returned in order to enable the caller to modify
-        its statement line, for example the memo field.
-
-        """
-
-        assert isinstance(unique_id_set, set)
-        # Save the initial id
-        self.id = initial_id = generate_transaction_id(self)
-        counter = 0
-        while self.id in unique_id_set:
-            counter += 1
-            self.id = initial_id + str(counter)
-
-        unique_id_set.add(self.id)
-        return [self.id, counter]
-
-
 class BankAccount(Printable):
     """Structure corresponding to BANKACCTTO and BANKACCTFROM elements from OFX
 
@@ -233,6 +187,50 @@ def generate_transaction_id(stmt_line):
     h.update(stmt_line.memo.encode("utf8"))
     h.update(str(stmt_line.amount).encode("utf8"))
     return h.hexdigest()
+
+
+def generate_unique_transaction_id(stmt_line, unique_id_set):
+    """
+    Generate a unique transaction id.
+
+    A bit of background: the problem with these transaction id's is that
+    they do do not only have to be unique, they also have to stay the same
+    for the same transaction every time you generate the statement.  So
+    generating random ids will not work, even though they will be unique,
+    GnuCash or beancount will recognize these transaction as "new" if you
+    happen to generate and import the same statement twice or import two
+    statements with overlapping periods.
+
+    The function generate_transaction_id() is deterministic, but does not
+    necesserily generate an unique id.
+
+    Therefore this function improves on it since you can create a
+    really unique id by adding an increment to the generated id (a string)
+    and keep on incrementing till it succeeds.
+
+    These are the steps:
+    1) supply a unique id set you want to use for checking uniqueness
+    2) next you generate an initial id by calling
+       generate_transaction_id()
+    3) assign the initial id to the current id (id)
+    4) increment a counter while the current id is a member of the set and
+       add the counter to the initial id and assign that to the current id
+    5) add the current id to the unique id set
+    6) return a list of the current id and the counter
+
+    The counter is returned in order to enable the caller to modify
+    its statement line, for example the memo field.
+    """
+    assert isinstance(unique_id_set, set)
+    # Save the initial id
+    id = initial_id = generate_transaction_id(stmt_line)
+    counter = 0
+    while id in unique_id_set:
+        counter += 1
+        id = initial_id + str(counter)
+
+    unique_id_set.add(id)
+    return [id, counter]
 
 
 def recalculate_balance(stmt):
