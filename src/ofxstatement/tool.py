@@ -149,7 +149,10 @@ def convert(args):
         statement = parser.parse()
     except exceptions.ParseError as e:
         log.error("Parse error on line %s: %s" % (e.lineno, e.message))
-        return 2  # error
+        return 2  # parse error
+
+    # Validate the statement
+    statement.assert_valid()
 
     with smart_open(args.output) as out:
         writer = ofx.OfxWriter(statement)

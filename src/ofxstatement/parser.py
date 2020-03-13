@@ -14,6 +14,9 @@ class StatementParser(object):
     date_format = "%Y-%m-%d"
     cur_record = 0
 
+    def __init__(self):
+        self.statement = Statement()
+        
     def parse(self):
         """Read and parse statement
 
@@ -21,6 +24,8 @@ class StatementParser(object):
 
         May raise exceptions.ParseException on malformed input.
         """
+        assert hasattr(self, 'statement'), "StatementParser.__init__() not called"
+        
         reader = self.split_records()
         for line in reader:
             self.cur_record += 1
@@ -32,12 +37,12 @@ class StatementParser(object):
                 self.statement.lines.append(stmt_line)
         return self.statement
 
-    def split_records(self):
+    def split_records(self):  # pragma: no cover
         """Return iterable object consisting of a line per transaction
         """
         raise NotImplementedError
 
-    def parse_record(self, line):
+    def parse_record(self, line):  # pragma: no cover
         """Parse given transaction line and return StatementLine object
         """
         raise NotImplementedError
@@ -54,7 +59,7 @@ class StatementParser(object):
     def parse_datetime(self, value):
         return datetime.strptime(value, self.date_format)
 
-    def parse_float(self, value):
+    def parse_float(self, value):  # pragma: no cover
         # compatibility wrapper for old plugins
         return self.parse_decimal(value)
 
@@ -73,7 +78,7 @@ class CsvStatementParser(StatementParser):
     mappings = {}
 
     def __init__(self, fin):
-        self.statement = Statement()
+        super().__init__()
         self.fin = fin
 
     def split_records(self):
