@@ -37,12 +37,12 @@ class StatementParser(object):
                 self.statement.lines.append(stmt_line)
         return self.statement
 
-    def split_records(self):
+    def split_records(self):  # pragma: no cover
         """Return iterable object consisting of a line per transaction
         """
         raise NotImplementedError
 
-    def parse_record(self, line):
+    def parse_record(self, line):  # pragma: no cover
         """Parse given transaction line and return StatementLine object
         """
         raise NotImplementedError
@@ -59,7 +59,7 @@ class StatementParser(object):
     def parse_datetime(self, value):
         return datetime.strptime(value, self.date_format)
 
-    def parse_float(self, value):
+    def parse_float(self, value):  # pragma: no cover
         # compatibility wrapper for old plugins
         return self.parse_decimal(value)
 

@@ -38,9 +38,10 @@ ACCOUNT_TYPE = [
 # Inspired by "How to print instances of a class using print()?"
 # on stackoverflow.com
 class Printable:
-    def __repr__(self):
+    def __repr__(self):  # pragma: no cover
+        # do not set width to 1 because that makes the output really ugly
         return "<" + type(self).__name__\
-            + "> " + pformat(vars(self), indent=4, width=1)
+            + "> " + pformat(vars(self), indent=4)
 
 
 class Statement(Printable):
@@ -67,7 +68,7 @@ class Statement(Printable):
         self.currency = currency
         self.account_type = account_type
 
-    def assert_valid(self):
+    def assert_valid(self):  # pragma: no cover
         if not(self.start_balance is None or self.end_balance is None):
             total_amount = sum(sl.amount for sl in self.lines)
 
@@ -77,7 +78,6 @@ should be equal to the end balance ({2})".format(self.start_balance,
                                                  self.end_balance)
             if self.start_balance + total_amount != self.end_balance:
                 raise exceptions.ValidationError(msg, self)
-
 
 
 class StatementLine(Printable):
@@ -125,7 +125,7 @@ class StatementLine(Printable):
         self.check_no = None
         self.refnum = None
 
-    def __str__(self):
+    def __str__(self):  # pragma: no cover
         return """
         ID: %s, date: %s, amount: %s, payee: %s
         memo: %s
@@ -189,7 +189,7 @@ def generate_transaction_id(stmt_line):
     return h.hexdigest()
 
 
-def generate_unique_transaction_id(stmt_line, unique_id_set):
+def generate_unique_transaction_id(stmt_line, unique_id_set: set):  # pragma: no cover
     """
     Generate a unique transaction id.
 
@@ -216,12 +216,11 @@ def generate_unique_transaction_id(stmt_line, unique_id_set):
     4) increment a counter while the current id is a member of the set and
        add the counter to the initial id and assign that to the current id
     5) add the current id to the unique id set
-    6) return a list of the current id and the counter
+    6) return a list of the current id and the counter (if not 0)
 
     The counter is returned in order to enable the caller to modify
     its statement line, for example the memo field.
     """
-    assert isinstance(unique_id_set, set)
     # Save the initial id
     id = initial_id = generate_transaction_id(stmt_line)
     counter = 0
@@ -230,7 +229,7 @@ def generate_unique_transaction_id(stmt_line, unique_id_set):
         id = initial_id + str(counter)
 
     unique_id_set.add(id)
-    return [id, counter]
+    return id + '' if counter == 0 else '-' + str(counter)
 
 
 def recalculate_balance(stmt):

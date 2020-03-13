@@ -10,7 +10,7 @@ class ParseError(Exception):
         self.message = message
 
 
-class ValidationError(Exception):
+class ValidationError(Exception):  # pragma: no cover
     """Raised by parser to indicate validation errors for an object
     """
     def __init__(self, message, obj):
