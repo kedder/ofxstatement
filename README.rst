@@ -152,6 +152,9 @@ Plugin                            Description
 `ofxstatement-cz-komercni`_       Komerční banka (Czech Republic)
 `ofxstatement-cd-tmb`_            Trust Merchant Bank (DRC)
 `ofxstatement-zm-stanbic`_        Stanbic Bank (Zambia)
+`ofxstatement-dutch`_             Dutch financial institutes like ICSCards and ING
+`ofxstatement-french`_            French financial institutes like BanquePopulaire
+`ofxstatement-mt940`_             All financial institutes providing Swift MT940 statements
 ================================= ============================================
 
 
@@ -198,6 +201,9 @@ Plugin                            Description
 .. _ofxstatement-cz-komercni: https://github.com/medovina/ofxstatement-cz-komercni
 .. _ofxstatement-cd-tmb: https://github.com/BIZ4Africa/ofxstatement-cd-tmb
 .. _ofxstatement-zm-stanbic: https://github.com/BIZ4Africa/ofxstatement-zm-stanbic
+.. _ofxstatement-dutch: https://github.com/gpaulissen/ofxstatement-dutch
+.. _ofxstatement-french: https://github.com/gpaulissen/ofxstatement-french
+.. _ofxstatement-mt940: https://github.com/gpaulissen/ofxstatement-mt940
 
 Advanced Configuration
 ======================
