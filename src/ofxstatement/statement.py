@@ -184,12 +184,14 @@ def generate_transaction_id(stmt_line):
     """
     h = sha1()
     h.update(stmt_line.date.strftime("%Y-%m-%d %H:%M:%S").encode("utf8"))
-    h.update(stmt_line.memo.encode("utf8"))
-    h.update(str(stmt_line.amount).encode("utf8"))
+    if stmt_line.memo is not None:
+        h.update(stmt_line.memo.encode("utf8"))
+    if stmt_line.amount is not None:
+        h.update(str(stmt_line.amount).encode("utf8"))
     return h.hexdigest()
 
 
-def generate_unique_transaction_id(stmt_line, unique_id_set: set):  # pragma: no cover
+def generate_unique_transaction_id(stmt_line, unique_id_set: set):
     """
     Generate a unique transaction id.
 
