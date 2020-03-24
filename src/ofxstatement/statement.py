@@ -229,7 +229,7 @@ def generate_unique_transaction_id(stmt_line, unique_id_set: set):  # pragma: no
         id = initial_id + str(counter)
 
     unique_id_set.add(id)
-    return id + '' if counter == 0 else '-' + str(counter)
+    return id + ('' if counter == 0 else '-' + str(counter))
 
 
 def recalculate_balance(stmt):
