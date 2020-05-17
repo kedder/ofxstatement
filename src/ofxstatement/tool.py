@@ -152,7 +152,11 @@ def convert(args):
         return 2  # parse error
 
     # Validate the statement
-    statement.assert_valid()
+    try:
+        statement.assert_valid()
+    except exceptions.ValidationError as e:
+        log.error("Statement validation error: %s" % (e.message))
+        return 2 # Validation error
 
     with smart_open(args.output) as out:
         writer = ofx.OfxWriter(statement)
