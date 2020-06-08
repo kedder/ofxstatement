@@ -2,7 +2,7 @@
 Changes
 ~~~~~~~
 
-0.6.5 (unreleased)
+0.6.5 (2020-06-09)
 ==================
 
 - Added balance checks and improved generation of unique ids (#100, #104)
