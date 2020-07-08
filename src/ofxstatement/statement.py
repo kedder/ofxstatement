@@ -4,6 +4,7 @@ from datetime import datetime
 from decimal import Decimal as D
 from hashlib import sha1
 from pprint import pformat
+from math import isclose
 
 from ofxstatement import exceptions
 
@@ -74,9 +75,10 @@ class Statement(Printable):
 
             msg = "Start balance ({0}) plus the total amount ({1}) \
 should be equal to the end balance ({2})".format(self.start_balance,
-                                                total_amount,
+                                                 total_amount,
                                                  self.end_balance)
-            if self.start_balance + total_amount != self.end_balance:
+            if not isclose(self.start_balance + total_amount,
+                           self.end_balance):
                 raise exceptions.ValidationError(msg, self)
 
 
