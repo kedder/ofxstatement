@@ -40,7 +40,7 @@ setup(name='ofxstatement',
       install_requires=['setuptools',
                         'appdirs>=1.3.0'
                         ],
-      extras_require={'test': ["mock", "pytest", "pytest-cov"]},
+      extras_require={'test': ["mock", "pytest>=4.6", "pytest-cov"]},
       tests_require=["mock"],
       include_package_data=True,
       zip_safe=True
