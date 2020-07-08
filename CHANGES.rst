@@ -5,7 +5,8 @@ Changes
 0.6.6 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Drop support for Python 3.4, add support for Python 3.8
+- Fixed naive end balance validation (#106)
 
 
 0.6.5 (2020-06-09)
