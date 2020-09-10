@@ -2,8 +2,8 @@
 OFX Statement
 ~~~~~~~~~~~~~
 
-.. image:: https://travis-ci.org/kedder/ofxstatement.png?branch=master
-    :target: https://travis-ci.org/kedder/ofxstatement
+.. image:: https://travis-ci.com/kedder/ofxstatement.svg?branch=master
+    :target: https://travis-ci.com/kedder/ofxstatement
 .. image:: https://coveralls.io/repos/kedder/ofxstatement/badge.png?branch=master
     :target: https://coveralls.io/r/kedder/ofxstatement?branch=master
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
