@@ -16,7 +16,7 @@ class StatementParser(object):
 
     def __init__(self):
         self.statement = Statement()
-        
+
     def parse(self):
         """Read and parse statement
 
@@ -24,8 +24,8 @@ class StatementParser(object):
 
         May raise exceptions.ParseException on malformed input.
         """
-        assert hasattr(self, 'statement'), "StatementParser.__init__() not called"
-        
+        assert hasattr(self, "statement"), "StatementParser.__init__() not called"
+
         reader = self.split_records()
         for line in reader:
             self.cur_record += 1
@@ -38,13 +38,11 @@ class StatementParser(object):
         return self.statement
 
     def split_records(self):  # pragma: no cover
-        """Return iterable object consisting of a line per transaction
-        """
+        """Return iterable object consisting of a line per transaction"""
         raise NotImplementedError
 
     def parse_record(self, line):  # pragma: no cover
-        """Parse given transaction line and return StatementLine object
-        """
+        """Parse given transaction line and return StatementLine object"""
         raise NotImplementedError
 
     def parse_value(self, value, field):
@@ -88,8 +86,9 @@ class CsvStatementParser(StatementParser):
         stmt_line = StatementLine()
         for field, col in self.mappings.items():
             if col >= len(line):
-                raise ValueError("Cannot find column %s in line of %s items "
-                                 % (col, len(line)))
+                raise ValueError(
+                    "Cannot find column %s in line of %s items " % (col, len(line))
+                )
             rawvalue = line[col]
             value = self.parse_value(rawvalue, field)
             setattr(stmt_line, field, value)

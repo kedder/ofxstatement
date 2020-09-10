@@ -80,7 +80,7 @@ NEWFILEUID:NONE
 
 def prettyPrint(xmlstr):
     dom = xml.dom.minidom.parseString(xmlstr)
-    return dom.toprettyxml().replace("\t", "    ").replace('<!-- ', '<!--')
+    return dom.toprettyxml().replace("\t", "    ").replace("<!-- ", "<!--")
 
 
 class OfxWriterTest(TestCase):
@@ -88,10 +88,11 @@ class OfxWriterTest(TestCase):
 
         # Create sample statement:
         statement = Statement("BID", "ACCID", "LTL")
-        statement.lines.append(StatementLine(
-            "1", datetime(2012, 2, 12), "Sample 1", 15.4))
+        statement.lines.append(
+            StatementLine("1", datetime(2012, 2, 12), "Sample 1", 15.4)
+        )
         line = StatementLine("2", datetime(2012, 2, 12), "Sample 2", 25.0)
-        line.payee = ''
+        line.payee = ""
         line.bank_account_to = BankAccount("SNORAS", "LT1232")
         line.bank_account_to.branch_id = "VNO"
         statement.lines.append(line)

@@ -16,17 +16,19 @@ class OfxWriter(object):
         et = self.buildDocument()
         encoded = etree.tostring(et.getroot(), "utf-8")
         encoded = str(encoded, "utf-8")
-        header = ("<!-- \n"
-                  "OFXHEADER:100\n"
-                  "DATA:OFXSGML\n"
-                  "VERSION:102\n"
-                  "SECURITY:NONE\n"
-                  "ENCODING:UTF-8\n"
-                  "CHARSET:NONE\n"
-                  "COMPRESSION:NONE\n"
-                  "OLDFILEUID:NONE\n"
-                  "NEWFILEUID:NONE\n"
-                  "-->\n\n")
+        header = (
+            "<!-- \n"
+            "OFXHEADER:100\n"
+            "DATA:OFXSGML\n"
+            "VERSION:102\n"
+            "SECURITY:NONE\n"
+            "ENCODING:UTF-8\n"
+            "CHARSET:NONE\n"
+            "COMPRESSION:NONE\n"
+            "OLDFILEUID:NONE\n"
+            "NEWFILEUID:NONE\n"
+            "-->\n\n"
+        )
 
         return header + encoded
 
@@ -106,7 +108,7 @@ class OfxWriter(object):
         self.buildText("NAME", line.payee)
         self.buildText("MEMO", line.memo)
         self.buildText("REFNUM", line.refnum)
-        #self.buildText("CURRENCY", line.currency)
+        # self.buildText("CURRENCY", line.currency)
         if line.bank_account_to:
             tb.start("BANKACCTTO", {})
             self.buildBankAccount(line.bank_account_to)

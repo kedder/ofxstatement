@@ -4,13 +4,13 @@ import appdirs
 
 from ofxstatement.exceptions import Abort
 
-APP_NAME = 'ofxstatement'
-APP_AUTHOR = 'ofx'
+APP_NAME = "ofxstatement"
+APP_AUTHOR = "ofx"
 
 
 def get_default_location():
     cdir = appdirs.user_config_dir(APP_NAME, APP_AUTHOR)
-    return os.path.join(cdir, 'config.ini')
+    return os.path.join(cdir, "config.ini")
 
 
 def read(location=None):

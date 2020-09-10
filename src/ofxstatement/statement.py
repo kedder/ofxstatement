@@ -9,30 +9,30 @@ from math import isclose
 from ofxstatement import exceptions
 
 TRANSACTION_TYPES = [
-    "CREDIT",       # Generic credit
-    "DEBIT",        # Generic debit
-    "INT",          # Interest earned or paid
-    "DIV",          # Dividend
-    "FEE",          # FI fee
-    "SRVCHG",       # Service charge
-    "DEP",          # Deposit
-    "ATM",          # ATM debit or credit
-    "POS",          # Point of sale debit or credit
-    "XFER",         # Transfer
-    "CHECK",        # Check
-    "PAYMENT",      # Electronic payment
-    "CASH",         # Cash withdrawal
-    "DIRECTDEP",    # Direct deposit
+    "CREDIT",  # Generic credit
+    "DEBIT",  # Generic debit
+    "INT",  # Interest earned or paid
+    "DIV",  # Dividend
+    "FEE",  # FI fee
+    "SRVCHG",  # Service charge
+    "DEP",  # Deposit
+    "ATM",  # ATM debit or credit
+    "POS",  # Point of sale debit or credit
+    "XFER",  # Transfer
+    "CHECK",  # Check
+    "PAYMENT",  # Electronic payment
+    "CASH",  # Cash withdrawal
+    "DIRECTDEP",  # Direct deposit
     "DIRECTDEBIT",  # Merchant initiated debit
-    "REPEATPMT",    # Repeating payment/standing order
-    "OTHER"         # Other
+    "REPEATPMT",  # Repeating payment/standing order
+    "OTHER",  # Other
 ]
 
 ACCOUNT_TYPE = [
-    "CHECKING",     # Checking
-    "SAVINGS",      # Savings
-    "MONEYMRKT",    # Money Market
-    "CREDITLINE",   # Line of credit
+    "CHECKING",  # Checking
+    "SAVINGS",  # Savings
+    "MONEYMRKT",  # Money Market
+    "CREDITLINE",  # Line of credit
 ]
 
 
@@ -41,12 +41,12 @@ ACCOUNT_TYPE = [
 class Printable:
     def __repr__(self):  # pragma: no cover
         # do not set width to 1 because that makes the output really ugly
-        return "<" + type(self).__name__\
-            + "> " + pformat(vars(self), indent=4)
+        return "<" + type(self).__name__ + "> " + pformat(vars(self), indent=4)
 
 
 class Statement(Printable):
     """Statement object containing statement items"""
+
     lines = None
 
     currency = None
@@ -61,8 +61,9 @@ class Statement(Printable):
     end_balance = None
     end_date = None
 
-    def __init__(self, bank_id=None, account_id=None,
-                 currency=None, account_type="CHECKING"):
+    def __init__(
+        self, bank_id=None, account_id=None, currency=None, account_type="CHECKING"
+    ):
         self.lines = []
         self.bank_id = bank_id
         self.account_id = account_id
@@ -70,15 +71,14 @@ class Statement(Printable):
         self.account_type = account_type
 
     def assert_valid(self):  # pragma: no cover
-        if not(self.start_balance is None or self.end_balance is None):
+        if not (self.start_balance is None or self.end_balance is None):
             total_amount = sum(sl.amount for sl in self.lines)
 
             msg = "Start balance ({0}) plus the total amount ({1}) \
-should be equal to the end balance ({2})".format(self.start_balance,
-                                                 total_amount,
-                                                 self.end_balance)
-            if not isclose(self.start_balance + total_amount,
-                           self.end_balance):
+should be equal to the end balance ({2})".format(
+                self.start_balance, total_amount, self.end_balance
+            )
+            if not isclose(self.start_balance + total_amount, self.end_balance):
                 raise exceptions.ValidationError(msg, self)
 
 
@@ -89,6 +89,7 @@ class StatementLine(Printable):
     determined by interested parties. Constructor will reinitialize them to
     None (by default)
     """
+
     id = ""
     # Date transaction was posted to account
     date = datetime.now()
@@ -132,19 +133,26 @@ class StatementLine(Printable):
         ID: %s, date: %s, amount: %s, payee: %s
         memo: %s
         check no.: %s
-        """ % (self.id, self.date, self.amount, self.payee, self.memo,
-               self.check_no)
+        """ % (
+            self.id,
+            self.date,
+            self.amount,
+            self.payee,
+            self.memo,
+            self.check_no,
+        )
 
     def assert_valid(self):
-        """Ensure that fields have valid values
-        """
-        assert self.trntype in TRANSACTION_TYPES, \
+        """Ensure that fields have valid values"""
+        assert self.trntype in TRANSACTION_TYPES, (
             "trntype must be one of %s" % TRANSACTION_TYPES
+        )
 
         if self.bank_account_to:
             self.bank_account_to.assert_valid()
 
-        assert(self.id or self.check_no or self.refnum)
+        assert self.id or self.check_no or self.refnum
+
 
 class BankAccount(Printable):
     """Structure corresponding to BANKACCTTO and BANKACCTFROM elements from OFX
@@ -174,8 +182,9 @@ class BankAccount(Printable):
         self.acct_key = None
 
     def assert_valid(self):
-        assert self.acct_type in ACCOUNT_TYPE, \
+        assert self.acct_type in ACCOUNT_TYPE, (
             "acct_type must be one of %s" % ACCOUNT_TYPE
+        )
 
 
 def generate_transaction_id(stmt_line):
@@ -233,7 +242,7 @@ def generate_unique_transaction_id(stmt_line, unique_id_set: set):
         id = initial_id + str(counter)
 
     unique_id_set.add(id)
-    return id + ('' if counter == 0 else '-' + str(counter))
+    return id + ("" if counter == 0 else "-" + str(counter))
 
 
 def recalculate_balance(stmt):

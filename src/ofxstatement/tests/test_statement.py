@@ -4,11 +4,13 @@ from decimal import Decimal
 
 from ofxstatement import statement
 
+
 class StatementTests(unittest.TestCase):
     def test_generate_transaction_id_idempotent(self):
         # GIVEN
         stl = statement.StatementLine(
-            "one", date(2020, 3, 25), memo='123', amount=Decimal("12.43"))
+            "one", date(2020, 3, 25), memo="123", amount=Decimal("12.43")
+        )
         tid1 = statement.generate_transaction_id(stl)
 
         # WHEN
@@ -22,7 +24,8 @@ class StatementTests(unittest.TestCase):
     def test_generate_transaction_id_identifying(self):
         # GIVEN
         stl = statement.StatementLine(
-            "one", date(2020, 3, 25), memo='123', amount=Decimal("12.43"))
+            "one", date(2020, 3, 25), memo="123", amount=Decimal("12.43")
+        )
         tid1 = statement.generate_transaction_id(stl)
 
         # WHEN
