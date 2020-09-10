@@ -6,8 +6,8 @@ python:
   - "3.7"
   - "3.8"
 install:
-  - pip install -e .[test]
-  - pip install coveralls
+  - pip install pipenv coveralls[yaml]
+  - pipenv install --dev
 script:
   - pytest --cov src/ofxstatement
 after_success:

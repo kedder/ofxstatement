@@ -76,20 +76,20 @@ accounting system.
 Development / test
 ==================
 
-When you want to develop, first fork this repository to your GitHub
-environment and then::
+``ofxstatemnt`` uses `pipenv`_ to manage the development environment and
+dependencies::
 
+  $ pip install pipenv
   $ git clone https://github.com/<your_account>/ofxstatement.git
   $ cd ofxstatement
-  $ pip install -e .
+  $ pipenv sync --dev
 
-Now you can install the test requirements::
+.. _pipenv: https://github.com/pypa/pipenv
 
-  $ pip install -r test_requirements.txt
+And finally run the test suite::
 
-And finally run your test::
-
-  $ py.test
+  $ pipenv shell
+  $ pytest
 
 When satisfied, you may create a pull request.
 
