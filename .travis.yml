@@ -7,8 +7,9 @@ python:
   - "3.8"
 install:
   - pip install pipenv coveralls[yaml]
-  - pipenv install --dev
+  - pipenv sync --dev
 script:
-  - pytest --cov src/ofxstatement
+  - pipenv run pytest --cov src/ofxstatement
+  - pipenv run black --check setup.py src
 after_success:
   coveralls

@@ -6,6 +6,8 @@ OFX Statement
     :target: https://travis-ci.org/kedder/ofxstatement
 .. image:: https://coveralls.io/repos/kedder/ofxstatement/badge.png?branch=master
     :target: https://coveralls.io/r/kedder/ofxstatement?branch=master
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
 
 Ofxstatement is a tool to convert proprietary bank statements to OFX format,
 suitable for importing into personal accounting systems like GnuCash. This
