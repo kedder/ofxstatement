@@ -10,5 +10,6 @@ install:
 script:
   - pipenv run pytest --cov src/ofxstatement
   - pipenv run black --check setup.py src
+  - pipenv run mypy src
 after_success:
   coveralls
