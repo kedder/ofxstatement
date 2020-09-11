@@ -1,5 +1,6 @@
 from unittest import TestCase
 import xml.dom.minidom
+from decimal import Decimal
 
 from datetime import datetime
 
@@ -84,14 +85,14 @@ def prettyPrint(xmlstr):
 
 
 class OfxWriterTest(TestCase):
-    def test_ofxWriter(self):
+    def test_ofxWriter(self) -> None:
 
         # Create sample statement:
         statement = Statement("BID", "ACCID", "LTL")
         statement.lines.append(
-            StatementLine("1", datetime(2012, 2, 12), "Sample 1", 15.4)
+            StatementLine("1", datetime(2012, 2, 12), "Sample 1", Decimal("15.4"))
         )
-        line = StatementLine("2", datetime(2012, 2, 12), "Sample 2", 25.0)
+        line = StatementLine("2", datetime(2012, 2, 12), "Sample 2", Decimal("25.0"))
         line.payee = ""
         line.bank_account_to = BankAccount("SNORAS", "LT1232")
         line.bank_account_to.branch_id = "VNO"

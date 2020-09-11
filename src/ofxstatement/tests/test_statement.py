@@ -1,15 +1,16 @@
+from typing import Set
 import unittest
-from datetime import date
+from datetime import datetime
 from decimal import Decimal
 
 from ofxstatement import statement
 
 
 class StatementTests(unittest.TestCase):
-    def test_generate_transaction_id_idempotent(self):
+    def test_generate_transaction_id_idempotent(self) -> None:
         # GIVEN
         stl = statement.StatementLine(
-            "one", date(2020, 3, 25), memo="123", amount=Decimal("12.43")
+            "one", datetime(2020, 3, 25), memo="123", amount=Decimal("12.43")
         )
         tid1 = statement.generate_transaction_id(stl)
 
@@ -21,10 +22,10 @@ class StatementTests(unittest.TestCase):
         # THEN
         self.assertEqual(tid1, tid2)
 
-    def test_generate_transaction_id_identifying(self):
+    def test_generate_transaction_id_identifying(self) -> None:
         # GIVEN
         stl = statement.StatementLine(
-            "one", date(2020, 3, 25), memo="123", amount=Decimal("12.43")
+            "one", datetime(2020, 3, 25), memo="123", amount=Decimal("12.43")
         )
         tid1 = statement.generate_transaction_id(stl)
 
@@ -36,10 +37,10 @@ class StatementTests(unittest.TestCase):
         # THEN
         self.assertNotEqual(tid1, tid2)
 
-    def test_generate_unique_transaction_id(self):
+    def test_generate_unique_transaction_id(self) -> None:
         # GIVEN
-        stl = statement.StatementLine("one", date(2020, 3, 25))
-        txnids = set()
+        stl = statement.StatementLine("one", datetime(2020, 3, 25))
+        txnids: Set[str] = set()
 
         # WHEN
         tid1 = statement.generate_unique_transaction_id(stl, txnids)
