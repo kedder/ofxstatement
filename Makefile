@@ -1,3 +1,5 @@
+all: test mypy black
+
 PHONY: test
 test:
 	pytest
@@ -9,3 +11,8 @@ coverage: bin/pytest
 .PHONY: black
 black:
 	black setup.py src
+
+.PHONY: mypy
+mypy:
+	mypy src
+
