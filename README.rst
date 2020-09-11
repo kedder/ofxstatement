@@ -6,6 +6,8 @@ OFX Statement
     :target: https://travis-ci.com/kedder/ofxstatement
 .. image:: https://coveralls.io/repos/kedder/ofxstatement/badge.png?branch=master
     :target: https://coveralls.io/r/kedder/ofxstatement?branch=master
+.. image:: http://www.mypy-lang.org/static/mypy_badge.svg
+    :target: http://mypy-lang.org/
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/psf/black
 
