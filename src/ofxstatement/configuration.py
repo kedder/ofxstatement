@@ -1,3 +1,5 @@
+from typing import Optional
+from collections.abc import MutableMapping
 import os
 import configparser
 import appdirs
@@ -8,12 +10,12 @@ APP_NAME = "ofxstatement"
 APP_AUTHOR = "ofx"
 
 
-def get_default_location():
+def get_default_location() -> str:
     cdir = appdirs.user_config_dir(APP_NAME, APP_AUTHOR)
     return os.path.join(cdir, "config.ini")
 
 
-def read(location=None):
+def read(location: str = None) -> Optional[MutableMapping]:
     if not location:
         location = get_default_location()
 
@@ -25,7 +27,7 @@ def read(location=None):
     return config
 
 
-def get_settings(config, section):
+def get_settings(config, section: str):
     if not config.has_section(section):
         raise Abort("No section named %s in config file" % section)
 

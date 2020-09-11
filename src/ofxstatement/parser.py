@@ -1,3 +1,5 @@
+from typing import Dict, Optional, Any, Iterable, List
+from abc import abstractmethod
 import csv
 from decimal import Decimal, Decimal as D
 from datetime import datetime
@@ -5,19 +7,27 @@ from datetime import datetime
 from ofxstatement.statement import Statement, StatementLine
 
 
-class StatementParser(object):
+class AbstractStatementParser:
+    @abstractmethod
+    def parse(self) -> Statement:
+        """Parse the input and produce the statement object"""
+
+
+class StatementParser(AbstractStatementParser):
     """Abstract statement parser.
 
     Defines interface for all parser implementation
     """
 
-    date_format = "%Y-%m-%d"
-    cur_record = 0
+    statement: Statement
 
-    def __init__(self):
+    date_format: str = "%Y-%m-%d"
+    cur_record: int = 0
+
+    def __init__(self) -> None:
         self.statement = Statement()
 
-    def parse(self):
+    def parse(self) -> Statement:
         """Read and parse statement
 
         Return Statement object
@@ -41,27 +51,30 @@ class StatementParser(object):
         """Return iterable object consisting of a line per transaction"""
         raise NotImplementedError
 
-    def parse_record(self, line):  # pragma: no cover
+    def parse_record(self, line) -> Optional[StatementLine]:  # pragma: no cover
         """Parse given transaction line and return StatementLine object"""
         raise NotImplementedError
 
-    def parse_value(self, value, field):
-        tp = type(getattr(StatementLine, field))
-        if tp == datetime:
+    def parse_value(self, value: Optional[str], field: str) -> Any:
+        tp = StatementLine.__annotations__.get(field)
+        if value is None:
+            return None
+
+        if tp in (datetime, Optional[datetime]):
             return self.parse_datetime(value)
-        elif tp == Decimal:
+        elif tp in (Decimal, Optional[Decimal]):
             return self.parse_decimal(value)
         else:
             return value
 
-    def parse_datetime(self, value):
+    def parse_datetime(self, value: str) -> datetime:
         return datetime.strptime(value, self.date_format)
 
-    def parse_float(self, value):  # pragma: no cover
+    def parse_float(self, value: str) -> D:  # pragma: no cover
         # compatibility wrapper for old plugins
         return self.parse_decimal(value)
 
-    def parse_decimal(self, value):
+    def parse_decimal(self, value: str) -> D:
         # some plugins pass localised numbers, clean them up
         return D(value.replace(",", ".").replace(" ", ""))
 
@@ -69,20 +82,19 @@ class StatementParser(object):
 class CsvStatementParser(StatementParser):
     """Generic csv statement parser"""
 
-    statement = None
-    fin = None  # file input stream
+    fin: Iterable[str]  # file input stream
 
     # 0-based csv column mapping to StatementLine field
-    mappings = {}
+    mappings: Dict[str, int] = {}
 
-    def __init__(self, fin):
+    def __init__(self, fin: Iterable[str]) -> None:
         super().__init__()
         self.fin = fin
 
-    def split_records(self):
+    def split_records(self) -> Iterable[List[str]]:
         return csv.reader(self.fin)
 
-    def parse_record(self, line):
+    def parse_record(self, line: List[str]) -> StatementLine:
         stmt_line = StatementLine()
         for field, col in self.mappings.items():
             if col >= len(line):

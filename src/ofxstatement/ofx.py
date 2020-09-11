@@ -1,18 +1,19 @@
-from datetime import datetime
+from typing import Optional, Union
+from datetime import datetime, date
+from decimal import Decimal
+
 from xml.etree import ElementTree as etree
+
+from ofxstatement.statement import Statement, StatementLine, BankAccount
 
 
 class OfxWriter(object):
-    statement = None
-    tb = None
-    genTime = None
-
-    def __init__(self, statement):
+    def __init__(self, statement: Statement) -> None:
         self.statement = statement
         self.genTime = datetime.now()
-
-    def toxml(self):
         self.tb = etree.TreeBuilder()
+
+    def toxml(self) -> str:
         et = self.buildDocument()
         encoded = etree.tostring(et.getroot(), "utf-8")
         encoded = str(encoded, "utf-8")
@@ -32,7 +33,7 @@ class OfxWriter(object):
 
         return header + encoded
 
-    def buildDocument(self):
+    def buildDocument(self) -> etree.ElementTree:
         tb = self.tb
         tb.start("OFX", {})
 
@@ -43,7 +44,7 @@ class OfxWriter(object):
         tb.end("OFX")
         return etree.ElementTree(tb.close())
 
-    def buildSignon(self):
+    def buildSignon(self) -> None:
         tb = self.tb
         tb.start("SIGNONMSGSRSV1", {})
         tb.start("SONRS", {})
@@ -58,7 +59,7 @@ class OfxWriter(object):
         tb.end("SONRS")
         tb.end("SIGNONMSGSRSV1")
 
-    def buildTransactionList(self):
+    def buildTransactionList(self) -> None:
         tb = self.tb
         tb.start("BANKMSGSRSV1", {})
         tb.start("STMTTRNRS", {})
@@ -95,7 +96,7 @@ class OfxWriter(object):
         tb.end("STMTTRNRS")
         tb.end("BANKMSGSRSV1")
 
-    def buildTransaction(self, line):
+    def buildTransaction(self, line: StatementLine) -> None:
         tb = self.tb
         tb.start("STMTTRN", {})
 
@@ -116,21 +117,23 @@ class OfxWriter(object):
 
         tb.end("STMTTRN")
 
-    def buildBankAccount(self, account):
+    def buildBankAccount(self, account: BankAccount) -> None:
         self.buildText("BANKID", account.bank_id)
         self.buildText("BRANCHID", account.branch_id)
         self.buildText("ACCTID", account.acct_id)
         self.buildText("ACCTTYPE", account.acct_type)
         self.buildText("ACCTKEY", account.acct_key)
 
-    def buildText(self, tag, text, skipEmpty=True):
+    def buildText(self, tag: str, text: Optional[str], skipEmpty: bool = True) -> None:
         if not text and skipEmpty:
             return
         self.tb.start(tag, {})
         self.tb.data(text or "")
         self.tb.end(tag)
 
-    def buildDate(self, tag, dt, skipEmpty=True):
+    def buildDate(
+        self, tag: str, dt: Optional[Union[date, datetime]], skipEmpty: bool = True
+    ) -> None:
         if not dt and skipEmpty:
             return
         if dt is None:
@@ -138,7 +141,9 @@ class OfxWriter(object):
         else:
             self.buildText(tag, dt.strftime("%Y%m%d"))
 
-    def buildDateTime(self, tag, dt, skipEmpty=True):
+    def buildDateTime(
+        self, tag: str, dt: Optional[datetime], skipEmpty: bool = True
+    ) -> None:
         if not dt and skipEmpty:
             return
         if dt is None:
@@ -146,7 +151,9 @@ class OfxWriter(object):
         else:
             self.buildText(tag, dt.strftime("%Y%m%d%H%M%S"))
 
-    def buildAmount(self, tag, amount, skipEmpty=True):
+    def buildAmount(
+        self, tag: str, amount: Optional[Decimal], skipEmpty: bool = True
+    ) -> None:
         if amount is None and skipEmpty:
             return
         if amount is None:

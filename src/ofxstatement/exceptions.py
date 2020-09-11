@@ -5,7 +5,7 @@ class Abort(Exception):
 class ParseError(Exception):
     """Raised by parser to indicate malformed input"""
 
-    def __init__(self, lineno, message):
+    def __init__(self, lineno: int, message: str) -> None:
         self.lineno = lineno
         self.message = message
 
@@ -13,9 +13,9 @@ class ParseError(Exception):
 class ValidationError(Exception):  # pragma: no cover
     """Raised by parser to indicate validation errors for an object"""
 
-    def __init__(self, message, obj):
+    def __init__(self, message: str, obj: object) -> None:
         self.message = message
         self.obj = obj
 
-    def __str__(self):
+    def __str__(self) -> str:
         return "message: %s; object:\n%r" % (self.message, self.obj)

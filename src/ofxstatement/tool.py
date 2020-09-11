@@ -18,8 +18,8 @@ log = logging.getLogger(__name__)
 
 
 @contextlib.contextmanager
-def smart_open(filename=None):
-    """See https://stackoverflow.com/questions/17602878/how-to-handle-both-with-open-and-sys-stdout-nicely"""
+def smart_open(filename: str = None):
+    """See https://stackoverflow.com/questions/17602878/how-to-handle-both-with-open-and-sys-stdout-nicely"""  # noqa
     if filename and filename != "-":
         fh = open(filename, "w")
     else:
@@ -32,18 +32,18 @@ def smart_open(filename=None):
             fh.close()
 
 
-def get_version():
+def get_version() -> str:
     dist = pkg_resources.get_distribution("ofxstatement")
     return dist.version
 
 
-def configure_logging(args):
+def configure_logging(args: argparse.Namespace) -> None:
     format = "%(levelname)s: %(message)s"
     arg_level = logging.DEBUG if args.debug else logging.INFO
     logging.basicConfig(format=format, level=arg_level)
 
 
-def make_args_parser():
+def make_args_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Tool to convert proprietary bank statement " + "to OFX format."
     )
@@ -79,7 +79,10 @@ def make_args_parser():
     parser_convert.add_argument("input", help="input file to process")
     parser_convert.add_argument(
         "output",
-        help="output (OFX) file to produce where a minus (-) means writing to standard output instead",
+        help=(
+            "output (OFX) file to produce where a minus (-) "
+            "means writing to standard output instead"
+        ),
     )
     parser_convert.set_defaults(func=convert)
 
@@ -96,7 +99,7 @@ def make_args_parser():
     return parser
 
 
-def list_plugins(args):
+def list_plugins(args: argparse.Namespace) -> None:
     available_plugins = plugin.list_plugins()
     if not available_plugins:
         print("No plugins available. Install plugin eggs or create your own.")
@@ -113,7 +116,7 @@ def list_plugins(args):
             print("  %-16s %s" % (name, title))
 
 
-def edit_config(args):
+def edit_config(args: argparse.Namespace) -> None:
     editors = {"Linux": "vim", "Darwin": "vi", "Windows": "notepad"}
     editor = os.environ.get("EDITOR", editors[platform.system()])
     configfname = configuration.get_default_location()
@@ -125,7 +128,7 @@ def edit_config(args):
     subprocess.call(shlex.split(editor, posix=(os.name == "posix")) + [configfname])
 
 
-def convert(args):
+def convert(args: argparse.Namespace) -> int:
     appui = ui.UI()
     config = configuration.read()
 
@@ -180,9 +183,9 @@ def convert(args):
     return 0  # success
 
 
-def run(args=None):
+def run(argv=None) -> int:
     parser = make_args_parser()
-    args = parser.parse_args(args)
+    args = parser.parse_args(argv)
     configure_logging(args)
 
     if not hasattr(args, "func"):

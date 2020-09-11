@@ -7,7 +7,7 @@ from ofxstatement.parser import CsvStatementParser
 
 
 class CsvStatementParserTest(TestCase):
-    def test_simple_csv_parser(self):
+    def test_simple_csv_parser(self) -> None:
         # Test generic CsvStatementParser
 
         # Lets define some sample csv to parse and write it to file-like object
