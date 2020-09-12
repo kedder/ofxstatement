@@ -1,10 +1,12 @@
-from typing import Dict, Optional, Any, Iterable, List
+from typing import Dict, Optional, Any, Iterable, List, TextIO, TypeVar, Generic
 from abc import abstractmethod
 import csv
 from decimal import Decimal, Decimal as D
 from datetime import datetime
 
 from ofxstatement.statement import Statement, StatementLine
+
+LT = TypeVar("LT")
 
 
 class AbstractStatementParser:
@@ -13,7 +15,7 @@ class AbstractStatementParser:
         """Parse the input and produce the statement object"""
 
 
-class StatementParser(AbstractStatementParser):
+class StatementParser(AbstractStatementParser, Generic[LT]):
     """Abstract statement parser.
 
     Defines interface for all parser implementation
@@ -47,11 +49,11 @@ class StatementParser(AbstractStatementParser):
                 self.statement.lines.append(stmt_line)
         return self.statement
 
-    def split_records(self):  # pragma: no cover
+    def split_records(self) -> Iterable[LT]:  # pragma: no cover
         """Return iterable object consisting of a line per transaction"""
         raise NotImplementedError
 
-    def parse_record(self, line) -> Optional[StatementLine]:  # pragma: no cover
+    def parse_record(self, line: LT) -> Optional[StatementLine]:  # pragma: no cover
         """Parse given transaction line and return StatementLine object"""
         raise NotImplementedError
 
@@ -79,22 +81,22 @@ class StatementParser(AbstractStatementParser):
         return D(value.replace(",", ".").replace(" ", ""))
 
 
-class CsvStatementParser(StatementParser):
+class CsvStatementParser(StatementParser[List[str]]):
     """Generic csv statement parser"""
 
-    fin: Iterable[str]  # file input stream
+    fin: TextIO  # file input stream
 
     # 0-based csv column mapping to StatementLine field
     mappings: Dict[str, int] = {}
 
-    def __init__(self, fin: Iterable[str]) -> None:
+    def __init__(self, fin: TextIO) -> None:
         super().__init__()
         self.fin = fin
 
     def split_records(self) -> Iterable[List[str]]:
         return csv.reader(self.fin)
 
-    def parse_record(self, line: List[str]) -> StatementLine:
+    def parse_record(self, line: List[str]) -> Optional[StatementLine]:
         stmt_line = StatementLine()
         for field, col in self.mappings.items():
             if col >= len(line):
