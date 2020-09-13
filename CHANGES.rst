@@ -2,7 +2,7 @@
 Changes
 ~~~~~~~
 
-0.6.6 (unreleased)
+0.7.0 (2020-09-13)
 ==================
 
 - Drop support for Python 3.4, 3.5, add support for Python 3.8
