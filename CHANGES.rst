@@ -5,7 +5,7 @@ Changes
 0.6.6 (unreleased)
 ==================
 
-- Drop support for Python 3.4, add support for Python 3.8
+- Drop support for Python 3.4, 3.5, add support for Python 3.8
 - Fixed naive end balance validation (#106)
 - Modernize development environment (use pipenv, mypy, black)
 
