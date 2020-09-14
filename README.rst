@@ -1,6 +1,5 @@
-~~~~~~~~~~~~~
 OFX Statement
-~~~~~~~~~~~~~
+-------------
 
 .. image:: https://travis-ci.com/kedder/ofxstatement.svg?branch=master
     :target: https://travis-ci.com/kedder/ofxstatement
@@ -137,7 +136,7 @@ Plugin                            Description
 `ofxstatement-iso20022`_          Support for generic ISO-20022 format
 `ofxstatement-seb`_               SEB (Sweden), it parses Export.xlsx for private accounts
 `ofxstatement-alfabank`_          AlfaBank (Russia), it parses movementList.csv for private accounts
-`ofxstatement-paypal`_            PayPal, it parses *.csv for private accounts
+`ofxstatement-paypal`_            PayPal, it parses ``*.csv`` for private accounts
 `ofxstatement-polish`_            Support for some Polish banks and financial institutions
 `ofxstatement-russian`_           Support for several Russian banks: Avangard, Tinkoff, Sberbank (debit).
 `ofxstatement-dab`_               DAB Bank (Germany)
