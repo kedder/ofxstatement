@@ -5,7 +5,7 @@ Changes
 0.7.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Include PEP-561 marker into source code distribution
 
 
 0.7.0 (2020-09-13)

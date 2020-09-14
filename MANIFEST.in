@@ -1,3 +1,4 @@
 include CHANGES.rst README.rst
 include src/ofxstatement/plugins/README.txt
+include src/ofxstatement/py.typed
 graft src/ofxstatement/tests/samples
