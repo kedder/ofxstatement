@@ -126,6 +126,7 @@ Plugin                            Description
                                   Easybank, ING-Diba, Livebank, Raiffeisenbank.
 `ofxstatement-postfinance`_       Swiss PostFinance (E-Finance Java text based bank/credit statements).
 `ofxstatement-mbank-sk`_          MBank.sk
+`ofxstatement-be-belfius`_        Belfius (Belgium)
 `ofxstatement-be-keytrade`_       KeytradeBank (Belgium)
 `ofxstatement-be-ing`_            ING (Belgium)
 `ofxstatement-be-kbc`_            KBC (Belgium)
