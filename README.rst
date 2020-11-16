@@ -159,6 +159,7 @@ Plugin                            Description
 `ofxstatement-dutch`_             Dutch financial institutes like ICSCards and ING
 `ofxstatement-french`_            French financial institutes like BanquePopulaire
 `ofxstatement-mt940`_             All financial institutes providing Swift MT940 statements
+`ofxstatement-it-banks`_          Widiba and Webank italian banks
 ================================= ============================================
 
 
@@ -209,6 +210,7 @@ Plugin                            Description
 .. _ofxstatement-dutch: https://github.com/gpaulissen/ofxstatement-dutch
 .. _ofxstatement-french: https://github.com/gpaulissen/ofxstatement-french
 .. _ofxstatement-mt940: https://github.com/gpaulissen/ofxstatement-mt940
+.. _ofxstatement-it-banks: https://github.com/ecorini/ofxstatement-it-banks
 
 Advanced Configuration
 ======================
