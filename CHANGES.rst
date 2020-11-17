@@ -4,7 +4,8 @@ Changes
 0.7.2 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Support OFX CURRENCY and ORIGCURRENCY in statement lines. This allows plugins
+  to add information about transaction currency to generated OFX statements.
 
 
 0.7.1 (2020-09-14)
