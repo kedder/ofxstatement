@@ -120,6 +120,13 @@ class StatementLine(Printable):
     # Optional BankAccount instance
     bank_account_to: Optional["BankAccount"] = None
 
+    # Currency this line is expressed in (if different from statement
+    # currency). Available since 0.7.2
+    currency: Optional["Currency"] = None
+
+    # Original amount and the original (foreign) currency. Available since 0.7.2
+    orig_currency: Optional["Currency"] = None
+
     def __init__(
         self, id: str = None, date: datetime = None, memo: str = None, amount: D = None
     ) -> None:
@@ -157,6 +164,22 @@ class StatementLine(Printable):
             self.bank_account_to.assert_valid()
 
         assert self.id or self.check_no or self.refnum
+
+
+class Currency(Printable):
+    """CURRENCY and ORIGCURRENCY aggregates from OFX
+
+    See section 5.2 from OFX spec version 2.2.
+    """
+
+    # ISO-4217 3-letter currency identifier
+    symbol: str
+    # Ratio of statement currency to `symbol` currency
+    rate: Optional[D]
+
+    def __init__(self, symbol: str, rate: D = None) -> None:
+        self.symbol = symbol
+        self.rate = rate
 
 
 class BankAccount(Printable):

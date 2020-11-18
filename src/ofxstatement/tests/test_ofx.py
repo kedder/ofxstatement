@@ -4,7 +4,7 @@ from decimal import Decimal
 
 from datetime import datetime
 
-from ofxstatement.statement import Statement, StatementLine, BankAccount
+from ofxstatement.statement import Statement, StatementLine, BankAccount, Currency
 from ofxstatement import ofx
 
 SIMPLE_OFX = """<?xml version="1.0" ?>
@@ -66,6 +66,13 @@ NEWFILEUID:NONE
                             <ACCTID>LT1232</ACCTID>
                             <ACCTTYPE>CHECKING</ACCTTYPE>
                         </BANKACCTTO>
+                        <CURRENCY>
+                            <CURSYM>USD</CURSYM>
+                        </CURRENCY>
+                        <ORIG_CURRENCY>
+                            <CURSYM>EUR</CURSYM>
+                            <CURRATE>3.45</CURRATE>
+                        </ORIG_CURRENCY>
                     </STMTTRN>
                 </BANKTRANLIST>
                 <LEDGERBAL>
@@ -96,6 +103,8 @@ class OfxWriterTest(TestCase):
         line.payee = ""
         line.bank_account_to = BankAccount("SNORAS", "LT1232")
         line.bank_account_to.branch_id = "VNO"
+        line.currency = Currency("USD")
+        line.orig_currency = Currency("EUR", Decimal("3.4543"))
         statement.lines.append(line)
 
         # Create writer:

@@ -4,7 +4,7 @@ from decimal import Decimal
 
 from xml.etree import ElementTree as etree
 
-from ofxstatement.statement import Statement, StatementLine, BankAccount
+from ofxstatement.statement import Statement, StatementLine, BankAccount, Currency
 
 
 class OfxWriter(object):
@@ -109,13 +109,22 @@ class OfxWriter(object):
         self.buildText("NAME", line.payee)
         self.buildText("MEMO", line.memo)
         self.buildText("REFNUM", line.refnum)
-        # self.buildText("CURRENCY", line.currency)
         if line.bank_account_to:
             tb.start("BANKACCTTO", {})
             self.buildBankAccount(line.bank_account_to)
             tb.end("BANKACCTTO")
+        if line.currency is not None:
+            self.buildCurrency("CURRENCY", line.currency)
+        if line.orig_currency is not None:
+            self.buildCurrency("ORIG_CURRENCY", line.orig_currency)
 
         tb.end("STMTTRN")
+
+    def buildCurrency(self, tag: str, currency: Currency) -> None:
+        self.tb.start(tag, {})
+        self.buildText("CURSYM", currency.symbol)
+        self.buildAmount("CURRATE", currency.rate)
+        self.tb.end(tag)
 
     def buildBankAccount(self, account: BankAccount) -> None:
         self.buildText("BANKID", account.bank_id)
