@@ -287,5 +287,5 @@ def recalculate_balance(stmt: Statement) -> None:
 
     stmt.start_balance = stmt.start_balance or D(0)
     stmt.end_balance = stmt.start_balance + total_amount
-    stmt.start_date = min(sl.date for sl in stmt.lines)
-    stmt.end_date = max(sl.date for sl in stmt.lines)
+    stmt.start_date = min(sl.date for sl in stmt.lines if sl.date is not None)
+    stmt.end_date = max(sl.date for sl in stmt.lines if sl.date is not None)
