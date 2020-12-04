@@ -20,3 +20,10 @@ script:
   - pipenv run mypy src
 after_success:
   coveralls
+jobs: 
+  exclude:
+    - arch: ppc64le
+      python: 3.6
+    - arch: ppc64le
+      python: 3.7
+   
