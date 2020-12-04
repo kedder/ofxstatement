@@ -6,14 +6,14 @@ language: python
 python:
   - "3.6"
   - "3.7"
-  - "3.8"  
-if [[ "$TRAVIS_CPU_ARCH" == "ppc64le" ]]; then
+  - "3.8"
 before_install:
-  - curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py > get-poetry.py
-  - python get-poetry.py -y --version 1.0.0b3
-  - source ~/.poetry/env 
-fi  
- 
+  - |
+    if [[ "$TRAVIS_CPU_ARCH" == "ppc64le" ]]; then
+    curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py > get-poetry.py
+    python get-poetry.py -y --version 1.0.0b3
+    source ~/.poetry/env 
+    fi  
 install:
   - pip install pipenv coveralls[yaml]
   - pipenv sync --dev
@@ -29,4 +29,3 @@ jobs:
       python: 3.6
     - arch: ppc64le
       python: 3.7
-   
