@@ -6,6 +6,7 @@ import io
 import logging
 import logging.handlers
 import shutil
+from typing import Dict
 
 import mock
 
@@ -162,7 +163,8 @@ class ToolTests(unittest.TestCase):
         call = mock.Mock()
         subprocesspatch = mock.patch("subprocess.call", call)
 
-        envpatch = mock.patch("os.environ", {})
+        env: Dict[str, str] = {}
+        envpatch = mock.patch("os.environ", env)
 
         with locpatch, envpatch, mkdirspatch, subprocesspatch:
             tool.run(["edit-config"])
