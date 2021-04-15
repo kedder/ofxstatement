@@ -131,6 +131,7 @@ Plugin                            Description
 `ofxstatement-be-ing`_            ING (Belgium)
 `ofxstatement-be-kbc`_            KBC (Belgium)
 `ofxstatement-be-argenta`_        Argenta (Belgium)
+`ofxstatement-be-crelan`_         Crelan (Belgium)
 `ofxstatement-betterment`_        Betterment (https://www.betterment.com/)
 `ofxstatement-simple`_            Simple (the bank, https://www.simple.com/) JSON financial statement format
 `ofxstatement-latvian`_           Latvian banks
@@ -181,6 +182,7 @@ Plugin                            Description
 .. _ofxstatement-be-ing: https://github.com/jbbandos/ofxstatement-be-ing
 .. _ofxstatement-be-kbc: https://github.com/plenaerts/ofxstatement-be-kbc
 .. _ofxstatement-be-argenta: https://github.com/woutbr/ofxstatement-be-argenta
+.. _ofxstatement-be-crelan: https://gitlab.com/MagnificentMoustache/ofxstatement-be.crelan
 .. _ofxstatement-betterment: https://github.com/cmayes/ofxstatement-betterment
 .. _ofxstatement-simple: https://github.com/cmayes/ofxstatement-simple
 .. _ofxstatement-latvian: https://github.com/gintsmurans/ofxstatement-latvian
