@@ -214,7 +214,7 @@ class InvestStatementLine(Printable):
     security_id: Optional[str]
     # Transaction type, must be one of INVEST_TRANSACTION_TYPES
     trntype: Optional[str]
-    # More detailed information about transaction, must be None or one of INVEST_TRANSACTION_TYPES_DETAILED
+    # More detailed information about transaction, must be one of INVEST_TRANSACTION_TYPES_DETAILED
     trntype_detailed: Optional[str]
 
     # Amount of transaction
