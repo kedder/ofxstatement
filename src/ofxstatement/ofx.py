@@ -4,7 +4,7 @@ from decimal import Decimal
 
 from xml.etree import ElementTree as etree
 
-from ofxstatement.statement import Statement, StatementLine, BankAccount, Currency
+from ofxstatement.statement import Statement, StatementLine, InvestStatementLine, BankAccount, Currency
 
 
 class OfxWriter(object):
@@ -60,6 +60,13 @@ class OfxWriter(object):
         tb.end("SIGNONMSGSRSV1")
 
     def buildTransactionList(self) -> None:
+        if self.statement.lines:
+            self.buildBankTransactionList()
+
+        if self.statement.invest_lines:
+            self.buildInvestTransactionList()
+
+    def buildBankTransactionList(self) -> None:
         tb = self.tb
         tb.start("BANKMSGSRSV1", {})
         tb.start("STMTTRNRS", {})
@@ -83,7 +90,7 @@ class OfxWriter(object):
         self.buildDate("DTEND", self.statement.end_date, False)
 
         for line in self.statement.lines:
-            self.buildTransaction(line)
+            self.buildBankTransaction(line)
 
         tb.end("BANKTRANLIST")
 
@@ -96,7 +103,7 @@ class OfxWriter(object):
         tb.end("STMTTRNRS")
         tb.end("BANKMSGSRSV1")
 
-    def buildTransaction(self, line: StatementLine) -> None:
+    def buildBankTransaction(self, line: StatementLine) -> None:
         tb = self.tb
         tb.start("STMTTRN", {})
 
@@ -125,6 +132,106 @@ class OfxWriter(object):
         self.buildText("CURSYM", currency.symbol)
         self.buildAmount("CURRATE", currency.rate)
         self.tb.end(tag)
+
+    def buildInvestTransactionList(self) -> None:
+        tb = self.tb
+        tb.start("SECLISTMSGSRSV1", {})
+        tb.start("SECLIST", {})
+        tb.start("STOCKINFO", {})
+
+        # get unqiue tickers
+        for security_id in dict.fromkeys(map(lambda x: x.security_id ,self.statement.invest_lines)):
+            tb.start("SECINFO", {})
+            tb.start("SECID", {})
+            self.buildText("UNIQUEID", security_id)
+            self.buildText("UNIQUEIDTYPE", "TICKER")
+            tb.end("SECID")
+            self.buildText("SECNAME", security_id)
+            self.buildText("TICKER", security_id)
+            tb.end("SECINFO")
+
+        tb.end("STOCKINFO")
+        tb.end("SECLIST")
+        tb.end("SECLISTMSGSRSV1")
+
+        tb.start("INVSTMTMSGSRSV1", {})
+        tb.start("INVSTMTTRNRS", {})
+
+        self.buildText("TRNUID", "0")
+        tb.start("STATUS", {})
+        self.buildText("CODE", "0")
+        self.buildText("SEVERITY", "INFO")
+        tb.end("STATUS")
+
+        tb.start("INVSTMTRS", {})
+        self.buildDateTime("DTASOF", self.statement.end_date, False)
+        self.buildText("CURDEF", self.statement.currency)
+        tb.start("INVACCTFROM", {})
+        self.buildText("BROKERID", self.statement.broker_id, False)
+        self.buildText("ACCTID", self.statement.account_id, False)
+        tb.end("INVACCTFROM")
+
+        tb.start("INVTRANLIST", {})
+        self.buildDate("DTSTART", self.statement.start_date, False)
+        self.buildDate("DTEND", self.statement.end_date, False)
+
+        for line in self.statement.invest_lines:
+            self.buildInvestTransaction(line)
+
+        tb.end("INVTRANLIST")
+        tb.end("INVSTMTRS")
+        tb.end("INVSTMTTRNRS")
+        tb.end("INVSTMTMSGSRSV1")
+
+    def buildInvestTransaction(self, line: InvestStatementLine) -> None:
+        tb = self.tb
+
+        tran_type_detailed_tag_name = None
+        inner_tran_type_tag_name = None
+        if line.trntype.startswith("BUY"):
+            tran_type_detailed_tag_name = "BUYTYPE"
+            inner_tran_type_tag_name = "INVBUY"
+        elif line.trntype.startswith("SELL"):
+            tran_type_detailed_tag_name = "SELLTYPE"
+            inner_tran_type_tag_name = "INVSELL"
+        else:
+            tran_type_detailed_tag_name = "INCOMETYPE"
+            inner_tran_type_tag_name = None # income transactions don't have an envelope element
+            
+        tb.start(line.trntype, {})
+        self.buildText(tran_type_detailed_tag_name, line.trntype_detailed, False)
+
+        if inner_tran_type_tag_name:
+            tb.start(inner_tran_type_tag_name, {})
+
+        tb.start("INVTRAN", {})
+        self.buildText("FITID", line.id)
+        self.buildDate("DTTRADE", line.date, False)
+        self.buildText("MEMO", line.memo)
+        tb.end("INVTRAN")
+
+        tb.start("SECID", {})
+        self.buildText("UNIQUEID", line.security_id, False)
+        self.buildText("UNIQUEIDTYPE", "TICKER")
+        tb.end("SECID")
+
+        self.buildText("SUBACCTSEC", "OTHER")
+        self.buildText("SUBACCTFUND", "OTHER")
+        
+        if line.fees:
+            if line.trntype == "INCOME":
+                self.buildAmount("WITHHOLDING", line.fees, False)
+            else:
+                self.buildAmount("FEES", line.fees, False)
+
+        self.buildAmount("UNITPRICE", line.unit_price)
+        self.buildAmount("UNITS", line.units)
+
+        self.buildAmount("TOTAL", line.amount, False)
+
+        if inner_tran_type_tag_name:
+            tb.end(inner_tran_type_tag_name)
+        tb.end(line.trntype)
 
     def buildBankAccount(self, account: BankAccount) -> None:
         self.buildText("BANKID", account.bank_id)
@@ -168,4 +275,4 @@ class OfxWriter(object):
         if amount is None:
             self.buildText(tag, "", skipEmpty)
         else:
-            self.buildText(tag, "%.2f" % amount)
+            self.buildText(tag, "%.5f" % amount)
