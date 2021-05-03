@@ -177,7 +177,7 @@ class StatementLine(Printable):
     def assert_valid(self) -> None:
         """Ensure that fields have valid values"""
         assert self.trntype in TRANSACTION_TYPES, (
-            "trntype must be one of %s" % TRANSACTION_TYPES
+            "trntype %s is not valid, must be one of %s" % (self.trntype, TRANSACTION_TYPES)
         )
 
         if self.bank_account_to:
@@ -254,11 +254,11 @@ class InvestStatementLine(Printable):
     def assert_valid(self) -> None:
         """Ensure that fields have valid values"""
         assert self.trntype in INVEST_TRANSACTION_TYPES, (
-            "trntype must be one of %s" % INVEST_TRANSACTION_TYPES
+            "trntype %s is not valid, must be one of %s" % (self.trntype, INVEST_TRANSACTION_TYPES)
         )
 
         assert self.trntype_detailed in INVEST_TRANSACTION_TYPES_DETAILED, (
-            "trntype_detailed must one of %s" % INVEST_TRANSACTION_TYPES_DETAILED
+            "trntype_detailed %s is not valid, must be one of %s" % (self.trntype_detailed, INVEST_TRANSACTION_TYPES_DETAILED)
         )
         
         assert self.id
