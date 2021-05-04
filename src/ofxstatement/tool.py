@@ -21,6 +21,9 @@ log = logging.getLogger(__name__)
 def smart_open(filename: str = None, encoding: str = None):
     """See https://stackoverflow.com/questions/17602878/how-to-handle-both-with-open-and-sys-stdout-nicely"""  # noqa
     if filename and filename != "-":
+        # encoding is required in cases when OS defaults to encoding which
+        # doesn't support unicode characters, for example Windows defaults to
+        # 'cp1252'
         fh = open(filename, "w", encoding=encoding)
     else:
         fh = sys.stdout

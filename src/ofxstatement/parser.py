@@ -43,6 +43,9 @@ class StatementParser(AbstractStatementParser, Generic[LT]):
             self.cur_record += 1
             if not line:
                 continue
+            # OFX importer plugins don't support 100% of OFX spec, so in certain cases
+            # (ex: transfer + bank fees, or income + federal tax), it's easier to export
+            # a single line from statement as 2 or more transactions
             parsed_stmt_lines = self.parse_record(line)
             if parsed_stmt_lines:
                 if not isinstance(parsed_stmt_lines, list):
@@ -61,8 +64,8 @@ class StatementParser(AbstractStatementParser, Generic[LT]):
         """Return iterable object consisting of a line per transaction"""
         raise NotImplementedError
 
-    def parse_record(self, line: LT) -> Optional[StatementLine]:  # pragma: no cover
-        """Parse given transaction line and return StatementLine object"""
+    def parse_record(self, line: LT) -> Any:  # pragma: no cover
+        """Parse given transaction line and return None, single instance or list of StatementLine or InvestStatementLine objects"""
         raise NotImplementedError
 
     def parse_value(self, value: Optional[str], field: str) -> Any:
