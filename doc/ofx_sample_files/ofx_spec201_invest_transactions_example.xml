@@ -1,0 +1,128 @@
+<!--
+OFXHEADER:100
+DATA:OFXSGML
+VERSION:102
+SECURITY:NONE
+ENCODING:UTF-8
+CHARSET:NONE
+COMPRESSION:NONE
+OLDFILEUID:NONE
+NEWFILEUID:NONE
+-->
+<OFX>                                     <!-- Begin response data -->
+   <SIGNONMSGSRSV1>
+    <SONRS>                               <!-- Begin signon -->
+      <STATUS>                            <!-- Begin status aggregate -->
+        <CODE>0</CODE>                    <!-- OK -->
+        <SEVERITY>INFO</SEVERITY>
+      </STATUS>
+      <DTSERVER>19991029101003</DTSERVER> <!-- Oct. 29, 1999, 10:10:03 am -->
+      <LANGUAGE>ENG</LANGUAGE>            <!-- Language used in response -->
+      <DTPROFUP>19991029101003</DTPROFUP> <!-- Last update to profile-->
+      <DTACCTUP>19991029101003</DTACCTUP> <!-- Last account update -->
+      <FI>                                <!-- ID of receiving institution -->
+        <ORG>NCH</ORG>                    <!-- Name of ID owner -->
+        <FID>1001</FID>                   <!-- Actual ID -->
+      </FI>
+    </SONRS>                              <!-- End of signon -->
+  </SIGNONMSGSRSV1>
+  <SECLISTMSGSRSV1>                       <!-- List of securities block. Each securtity mentioned in invest transactions must be listed here -->
+    <SECLIST>
+      <STOCKINFO>
+        <SECINFO>                         <!-- Each security will have its own SECINFO -->
+          <SECID>
+            <UNIQUEID>AAPL</UNIQUEID>     <!-- ID of security, for simplicity just reuse ticker -->
+            <UNIQUEIDTYPE>TICKER</UNIQUEIDTYPE>
+          </SECID>
+          <SECNAME>AAPL</SECNAME>         <!-- Full name of security (for simplicty just reuse ticker) -->
+          <TICKER>AAPL</TICKER>           <!-- Ticker -->
+        </SECINFO>
+        <SECINFO>
+          <SECID>
+            <UNIQUEID>MSFT</UNIQUEID>
+            <UNIQUEIDTYPE>TICKER</UNIQUEIDTYPE>
+          </SECID>
+          <SECNAME>MSFT</SECNAME>
+          <TICKER>MSFT</TICKER>
+        </SECINFO>
+      </STOCKINFO>
+    </SECLIST>
+  </SECLISTMSGSRSV1>
+  <INVSTMTMSGSRSV1>                       <!-- Invest transactions block -->
+    <INVSTMTTRNRS>
+      <TRNUID>1002</TRNUID>               <!-- ID of statement -->
+      <STATUS>
+        <CODE>0</CODE>
+        <SEVERITY>INFO</SEVERITY>
+      </STATUS>
+      <INVSTMTRS>
+        <DTASOF>20210501</DTASOF>         <!-- Date of statement, May. 1, 2021 -->
+        <CURDEF>USD</CURDEF>
+        <INVACCTFROM>
+          <BROKERID>Your broker name</BROKERID><!-- ID of your broker, same idea with FI ID in bank statements -->
+          <ACCTID>your broker account ID</ACCTID><!-- ID of your account in the broker -->
+        </INVACCTFROM>
+        <INVTRANLIST>
+          <DTSTART>20210101</DTSTART>     <!-- Start date: Jan. 1, 2021 -->
+          <DTEND>20210501</DTEND>         <!-- End date: May. 1, 2021 -->
+          <!-- Below goes the list of transactions, each block represents a single transaction -->
+          <BUYSTOCK>                      <!-- trntype -->
+            <BUYTYPE>BUY</BUYTYPE>        <!-- trntype_detailed, can be BUY or BUYTOCOVER (for closing short-sell positions) -->
+            <INVBUY>                      <!-- always INVBUY for buy transactions -->
+              <INVTRAN>                   <!-- basic info -->
+                <FITID>1234567</FITID>    <!-- Unique ID of transaction -->
+                <DTTRADE>20210128</DTTRADE><!-- Date of transaction, Jan. 28, 2021 -->
+                <MEMO>Purchased 3 Apple (AAPL) at USD 138.28, total: USD 414.84, fees USD 1.24, transaction ID: 1234567</MEMO>
+              </INVTRAN>
+              <SECID>
+                <UNIQUEID>AAPL</UNIQUEID> <!-- Linking to security from SECLIST above -->
+                <UNIQUEIDTYPE>TICKER</UNIQUEIDTYPE>
+              </SECID>
+              <SUBACCTSEC>OTHER</SUBACCTSEC><!-- Sub-account type for the security: CASH, MARGIN, SHORT, OTHER -->
+              <SUBACCTFUND>OTHER</SUBACCTFUND><!-- Where did the money for the transaction come from or go to? CASH, MARGIN, SHORT, OTHER -->
+              <FEES>1.24000</FEES>        <!-- Fees associates with transaction -->
+              <UNITPRICE>138.28000</UNITPRICE><!-- Price for 1 unit -->
+              <UNITS>3.00000</UNITS>      <!-- How many units were purchased; has to be positive value -->
+              <TOTAL>-416.08000</TOTAL>   <!-- Total expenses to purchase, including fees; has to be negative value -->
+            </INVBUY>
+          </BUYSTOCK>
+          <SELLSTOCK>                     <!-- trntype -->
+            <SELLTYPE>SELL</SELLTYPE>     <!-- trntype_detailed, can be SELL or SELLSHORT -->
+            <INVSELL>
+              <INVTRAN>
+                <FITID>234567</FITID>
+                <DTTRADE>20210226</DTTRADE>
+                <MEMO>Sold 5 Microsoft (MSFT) at USD 225.63, total: USD 1128.15, fees USD 0.28, transaction ID: 234567</MEMO>
+              </INVTRAN>
+              <SECID>
+                <UNIQUEID>MSFT</UNIQUEID>
+                <UNIQUEIDTYPE>TICKER</UNIQUEIDTYPE>
+              </SECID>
+              <SUBACCTSEC>OTHER</SUBACCTSEC>
+              <SUBACCTFUND>OTHER</SUBACCTFUND>
+              <FEES>0.28000</FEES>
+              <UNITPRICE>225.63000</UNITPRICE>
+              <UNITS>-5.00000</UNITS>     <!-- Sell transactions should have negative value in units -->
+              <TOTAL>1127.87000</TOTAL>   <!-- Total revenue from sell, minus fees; has to be positive value -->
+            </INVSELL>
+          </SELLSTOCK>
+          <INCOME>                        <!-- trntype -->
+            <INCOMETYPE>DIV</INCOMETYPE>  <!-- trntype_detailed, can be DIV (dividend), INTEREST, CGLONG (capital gains-long term), CGSHORT(capital gains-short term), MISC-->
+            <INVTRAN>
+              <FITID>54321</FITID>
+              <DTTRADE>20210319</DTTRADE>
+              <MEMO>Dividends from Microsoft, USD 0.79</MEMO>
+            </INVTRAN>
+            <SECID>
+              <UNIQUEID>MSFT</UNIQUEID>
+              <UNIQUEIDTYPE>TICKER</UNIQUEIDTYPE>
+            </SECID>
+            <SUBACCTSEC>OTHER</SUBACCTSEC>
+            <SUBACCTFUND>OTHER</SUBACCTFUND>
+            <TOTAL>0.79000</TOTAL>
+          </INCOME>
+        </INVTRANLIST>
+      </INVSTMTRS>
+    </INVSTMTTRNRS>
+  </INVSTMTMSGSRSV1>
+</OFX>                                    <!-- End of response data -->
