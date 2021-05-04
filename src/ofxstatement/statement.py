@@ -220,8 +220,8 @@ class InvestStatementLine(Printable):
     # Amount of transaction
     amount: Optional[D]
     fees: Optional[D] = None
-    unit_price: Optional[D] = None # unit_price and units is required for all buy/sell transactions
-    units: Optional[D] = None
+    unit_price: Optional[D] = None # required for buy/sell transactions
+    units: Optional[D] = None # required for buy/sell transactions
 
     def __init__(
         self, id: str = None, date: datetime = None, memo: str = None, trntype: str = None, trntype_detailed: str = None, security_id: str = None, amount: D = None
