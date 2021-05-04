@@ -158,6 +158,7 @@ class OfxInvestLinesWriterTest(TestCase):
         invest_line.units = Decimal("3")
         invest_line.unit_price = Decimal("138.28")
         invest_line.fees = Decimal("1.24")
+        invest_line.assert_valid()
         statement.invest_lines.append(invest_line)
 
         invest_line = InvestStatementLine(
@@ -172,6 +173,7 @@ class OfxInvestLinesWriterTest(TestCase):
         invest_line.units = Decimal("-5")
         invest_line.unit_price = Decimal("225.63")
         invest_line.fees = Decimal("0.28")
+        invest_line.assert_valid()
         statement.invest_lines.append(invest_line)
 
         invest_line = InvestStatementLine(
@@ -184,6 +186,7 @@ class OfxInvestLinesWriterTest(TestCase):
             Decimal("0.79"),
         )
         invest_line.fees = Decimal("0.5")
+        invest_line.assert_valid()
         statement.invest_lines.append(invest_line)
 
         # Create writer:
