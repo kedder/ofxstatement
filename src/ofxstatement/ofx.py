@@ -192,6 +192,10 @@ class OfxWriter(object):
         tb.end("INVSTMTMSGSRSV1")
 
     def buildInvestTransaction(self, line: InvestStatementLine) -> None:
+        # invest transactions must always have trntype and trntype_detailed
+        if line.trntype is None or line.trntype_detailed is None:
+            return
+
         tb = self.tb
 
         tran_type_detailed_tag_name = None
