@@ -122,6 +122,7 @@ NEWFILEUID:NONE
                         </SECID>
                         <SUBACCTSEC>OTHER</SUBACCTSEC>
                         <SUBACCTFUND>OTHER</SUBACCTFUND>
+                        <WITHHOLDING>0.50000</WITHHOLDING>
                         <TOTAL>0.79000</TOTAL>
                     </INCOME>
                 </INVTRANLIST>
@@ -158,6 +159,7 @@ class OfxInvestLinesWriterTest(TestCase):
         statement.invest_lines.append(invest_line)
 
         invest_line = InvestStatementLine("5", datetime(2021, 1, 1), "Sample 5", "INCOME", "DIV", "MSFT", Decimal("0.79"))
+        invest_line.fees = Decimal("0.5")
         statement.invest_lines.append(invest_line)
 
         # Create writer:
