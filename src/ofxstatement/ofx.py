@@ -4,7 +4,13 @@ from decimal import Decimal
 
 from xml.etree import ElementTree as etree
 
-from ofxstatement.statement import Statement, StatementLine, InvestStatementLine, BankAccount, Currency
+from ofxstatement.statement import (
+    Statement,
+    StatementLine,
+    InvestStatementLine,
+    BankAccount,
+    Currency,
+)
 
 
 class OfxWriter(object):
@@ -140,7 +146,9 @@ class OfxWriter(object):
         tb.start("STOCKINFO", {})
 
         # get unqiue tickers
-        for security_id in dict.fromkeys(map(lambda x: x.security_id, self.statement.invest_lines)):
+        for security_id in dict.fromkeys(
+            map(lambda x: x.security_id, self.statement.invest_lines)
+        ):
             tb.start("SECINFO", {})
             tb.start("SECID", {})
             self.buildText("UNIQUEID", security_id)
@@ -196,8 +204,10 @@ class OfxWriter(object):
             inner_tran_type_tag_name = "INVSELL"
         else:
             tran_type_detailed_tag_name = "INCOMETYPE"
-            inner_tran_type_tag_name = None # income transactions don't have an envelope element
-            
+            inner_tran_type_tag_name = (
+                None  # income transactions don't have an envelope element
+            )
+
         tb.start(line.trntype, {})
         self.buildText(tran_type_detailed_tag_name, line.trntype_detailed, False)
 
@@ -217,7 +227,7 @@ class OfxWriter(object):
 
         self.buildText("SUBACCTSEC", "OTHER")
         self.buildText("SUBACCTFUND", "OTHER")
-        
+
         if line.fees:
             if line.trntype == "INCOME":
                 self.buildAmount("WITHHOLDING", line.fees, False)

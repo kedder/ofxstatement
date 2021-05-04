@@ -145,20 +145,44 @@ class OfxInvestLinesWriterTest(TestCase):
         statement = Statement("BID", "ACCID", "LTL")
         statement.broker_id = "BROKERID"
         statement.end_date = datetime(2021, 5, 1)
-        
-        invest_line = InvestStatementLine("3", datetime(2021, 1, 1), "Sample 3", "BUYSTOCK", "BUY", "AAPL", Decimal("-416.08"))
+
+        invest_line = InvestStatementLine(
+            "3",
+            datetime(2021, 1, 1),
+            "Sample 3",
+            "BUYSTOCK",
+            "BUY",
+            "AAPL",
+            Decimal("-416.08"),
+        )
         invest_line.units = Decimal("3")
         invest_line.unit_price = Decimal("138.28")
         invest_line.fees = Decimal("1.24")
         statement.invest_lines.append(invest_line)
-        
-        invest_line = InvestStatementLine("4", datetime(2021, 1, 1), "Sample 4", "SELLSTOCK", "SELL", "MSFT", Decimal("1127.87"))
+
+        invest_line = InvestStatementLine(
+            "4",
+            datetime(2021, 1, 1),
+            "Sample 4",
+            "SELLSTOCK",
+            "SELL",
+            "MSFT",
+            Decimal("1127.87"),
+        )
         invest_line.units = Decimal("-5")
         invest_line.unit_price = Decimal("225.63")
         invest_line.fees = Decimal("0.28")
         statement.invest_lines.append(invest_line)
 
-        invest_line = InvestStatementLine("5", datetime(2021, 1, 1), "Sample 5", "INCOME", "DIV", "MSFT", Decimal("0.79"))
+        invest_line = InvestStatementLine(
+            "5",
+            datetime(2021, 1, 1),
+            "Sample 5",
+            "INCOME",
+            "DIV",
+            "MSFT",
+            Decimal("0.79"),
+        )
         invest_line.fees = Decimal("0.5")
         statement.invest_lines.append(invest_line)
 

@@ -50,7 +50,7 @@ class StatementParser(AbstractStatementParser, Generic[LT]):
             if parsed_stmt_lines:
                 if not isinstance(parsed_stmt_lines, list):
                     parsed_stmt_lines = [parsed_stmt_lines]
-                
+
                 for stmt_line in parsed_stmt_lines:
                     stmt_line.assert_valid()
 

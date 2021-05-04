@@ -38,11 +38,11 @@ INVEST_TRANSACTION_TYPES = [
 
 INVEST_TRANSACTION_TYPES_DETAILED = [
     "BUY",
-    "BUYTOCOVER", # end short sale
+    "BUYTOCOVER",  # end short sale
     "SELL",
-    "SELLSHORT", # open short sale
-    "DIV", # only for INCOME
-    "INTEREST", # only for INCOME
+    "SELLSHORT",  # open short sale
+    "DIV",  # only for INCOME
+    "INTEREST",  # only for INCOME
 ]
 
 ACCOUNT_TYPE = [
@@ -176,8 +176,11 @@ class StatementLine(Printable):
 
     def assert_valid(self) -> None:
         """Ensure that fields have valid values"""
-        assert self.trntype in TRANSACTION_TYPES, (
-            "trntype %s is not valid, must be one of %s" % (self.trntype, TRANSACTION_TYPES)
+        assert (
+            self.trntype in TRANSACTION_TYPES
+        ), "trntype %s is not valid, must be one of %s" % (
+            self.trntype,
+            TRANSACTION_TYPES,
         )
 
         if self.bank_account_to:
@@ -209,7 +212,7 @@ class InvestStatementLine(Printable):
     # Date transaction was posted to account
     date: Optional[datetime]
     memo: Optional[str]
-    
+
     # ID or ticker of underlying security
     security_id: Optional[str]
     # Transaction type, must be one of INVEST_TRANSACTION_TYPES
@@ -220,11 +223,18 @@ class InvestStatementLine(Printable):
     # Amount of transaction
     amount: Optional[D]
     fees: Optional[D] = None
-    unit_price: Optional[D] = None # required for buy/sell transactions
-    units: Optional[D] = None # required for buy/sell transactions
+    unit_price: Optional[D] = None  # required for buy/sell transactions
+    units: Optional[D] = None  # required for buy/sell transactions
 
     def __init__(
-        self, id: str = None, date: datetime = None, memo: str = None, trntype: str = None, trntype_detailed: str = None, security_id: str = None, amount: D = None
+        self,
+        id: str = None,
+        date: datetime = None,
+        memo: str = None,
+        trntype: str = None,
+        trntype_detailed: str = None,
+        security_id: str = None,
+        amount: D = None,
     ) -> None:
         self.id = id
         self.date = date
@@ -239,32 +249,38 @@ class InvestStatementLine(Printable):
             ID: %s, date: %s, trntype: %s, trntype_detailed: %s, security_id: %s, units: %s, unit_price: %s, amount: %s, fees: %s
             memo: %s
             """ % (
-                self.id,
-                self.date,
-                self.trntype,
-                self.trntype_detailed,
-                self.security_id,
-                self.units,
-                self.unit_price,
-                self.amount,
-                self.fees,
-                self.memo,
-            )
+            self.id,
+            self.date,
+            self.trntype,
+            self.trntype_detailed,
+            self.security_id,
+            self.units,
+            self.unit_price,
+            self.amount,
+            self.fees,
+            self.memo,
+        )
 
     def assert_valid(self) -> None:
         """Ensure that fields have valid values"""
-        assert self.trntype in INVEST_TRANSACTION_TYPES, (
-            "trntype %s is not valid, must be one of %s" % (self.trntype, INVEST_TRANSACTION_TYPES)
+        assert (
+            self.trntype in INVEST_TRANSACTION_TYPES
+        ), "trntype %s is not valid, must be one of %s" % (
+            self.trntype,
+            INVEST_TRANSACTION_TYPES,
         )
 
-        assert self.trntype_detailed in INVEST_TRANSACTION_TYPES_DETAILED, (
-            "trntype_detailed %s is not valid, must be one of %s" % (self.trntype_detailed, INVEST_TRANSACTION_TYPES_DETAILED)
+        assert (
+            self.trntype_detailed in INVEST_TRANSACTION_TYPES_DETAILED
+        ), "trntype_detailed %s is not valid, must be one of %s" % (
+            self.trntype_detailed,
+            INVEST_TRANSACTION_TYPES_DETAILED,
         )
-        
+
         assert self.id
         assert self.security_id
         assert self.amount
-        
+
         assert self.trntype == "INCOME" or self.units
         assert self.trntype == "INCOME" or self.unit_price
 
