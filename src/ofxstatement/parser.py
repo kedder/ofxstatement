@@ -4,7 +4,7 @@ import csv
 from decimal import Decimal, Decimal as D
 from datetime import datetime
 
-from ofxstatement.statement import Statement, StatementLine, InvestStatementLine
+from ofxstatement.statement import Statement, StatementLine
 
 LT = TypeVar("LT")
 
@@ -43,29 +43,18 @@ class StatementParser(AbstractStatementParser, Generic[LT]):
             self.cur_record += 1
             if not line:
                 continue
-            # OFX importer plugins don't support 100% of OFX spec, so in certain cases
-            # (ex: transfer + bank fees, or income + federal tax), it's easier to export
-            # a single line from statement as 2 or more transactions
-            parsed_stmt_lines = self.parse_record(line)
-            if parsed_stmt_lines:
-                if not isinstance(parsed_stmt_lines, list):
-                    parsed_stmt_lines = [parsed_stmt_lines]
-
-                for stmt_line in parsed_stmt_lines:
-                    stmt_line.assert_valid()
-
-                    if isinstance(stmt_line, InvestStatementLine):
-                        self.statement.invest_lines.append(stmt_line)
-                    else:
-                        self.statement.lines.append(stmt_line)
+            stmt_line = self.parse_record(line)
+            if stmt_line:
+                stmt_line.assert_valid()
+                self.statement.lines.append(stmt_line)
         return self.statement
 
     def split_records(self) -> Iterable[LT]:  # pragma: no cover
         """Return iterable object consisting of a line per transaction"""
         raise NotImplementedError
 
-    def parse_record(self, line: LT) -> Any:  # pragma: no cover
-        """Parse given transaction line and return None, single instance or list of StatementLine or InvestStatementLine objects"""
+    def parse_record(self, line: LT) -> Optional[StatementLine]:  # pragma: no cover
+        """Parse given transaction line and return StatementLine object"""
         raise NotImplementedError
 
     def parse_value(self, value: Optional[str], field: str) -> Any:

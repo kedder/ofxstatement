@@ -50,14 +50,14 @@ NEWFILEUID:NONE
                     <STMTTRN>
                         <TRNTYPE>CHECK</TRNTYPE>
                         <DTPOSTED>20120212</DTPOSTED>
-                        <TRNAMT>15.40000</TRNAMT>
+                        <TRNAMT>15.40</TRNAMT>
                         <FITID>1</FITID>
                         <MEMO>Sample 1</MEMO>
                     </STMTTRN>
                     <STMTTRN>
                         <TRNTYPE>CHECK</TRNTYPE>
                         <DTPOSTED>20120212</DTPOSTED>
-                        <TRNAMT>25.00000</TRNAMT>
+                        <TRNAMT>25.00</TRNAMT>
                         <FITID>2</FITID>
                         <MEMO>Sample 2</MEMO>
                         <BANKACCTTO>
@@ -71,7 +71,7 @@ NEWFILEUID:NONE
                         </CURRENCY>
                         <ORIG_CURRENCY>
                             <CURSYM>EUR</CURSYM>
-                            <CURRATE>3.45430</CURRATE>
+                            <CURRATE>3.45</CURRATE>
                         </ORIG_CURRENCY>
                     </STMTTRN>
                 </BANKTRANLIST>

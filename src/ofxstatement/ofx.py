@@ -18,6 +18,8 @@ class OfxWriter(object):
         self.statement = statement
         self.genTime = datetime.now()
         self.tb = etree.TreeBuilder()
+        self.default_float_precision = 2
+        self.invest_transactions_float_precision = 5
 
     def toxml(self) -> str:
         et = self.buildDocument()
@@ -234,14 +236,33 @@ class OfxWriter(object):
 
         if line.fees:
             if line.trntype == "INCOME":
-                self.buildAmount("WITHHOLDING", line.fees, False)
+                self.buildAmount(
+                    "WITHHOLDING",
+                    line.fees,
+                    False,
+                    precision=self.invest_transactions_float_precision,
+                )
             else:
-                self.buildAmount("FEES", line.fees, False)
+                self.buildAmount(
+                    "FEES",
+                    line.fees,
+                    False,
+                    precision=self.invest_transactions_float_precision,
+                )
 
-        self.buildAmount("UNITPRICE", line.unit_price)
+        self.buildAmount(
+            "UNITPRICE",
+            line.unit_price,
+            precision=self.invest_transactions_float_precision,
+        )
         self.buildAmount("UNITS", line.units)
 
-        self.buildAmount("TOTAL", line.amount, False)
+        self.buildAmount(
+            "TOTAL",
+            line.amount,
+            False,
+            precision=self.invest_transactions_float_precision,
+        )
 
         if inner_tran_type_tag_name:
             tb.end(inner_tran_type_tag_name)
@@ -282,11 +303,18 @@ class OfxWriter(object):
             self.buildText(tag, dt.strftime("%Y%m%d%H%M%S"))
 
     def buildAmount(
-        self, tag: str, amount: Optional[Decimal], skipEmpty: bool = True
+        self,
+        tag: str,
+        amount: Optional[Decimal],
+        skipEmpty: bool = True,
+        precision: Optional[int] = None,
     ) -> None:
         if amount is None and skipEmpty:
             return
         if amount is None:
             self.buildText(tag, "", skipEmpty)
         else:
-            self.buildText(tag, "%.5f" % amount)
+            if precision is None:
+                precision = self.default_float_precision
+
+            self.buildText(tag, "{0:.{precision}f}".format(amount, precision=precision))
