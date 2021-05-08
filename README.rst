@@ -132,6 +132,8 @@ Plugin                            Description
 `ofxstatement-be-kbc`_            KBC (Belgium)
 `ofxstatement-be-argenta`_        Argenta (Belgium)
 `ofxstatement-be-crelan`_         Crelan (Belgium)
+`ofxstatement-be-triodos`_        Belgian Triodos Bank CSV statements
+`ofxstatement-be-newb`_           Belgian cooperative bank newB
 `ofxstatement-betterment`_        Betterment (https://www.betterment.com/)
 `ofxstatement-simple`_            Simple (the bank, https://www.simple.com/) JSON financial statement format
 `ofxstatement-latvian`_           Latvian banks
@@ -143,7 +145,6 @@ Plugin                            Description
 `ofxstatement-dab`_               DAB Bank (Germany)
 `ofxstatement-consors`_           Consorsbank (Germany)
 `ofxstatement-is-arionbanki`_     Arion bank in Iceland
-`ofxstatement-be-triodos`_        Belgian Triodos Bank CSV statements
 `ofxstatement-de-triodos`_        German Triodos Bank CSV statements (also works for GLS Bank)
 `ofxstatement-lansforsakringar`_  Länsförsäkringar (Sweden), it parses Kontoutdrag.xls for private accounts
 `ofxstatement-revolut`_           Revolut Mastercard
@@ -183,6 +184,7 @@ Plugin                            Description
 .. _ofxstatement-be-kbc: https://github.com/plenaerts/ofxstatement-be-kbc
 .. _ofxstatement-be-argenta: https://github.com/woutbr/ofxstatement-be-argenta
 .. _ofxstatement-be-crelan: https://gitlab.com/MagnificentMoustache/ofxstatement-be.crelan
+.. _ofxstatement-be-newb: https://github.com/SDaron/ofxstatement-be-newb
 .. _ofxstatement-betterment: https://github.com/cmayes/ofxstatement-betterment
 .. _ofxstatement-simple: https://github.com/cmayes/ofxstatement-simple
 .. _ofxstatement-latvian: https://github.com/gintsmurans/ofxstatement-latvian
