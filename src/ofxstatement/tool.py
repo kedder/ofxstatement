@@ -18,10 +18,13 @@ log = logging.getLogger(__name__)
 
 
 @contextlib.contextmanager
-def smart_open(filename: str = None):
+def smart_open(filename: str = None, encoding: str = None):
     """See https://stackoverflow.com/questions/17602878/how-to-handle-both-with-open-and-sys-stdout-nicely"""  # noqa
     if filename and filename != "-":
-        fh = open(filename, "w")
+        # encoding is required in cases when OS defaults to encoding which
+        # doesn't support unicode characters, for example Windows defaults to
+        # 'cp1252'
+        fh = open(filename, "w", encoding=encoding)
     else:
         fh = sys.stdout
 
@@ -175,7 +178,7 @@ def convert(args: argparse.Namespace) -> int:
         log.error("Statement validation error: %s" % (e.message))
         return 2  # Validation error
 
-    with smart_open(args.output) as out:
+    with smart_open(args.output, settings.get("encoding", None)) as out:
         writer = ofx.OfxWriter(statement)
         out.write(writer.toxml())
 
