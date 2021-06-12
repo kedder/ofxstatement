@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "94cee87ab823d285f2236dc63a33dc51f016650de72232c3c96c4bc30b43f75f"
+            "sha256": "e2993fd4128a926e57bf4f0288b309b5947a7d0231cc08d329a9e013815ece82"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -22,10 +22,6 @@
             "version": "==1.4.4"
         },
         "ofxstatement": {
-            "editable": true,
-            "path": "."
-        },
-        "sanitized-package": {
             "editable": true,
             "path": "."
         }
@@ -321,6 +317,20 @@
                 "sha256:fb1bbeac803adea29cedd70781399c99138358c26d05fcbd23c13016b7f5ec65"
             ],
             "version": "==1.4.3"
+        },
+        "types-mock": {
+            "hashes": [
+                "sha256:a036da6e6fe70d676fecb3f5181a8145bce993dc241096f5545301c656f7a20e"
+            ],
+            "index": "pypi",
+            "version": "==0.1.2"
+        },
+        "types-pkg-resources": {
+            "hashes": [
+                "sha256:42d640500de564f1ccc21f918117afadf78039e4fa7f513c647ccf742d609aeb"
+            ],
+            "index": "pypi",
+            "version": "==0.1.2"
         },
         "typing-extensions": {
             "hashes": [
