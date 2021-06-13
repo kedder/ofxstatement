@@ -10,6 +10,8 @@ mock = "*"
 black = "==20.8b1"
 dataclasses = "*"  # needed for black on python 3.6
 mypy = "*"
+types-pkg-resources = "*"
+types-mock = "*"
 
 [packages]
 ofxstatement = {editable = true,path = "."}
