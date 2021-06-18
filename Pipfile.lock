@@ -24,6 +24,10 @@
         "ofxstatement": {
             "editable": true,
             "path": "."
+        },
+        "sanitized-package": {
+            "editable": true,
+            "path": "."
         }
     },
     "develop": {
@@ -320,10 +324,11 @@
         },
         "types-mock": {
             "hashes": [
-                "sha256:a036da6e6fe70d676fecb3f5181a8145bce993dc241096f5545301c656f7a20e"
+                "sha256:9bdafab236c0530fed36dbf18bc942633b2033bfda16551b2e4eb767341a8b8c",
+                "sha256:e052879bb0a7d78547cce3342ffdf4ec3e8d2eff8f237911c3c8e31ac7ea8c86"
             ],
             "index": "pypi",
-            "version": "==0.1.2"
+            "version": "==0.1.3"
         },
         "types-pkg-resources": {
             "hashes": [
