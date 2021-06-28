@@ -3,6 +3,7 @@ from datetime import datetime, date
 from decimal import Decimal
 
 from xml.etree import ElementTree as etree
+from xml.dom import minidom
 
 from ofxstatement.statement import (
     Statement,
@@ -21,10 +22,14 @@ class OfxWriter(object):
         self.default_float_precision = 2
         self.invest_transactions_float_precision = 5
 
-    def toxml(self) -> str:
+    def toxml(self, pretty: bool = False) -> str:
         et = self.buildDocument()
         encoded = etree.tostring(et.getroot(), "utf-8")
         encoded = str(encoded, "utf-8")
+        if pretty:
+            dom = minidom.parseString(encoded)
+            encoded = dom.toprettyxml(indent="  ")
+            encoded = encoded.replace('<?xml version="1.0" ?>', "").lstrip()
         header = (
             "<!-- \n"
             "OFXHEADER:100\n"
