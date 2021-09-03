@@ -6,7 +6,7 @@ Changes
 
 - Support OFX CURRENCY and ORIGCURRENCY in statement lines. This allows plugins
   to add information about transaction currency to generated OFX statements.
-
+- Add `--pretty` flag to `convert` command to produce nicely intented OFX files.
 
 0.7.1 (2020-09-14)
 ==================

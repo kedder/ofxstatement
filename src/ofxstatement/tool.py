@@ -79,6 +79,13 @@ def make_args_parser() -> argparse.ArgumentParser:
             "have no config file."
         ),
     )
+    parser_convert.add_argument(
+        "-p",
+        "--pretty",
+        action="store_true",
+        default=False,
+        help="produce pretty xml with nested tags properly indented.",
+    )
     parser_convert.add_argument("input", help="input file to process")
     parser_convert.add_argument(
         "output",
@@ -180,7 +187,7 @@ def convert(args: argparse.Namespace) -> int:
 
     with smart_open(args.output, settings.get("encoding", None)) as out:
         writer = ofx.OfxWriter(statement)
-        out.write(writer.toxml())
+        out.write(writer.toxml(pretty=args.pretty))
 
     log.info("Conversion completed: %s" % args.input)
     return 0  # success

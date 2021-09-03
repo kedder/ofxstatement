@@ -114,3 +114,43 @@ class OfxWriterTest(TestCase):
         writer.genTime = datetime(2012, 3, 3, 0, 0, 0)
 
         assert prettyPrint(writer.toxml()) == SIMPLE_OFX
+
+    def test_ofxWriter_pretty(self) -> None:
+        # GIVEN
+        statement = Statement("BID", "ACCID", "LTL")
+        writer = ofx.OfxWriter(statement)
+        writer.genTime = datetime(2021, 9, 3, 0, 0, 0)
+
+        # WHEN
+        xml = writer.toxml(pretty=True)
+
+        # THEN
+        expected = [
+            "<!-- ",
+            "OFXHEADER:100",
+            "DATA:OFXSGML",
+            "VERSION:102",
+            "SECURITY:NONE",
+            "ENCODING:UTF-8",
+            "CHARSET:NONE",
+            "COMPRESSION:NONE",
+            "OLDFILEUID:NONE",
+            "NEWFILEUID:NONE",
+            "-->",
+            "",
+            "<OFX>",
+            "  <SIGNONMSGSRSV1>",
+            "    <SONRS>",
+            "      <STATUS>",
+            "        <CODE>0</CODE>",
+            "        <SEVERITY>INFO</SEVERITY>",
+            "      </STATUS>",
+            "      <DTSERVER>20210903000000</DTSERVER>",
+            "      <LANGUAGE>ENG</LANGUAGE>",
+            "    </SONRS>",
+            "  </SIGNONMSGSRSV1>",
+            "</OFX>",
+            "",
+        ]
+
+        assert xml.split("\n") == expected
