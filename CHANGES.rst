@@ -1,7 +1,7 @@
 Changes
 -------
 
-0.7.2 (unreleased)
+0.8.0 (2021-09-06)
 ==================
 
 - Support OFX CURRENCY and ORIGCURRENCY in statement lines. This allows plugins
