@@ -189,7 +189,7 @@ Plugin                            Description
 .. _ofxstatement-simple: https://github.com/cmayes/ofxstatement-simple
 .. _ofxstatement-latvian: https://github.com/gintsmurans/ofxstatement-latvian
 .. _ofxstatement-iso20022: https://github.com/kedder/ofxstatement-iso20022
-.. _ofxstatement-seb: https://github.com/themalkolm/ofxstatement-seb
+.. _ofxstatement-seb: https://github.com/gerasiov/ofxstatement-seb
 .. _ofxstatement-paypal: https://github.com/gerasiov/ofxstatement-paypal
 .. _ofxstatement-polish: https://github.com/yay6/ofxstatement-polish
 .. _ofxstatement-russian: https://github.com/gerasiov/ofxstatement-russian
