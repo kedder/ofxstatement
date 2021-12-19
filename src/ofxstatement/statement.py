@@ -111,7 +111,7 @@ class Statement(Printable):
 
 
 class StatementLine(Printable):
-    """Statement line data. """
+    """Statement line data."""
 
     id: Optional[str]
     # Date transaction was posted to account
@@ -206,7 +206,7 @@ class Currency(Printable):
 
 
 class InvestStatementLine(Printable):
-    """Invest statement line data. """
+    """Invest statement line data."""
 
     id: Optional[str]
     # Date transaction was posted to account
