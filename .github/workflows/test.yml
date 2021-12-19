@@ -1,0 +1,57 @@
+name: ofxstatement
+
+on:
+  push:
+    branches: master
+  pull_request:
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.6", "3.7", "3.8", "3.9", "3.10"]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pipenv coveralls
+        pipenv sync --dev
+    - name: Test with pytest
+      run: |
+        pipenv run pytest -v --cov src/ofxstatement
+
+    - name: Check with mypy
+      run: |
+        pipenv run mypy src
+    - name: Check with black
+      run: |
+        pipenv run black --check setup.py src
+    - name: Coveralls
+      if: ${{ success() }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN}}
+        COVERALLS_PARALLEL: true
+      run: |
+        coveralls --service=github
+  report:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Python
+      uses: actions/setup-python@v2
+    - name: Coveralls Finish
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN}}
+      run: |
+        pip install coveralls
+        coveralls --service=github --finish
