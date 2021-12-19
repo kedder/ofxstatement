@@ -1,8 +1,8 @@
 OFX Statement
 -------------
 
-.. image:: https://travis-ci.com/kedder/ofxstatement.svg?branch=master
-    :target: https://travis-ci.com/kedder/ofxstatement
+.. image:: https://github.com/kedder/ofxstatement/actions/workflows/test.yml/badge.svg?branch=master
+    :target: https://github.com/kedder/ofxstatement/actions/workflows/test.yml
 .. image:: https://coveralls.io/repos/kedder/ofxstatement/badge.png?branch=master
     :target: https://coveralls.io/r/kedder/ofxstatement?branch=master
 .. image:: http://www.mypy-lang.org/static/mypy_badge.svg
