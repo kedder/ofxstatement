@@ -31,11 +31,11 @@
         },
         "setuptools": {
             "hashes": [
-                "sha256:8244876a37456ccbcbe1247b4cba1b015f4e42dfebfadd6a5488bfc12060f21b",
-                "sha256:dae4d7933ca671d51fa44c10b4ef8165319d9be3aa41807dd4c73f1c1ba81dc3"
+                "sha256:a4377723c53721515f72a3dfc1bfacdcd61edfa19a4cccf82e72e4f50d9cecbd",
+                "sha256:ad0ea3d172404abb14d8f7bd7f54f2ccd4ed9dd00c9da0b1398862e69eb22c03"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==60.0.4"
+            "version": "==60.1.0"
         }
     },
     "develop": {
@@ -192,11 +192,11 @@
         },
         "platformdirs": {
             "hashes": [
-                "sha256:367a5e80b3d04d2428ffa76d33f124cf11e8fff2acdaa9b43d545f5c7d661ef2",
-                "sha256:8868bbe3c3c80d42f20156f22e7131d2fb321f5bc86a2a345375c6481a67021d"
+                "sha256:1d7385c7db91728b83efd0ca99a5afb296cab9d0ed8313a45ed8ba17967ecfca",
+                "sha256:440633ddfebcc36264232365d7840a970e75e1018d15b4327d11f91909045fda"
             ],
-            "markers": "python_version >= '3.6'",
-            "version": "==2.4.0"
+            "markers": "python_version >= '3.7'",
+            "version": "==2.4.1"
         },
         "pluggy": {
             "hashes": [
@@ -256,11 +256,11 @@
         },
         "types-mock": {
             "hashes": [
-                "sha256:b29a0d14b167ec83842b4c7c59201a1cc2eed7e603e894d0ccfeafc9a2646e31",
-                "sha256:d51f75ea6732355cb400c3146adb4472d33203430639230c2ceac8816b9734ab"
+                "sha256:ae4c04a45f64b937815b60f00bd6da0d68a76d9558cc2da4c9d772855558dbb7",
+                "sha256:d6a95daf3e65fa2457cc81a85fd16fbb8bcb547faa9759ad4c1114622f0d299c"
             ],
             "index": "pypi",
-            "version": "==4.0.4"
+            "version": "==4.0.5"
         },
         "types-pkg-resources": {
             "hashes": [
