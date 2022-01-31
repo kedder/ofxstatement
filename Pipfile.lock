@@ -31,11 +31,11 @@
         },
         "setuptools": {
             "hashes": [
-                "sha256:2404879cda71495fc4d5cbc445ed52fdaddf352b36e40be8dcc63147cb4edabe",
-                "sha256:68eb94073fc486091447fcb0501efd6560a0e5a1839ba249e5ff3c4c93f05f90"
+                "sha256:c99207037c38984eae838c2fd986f39a9ddf4fabfe0fddd957e622d1d1dcdd05",
+                "sha256:eb83b1012ae6bf436901c2a2cee35d45b7260f31fd4b65fd1e50a9f99c11d7f8"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==60.5.0"
+            "version": "==60.6.0"
         }
     },
     "develop": {
@@ -274,11 +274,11 @@
         },
         "types-mock": {
             "hashes": [
-                "sha256:b29a0d14b167ec83842b4c7c59201a1cc2eed7e603e894d0ccfeafc9a2646e31",
-                "sha256:d51f75ea6732355cb400c3146adb4472d33203430639230c2ceac8816b9734ab"
+                "sha256:7c1734fe63158a468b5e19fbc68521b1857ae2eb8bc8288a66644d4a81766bea",
+                "sha256:8cb4a894e0ed210d71eac620b908d9ee0ec3de573884b4f4a7a10ff6dbce2bee"
             ],
             "index": "pypi",
-            "version": "==4.0.4"
+            "version": "==4.0.9"
         },
         "types-pkg-resources": {
             "hashes": [
