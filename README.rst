@@ -115,6 +115,7 @@ Plugin                            Description
 `ofxstatement-airbankcz`_         Plugin for Air Bank a.s. (Czech Republic)
 `ofxstatement-raiffeisencz`_      Plugin for Raiffeisenbank a.s. (Czech Republic)
 `ofxstatement-unicreditcz`_       Plugin for UniCredit Bank Czech Republic and Slovakia
+`ofxstatement-equabankcz`_        Plugin for Equa Bank a.s. (Czech Republic)
 `ofxstatement-otp`_               Plugin for OTP Bank, operating in Hungary
 `ofxstatement-bubbas`_            Set of plugins, developed by @bubbas:
                                   ``dkb_cc`` and ``lbbamazon``.
@@ -170,6 +171,7 @@ Plugin                            Description
 .. _ofxstatement-airbankcz: https://github.com/milankni/ofxstatement-airbankcz
 .. _ofxstatement-raiffeisencz: https://github.com/milankni/ofxstatement-raiffeisencz
 .. _ofxstatement-unicreditcz: https://github.com/milankni/ofxstatement-unicreditcz
+.. _ofxstatement-equabankcz: https://github.com/kosciCZ/ofxstatement-equabankcz
 .. _ofxstatement-otp: https://github.com/abesto/ofxstatement-otp
 .. _ofxstatement-bubbas: https://github.com/bubbas/ofxstatement-bubbas
 .. _banking.statements.osuuspankki: https://github.com/koodaamo/banking.statements.osuuspankki
