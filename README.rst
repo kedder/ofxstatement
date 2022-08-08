@@ -140,6 +140,7 @@ Plugin                            Description
 `ofxstatement-latvian`_           Latvian banks
 `ofxstatement-iso20022`_          Support for generic ISO-20022 format
 `ofxstatement-seb`_               SEB (Sweden), it parses Export.xlsx for private accounts
+`ofxstatement-ee-seb`_            SEB (Estonia), parses proprietary csv file
 `ofxstatement-paypal`_            PayPal, it parses ``*.csv`` for private accounts
 `ofxstatement-polish`_            Support for some Polish banks and financial institutions
 `ofxstatement-russian`_           Support for several Russian banks: Avangard, AlfaBank, Tinkoff, SberBank (both debit and csv), VTB.
@@ -217,7 +218,7 @@ Plugin                            Description
 .. _ofxstatement-french: https://github.com/gpaulissen/ofxstatement-french
 .. _ofxstatement-mt940: https://github.com/gpaulissen/ofxstatement-mt940
 .. _ofxstatement-it-banks: https://github.com/ecorini/ofxstatement-it-banks
-
+.. _ofxstatement-ee-seb: https://github.com/rsi2m/ofxstatement-ee-seb
 Advanced Configuration
 ======================
 
