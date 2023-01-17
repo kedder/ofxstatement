@@ -82,9 +82,9 @@ class Statement(Printable):
 
     def __init__(
         self,
-        bank_id: str = None,
-        account_id: str = None,
-        currency: str = None,
+        bank_id: Optional[str] = None,
+        account_id: Optional[str] = None,
+        currency: Optional[str] = None,
         account_type: str = "CHECKING",
     ) -> None:
         self.lines = []
@@ -148,7 +148,11 @@ class StatementLine(Printable):
     orig_currency: Optional["Currency"] = None
 
     def __init__(
-        self, id: str = None, date: datetime = None, memo: str = None, amount: D = None
+        self,
+        id: Optional[str] = None,
+        date: Optional[datetime] = None,
+        memo: Optional[str] = None,
+        amount: Optional[D] = None,
     ) -> None:
         self.id = id
         self.date = date
@@ -200,7 +204,7 @@ class Currency(Printable):
     # Ratio of statement currency to `symbol` currency
     rate: Optional[D]
 
-    def __init__(self, symbol: str, rate: D = None) -> None:
+    def __init__(self, symbol: str, rate: Optional[D] = None) -> None:
         self.symbol = symbol
         self.rate = rate
 
@@ -228,13 +232,13 @@ class InvestStatementLine(Printable):
 
     def __init__(
         self,
-        id: str = None,
-        date: datetime = None,
-        memo: str = None,
-        trntype: str = None,
-        trntype_detailed: str = None,
-        security_id: str = None,
-        amount: D = None,
+        id: Optional[str] = None,
+        date: Optional[datetime] = None,
+        memo: Optional[str] = None,
+        trntype: Optional[str] = None,
+        trntype_detailed: Optional[str] = None,
+        security_id: Optional[str] = None,
+        amount: Optional[D] = None,
     ) -> None:
         self.id = id
         self.date = date
