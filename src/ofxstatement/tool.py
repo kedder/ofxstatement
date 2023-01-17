@@ -12,15 +12,19 @@ import contextlib
 import pkg_resources
 
 from ofxstatement import ui, configuration, plugin, ofx, exceptions
-from typing import Optional
+from typing import Optional, TextIO, Generator
 
 
 log = logging.getLogger(__name__)
 
 
 @contextlib.contextmanager
-def smart_open(filename: Optional[str] = None, encoding: Optional[str] = None):
+def smart_open(
+    filename: Optional[str] = None, encoding: Optional[str] = None
+) -> Generator[TextIO, None, None]:
     """See https://stackoverflow.com/questions/17602878/how-to-handle-both-with-open-and-sys-stdout-nicely"""  # noqa
+    fh: TextIO
+
     if filename and filename != "-":
         # encoding is required in cases when OS defaults to encoding which
         # doesn't support unicode characters, for example Windows defaults to
