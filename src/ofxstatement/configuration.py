@@ -15,7 +15,7 @@ def get_default_location() -> str:
     return os.path.join(cdir, "config.ini")
 
 
-def read(location: str = None) -> Optional[MutableMapping]:
+def read(location: Optional[str] = None) -> Optional[MutableMapping]:
     if not location:
         location = get_default_location()
 
