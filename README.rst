@@ -151,6 +151,7 @@ Plugin                            Description
 `ofxstatement-lansforsakringar`_  Länsförsäkringar (Sweden), it parses Kontoutdrag.xls for private accounts
 `ofxstatement-revolut`_           Revolut Mastercard
 `ofxstatement-transferwise`_      Transferwise CSV
+`ofxstatement-n26`_               N26 Bank
 `ofxstatement-sp-freiburg`_       Sparkasse Freiburg-Nördlicher Breisgau (Germany)
 `ofxstatement-al_bank`_           Arbejdernes Landsbank (Denmark)
 `ofxstatement-fineco`_            FinecoBank (Italy)
@@ -204,6 +205,7 @@ Plugin                            Description
 .. _ofxstatement-lansforsakringar: https://github.com/lbschenkel/ofxstatement-lansforsakringar
 .. _ofxstatement-revolut: https://github.com/mlaitinen/ofxstatement-revolut
 .. _ofxstatement-transferwise: https://github.com/kedder/ofxstatement-transferwise
+.. _ofxstatement-n26: https://github.com/3v1n0/ofxstatement-n26
 .. _ofxstatement-sp-freiburg: https://github.com/omarkohl/ofxstatement-sparkasse-freiburg
 .. _ofxstatement-al_bank: https://github.com/lbschenkel/ofxstatement-al_bank
 .. _ofxstatement-fineco: https://github.com/frankIT/ofxstatement-fineco
