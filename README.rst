@@ -164,6 +164,7 @@ Plugin                            Description
 `ofxstatement-french`_            French financial institutes like BanquePopulaire
 `ofxstatement-mt940`_             All financial institutes providing Swift MT940 statements
 `ofxstatement-it-banks`_          Widiba and Webank italian banks
+`ofxstatement-chebanca`_          CheBanca! Italian bank (xlsx format)
 ================================= ============================================
 
 
@@ -219,6 +220,7 @@ Plugin                            Description
 .. _ofxstatement-mt940: https://github.com/gpaulissen/ofxstatement-mt940
 .. _ofxstatement-it-banks: https://github.com/ecorini/ofxstatement-it-banks
 .. _ofxstatement-ee-seb: https://github.com/rsi2m/ofxstatement-ee-seb
+.. _ofxstatement-chebanca: https://github.com/3v1n0/ofxstatement-chebanca
 Advanced Configuration
 ======================
 
