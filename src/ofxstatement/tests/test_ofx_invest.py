@@ -140,7 +140,6 @@ def prettyPrint(xmlstr):
 
 class OfxInvestLinesWriterTest(TestCase):
     def test_ofxWriter(self) -> None:
-
         # Create sample statement:
         statement = Statement("BID", "ACCID", "LTL")
         statement.broker_id = "BROKERID"

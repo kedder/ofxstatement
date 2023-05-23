@@ -93,7 +93,6 @@ def prettyPrint(xmlstr):
 
 class OfxWriterTest(TestCase):
     def test_ofxWriter(self) -> None:
-
         # Create sample statement:
         statement = Statement("BID", "ACCID", "LTL")
         statement.lines.append(
