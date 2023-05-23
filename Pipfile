@@ -7,7 +7,7 @@ verify_ssl = true
 pytest = "*"
 pytest-cov = "*"
 mock = "*"
-black = "==22.12.0"
+black = "==23.3.0"
 dataclasses = "*"  # needed for black on python 3.6
 mypy = "*"
 types-pkg-resources = "*"
