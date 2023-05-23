@@ -12,6 +12,8 @@ dataclasses = "*"  # needed for black on python 3.6
 mypy = "*"
 types-pkg-resources = "*"
 types-mock = "*"
+exceptiongroup = {markers="python_version < '3.11'"}
+tomli = {markers="python_version < '3.11'"}
 
 [packages]
 ofxstatement = {editable = true,path = "."}
