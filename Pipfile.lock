@@ -264,11 +264,11 @@
         },
         "types-mock": {
             "hashes": [
-                "sha256:3abdee238948c6678ef5b4fd740bd41d30289a2fe4d91aac4ae9f6869e6c9333",
-                "sha256:6946f4b2240160a1740db7d6c8e8736705acd133afd98555897db0116d41a6fc"
+                "sha256:0628586fb507264a4a6b4c1d49364993be70125745fb994e279be055444eac8e",
+                "sha256:35f7e2ec85ecf4ba740ad897a3870e860170f1f7b52376842f8fb95874c98749"
             ],
             "index": "pypi",
-            "version": "==5.0.0.6"
+            "version": "==5.0.0.7"
         },
         "types-pkg-resources": {
             "hashes": [
