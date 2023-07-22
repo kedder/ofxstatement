@@ -77,11 +77,11 @@
         },
         "click": {
             "hashes": [
-                "sha256:4be4b1af8d665c6d942909916d31a213a106800c47d0eeba73d34da3cbc11367",
-                "sha256:e576aa487d679441d7d30abb87e1b43d24fc53bffb8758443b1a9e1cee504548"
+                "sha256:48ee849951919527a045bfe3bf7baa8a959c423134e1a5b98c05c20ba75a1cbd",
+                "sha256:fa244bb30b3b5ee2cae3da8f55c9e5e0c0e86093306301fb418eb9dc40fbded5"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==8.1.5"
+            "version": "==8.1.6"
         },
         "coverage": {
             "extras": [
@@ -234,11 +234,11 @@
         },
         "platformdirs": {
             "hashes": [
-                "sha256:cec7b889196b9144d088e4c57d9ceef7374f6c39694ad1577a0aab50d27ea28c",
-                "sha256:f87ca4fcff7d2b0f81c6a748a77973d7af0f4d526f98f308477c3c436c74d528"
+                "sha256:1b42b450ad933e981d56e59f1b97495428c9bd60698baab9f3eb3d00d5822421",
+                "sha256:ad8291ae0ae5072f66c16945166cb11c63394c7a3ad1b1bc9828ca3162da8c2f"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==3.8.1"
+            "version": "==3.9.1"
         },
         "pluggy": {
             "hashes": [
@@ -274,11 +274,11 @@
         },
         "types-mock": {
             "hashes": [
-                "sha256:0628586fb507264a4a6b4c1d49364993be70125745fb994e279be055444eac8e",
-                "sha256:35f7e2ec85ecf4ba740ad897a3870e860170f1f7b52376842f8fb95874c98749"
+                "sha256:ce0945bfab57f7e983968602eff44879e2b1ac97e4d26087107011fa527440c9",
+                "sha256:f07d59de50ea816ab403ba4e246ff80b009263b377bc3f774dfdebf0b403fb60"
             ],
             "index": "pypi",
-            "version": "==5.0.0.7"
+            "version": "==5.1.0.1"
         },
         "types-pkg-resources": {
             "hashes": [
