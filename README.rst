@@ -267,6 +267,10 @@ To convert the proprietary CSV file ``danske.csv`` into the OFX file ``danske.of
 Note that configuration parameters are plugin specific. See the plugin
 documentation for more info.
 
+To use a custom configuration file, pass the ``-c`` / ``--config`` option::
+
+    $ ofxstatement convert -t pluginname -c /path/to/myconfig.ini input.csv output.ofx
+
 Writing your own Plugin
 =======================
 
