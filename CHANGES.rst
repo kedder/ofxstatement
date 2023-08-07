@@ -4,7 +4,9 @@ Changes
 0.8.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- New `-c` (`--config`) option for `convert` command, allows to specify the 
+  configuration file to use (#235).
+- Print the number of transactions in the output (#236).
 
 
 0.8.0 (2021-09-06)
