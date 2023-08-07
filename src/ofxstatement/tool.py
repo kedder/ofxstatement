@@ -75,6 +75,13 @@ def make_args_parser() -> argparse.ArgumentParser:
     parser_convert = subparsers.add_parser("convert", help="convert to OFX")
 
     parser_convert.add_argument(
+        "-c",
+        "--config",
+        metavar="myconfig.ini",
+        default=None,
+        help="custom config file to use",
+    )
+    parser_convert.add_argument(
         "-t",
         "--type",
         required=True,
@@ -145,7 +152,7 @@ def edit_config(args: argparse.Namespace) -> None:
 
 def convert(args: argparse.Namespace) -> int:
     appui = ui.UI()
-    config = configuration.read()
+    config = configuration.read(args.config)
 
     if config is None:
         # No configuration mode
