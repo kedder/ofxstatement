@@ -1,7 +1,7 @@
 Changes
 -------
 
-0.8.1 (unreleased)
+0.9.0 (2023-08-07)
 ==================
 
 - New `-c` (`--config`) option for `convert` command, allows to specify the 

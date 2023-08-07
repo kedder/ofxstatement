@@ -5,7 +5,7 @@ from distutils.core import setup
 import unittest
 import sys
 
-version = "0.8.1.dev0"
+version = "0.9.0"
 
 with open("CHANGES.rst") as chlogf, open("README.rst", encoding="utf-8") as rdmef:
     long_description = chlogf.read() + "\n\n" + rdmef.read()
