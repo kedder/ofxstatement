@@ -201,7 +201,11 @@ def convert(args: argparse.Namespace) -> int:
         writer = ofx.OfxWriter(statement)
         out.write(writer.toxml(pretty=args.pretty))
 
-    log.info("Conversion completed: %s" % args.input)
+    n_lines = len(statement.lines)
+    log.info(
+        "Conversion completed: (%d line%s) %s"
+        % (n_lines, "s" if n_lines != 1 else "", args.input)
+    )
     return 0  # success
 
 
