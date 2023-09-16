@@ -4,7 +4,7 @@ Changes
 0.9.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Make OFX output conform to DTD (#243).
 
 
 0.9.0 (2023-08-07)
