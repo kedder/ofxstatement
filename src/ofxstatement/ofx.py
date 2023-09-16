@@ -126,13 +126,13 @@ class OfxWriter(object):
         self.buildAmount("TRNAMT", line.amount)
         self.buildText("FITID", line.id)
         self.buildText("CHECKNUM", line.check_no)
-        self.buildText("NAME", line.payee)
-        self.buildText("MEMO", line.memo)
         self.buildText("REFNUM", line.refnum)
+        self.buildText("NAME", line.payee)
         if line.bank_account_to:
             tb.start("BANKACCTTO", {})
             self.buildBankAccount(line.bank_account_to)
             tb.end("BANKACCTTO")
+        self.buildText("MEMO", line.memo)
         if line.currency is not None:
             self.buildCurrency("CURRENCY", line.currency)
         if line.orig_currency is not None:
