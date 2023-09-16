@@ -59,13 +59,13 @@ NEWFILEUID:NONE
                         <DTPOSTED>20120212</DTPOSTED>
                         <TRNAMT>25.00</TRNAMT>
                         <FITID>2</FITID>
-                        <MEMO>Sample 2</MEMO>
                         <BANKACCTTO>
                             <BANKID>SNORAS</BANKID>
                             <BRANCHID>VNO</BRANCHID>
                             <ACCTID>LT1232</ACCTID>
                             <ACCTTYPE>CHECKING</ACCTTYPE>
                         </BANKACCTTO>
+                        <MEMO>Sample 2</MEMO>
                         <CURRENCY>
                             <CURSYM>USD</CURSYM>
                         </CURRENCY>
