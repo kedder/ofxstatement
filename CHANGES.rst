@@ -1,7 +1,7 @@
 Changes
 -------
 
-0.9.1 (unreleased)
+0.9.1 (2023-09-16)
 ==================
 
 - Make OFX output conform to DTD (#243).
