@@ -127,6 +127,7 @@ Plugin                            Description
 `ofxstatement-sp-freiburg`_       Sparkasse Freiburg-Nördlicher Breisgau (Germany)
 `ofxstatement-de-ing`_            Ing Diba Bank (Germany)
 `ofxstatement-mastercard-de`_     Mastercard PDF statements (Germany)
+`ofxstatement-sparkasse-de`_      Sparkasse PDF statements (Germany)
 `ofxstatement-austrian`_          Plugins for several banks, operating in Austria:
                                   Easybank, ING-Diba, Livebank, Raiffeisenbank.
 `ofxstatement-postfinance`_       Swiss PostFinance (E-Finance Java text based bank/credit statements).
@@ -212,6 +213,7 @@ Plugin                            Description
 .. _ofxstatement-ee-seb: https://github.com/rsi2m/ofxstatement-ee-seb
 .. _ofxstatement-chebanca: https://github.com/3v1n0/ofxstatement-chebanca
 .. _ofxstatement-mastercard-de: https://github.com/FliegendeWurst/ofxstatement-mastercard-de
+.. _ofxstatement-sparkasse-de: https://github.com/FliegendeWurst/ofxstatement-sparkasse-de
 
 Advanced Configuration
 ======================
