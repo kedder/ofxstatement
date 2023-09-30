@@ -49,7 +49,7 @@ Installation and Usage
 ======================
 
 Before using ``ofxstatement``, you have to install a plugin for your bank (or
-write your own!). Plugins are installed as regular python eggs, with
+write your own!). Plugins are installed as regular python packages, with
 easy_install or pip, for example::
 
   $ pip3 install ofxstatement-lithuanian
@@ -75,27 +75,6 @@ After installation, the usage is simple::
 The resulting ``statement.ofx`` is then ready to be imported into a personal
 accounting system.
 
-
-Development / test
-==================
-
-``ofxstatemnt`` uses `pipenv`_ to manage the development environment and
-dependencies::
-
-  $ pip install pipenv
-  $ git clone https://github.com/<your_account>/ofxstatement.git
-  $ cd ofxstatement
-  $ pipenv sync --dev
-
-.. _pipenv: https://github.com/pypa/pipenv
-
-And finally run the test suite::
-
-  $ pipenv shell
-  $ pytest
-
-When satisfied, you may create a pull request.
-
 Known Plugins
 =============
 
@@ -104,6 +83,11 @@ There are several user-developed plugins available:
 ================================= ============================================
 Plugin                            Description
 ================================= ============================================
+`ofxstatement-mt940`_             Swift MT940 statements
+`ofxstatement-iso20022`_          Generic ISO-20022 format
+`ofxstatement-paypal`_            PayPal, ``*.csv`` for private accounts
+`ofxstatement-transferwise`_      Transferwise CSV (international)
+
 `ofxstatement-lithuanian`_        Plugins for several banks, operating in
                                   Lithuania: Swedbank, Danske and common Lithuanian exchange format - LITAS-ESIS.
 
@@ -124,11 +108,9 @@ Plugin                            Description
 
 `banking.statements.osuuspankki`_ Finnish Osuuspankki bank
 `banking.statements.nordea`_      Nordea bank (at least Finnish branch of it)
-`ofxstatement-germany`_           Plugin for several german banks (1822direkt and Postbank at the moment)
-`ofxstatement-austrian`_          Plugins for several banks, operating in Austria:
-                                  Easybank, ING-Diba, Livebank, Raiffeisenbank.
-`ofxstatement-postfinance`_       Swiss PostFinance (E-Finance Java text based bank/credit statements).
-`ofxstatement-mbank-sk`_          MBank.sk
+`ofxstatement-seb`_               SEB (Sweden), it parses Export.xlsx for private accounts
+`ofxstatement-lansforsakringar`_  Länsförsäkringar (Sweden), it parses Kontoutdrag.xls for private accounts
+
 `ofxstatement-be-belfius`_        Belfius (Belgium)
 `ofxstatement-be-keytrade`_       KeytradeBank (Belgium)
 `ofxstatement-be-ing`_            ING (Belgium)
@@ -137,36 +119,41 @@ Plugin                            Description
 `ofxstatement-be-crelan`_         Crelan (Belgium)
 `ofxstatement-be-triodos`_        Belgian Triodos Bank CSV statements
 `ofxstatement-be-newb`_           Belgian cooperative bank newB
-`ofxstatement-betterment`_        Betterment (https://www.betterment.com/)
-`ofxstatement-simple`_            Simple (the bank, https://www.simple.com/) JSON financial statement format
-`ofxstatement-latvian`_           Latvian banks
-`ofxstatement-iso20022`_          Support for generic ISO-20022 format
-`ofxstatement-seb`_               SEB (Sweden), it parses Export.xlsx for private accounts
-`ofxstatement-ee-seb`_            SEB (Estonia), parses proprietary csv file
-`ofxstatement-paypal`_            PayPal, it parses ``*.csv`` for private accounts
-`ofxstatement-polish`_            Support for some Polish banks and financial institutions
-`ofxstatement-russian`_           Support for several Russian banks: Avangard, AlfaBank, Tinkoff, SberBank (both debit and csv), VTB.
+
+`ofxstatement-germany`_           Plugin for several german banks (1822direkt and Postbank at the moment)
 `ofxstatement-dab`_               DAB Bank (Germany)
 `ofxstatement-consors`_           Consorsbank (Germany)
-`ofxstatement-is-arionbanki`_     Arion bank in Iceland
 `ofxstatement-de-triodos`_        German Triodos Bank CSV statements (also works for GLS Bank)
-`ofxstatement-lansforsakringar`_  Länsförsäkringar (Sweden), it parses Kontoutdrag.xls for private accounts
-`ofxstatement-revolut`_           Revolut Mastercard
-`ofxstatement-transferwise`_      Transferwise CSV
-`ofxstatement-n26`_               N26 Bank
 `ofxstatement-sp-freiburg`_       Sparkasse Freiburg-Nördlicher Breisgau (Germany)
-`ofxstatement-al_bank`_           Arbejdernes Landsbank (Denmark)
-`ofxstatement-fineco`_            FinecoBank (Italy)
-`ofxstatement-intesasp`_          Intesa San Paolo (xlsx balance file)
 `ofxstatement-de-ing`_            Ing Diba Bank (Germany)
+`ofxstatement-mastercard-de`_     Mastercard PDF statements (Germany)
+`ofxstatement-sparkasse-de`_      Sparkasse PDF statements (Germany)
+`ofxstatement-austrian`_          Plugins for several banks, operating in Austria:
+                                  Easybank, ING-Diba, Livebank, Raiffeisenbank.
+`ofxstatement-postfinance`_       Swiss PostFinance (E-Finance Java text based bank/credit statements).
+
+`ofxstatement-fineco`_            FinecoBank (Italy)
+`ofxstatement-intesasp`_          Intesa San Paolo xlsx balance file (Italy)
+`ofxstatement-chebanca`_          CheBanca! xlsx format (Italy)
+`ofxstatement-n26`_               N26 Bank (Italy)
+`ofxstatement-it-banks`_          Widiba and Webank (Italy)
+
+`ofxstatement-betterment`_        Betterment (USA)
 `ofxstatement-us-first-republic`_ First Republic Bank (USA)
+`ofxstatement-simple`_            Simple (USA, defunct) JSON financial statement format
+
+`ofxstatement-mbank-sk`_          MBank.sk (Slovakia)
+`ofxstatement-latvian`_           Latvian banks
+`ofxstatement-ee-seb`_            SEB (Estonia), parses proprietary csv file
+`ofxstatement-polish`_            Support for some Polish banks and financial institutions
+`ofxstatement-russian`_           Support for several Russian banks: Avangard, AlfaBank, Tinkoff, SberBank (both debit and csv), VTB.
+`ofxstatement-is-arionbanki`_     Arion bank (Iceland)
+`ofxstatement-revolut`_           Revolut Mastercard
+`ofxstatement-al_bank`_           Arbejdernes Landsbank (Denmark)
 `ofxstatement-cd-tmb`_            Trust Merchant Bank (DRC)
 `ofxstatement-zm-stanbic`_        Stanbic Bank (Zambia)
 `ofxstatement-dutch`_             Dutch financial institutes like ICSCards and ING
 `ofxstatement-french`_            French financial institutes like BanquePopulaire
-`ofxstatement-mt940`_             All financial institutes providing Swift MT940 statements
-`ofxstatement-it-banks`_          Widiba and Webank italian banks
-`ofxstatement-chebanca`_          CheBanca! Italian bank (xlsx format)
 ================================= ============================================
 
 
@@ -225,6 +212,9 @@ Plugin                            Description
 .. _ofxstatement-it-banks: https://github.com/ecorini/ofxstatement-it-banks
 .. _ofxstatement-ee-seb: https://github.com/rsi2m/ofxstatement-ee-seb
 .. _ofxstatement-chebanca: https://github.com/3v1n0/ofxstatement-chebanca
+.. _ofxstatement-mastercard-de: https://github.com/FliegendeWurst/ofxstatement-mastercard-de
+.. _ofxstatement-sparkasse-de: https://github.com/FliegendeWurst/ofxstatement-sparkasse-de
+
 Advanced Configuration
 ======================
 
@@ -270,6 +260,27 @@ documentation for more info.
 To use a custom configuration file, pass the ``-c`` / ``--config`` option::
 
     $ ofxstatement convert -t pluginname -c /path/to/myconfig.ini input.csv output.ofx
+
+
+Development / Testing
+=====================
+
+``ofxstatemnt`` uses `pipenv`_ to manage the development environment and
+dependencies::
+
+  $ pip install pipenv
+  $ git clone https://github.com/<your_account>/ofxstatement.git
+  $ cd ofxstatement
+  $ pipenv sync --dev
+
+.. _pipenv: https://github.com/pypa/pipenv
+
+And finally run the test suite::
+
+  $ pipenv shell
+  $ pytest
+
+When satisfied, you may create a pull request.
 
 Writing your own Plugin
 =======================
