@@ -137,6 +137,7 @@ Plugin                            Description
 `ofxstatement-chebanca`_          CheBanca! xlsx format (Italy)
 `ofxstatement-n26`_               N26 Bank (Italy)
 `ofxstatement-it-banks`_          Widiba and Webank (Italy)
+`ofxstatement-bancoposta`_        BancoPosta - Poste Italiane (Italy)
 
 `ofxstatement-betterment`_        Betterment (USA)
 `ofxstatement-us-first-republic`_ First Republic Bank (USA)
@@ -214,6 +215,7 @@ Plugin                            Description
 .. _ofxstatement-chebanca: https://github.com/3v1n0/ofxstatement-chebanca
 .. _ofxstatement-mastercard-de: https://github.com/FliegendeWurst/ofxstatement-mastercard-de
 .. _ofxstatement-sparkasse-de: https://github.com/FliegendeWurst/ofxstatement-sparkasse-de
+.. _ofxstatement-bancoposta: https://github.com/lorenzogiudici5/ofxstatement-bancoposta
 
 Advanced Configuration
 ======================
