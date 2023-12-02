@@ -267,11 +267,12 @@
         },
         "types-mock": {
             "hashes": [
-                "sha256:924ab5d5a0dbe9fd8100e073b7ed922748e7b0ad0987dc725f1a5835ce70d178",
-                "sha256:de48d3766e4e3034efd8b26da9e09e4908f31e53137a5fe2efbf1fbabee16996"
+                "sha256:e5821fdfd57bd545b101dc42373b0112027a1e53e82afbd801c122840b3a2780",
+                "sha256:eeeac25480287bb721fb17fcda2e9768d70a476dcc14a2c1d0389535c54f8184"
             ],
             "index": "pypi",
-            "version": "==5.1.0.2"
+            "markers": "python_version >= '3.7'",
+            "version": "==5.1.0.3"
         },
         "types-pkg-resources": {
             "hashes": [
