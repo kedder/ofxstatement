@@ -150,12 +150,13 @@ class OfxWriter(object):
         tb = self.tb
         tb.start("SECLISTMSGSRSV1", {})
         tb.start("SECLIST", {})
-        tb.start("STOCKINFO", {})
+        
 
         # get unqiue tickers
         for security_id in dict.fromkeys(
             map(lambda x: x.security_id, self.statement.invest_lines)
         ):
+            tb.start("STOCKINFO", {})
             tb.start("SECINFO", {})
             tb.start("SECID", {})
             self.buildText("UNIQUEID", security_id)
@@ -164,8 +165,8 @@ class OfxWriter(object):
             self.buildText("SECNAME", security_id)
             self.buildText("TICKER", security_id)
             tb.end("SECINFO")
+            tb.end("STOCKINFO")
 
-        tb.end("STOCKINFO")
         tb.end("SECLIST")
         tb.end("SECLISTMSGSRSV1")
 
