@@ -150,7 +150,6 @@ class OfxWriter(object):
         tb = self.tb
         tb.start("SECLISTMSGSRSV1", {})
         tb.start("SECLIST", {})
-        
 
         # get unqiue tickers
         for security_id in dict.fromkeys(
