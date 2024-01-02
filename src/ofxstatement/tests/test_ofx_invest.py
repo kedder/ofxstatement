@@ -41,6 +41,8 @@ NEWFILEUID:NONE
                     <SECNAME>AAPL</SECNAME>
                     <TICKER>AAPL</TICKER>
                 </SECINFO>
+            </STOCKINFO>
+            <STOCKINFO>
                 <SECINFO>
                     <SECID>
                         <UNIQUEID>MSFT</UNIQUEID>

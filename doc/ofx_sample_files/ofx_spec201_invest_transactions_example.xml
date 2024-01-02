@@ -37,7 +37,9 @@ NEWFILEUID:NONE
           <SECNAME>AAPL</SECNAME>         <!-- Full name of security (for simplicty just reuse ticker) -->
           <TICKER>AAPL</TICKER>           <!-- Ticker -->
         </SECINFO>
-        <SECINFO>
+      </STOCKINFO>
+      <STOCKINFO>
+         <SECINFO>
           <SECID>
             <UNIQUEID>MSFT</UNIQUEID>
             <UNIQUEIDTYPE>TICKER</UNIQUEIDTYPE>
