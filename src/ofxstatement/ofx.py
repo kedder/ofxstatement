@@ -260,10 +260,11 @@ class OfxWriter(object):
             line.unit_price,
             precision=self.invest_transactions_float_precision,
         )
-        self.buildAmount("UNITS",
+        self.buildAmount(
+            "UNITS",
             line.units,
             precision=self.invest_transactions_float_precision,
-            )
+        )
 
         self.buildAmount(
             "TOTAL",
