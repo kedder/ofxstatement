@@ -87,7 +87,7 @@ NEWFILEUID:NONE
                             <SUBACCTFUND>OTHER</SUBACCTFUND>
                             <FEES>1.24000</FEES>
                             <UNITPRICE>138.28000</UNITPRICE>
-                            <UNITS>3.00</UNITS>
+                            <UNITS>3.00000</UNITS>
                             <TOTAL>-416.08000</TOTAL>
                         </INVBUY>
                     </BUYSTOCK>
@@ -107,7 +107,7 @@ NEWFILEUID:NONE
                             <SUBACCTFUND>OTHER</SUBACCTFUND>
                             <FEES>0.28000</FEES>
                             <UNITPRICE>225.63000</UNITPRICE>
-                            <UNITS>-5.00</UNITS>
+                            <UNITS>-5.00000</UNITS>
                             <TOTAL>1127.87000</TOTAL>
                         </INVSELL>
                     </SELLSTOCK>
