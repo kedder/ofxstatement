@@ -146,6 +146,7 @@ Plugin                            Description
 `ofxstatement-mbank-sk`_          MBank.sk (Slovakia)
 `ofxstatement-latvian`_           Latvian banks
 `ofxstatement-ee-seb`_            SEB (Estonia), parses proprietary csv file
+`ofxstatement-ee-swedbank`_       Swedbank (Estonia), parses proprietary csv file
 `ofxstatement-polish`_            Support for some Polish banks and financial institutions
 `ofxstatement-russian`_           Support for several Russian banks: Avangard, AlfaBank, Tinkoff, SberBank (both debit and csv), VTB.
 `ofxstatement-is-arionbanki`_     Arion bank (Iceland)
@@ -212,6 +213,7 @@ Plugin                            Description
 .. _ofxstatement-mt940: https://github.com/gpaulissen/ofxstatement-mt940
 .. _ofxstatement-it-banks: https://github.com/ecorini/ofxstatement-it-banks
 .. _ofxstatement-ee-seb: https://github.com/rsi2m/ofxstatement-ee-seb
+.. _ofxstatement-ee-swedbank: https://github.com/rsi2m/ofxstatement-ee-swedbank
 .. _ofxstatement-chebanca: https://github.com/3v1n0/ofxstatement-chebanca
 .. _ofxstatement-mastercard-de: https://github.com/FliegendeWurst/ofxstatement-mastercard-de
 .. _ofxstatement-sparkasse-de: https://github.com/FliegendeWurst/ofxstatement-sparkasse-de
