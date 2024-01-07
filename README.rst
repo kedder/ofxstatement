@@ -138,6 +138,7 @@ Plugin                            Description
 `ofxstatement-n26`_               N26 Bank (Italy)
 `ofxstatement-it-banks`_          Widiba and Webank (Italy)
 `ofxstatement-bancoposta`_        BancoPosta - Poste Italiane (Italy)
+`ofxstatement-hype`_              Hype - Banca Sella (Italy)
 
 `ofxstatement-betterment`_        Betterment (USA)
 `ofxstatement-us-first-republic`_ First Republic Bank (USA)
@@ -218,6 +219,7 @@ Plugin                            Description
 .. _ofxstatement-mastercard-de: https://github.com/FliegendeWurst/ofxstatement-mastercard-de
 .. _ofxstatement-sparkasse-de: https://github.com/FliegendeWurst/ofxstatement-sparkasse-de
 .. _ofxstatement-bancoposta: https://github.com/lorenzogiudici5/ofxstatement-bancoposta
+.. _ofxstatement-hype: https://github.com/lorenzogiudici5/ofxstatement-hype
 
 Advanced Configuration
 ======================
