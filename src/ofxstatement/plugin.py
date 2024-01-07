@@ -11,13 +11,11 @@ from ofxstatement.parser import AbstractStatementParser
 
 def get_plugin(name: str, ui: UI, settings: MutableMapping) -> "Plugin":
     plugins = entry_points(name=name)
-    print(plugins)
     if not plugins:  
         raise PluginNotRegistered(name)
     if len(plugins) > 1:
         raise PluginNameConflict(plugins)
-    #pcls = plugins.attr
-    plugin = plugins[0].attr.load()
+    plugin = plugins[0].load()
     return plugin(ui,settings)
 
 
