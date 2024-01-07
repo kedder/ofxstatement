@@ -25,7 +25,7 @@ def list_plugins() -> List[Tuple[str, Type["Plugin"]]]:
     [(name, plugin_class)]
     """
     plugin_eps = list(entry_points(group="ofxstatement"))
-    return sorted((ep.name, ep.load) for ep in plugin_eps)
+    return sorted((ep.name, ep.load()) for ep in plugin_eps)
 
 
 class PluginNotRegistered(Exception):
