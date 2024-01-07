@@ -12,7 +12,7 @@ class PluginTest(unittest.TestCase):
                 return mock.Mock()
 
         ep = mock.Mock()
-        ep.attr.load.return_value = SamplePlugin
+        ep.load.return_value = SamplePlugin
         ep_patch = mock.patch("ofxstatement.plugin.entry_points", return_value=[ep])
         with ep_patch:
             p = plugin.get_plugin("sample", mock.Mock("UI"), mock.Mock("Settings"))
