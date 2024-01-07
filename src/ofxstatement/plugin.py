@@ -9,14 +9,15 @@ from importlib.metadata import entry_points
 from ofxstatement.ui import UI
 from ofxstatement.parser import AbstractStatementParser
 
+
 def get_plugin(name: str, ui: UI, settings: MutableMapping) -> "Plugin":
     plugins = entry_points(name=name)
-    if not plugins:  
+    if not plugins:
         raise PluginNotRegistered(name)
     if len(plugins) > 1:
         raise PluginNameConflict(plugins)
     plugin = plugins[0].load()
-    return plugin(ui,settings)
+    return plugin(ui, settings)
 
 
 def list_plugins() -> List[Tuple[str, Type["Plugin"]]]:
