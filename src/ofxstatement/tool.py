@@ -9,7 +9,7 @@ import platform
 import sys
 import contextlib
 
-import pkg_resources
+from importlib.metadata import version
 
 from ofxstatement import ui, configuration, plugin, ofx, exceptions
 from typing import Optional, TextIO, Generator
@@ -41,8 +41,7 @@ def smart_open(
 
 
 def get_version() -> str:
-    dist = pkg_resources.get_distribution("ofxstatement")
-    return dist.version
+    return version("ofxstatement")
 
 
 def configure_logging(args: argparse.Namespace) -> None:
