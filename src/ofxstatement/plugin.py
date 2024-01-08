@@ -4,6 +4,7 @@ Plugins are objects that configures and coordinates conversion machinery.
 """
 from typing import List, Tuple, Type
 from collections.abc import MutableMapping
+
 try:
     from importlib.metadata import entry_points
 except ImportError:
