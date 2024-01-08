@@ -9,7 +9,10 @@ import platform
 import sys
 import contextlib
 
-from importlib.metadata import version
+try:
+    from importlib.metadata import version
+except ImportError:
+    from importlib_metadata import version
 
 from ofxstatement import ui, configuration, plugin, ofx, exceptions
 from typing import Optional, TextIO, Generator
