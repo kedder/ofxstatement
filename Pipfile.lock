@@ -30,9 +30,25 @@
             "markers": "python_version >= '3.7'",
             "version": "==1.2.0"
         },
+        "importlib-metadata": {
+            "hashes": [
+                "sha256:4805911c3a4ec7c3966410053e9ec6a1fecd629117df5adee56dfc9432a1081e",
+                "sha256:f238736bb06590ae52ac1fab06a3a9ef1d8dce2b7a35b5ab329371d6c8f5d2cc"
+            ],
+            "index": "pypi",
+            "markers": "python_version < '3.10'",
+            "version": "==7.0.1"
+        },
         "ofxstatement": {
             "editable": true,
             "path": "."
+        },
+        "zipp": {
+            "hashes": [
+                "sha256:0e923e726174922dce09c53c59ad483ff7bbb8e572e00c7f7c46b88556409f31",
+                "sha256:84e64a1c28cf7e91ed2078bb8cc8c259cb19b76942096c8d7b84947690cabaf0"
+            ],
+            "version": "==3.17.0"
         }
     },
     "develop": {
@@ -253,7 +269,13 @@
             "version": "==4.1.0"
         },
         "tomli": {
-            "markers": "python_version < '3.11'"
+            "hashes": [
+                "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc",
+                "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"
+            ],
+            "index": "pypi",
+            "markers": "python_version < '3.11'",
+            "version": "==2.0.1"
         },
         "types-mock": {
             "hashes": [
