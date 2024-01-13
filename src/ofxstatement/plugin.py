@@ -20,7 +20,7 @@ def get_plugin(name: str, ui: UI, settings: MutableMapping) -> "Plugin":
         raise PluginNotRegistered(name)
     if len(plugins) > 1:
         raise PluginNameConflict(plugins)
-    plugin = plugins[0].load()
+    plugin = plugins[0].load() # type: ignore[index] # index requires a int but class expects a string
     return plugin(ui, settings)
 
 
