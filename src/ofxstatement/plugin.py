@@ -8,7 +8,7 @@ from collections.abc import MutableMapping
 try:
     from importlib_metadata import entry_points
 except ImportError:
-    from importlib.metadata import entry_points # type: ignore[assignment] #need when importlib_metadata is present
+    from importlib.metadata import entry_points  # type: ignore[assignment] #need when importlib_metadata is present
 
 from ofxstatement.ui import UI
 from ofxstatement.parser import AbstractStatementParser
@@ -20,7 +20,7 @@ def get_plugin(name: str, ui: UI, settings: MutableMapping) -> "Plugin":
         raise PluginNotRegistered(name)
     if len(plugins) > 1:
         raise PluginNameConflict(plugins)
-    plugin = plugins[0].load() # type: ignore[index] # index requires a int but class expects a string
+    plugin = plugins[0].load()  # type: ignore[index] # index requires a int but class expects a string
     return plugin(ui, settings)
 
 
