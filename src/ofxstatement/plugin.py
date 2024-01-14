@@ -4,21 +4,25 @@ Plugins are objects that configures and coordinates conversion machinery.
 """
 from typing import List, Tuple, Type
 from collections.abc import MutableMapping
-import pkg_resources
+import sys
+
+if sys.version_info < (3, 10):
+    from importlib_metadata import entry_points
+else:
+    from importlib.metadata import entry_points
 
 from ofxstatement.ui import UI
 from ofxstatement.parser import AbstractStatementParser
 
 
 def get_plugin(name: str, ui: UI, settings: MutableMapping) -> "Plugin":
-    plugins = list(pkg_resources.iter_entry_points("ofxstatement", name))
+    plugins = entry_points(name=name)
     if not plugins:
         raise PluginNotRegistered(name)
     if len(plugins) > 1:
         raise PluginNameConflict(plugins)
-    pcls = plugins[0].load()
-    plugin = pcls(ui, settings)
-    return plugin
+    plugin = plugins[0].load()  # type: ignore[index] # index requires a int but class expects a string
+    return plugin(ui, settings)
 
 
 def list_plugins() -> List[Tuple[str, Type["Plugin"]]]:
@@ -26,7 +30,7 @@ def list_plugins() -> List[Tuple[str, Type["Plugin"]]]:
 
     [(name, plugin_class)]
     """
-    plugin_eps = pkg_resources.iter_entry_points("ofxstatement")
+    plugin_eps = entry_points(group="ofxstatement")
     return sorted((ep.name, ep.load()) for ep in plugin_eps)
 
 
