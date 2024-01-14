@@ -4,7 +4,9 @@ Changes
 0.9.2 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Switch to importlib.metadata from deprecated pkg_resources for plugin lookup (internal
+  infrastructure update, #262)
+- Fix invest transactions unit precision (#257)
 
 
 0.9.1 (2023-09-16)
