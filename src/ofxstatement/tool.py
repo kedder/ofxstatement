@@ -9,10 +9,11 @@ import platform
 import sys
 import contextlib
 
-try:
+if sys.version_info < (3, 10):
     from importlib_metadata import version
-except ImportError:
+else:
     from importlib.metadata import version
+
 
 from ofxstatement import ui, configuration, plugin, ofx, exceptions
 from typing import Optional, TextIO, Generator

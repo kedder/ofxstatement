@@ -4,11 +4,12 @@ Plugins are objects that configures and coordinates conversion machinery.
 """
 from typing import List, Tuple, Type
 from collections.abc import MutableMapping
+import sys
 
-try:
+if sys.version_info < (3, 10):
     from importlib_metadata import entry_points
-except ImportError:
-    from importlib.metadata import entry_points  # type: ignore[assignment] #need when importlib_metadata is present
+else:
+    from importlib.metadata import entry_points
 
 from ofxstatement.ui import UI
 from ofxstatement.parser import AbstractStatementParser
