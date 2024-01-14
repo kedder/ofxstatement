@@ -4,7 +4,7 @@ import csv
 from decimal import Decimal, Decimal as D
 from datetime import datetime
 
-from ofxstatement.statement import Statement, StatementLine
+from ofxstatement.statement import Statement, StatementLine, InvestStatementLine
 
 LT = TypeVar("LT")
 
@@ -53,7 +53,7 @@ class StatementParser(AbstractStatementParser, Generic[LT]):
         """Return iterable object consisting of a line per transaction"""
         raise NotImplementedError
 
-    def parse_record(self, line: LT) -> Optional[StatementLine]:  # pragma: no cover
+    def parse_record(self, line: LT) -> Optional[StatementLine|InvestStatementLine]:  # pragma: no cover
         """Parse given transaction line and return StatementLine object"""
         raise NotImplementedError
 
