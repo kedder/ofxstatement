@@ -46,14 +46,16 @@ class StatementParser(AbstractStatementParser, Generic[LT]):
             stmt_line = self.parse_record(line)
             if stmt_line:
                 stmt_line.assert_valid()
-                self.statement.lines.append(stmt_line) # type: ignore
+                self.statement.lines.append(stmt_line)  # type: ignore
         return self.statement
 
     def split_records(self) -> Iterable[LT]:  # pragma: no cover
         """Return iterable object consisting of a line per transaction"""
         raise NotImplementedError
 
-    def parse_record(self, line: LT) -> Optional[Union[StatementLine,InvestStatementLine]]:  # pragma: no cover
+    def parse_record(
+        self, line: LT
+    ) -> Optional[Union[StatementLine, InvestStatementLine]]:  # pragma: no cover
         """Parse given transaction line and return StatementLine object"""
         raise NotImplementedError
 
