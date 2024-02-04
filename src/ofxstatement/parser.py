@@ -46,7 +46,7 @@ class StatementParser(AbstractStatementParser, Generic[LT]):
             stmt_line = self.parse_record(line)
             if stmt_line:
                 stmt_line.assert_valid()
-                self.statement.lines.append(stmt_line)
+                self.statement.lines.append(stmt_line) # type: ignore
         return self.statement
 
     def split_records(self) -> Iterable[LT]:  # pragma: no cover
