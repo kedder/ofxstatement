@@ -1,4 +1,4 @@
-from typing import Dict, Optional, Any, Iterable, List, TextIO, TypeVar, Generic
+from typing import Dict, Optional, Any, Iterable, List, TextIO, TypeVar, Generic, Union
 from abc import abstractmethod
 import csv
 from decimal import Decimal, Decimal as D
@@ -53,7 +53,7 @@ class StatementParser(AbstractStatementParser, Generic[LT]):
         """Return iterable object consisting of a line per transaction"""
         raise NotImplementedError
 
-    def parse_record(self, line: LT) -> Optional[StatementLine|InvestStatementLine]:  # pragma: no cover
+    def parse_record(self, line: LT) -> Optional[Union[StatementLine,InvestStatementLine]]:  # pragma: no cover
         """Parse given transaction line and return StatementLine object"""
         raise NotImplementedError
 
