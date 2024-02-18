@@ -272,7 +272,6 @@ class OfxWriter(object):
             "TOTAL",
             line.amount,
             False,
-            precision=self.invest_transactions_float_precision,
         )
 
         if inner_tran_type_tag_name:

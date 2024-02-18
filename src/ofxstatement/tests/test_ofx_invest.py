@@ -88,7 +88,7 @@ NEWFILEUID:NONE
                             <FEES>1.24000</FEES>
                             <UNITPRICE>138.28000</UNITPRICE>
                             <UNITS>3.00000</UNITS>
-                            <TOTAL>-416.08000</TOTAL>
+                            <TOTAL>-416.08</TOTAL>
                         </INVBUY>
                     </BUYSTOCK>
                     <SELLSTOCK>
@@ -108,7 +108,7 @@ NEWFILEUID:NONE
                             <FEES>0.28000</FEES>
                             <UNITPRICE>225.63000</UNITPRICE>
                             <UNITS>-5.00000</UNITS>
-                            <TOTAL>1127.87000</TOTAL>
+                            <TOTAL>1127.87</TOTAL>
                         </INVSELL>
                     </SELLSTOCK>
                     <INCOME>
@@ -125,7 +125,7 @@ NEWFILEUID:NONE
                         <SUBACCTSEC>OTHER</SUBACCTSEC>
                         <SUBACCTFUND>OTHER</SUBACCTFUND>
                         <WITHHOLDING>0.50000</WITHHOLDING>
-                        <TOTAL>0.79000</TOTAL>
+                        <TOTAL>0.79</TOTAL>
                     </INCOME>
                 </INVTRANLIST>
             </INVSTMTRS>
