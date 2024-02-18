@@ -44,6 +44,8 @@ INVEST_TRANSACTION_TYPES_DETAILED = [
     "SELLSHORT",  # open short sale
     "DIV",  # only for INCOME
     "INTEREST",  # only for INCOME
+    "CGLONG",  # only for INCOME
+    "CGSHORT",  # only for INCOME
 ]
 
 ACCOUNT_TYPE = [
