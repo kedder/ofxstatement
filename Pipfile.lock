@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "57fc2b5e4dddcc97dc0061254ba0b975bd616ba89b36cdaff756d997e95bf3b8"
+            "sha256": "d01ad0c4b47d2fff1cffed79da795c043f9e96086adac9594cc73053658fa6ed"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -37,6 +37,10 @@
         "ofxstatement": {
             "editable": true,
             "path": "."
+        },
+        "zipp": {
+            "markers": "python_version < '3.10'",
+            "version": "==3.8"
         }
     },
     "develop": {
