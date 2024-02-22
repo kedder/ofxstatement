@@ -1,4 +1,5 @@
 """Statement model"""
+
 from typing import List, Optional
 from datetime import datetime
 from decimal import Decimal as D
