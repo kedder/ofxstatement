@@ -12,6 +12,7 @@ mypy = "*"
 types-mock = "*"
 exceptiongroup = {markers="python_version < '3.11'"}
 tomli = {markers="python_version < '3.11'"}
+types-appdirs = "*"
 
 [packages]
 ofxstatement = {editable = true,path = "."}
