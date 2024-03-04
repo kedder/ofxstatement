@@ -32,10 +32,11 @@ TRANSACTION_TYPES = [
 INVEST_TRANSACTION_TYPES = [
     "BUYSTOCK",
     "BUYDEBT",
-    "SELLSTOCK",
-    "SELLDEBT",
     "INCOME",
     "INVBANKTRAN",
+    "SELLSTOCK",
+    "SELLDEBT",
+    "TRANSFER",
 ]
 
 INVEST_TRANSACTION_TYPES_DETAILED = [
@@ -295,6 +296,10 @@ class InvestStatementLine(Printable):
                     INVBANKTRAN_TYPES_DETAILED,
                 )
             )
+        elif self.trntype == "TRANSFER":
+            assert (
+                self.trntype_detailed is None
+            ), f"trntype_detailed '{self.trntype_detailed}' should be empty for TRANSFERS"
         else:
             assert (
                 self.trntype_detailed in INVEST_TRANSACTION_TYPES_DETAILED
@@ -305,7 +310,7 @@ class InvestStatementLine(Printable):
 
         assert self.id
         assert self.date
-        assert self.amount
+        assert self.trntype == "TRANSFER" or self.amount
         assert self.trntype == "INVBANKTRAN" or self.security_id
 
         if self.trntype == "INVBANKTRAN":
@@ -315,7 +320,7 @@ class InvestStatementLine(Printable):
         else:
             assert self.security_id
             assert self.units
-            assert self.unit_price
+            assert self.trntype == "TRANSFER" or self.unit_price
 
 
 class BankAccount(Printable):

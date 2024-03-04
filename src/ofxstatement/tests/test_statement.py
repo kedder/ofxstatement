@@ -51,6 +51,24 @@ class StatementTests(unittest.TestCase):
         self.assertTrue(tid2.endswith("-1"))
         self.assertEqual(len(txnids), 2)
 
+    def test_transfer_line_validation(self) -> None:
+        line = statement.InvestStatementLine("id", datetime(2020, 3, 25))
+        line.trntype = "TRANSFER"
+        line.security_id = "ABC"
+        line.units = Decimal(2)
+        line.assert_valid()
+        with self.assertRaises(AssertionError):
+            line.security_id = None
+            line.assert_valid()
+        line.security_id = "ABC"
+        with self.assertRaises(AssertionError):
+            line.units = None
+            line.assert_valid()
+        line.units = Decimal(2)
+        with self.assertRaises(AssertionError):
+            line.trntype_detailed = "DETAIL"
+            line.assert_valid()
+
     def test_invbank_line_validation(self) -> None:
         line = statement.InvestStatementLine("id", datetime(2020, 3, 25))
         line.trntype = "INVBANKTRAN"

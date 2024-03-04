@@ -137,6 +137,21 @@ NEWFILEUID:NONE
                         </STMTTRN>
                         <SUBACCTFUND>OTHER</SUBACCTFUND>
                     </INVBANKTRAN>
+                    <TRANSFER>
+                        <INVTRAN>
+                            <FITID>7</FITID>
+                            <DTTRADE>20210103</DTTRADE>
+                            <MEMO>Journaled Shares</MEMO>
+                        </INVTRAN>
+                        <SECID>
+                            <UNIQUEID>MSFT</UNIQUEID>
+                            <UNIQUEIDTYPE>TICKER</UNIQUEIDTYPE>
+                        </SECID>
+                        <SUBACCTSEC>OTHER</SUBACCTSEC>
+                        <SUBACCTFUND>OTHER</SUBACCTFUND>
+                        <UNITPRICE>225.63000</UNITPRICE>
+                        <UNITS>4.00000</UNITS>
+                    </TRANSFER>
                 </INVTRANLIST>
             </INVSTMTRS>
         </INVSTMTTRNRS>
@@ -204,6 +219,15 @@ class OfxInvestLinesWriterTest(TestCase):
             "6", datetime(2021, 1, 2), "Bank Interest", "INVBANKTRAN", "INT"
         )
         invest_line.amount = Decimal("0.45")
+        invest_line.assert_valid()
+        statement.invest_lines.append(invest_line)
+
+        invest_line = InvestStatementLine(
+            "7", datetime(2021, 1, 3), "Journaled Shares", "TRANSFER"
+        )
+        invest_line.security_id = "MSFT"
+        invest_line.units = Decimal("4")
+        invest_line.unit_price = Decimal("225.63")
         invest_line.assert_valid()
         statement.invest_lines.append(invest_line)
 
