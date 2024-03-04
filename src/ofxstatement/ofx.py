@@ -207,6 +207,15 @@ class OfxWriter(object):
 
         tb = self.tb
 
+        if line.trntype == "INVBANKTRAN":
+            tb.start(line.trntype, {})
+            bankTran = StatementLine(line.id, line.date, line.memo, line.amount)
+            bankTran.trntype = line.trntype_detailed
+            self.buildBankTransaction(bankTran)
+            self.buildText("SUBACCTFUND", "OTHER")
+            tb.end(line.trntype)
+            return
+
         tran_type_detailed_tag_name = None
         inner_tran_type_tag_name = None
         if line.trntype.startswith("BUY"):

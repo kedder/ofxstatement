@@ -50,3 +50,70 @@ class StatementTests(unittest.TestCase):
 
         self.assertTrue(tid2.endswith("-1"))
         self.assertEqual(len(txnids), 2)
+
+    def test_invbank_line_validation(self) -> None:
+        line = statement.InvestStatementLine("id", datetime(2020, 3, 25))
+        line.trntype = "INVBANKTRAN"
+        line.trntype_detailed = "INT"
+        line.amount = Decimal(1)
+        line.assert_valid()
+        with self.assertRaises(AssertionError):
+            line.amount = None
+            line.assert_valid()
+        line.amount = Decimal(1)
+        with self.assertRaises(AssertionError):
+            line.trntype_detailed = "BLAH"
+            line.assert_valid()
+
+    def test_income_line_validation(self) -> None:
+        line = statement.InvestStatementLine("id", datetime(2020, 3, 25))
+        line.trntype = "INCOME"
+        line.trntype_detailed = "INTEREST"
+        line.amount = Decimal(1)
+        line.security_id = "AAPL"
+        line.assert_valid()
+        with self.assertRaises(AssertionError):
+            line.amount = None
+            line.assert_valid()
+        line.amount = Decimal(1)
+        with self.assertRaises(AssertionError):
+            line.trntype_detailed = "BLAH"
+            line.assert_valid()
+        line.trntype_detailed = "INTEREST"
+        with self.assertRaises(AssertionError):
+            line.security_id = None
+            line.assert_valid()
+
+    def test_buy_line_validation(self) -> None:
+        line = statement.InvestStatementLine("id", datetime(2020, 3, 25))
+        line.trntype = "BUYSTOCK"
+        line.trntype_detailed = "BUY"
+        line.amount = Decimal(1)
+        line.security_id = "AAPL"
+        line.units = Decimal(3)
+        line.unit_price = Decimal(1.1)
+        line.assert_valid()
+
+        with self.assertRaises(AssertionError):
+            line.amount = None
+            line.assert_valid()
+        line.amount = Decimal(1)
+
+        with self.assertRaises(AssertionError):
+            line.trntype_detailed = "BLAH"
+            line.assert_valid()
+        line.trntype_detailed = "INTEREST"
+
+        with self.assertRaises(AssertionError):
+            line.security_id = None
+            line.assert_valid()
+        line.security_id = "AAPL"
+
+        with self.assertRaises(AssertionError):
+            line.units = None
+            line.assert_valid()
+        line.units = Decimal(3)
+
+        with self.assertRaises(AssertionError):
+            line.unit_price = None
+            line.assert_valid()

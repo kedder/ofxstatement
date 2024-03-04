@@ -35,6 +35,7 @@ INVEST_TRANSACTION_TYPES = [
     "SELLSTOCK",
     "SELLDEBT",
     "INCOME",
+    "INVBANKTRAN",
 ]
 
 INVEST_TRANSACTION_TYPES_DETAILED = [
@@ -46,6 +47,15 @@ INVEST_TRANSACTION_TYPES_DETAILED = [
     "INTEREST",  # only for INCOME
     "CGLONG",  # only for INCOME
     "CGSHORT",  # only for INCOME
+]
+
+INVBANKTRAN_TYPES_DETAILED = [
+    "INT",
+    "XFER",
+    "DEBIT",
+    "CREDIT",
+    "SRVCHG",
+    "OTHER",
 ]
 
 ACCOUNT_TYPE = [
@@ -277,19 +287,35 @@ class InvestStatementLine(Printable):
             INVEST_TRANSACTION_TYPES,
         )
 
-        assert (
-            self.trntype_detailed in INVEST_TRANSACTION_TYPES_DETAILED
-        ), "trntype_detailed %s is not valid, must be one of %s" % (
-            self.trntype_detailed,
-            INVEST_TRANSACTION_TYPES_DETAILED,
-        )
+        if self.trntype == "INVBANKTRAN":
+            assert self.trntype_detailed in INVBANKTRAN_TYPES_DETAILED, (
+                "trntype_detailed %s is not valid for INVBANKTRAN, must be one of %s"
+                % (
+                    self.trntype_detailed,
+                    INVBANKTRAN_TYPES_DETAILED,
+                )
+            )
+        else:
+            assert (
+                self.trntype_detailed in INVEST_TRANSACTION_TYPES_DETAILED
+            ), "trntype_detailed %s is not valid, must be one of %s" % (
+                self.trntype_detailed,
+                INVEST_TRANSACTION_TYPES_DETAILED,
+            )
 
         assert self.id
-        assert self.security_id
+        assert self.date
         assert self.amount
+        assert self.trntype == "INVBANKTRAN" or self.security_id
 
-        assert self.trntype == "INCOME" or self.units
-        assert self.trntype == "INCOME" or self.unit_price
+        if self.trntype == "INVBANKTRAN":
+            pass
+        elif self.trntype == "INCOME":
+            assert self.security_id
+        else:
+            assert self.security_id
+            assert self.units
+            assert self.unit_price
 
 
 class BankAccount(Printable):

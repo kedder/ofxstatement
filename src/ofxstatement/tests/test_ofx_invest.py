@@ -127,6 +127,16 @@ NEWFILEUID:NONE
                         <WITHHOLDING>0.50000</WITHHOLDING>
                         <TOTAL>0.79</TOTAL>
                     </INCOME>
+                    <INVBANKTRAN>
+                        <STMTTRN>
+                            <TRNTYPE>INT</TRNTYPE>
+                            <DTPOSTED>20210102</DTPOSTED>
+                            <TRNAMT>0.45</TRNAMT>
+                            <FITID>6</FITID>
+                            <MEMO>Bank Interest</MEMO>
+                        </STMTTRN>
+                        <SUBACCTFUND>OTHER</SUBACCTFUND>
+                    </INVBANKTRAN>
                 </INVTRANLIST>
             </INVSTMTRS>
         </INVSTMTTRNRS>
@@ -187,6 +197,13 @@ class OfxInvestLinesWriterTest(TestCase):
             Decimal("0.79"),
         )
         invest_line.fees = Decimal("0.5")
+        invest_line.assert_valid()
+        statement.invest_lines.append(invest_line)
+
+        invest_line = InvestStatementLine(
+            "6", datetime(2021, 1, 2), "Bank Interest", "INVBANKTRAN", "INT"
+        )
+        invest_line.amount = Decimal("0.45")
         invest_line.assert_valid()
         statement.invest_lines.append(invest_line)
 
