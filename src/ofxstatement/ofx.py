@@ -155,6 +155,8 @@ class OfxWriter(object):
         for security_id in dict.fromkeys(
             map(lambda x: x.security_id, self.statement.invest_lines)
         ):
+            if security_id is None:
+                continue
             tb.start("STOCKINFO", {})
             tb.start("SECINFO", {})
             tb.start("SECID", {})
@@ -199,11 +201,20 @@ class OfxWriter(object):
         tb.end("INVSTMTMSGSRSV1")
 
     def buildInvestTransaction(self, line: InvestStatementLine) -> None:
-        # invest transactions must always have trntype and trntype_detailed
-        if line.trntype is None or line.trntype_detailed is None:
+        # invest transactions must always have trntype
+        if line.trntype is None:
             return
 
         tb = self.tb
+
+        if line.trntype == "INVBANKTRAN":
+            tb.start(line.trntype, {})
+            bankTran = StatementLine(line.id, line.date, line.memo, line.amount)
+            bankTran.trntype = line.trntype_detailed
+            self.buildBankTransaction(bankTran)
+            self.buildText("SUBACCTFUND", "OTHER")
+            tb.end(line.trntype)
+            return
 
         tran_type_detailed_tag_name = None
         inner_tran_type_tag_name = None
@@ -213,6 +224,10 @@ class OfxWriter(object):
         elif line.trntype.startswith("SELL"):
             tran_type_detailed_tag_name = "SELLTYPE"
             inner_tran_type_tag_name = "INVSELL"
+        elif line.trntype == "TRANSFER":
+            # Transfer transactions don't have details or an envelope
+            tran_type_detailed_tag_name = None
+            inner_tran_type_tag_name = None
         else:
             tran_type_detailed_tag_name = "INCOMETYPE"
             inner_tran_type_tag_name = (
@@ -220,7 +235,8 @@ class OfxWriter(object):
             )
 
         tb.start(line.trntype, {})
-        self.buildText(tran_type_detailed_tag_name, line.trntype_detailed, False)
+        if tran_type_detailed_tag_name:
+            self.buildText(tran_type_detailed_tag_name, line.trntype_detailed, False)
 
         if inner_tran_type_tag_name:
             tb.start(inner_tran_type_tag_name, {})
@@ -266,12 +282,7 @@ class OfxWriter(object):
             precision=self.invest_transactions_float_precision,
         )
 
-        self.buildAmount(
-            "TOTAL",
-            line.amount,
-            False,
-            precision=self.invest_transactions_float_precision,
-        )
+        self.buildAmount("TOTAL", line.amount)
 
         if inner_tran_type_tag_name:
             tb.end(inner_tran_type_tag_name)

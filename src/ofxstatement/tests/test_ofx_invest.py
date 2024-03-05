@@ -88,7 +88,7 @@ NEWFILEUID:NONE
                             <FEES>1.24000</FEES>
                             <UNITPRICE>138.28000</UNITPRICE>
                             <UNITS>3.00000</UNITS>
-                            <TOTAL>-416.08000</TOTAL>
+                            <TOTAL>-416.08</TOTAL>
                         </INVBUY>
                     </BUYSTOCK>
                     <SELLSTOCK>
@@ -108,7 +108,7 @@ NEWFILEUID:NONE
                             <FEES>0.28000</FEES>
                             <UNITPRICE>225.63000</UNITPRICE>
                             <UNITS>-5.00000</UNITS>
-                            <TOTAL>1127.87000</TOTAL>
+                            <TOTAL>1127.87</TOTAL>
                         </INVSELL>
                     </SELLSTOCK>
                     <INCOME>
@@ -125,8 +125,33 @@ NEWFILEUID:NONE
                         <SUBACCTSEC>OTHER</SUBACCTSEC>
                         <SUBACCTFUND>OTHER</SUBACCTFUND>
                         <WITHHOLDING>0.50000</WITHHOLDING>
-                        <TOTAL>0.79000</TOTAL>
+                        <TOTAL>0.79</TOTAL>
                     </INCOME>
+                    <INVBANKTRAN>
+                        <STMTTRN>
+                            <TRNTYPE>INT</TRNTYPE>
+                            <DTPOSTED>20210102</DTPOSTED>
+                            <TRNAMT>0.45</TRNAMT>
+                            <FITID>6</FITID>
+                            <MEMO>Bank Interest</MEMO>
+                        </STMTTRN>
+                        <SUBACCTFUND>OTHER</SUBACCTFUND>
+                    </INVBANKTRAN>
+                    <TRANSFER>
+                        <INVTRAN>
+                            <FITID>7</FITID>
+                            <DTTRADE>20210103</DTTRADE>
+                            <MEMO>Journaled Shares</MEMO>
+                        </INVTRAN>
+                        <SECID>
+                            <UNIQUEID>MSFT</UNIQUEID>
+                            <UNIQUEIDTYPE>TICKER</UNIQUEIDTYPE>
+                        </SECID>
+                        <SUBACCTSEC>OTHER</SUBACCTSEC>
+                        <SUBACCTFUND>OTHER</SUBACCTFUND>
+                        <UNITPRICE>225.63000</UNITPRICE>
+                        <UNITS>4.00000</UNITS>
+                    </TRANSFER>
                 </INVTRANLIST>
             </INVSTMTRS>
         </INVSTMTTRNRS>
@@ -187,6 +212,22 @@ class OfxInvestLinesWriterTest(TestCase):
             Decimal("0.79"),
         )
         invest_line.fees = Decimal("0.5")
+        invest_line.assert_valid()
+        statement.invest_lines.append(invest_line)
+
+        invest_line = InvestStatementLine(
+            "6", datetime(2021, 1, 2), "Bank Interest", "INVBANKTRAN", "INT"
+        )
+        invest_line.amount = Decimal("0.45")
+        invest_line.assert_valid()
+        statement.invest_lines.append(invest_line)
+
+        invest_line = InvestStatementLine(
+            "7", datetime(2021, 1, 3), "Journaled Shares", "TRANSFER"
+        )
+        invest_line.security_id = "MSFT"
+        invest_line.units = Decimal("4")
+        invest_line.unit_price = Decimal("225.63")
         invest_line.assert_valid()
         statement.invest_lines.append(invest_line)
 
