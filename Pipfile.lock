@@ -284,12 +284,12 @@
         },
         "types-mock": {
             "hashes": [
-                "sha256:13ca379d5710ccb3f18f69ade5b08881874cb83383d8fb49b1d4dac9d5c5d090",
-                "sha256:3d116955495935b0bcba14954b38d97e507cd43eca3e3700fc1b8e4f5c6bf2c7"
+                "sha256:0769cb376dfc75b45215619f17a9fd6333d771cc29ce4a38937f060b1e45530f",
+                "sha256:7472797986d83016f96fde7f73577d129b0cd8a8d0b783487a7be330d57ba431"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.8'",
-            "version": "==5.1.0.20240106"
+            "version": "==5.1.0.20240311"
         },
         "typing-extensions": {
             "hashes": [
