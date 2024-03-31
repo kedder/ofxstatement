@@ -57,7 +57,7 @@ class StatementParser(AbstractStatementParser, Generic[LT]):
         """Parse given transaction line and return StatementLine object"""
         raise NotImplementedError
 
-    def parse_invest_record (self, line: LT) -> InvestStatementLine:  # pragma: no cover
+    def parse_invest_record (self, line: LT) -> Optional[InvestStatementLine]:  # pragma: no cover
         """Parse given investement transaction line and return InvetStatementLine object"""
         raise NotImplementedError
 
