@@ -53,7 +53,7 @@ class StatementParser(AbstractStatementParser, Generic[LT]):
         """Return iterable object consisting of a line per transaction"""
         raise NotImplementedError
 
-    def parse_record(self, line: LT) -> StatementLine:  # pragma: no cover
+    def parse_record(self, line: LT) -> Optional[StatementLine]:  # pragma: no cover
         """Parse given transaction line and return StatementLine object"""
         raise NotImplementedError
 
