@@ -157,6 +157,7 @@ Plugin                            Description
 `ofxstatement-zm-stanbic`_        Stanbic Bank (Zambia)
 `ofxstatement-dutch`_             Dutch financial institutes like ICSCards and ING
 `ofxstatement-french`_            French financial institutes like BanquePopulaire
+`ofxstatement-schwab-json`_       Charles Schwab investment history JSON export
 ================================= ============================================
 
 
@@ -220,6 +221,7 @@ Plugin                            Description
 .. _ofxstatement-sparkasse-de: https://github.com/FliegendeWurst/ofxstatement-sparkasse-de
 .. _ofxstatement-bancoposta: https://github.com/lorenzogiudici5/ofxstatement-bancoposta
 .. _ofxstatement-hype: https://github.com/lorenzogiudici5/ofxstatement-hype
+.. _ofxstatement-hype: https://github.com/edwagner/ofxstatement-schwab-json
 
 Advanced Configuration
 ======================
