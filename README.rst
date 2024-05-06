@@ -158,6 +158,7 @@ Plugin                            Description
 `ofxstatement-dutch`_             Dutch financial institutes like ICSCards and ING
 `ofxstatement-french`_            French financial institutes like BanquePopulaire
 `ofxstatement-schwab-json`_       Charles Schwab investment history JSON export
+`ofxstatement-bbva`_              BBVA (Spain)
 ================================= ============================================
 
 
@@ -222,6 +223,7 @@ Plugin                            Description
 .. _ofxstatement-bancoposta: https://github.com/lorenzogiudici5/ofxstatement-bancoposta
 .. _ofxstatement-hype: https://github.com/lorenzogiudici5/ofxstatement-hype
 .. _ofxstatement-hype: https://github.com/edwagner/ofxstatement-schwab-json
+.. _ofxstatement-bbva: https://github.com/3v1n0/ofxstatement-bbva
 
 Advanced Configuration
 ======================
