@@ -159,6 +159,8 @@ Plugin                            Description
 `ofxstatement-french`_            French financial institutes like BanquePopulaire
 `ofxstatement-schwab-json`_       Charles Schwab investment history JSON export
 `ofxstatement-bbva`_              BBVA (Spain)
+`ofxstatement-qif`_               Converts Quicken Interchange Format (QIF) formatted bank transaction files
+`ofxstatement-santander`_         Converts Santander transaction files
 ================================= ============================================
 
 
@@ -224,6 +226,8 @@ Plugin                            Description
 .. _ofxstatement-hype: https://github.com/lorenzogiudici5/ofxstatement-hype
 .. _ofxstatement-hype: https://github.com/edwagner/ofxstatement-schwab-json
 .. _ofxstatement-bbva: https://github.com/3v1n0/ofxstatement-bbva
+.. _ofxstatement-qif: https://github.com/robvadai/ofxstatement-qif
+.. _ofxstatement-santander: https://github.com/robvadai/ofxstatement-santander
 
 Advanced Configuration
 ======================
