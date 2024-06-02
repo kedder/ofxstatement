@@ -222,7 +222,7 @@ Plugin                            Description
 .. _ofxstatement-sparkasse-de: https://github.com/FliegendeWurst/ofxstatement-sparkasse-de
 .. _ofxstatement-bancoposta: https://github.com/lorenzogiudici5/ofxstatement-bancoposta
 .. _ofxstatement-hype: https://github.com/lorenzogiudici5/ofxstatement-hype
-.. _ofxstatement-hype: https://github.com/edwagner/ofxstatement-schwab-json
+.. _ofxstatement-schwab-json: https://github.com/edwagner/ofxstatement-schwab-json
 .. _ofxstatement-bbva: https://github.com/3v1n0/ofxstatement-bbva
 
 Advanced Configuration
