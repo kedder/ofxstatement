@@ -164,15 +164,6 @@
             "markers": "python_version >= '3.7'",
             "version": "==2.0.0"
         },
-        "mock": {
-            "hashes": [
-                "sha256:18c694e5ae8a208cdb3d2c20a993ca1a7b0efa258c247a1e565150f477f83744",
-                "sha256:5e96aad5ccda4718e0a229ed94b2024df75cc2d55575ba5762d31f5767b8767d"
-            ],
-            "index": "pypi",
-            "markers": "python_version >= '3.6'",
-            "version": "==5.1.0"
-        },
         "mypy": {
             "hashes": [
                 "sha256:075cbf81f3e134eadaf247de187bd604748171d6b79736fa9b6c9685b4083061",
@@ -281,15 +272,6 @@
             ],
             "index": "pypi",
             "version": "==1.4.3.5"
-        },
-        "types-mock": {
-            "hashes": [
-                "sha256:5281a645d72e827d70043e3cc144fe33b1c003db084f789dc203aa90e812a5a4",
-                "sha256:d586a01d39ad919d3ddcd73de6cde73ca7f3c69707219f722d1b8d7733641ad7"
-            ],
-            "index": "pypi",
-            "markers": "python_version >= '3.8'",
-            "version": "==5.1.0.20240425"
         },
         "typing-extensions": {
             "hashes": [
