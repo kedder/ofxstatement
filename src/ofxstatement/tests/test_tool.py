@@ -7,8 +7,7 @@ import logging
 import logging.handlers
 import shutil
 from typing import Dict
-
-import mock
+from unittest import mock
 
 from ofxstatement import tool, statement, configuration, parser, exceptions
 
