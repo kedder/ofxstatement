@@ -103,6 +103,7 @@ Plugin                            Description
 `ofxstatement-equabankcz`_        Plugin for Equa Bank a.s. (Czech Republic)
 `ofxstatement-cz-komercni`_       Komerční banka (Czech Republic)
 `ofxstatement-mbankcz`_           mBank S.A. (Czech Republic)
+`ofxstatement-partnersbankacz`_   Partners Banka, a.s. (Czech Republic)
 `ofxstatement-otp`_               Plugin for OTP Bank, operating in Hungary
 `ofxstatement-bubbas`_            Set of plugins, developed by @bubbas:
                                   ``dkb_cc`` and ``lbbamazon``.
@@ -173,6 +174,7 @@ Plugin                            Description
 .. _ofxstatement-unicreditcz: https://github.com/milankni/ofxstatement-unicreditcz
 .. _ofxstatement-equabankcz: https://github.com/kosciCZ/ofxstatement-equabankcz
 .. _ofxstatement-mbankcz: https://github.com/SinyaWeo/ofxstatement-mbankcz
+.. _ofxstatement-partnersbankacz: https://github.com/archont00/ofxstatement-partnersbankacz
 .. _ofxstatement-otp: https://github.com/abesto/ofxstatement-otp
 .. _ofxstatement-bubbas: https://github.com/bubbas/ofxstatement-bubbas
 .. _banking.statements.osuuspankki: https://github.com/koodaamo/banking.statements.osuuspankki
