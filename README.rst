@@ -98,6 +98,7 @@ Plugin                            Description
 
 `ofxstatement-airbankcz`_         Plugin for Air Bank a.s. (Czech Republic)
 `ofxstatement-raiffeisencz`_      Plugin for Raiffeisenbank a.s. (Czech Republic)
+`ofxstatement-skippaycz`_         Plugin for Skip Pay s.r.o. (Czech Republic)
 `ofxstatement-unicreditcz`_       Plugin for UniCredit Bank Czech Republic and Slovakia
 `ofxstatement-equabankcz`_        Plugin for Equa Bank a.s. (Czech Republic)
 `ofxstatement-cz-komercni`_       Komerční banka (Czech Republic)
@@ -168,6 +169,7 @@ Plugin                            Description
 .. _ofxstatement-czech: https://gitlab.com/mcepl/ofxstatement-czech
 .. _ofxstatement-airbankcz: https://github.com/milankni/ofxstatement-airbankcz
 .. _ofxstatement-raiffeisencz: https://github.com/milankni/ofxstatement-raiffeisencz
+.. _ofxstatement-skippaycz: https://github.com/archont00/ofxstatement-skippaycz
 .. _ofxstatement-unicreditcz: https://github.com/milankni/ofxstatement-unicreditcz
 .. _ofxstatement-equabankcz: https://github.com/kosciCZ/ofxstatement-equabankcz
 .. _ofxstatement-mbankcz: https://github.com/SinyaWeo/ofxstatement-mbankcz
