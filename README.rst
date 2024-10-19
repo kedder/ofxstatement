@@ -117,7 +117,8 @@ Plugin                            Description
 `ofxstatement-be-keytrade`_       KeytradeBank (Belgium)
 `ofxstatement-be-ing`_            ING (Belgium)
 `ofxstatement-be-kbc`_            KBC (Belgium)
-`ofxstatement-be-argenta`_        Argenta (Belgium)
+`ofxstatement-be-argenta`_        Argenta (Belgium) (by @woutbr)
+`ofxstatement-be-argenta-nick`_   Argenta (Belgium, also supports french version) (fork by @Nick-DT)
 `ofxstatement-be-crelan`_         Crelan (Belgium)
 `ofxstatement-be-triodos`_        Belgian Triodos Bank CSV statements
 `ofxstatement-be-newb`_           Belgian cooperative bank newB
@@ -188,6 +189,7 @@ Plugin                            Description
 .. _ofxstatement-be-ing: https://github.com/jbbandos/ofxstatement-be-ing
 .. _ofxstatement-be-kbc: https://github.com/plenaerts/ofxstatement-be-kbc
 .. _ofxstatement-be-argenta: https://github.com/woutbr/ofxstatement-be-argenta
+.. _ofxstatement-be-argenta-nick: https://github.com/Nick-DT/ofxstatement-be-argenta
 .. _ofxstatement-be-crelan: https://gitlab.com/MagnificentMoustache/ofxstatement-be.crelan
 .. _ofxstatement-be-newb: https://github.com/SDaron/ofxstatement-be-newb
 .. _ofxstatement-betterment: https://github.com/cmayes/ofxstatement-betterment
