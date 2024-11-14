@@ -125,7 +125,6 @@ Plugin                            Description
 `ofxstatement-be-vdk-fr`_         VDK (Belgium, French statements)
 `ofxstatement-be-hellobank-fr`_   Hello Bank (Belgium, French statements)
 
-
 `ofxstatement-germany`_           Plugin for several german banks (1822direkt and Postbank at the moment)
 `ofxstatement-dab`_               DAB Bank (Germany)
 `ofxstatement-consors`_           Consorsbank (Germany)
@@ -239,7 +238,6 @@ Plugin                            Description
 .. _ofxstatement-santander: https://github.com/robvadai/ofxstatement-santander
 .. _ofxstatement-be-vdk-fr: https://github.com/Jibuus/ofxstatement-be-vdk-fr
 .. _ofxstatement-be-hellobank-fr: https://github.com/Jibuus/ofxstatement-be-hellobank-fr
-
 
 Advanced Configuration
 ======================
