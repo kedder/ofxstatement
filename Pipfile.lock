@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "b52e84105a7ae6e381cddf818d2b38d05d0a0a4d9573d7597e17b227a91d90bd"
+            "sha256": "cb8ca6d3c3b7984a4c9e4213648559c64f0f7816a82f0b6d45646fbdc6fff283"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -14,13 +14,6 @@
         ]
     },
     "default": {
-        "appdirs": {
-            "hashes": [
-                "sha256:7d5d0167b2b1ba821647616af46a749d1c653740dd0d2415100fe26e27afdf41",
-                "sha256:a841dacd6b99318a741b166adb07e19ee71a274450e68237b4650ca1055ab128"
-            ],
-            "version": "==1.4.4"
-        },
         "exceptiongroup": {
             "hashes": [
                 "sha256:3111b9d131c238bec2f8f516e123e14ba243563fb135d3fe885990585aa7795b",
@@ -37,6 +30,15 @@
         "ofxstatement": {
             "editable": true,
             "path": "."
+        },
+        "platformdirs": {
+            "hashes": [
+                "sha256:357fb2acbc885b0419afd3ce3ed34564c13c9b95c89360cd9563f73aa5e2b907",
+                "sha256:73e575e1408ab8103900836b97580d5307456908a03e92031bab39e4554cc3fb"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.8'",
+            "version": "==4.3.6"
         },
         "zipp": {
             "hashes": [
@@ -279,14 +281,6 @@
             "index": "pypi",
             "markers": "python_version < '3.11'",
             "version": "==2.0.1"
-        },
-        "types-appdirs": {
-            "hashes": [
-                "sha256:337c750e423c40911d389359b4edabe5bbc2cdd5cd0bd0518b71d2839646273b",
-                "sha256:83268da64585361bfa291f8f506a209276212a0497bd37f0512a939b3d69ff14"
-            ],
-            "index": "pypi",
-            "version": "==1.4.3.5"
         },
         "typing-extensions": {
             "hashes": [
