@@ -35,5 +35,13 @@ Homepage = "https://github.com/kedder/ofxstatement"
 [project.scripts]
 ofxstatement = "ofxstatement.tool:run"
 
+[tool.setuptools]
+packages = [
+    "ofxstatement",
+    "ofxstatement.plugins",
+    "ofxstatement.tests",
+    "ofxstatement.tests.samples",
+]
+
 [tool.setuptools.package-data]
 ofxstatement = ["tests/samples"]

@@ -42,6 +42,7 @@ jobs:
         COVERALLS_PARALLEL: true
       run: |
         coveralls --service=github
+
   report:
     needs: test
     runs-on: ubuntu-latest
@@ -55,3 +56,27 @@ jobs:
       run: |
         pip install coveralls
         coveralls --service=github --finish
+
+  integration-test:
+    needs: test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Build and install wheel
+      run: |
+        python -m pip install --upgrade pip
+        pip install build wheel
+        python -m build
+        pip install dist/*.whl
+    - name: Check some plugins
+      run: |
+        pip install ofxstatement-lithuanian
+        ofxstatement list-plugins | grep swedbank
