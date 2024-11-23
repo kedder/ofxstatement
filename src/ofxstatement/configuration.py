@@ -2,7 +2,7 @@ from typing import Optional
 from collections.abc import MutableMapping
 import os
 import configparser
-import appdirs
+import platformdirs
 
 from ofxstatement.exceptions import Abort
 
@@ -11,7 +11,7 @@ APP_AUTHOR = "ofx"
 
 
 def get_default_location() -> str:
-    cdir = appdirs.user_config_dir(APP_NAME, APP_AUTHOR)
+    cdir = platformdirs.user_config_dir(APP_NAME, APP_AUTHOR)
     return os.path.join(cdir, "config.ini")
 
 
