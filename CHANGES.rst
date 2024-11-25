@@ -4,6 +4,8 @@ Changes
 0.9.2 (unreleased)
 ==================
 
+- Get rid of build deprecation warnings (#322)
+
 - Replace deprecated appdirs with platformdirs (#323)
 
 - Switch to importlib.metadata from deprecated pkg_resources for plugin lookup (internal
