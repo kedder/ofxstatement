@@ -1,4 +1,7 @@
 include CHANGES.rst README.rst
 include src/ofxstatement/plugins/README.txt
 include src/ofxstatement/py.typed
+include Pipfile Pipfile.lock
+include Makefile
+uinclude pytest.ini
 graft src/ofxstatement/tests/samples
