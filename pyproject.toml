@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ofxstatement"
-version = "0.9.2.dev0"
+version = "0.9.2"
 authors = [
   { name="Andrey Lebedev", email="andrey@lebedev.lt" },
 ]

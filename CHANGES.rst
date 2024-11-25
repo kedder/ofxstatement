@@ -1,7 +1,7 @@
 Changes
 -------
 
-0.9.2 (unreleased)
+0.9.2 (2024-11-25)
 ==================
 
 - Get rid of build deprecation warnings (#322)
