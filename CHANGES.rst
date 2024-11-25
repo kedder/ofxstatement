@@ -4,6 +4,8 @@ Changes
 0.9.2 (unreleased)
 ==================
 
+- Replace deprecated appdirs with platformdirs (#323)
+
 - Switch to importlib.metadata from deprecated pkg_resources for plugin lookup (internal
   infrastructure update, #262)
 - Fix invest transactions unit precision (#257)
