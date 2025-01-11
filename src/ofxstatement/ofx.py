@@ -30,7 +30,6 @@ class OfxWriter(object):
             xmlstring = dom.toprettyxml(indent="  ")
             xmlstring = xmlstring.replace('<?xml version="1.0" ?>', "").lstrip()
         header = (
-            "<!-- \n"
             "OFXHEADER:100\n"
             "DATA:OFXSGML\n"
             "VERSION:102\n"
@@ -40,7 +39,7 @@ class OfxWriter(object):
             "COMPRESSION:NONE\n"
             "OLDFILEUID:NONE\n"
             "NEWFILEUID:NONE\n"
-            "-->\n\n"
+            "\n"
         )
 
         return header + xmlstring
