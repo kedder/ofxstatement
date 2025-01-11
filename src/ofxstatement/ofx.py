@@ -24,12 +24,11 @@ class OfxWriter(object):
 
     def toxml(self, pretty: bool = False) -> str:
         et = self.buildDocument()
-        encoded = etree.tostring(et.getroot(), "utf-8")
-        encoded = str(encoded, "utf-8")
+        xmlstring = etree.tostring(et.getroot(), "unicode")
         if pretty:
-            dom = minidom.parseString(encoded)
-            encoded = dom.toprettyxml(indent="  ")
-            encoded = encoded.replace('<?xml version="1.0" ?>', "").lstrip()
+            dom = minidom.parseString(xmlstring)
+            xmlstring = dom.toprettyxml(indent="  ")
+            xmlstring = xmlstring.replace('<?xml version="1.0" ?>', "").lstrip()
         header = (
             "<!-- \n"
             "OFXHEADER:100\n"
@@ -44,7 +43,7 @@ class OfxWriter(object):
             "-->\n\n"
         )
 
-        return header + encoded
+        return header + xmlstring
 
     def buildDocument(self) -> etree.ElementTree:
         tb = self.tb
