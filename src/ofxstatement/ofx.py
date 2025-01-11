@@ -27,19 +27,19 @@ class OfxWriter(object):
         xmlstring = etree.tostring(et.getroot(), "unicode")
         if pretty:
             dom = minidom.parseString(xmlstring)
-            xmlstring = dom.toprettyxml(indent="  ")
+            xmlstring = dom.toprettyxml(indent="  ", newl="\r\n")
             xmlstring = xmlstring.replace('<?xml version="1.0" ?>', "").lstrip()
         header = (
-            "OFXHEADER:100\n"
-            "DATA:OFXSGML\n"
-            "VERSION:102\n"
-            "SECURITY:NONE\n"
-            "ENCODING:UTF-8\n"
-            "CHARSET:NONE\n"
-            "COMPRESSION:NONE\n"
-            "OLDFILEUID:NONE\n"
-            "NEWFILEUID:NONE\n"
-            "\n"
+            "OFXHEADER:100\r\n"
+            "DATA:OFXSGML\r\n"
+            "VERSION:102\r\n"
+            "SECURITY:NONE\r\n"
+            "ENCODING:UTF-8\r\n"
+            "CHARSET:NONE\r\n"
+            "COMPRESSION:NONE\r\n"
+            "OLDFILEUID:NONE\r\n"
+            "NEWFILEUID:NONE\r\n"
+            "\r\n"
         )
 
         return header + xmlstring

@@ -160,9 +160,9 @@ NEWFILEUID:NONE
 
 
 def prettyPrint(xmlstr: str) -> str:
-    headers, sep, payload = xmlstr.partition("\n\n")
+    headers, sep, payload = xmlstr.partition("\r\n\r\n")
     dom = xml.dom.minidom.parseString(payload)
-    pretty_payload = dom.toprettyxml(indent="    ", newl="\n").replace('<?xml version="1.0" ?>\n', "")
+    pretty_payload = dom.toprettyxml(indent="    ", newl="\r\n").replace('<?xml version="1.0" ?>\r\n', "")
     return headers + sep + pretty_payload
 
 
@@ -238,4 +238,4 @@ class OfxInvestLinesWriterTest(TestCase):
         # Set the generation time so it is always predictable
         writer.genTime = datetime(2021, 5, 1, 0, 0, 0)
 
-        assert prettyPrint(writer.toxml()) == SIMPLE_OFX.lstrip()
+        assert prettyPrint(writer.toxml()) == SIMPLE_OFX.lstrip().replace("\n", "\r\n")
