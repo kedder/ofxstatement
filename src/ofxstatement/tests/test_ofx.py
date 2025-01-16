@@ -88,7 +88,9 @@ NEWFILEUID:NONE
 def prettyPrint(xmlstr: str) -> str:
     headers, sep, payload = xmlstr.partition("\r\n\r\n")
     dom = xml.dom.minidom.parseString(payload)
-    pretty_payload = dom.toprettyxml(indent="    ", newl="\r\n").replace('<?xml version="1.0" ?>\r\n', "")
+    pretty_payload = dom.toprettyxml(indent="    ", newl="\r\n").replace(
+        '<?xml version="1.0" ?>\r\n', ""
+    )
     return headers + sep + pretty_payload
 
 
