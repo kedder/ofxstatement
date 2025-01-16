@@ -7,18 +7,17 @@ from datetime import datetime
 from ofxstatement.statement import Statement, StatementLine, BankAccount, Currency
 from ofxstatement import ofx
 
-SIMPLE_OFX = """<?xml version="1.0" ?>
-<!--
+SIMPLE_OFX = """
 OFXHEADER:100
 DATA:OFXSGML
 VERSION:102
 SECURITY:NONE
-ENCODING:UTF-8
+ENCODING:UNICODE
 CHARSET:NONE
 COMPRESSION:NONE
 OLDFILEUID:NONE
 NEWFILEUID:NONE
--->
+
 <OFX>
     <SIGNONMSGSRSV1>
         <SONRS>
@@ -86,9 +85,13 @@ NEWFILEUID:NONE
 """
 
 
-def prettyPrint(xmlstr):
-    dom = xml.dom.minidom.parseString(xmlstr)
-    return dom.toprettyxml().replace("\t", "    ").replace("<!-- ", "<!--")
+def prettyPrint(xmlstr: str) -> str:
+    headers, sep, payload = xmlstr.partition("\r\n\r\n")
+    dom = xml.dom.minidom.parseString(payload)
+    pretty_payload = dom.toprettyxml(indent="    ", newl="\r\n").replace(
+        '<?xml version="1.0" ?>\r\n', ""
+    )
+    return headers + sep + pretty_payload
 
 
 class OfxWriterTest(TestCase):
@@ -112,7 +115,7 @@ class OfxWriterTest(TestCase):
         # Set the generation time so it is always predictable
         writer.genTime = datetime(2012, 3, 3, 0, 0, 0)
 
-        assert prettyPrint(writer.toxml()) == SIMPLE_OFX
+        assert prettyPrint(writer.toxml()) == SIMPLE_OFX.lstrip().replace("\n", "\r\n")
 
     def test_ofxWriter_pretty(self) -> None:
         # GIVEN
@@ -125,17 +128,15 @@ class OfxWriterTest(TestCase):
 
         # THEN
         expected = [
-            "<!-- ",
             "OFXHEADER:100",
             "DATA:OFXSGML",
             "VERSION:102",
             "SECURITY:NONE",
-            "ENCODING:UTF-8",
+            "ENCODING:UNICODE",
             "CHARSET:NONE",
             "COMPRESSION:NONE",
             "OLDFILEUID:NONE",
             "NEWFILEUID:NONE",
-            "-->",
             "",
             "<OFX>",
             "  <SIGNONMSGSRSV1>",
@@ -152,4 +153,4 @@ class OfxWriterTest(TestCase):
             "",
         ]
 
-        assert xml.split("\n") == expected
+        assert xml.split("\r\n") == expected

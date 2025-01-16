@@ -201,9 +201,10 @@ def convert(args: argparse.Namespace) -> int:
         log.error("Statement validation error: %s" % (e.message))
         return 2  # Validation error
 
-    with smart_open(args.output, settings.get("encoding", None)) as out:
+    encoding = settings.get("encoding", "utf-8")
+    with smart_open(args.output, encoding) as out:
         writer = ofx.OfxWriter(statement)
-        out.write(writer.toxml(pretty=args.pretty))
+        out.write(writer.toxml(pretty=args.pretty, encoding=encoding))
 
     n_lines = len(statement.lines)
     log.info(

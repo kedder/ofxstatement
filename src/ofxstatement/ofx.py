@@ -1,3 +1,4 @@
+import codecs
 from typing import Optional, Union
 from datetime import datetime, date
 from decimal import Decimal
@@ -22,29 +23,42 @@ class OfxWriter(object):
         self.default_float_precision = 2
         self.invest_transactions_float_precision = 5
 
-    def toxml(self, pretty: bool = False) -> str:
+    def toxml(self, pretty: bool = False, encoding: str = "utf-8") -> str:
         et = self.buildDocument()
-        encoded = etree.tostring(et.getroot(), "utf-8")
-        encoded = str(encoded, "utf-8")
+        xmlstring = etree.tostring(et.getroot(), "unicode")
         if pretty:
-            dom = minidom.parseString(encoded)
-            encoded = dom.toprettyxml(indent="  ")
-            encoded = encoded.replace('<?xml version="1.0" ?>', "").lstrip()
+            dom = minidom.parseString(xmlstring)
+            xmlstring = dom.toprettyxml(indent="  ", newl="\r\n")
+            xmlstring = xmlstring.replace('<?xml version="1.0" ?>', "").lstrip()
+
+        codec = codecs.lookup(encoding)
+        if codec.name == "utf-8":
+            encoding_name = "UNICODE"
+            charset_name = "NONE"
+        elif codec.name.startswith("cp"):
+            encoding_name = "USASCII"
+            charset_name = codec.name[2:]
+        else:
+            # This is non-standard, because according to the OFX spec the
+            # CHARSET should be the codepage number. We handle this gracefully,
+            # since the only alternative is throwing an error here.
+            encoding_name = "USASCII"
+            charset_name = codec.name.upper()
+
         header = (
-            "<!-- \n"
-            "OFXHEADER:100\n"
-            "DATA:OFXSGML\n"
-            "VERSION:102\n"
-            "SECURITY:NONE\n"
-            "ENCODING:UTF-8\n"
-            "CHARSET:NONE\n"
-            "COMPRESSION:NONE\n"
-            "OLDFILEUID:NONE\n"
-            "NEWFILEUID:NONE\n"
-            "-->\n\n"
+            "OFXHEADER:100\r\n"
+            "DATA:OFXSGML\r\n"
+            "VERSION:102\r\n"
+            "SECURITY:NONE\r\n"
+            f"ENCODING:{encoding_name}\r\n"
+            f"CHARSET:{charset_name}\r\n"
+            "COMPRESSION:NONE\r\n"
+            "OLDFILEUID:NONE\r\n"
+            "NEWFILEUID:NONE\r\n"
+            "\r\n"
         )
 
-        return header + encoded
+        return header + xmlstring
 
     def buildDocument(self) -> etree.ElementTree:
         tb = self.tb
