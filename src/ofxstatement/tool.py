@@ -1,5 +1,4 @@
-"""Command line tool for converting statements to OFX format
-"""
+"""Command line tool for converting statements to OFX format"""
 
 import os
 import argparse
