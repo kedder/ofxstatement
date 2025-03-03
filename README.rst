@@ -85,7 +85,7 @@ Plugin                            Description
 ================================= ============================================
 `ofxstatement-mt940`_             Swift MT940 statements
 `ofxstatement-iso20022`_          Generic ISO-20022 format
-`ofxstatement-paypal`_            PayPal, ``*.csv`` for private accounts
+`ofxstatement-paypal-2`_          PayPal, ``*.csv`` for private accounts
 `ofxstatement-transferwise`_      Transferwise CSV (international)
 
 `ofxstatement-lithuanian`_        Plugins for several banks, operating in
@@ -199,7 +199,7 @@ Plugin                            Description
 .. _ofxstatement-latvian: https://github.com/gintsmurans/ofxstatement-latvian
 .. _ofxstatement-iso20022: https://github.com/kedder/ofxstatement-iso20022
 .. _ofxstatement-seb: https://github.com/gerasiov/ofxstatement-seb
-.. _ofxstatement-paypal: https://github.com/gerasiov/ofxstatement-paypal
+.. _ofxstatement-paypal-2: https://github.com/Alfystar/ofxstatement-paypal-2
 .. _ofxstatement-polish: https://github.com/yay6/ofxstatement-polish
 .. _ofxstatement-russian: https://github.com/gerasiov/ofxstatement-russian
 .. _ofxstatement-dab: https://github.com/JohannesKlug/ofxstatement-dab
