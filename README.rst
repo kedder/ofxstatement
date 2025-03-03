@@ -10,11 +10,15 @@ OFX Statement
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/psf/black
 
-Ofxstatement is a tool to convert proprietary bank statements to OFX format,
-suitable for importing into personal accounting systems like GnuCash. This
-package provides a command line tool to run: ``ofxstatement``. Run
-``ofxstatement -h`` for more help.  ``ofxstatement`` works under Python 3 and
-is not compatible with Python 2.
+Ofxstatement is a tool to convert proprietary bank statements to OFX format, suitable
+for importing into personal accounting systems like `GnuCash`_ or `homebank`_. This
+package provides a command line tool to run: ``ofxstatement``. Run ``ofxstatement -h``
+for more help.  ``ofxstatement`` works under Python 3 and is not compatible with Python
+2.
+
+.. _GnuCash: https://gnucash.org/
+.. _homebank: https://www.gethomebank.org/
+
 
 
 Rationale
@@ -28,8 +32,8 @@ statement formats of online banking systems.
 
 To bridge the gap between them, this ofxstatement tool was created.
 
-.. _GnuCash: http://gnucash.org/
-.. _OFX: http://en.wikipedia.org/wiki/Open_Financial_Exchange
+.. _GnuCash: https://gnucash.org/
+.. _OFX: https://en.wikipedia.org/wiki/Open_Financial_Exchange
 
 Mode of Operation
 =================
