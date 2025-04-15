@@ -91,6 +91,7 @@ Plugin                            Description
 `ofxstatement-iso20022`_          Generic ISO-20022 format
 `ofxstatement-paypal-2`_          PayPal, ``*.csv`` for private accounts
 `ofxstatement-transferwise`_      Transferwise CSV (international)
+`ofxstatement-nordigen`_          Plugin for GoCardless and Nordigen data parsing
 
 `ofxstatement-lithuanian`_        Plugins for several banks, operating in
                                   Lithuania: Swedbank, Danske and common Lithuanian exchange format - LITAS-ESIS.
@@ -242,6 +243,7 @@ Plugin                            Description
 .. _ofxstatement-santander: https://github.com/robvadai/ofxstatement-santander
 .. _ofxstatement-be-vdk-fr: https://github.com/Jibuus/ofxstatement-be-vdk-fr
 .. _ofxstatement-be-hellobank-fr: https://github.com/Jibuus/ofxstatement-be-hellobank-fr
+.. _ofxstatement-nordigen: https://github.com/jstammers/ofxstatement-nordigen
 
 Advanced Configuration
 ======================
