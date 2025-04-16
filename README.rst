@@ -151,7 +151,6 @@ Plugin                            Description
 `ofxstatement-hype`_              Hype - Banca Sella (Italy)
 
 `ofxstatement-betterment`_        Betterment (USA)
-`ofxstatement-us-first-republic`_ First Republic Bank (USA)
 `ofxstatement-simple`_            Simple (USA, defunct) JSON financial statement format
 
 `ofxstatement-mbank-sk`_          MBank.sk (Slovakia)
@@ -222,7 +221,6 @@ Plugin                            Description
 .. _ofxstatement-intesasp: https://github.com/Jacotsu/ofxstatement-intesasp
 .. _ofxstatement-de-ing: https://github.com/fabolhak/ofxstatement-de-ing
 .. _ofxstatement-germany: https://github.com/MirkoDziadzka/ofxstatement-germany
-.. _ofxstatement-us-first-republic: https://github.com/medovina/ofxstatement-us-first-republic
 .. _ofxstatement-cz-komercni: https://github.com/medovina/ofxstatement-cz-komercni
 .. _ofxstatement-cd-tmb: https://github.com/BIZ4Africa/ofxstatement-cd-tmb
 .. _ofxstatement-zm-stanbic: https://github.com/BIZ4Africa/ofxstatement-zm-stanbic
