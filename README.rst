@@ -170,6 +170,7 @@ Plugin                            Description
 `ofxstatement-bbva`_              BBVA (Spain)
 `ofxstatement-qif`_               Converts Quicken Interchange Format (QIF) formatted bank transaction files
 `ofxstatement-santander`_         Converts Santander transaction files
+`ofxstatement-santander-es`_      Converts Santander ES transaction files
 ================================= ============================================
 
 
@@ -239,6 +240,7 @@ Plugin                            Description
 .. _ofxstatement-bbva: https://github.com/3v1n0/ofxstatement-bbva
 .. _ofxstatement-qif: https://github.com/robvadai/ofxstatement-qif
 .. _ofxstatement-santander: https://github.com/robvadai/ofxstatement-santander
+.. _ofxstatement-santander-es: https://github.com/M3lo00/ofxstatement-santander-es
 .. _ofxstatement-be-vdk-fr: https://github.com/Jibuus/ofxstatement-be-vdk-fr
 .. _ofxstatement-be-hellobank-fr: https://github.com/Jibuus/ofxstatement-be-hellobank-fr
 .. _ofxstatement-nordigen: https://github.com/jstammers/ofxstatement-nordigen
