@@ -267,7 +267,8 @@ class OfxWriter(object):
         tb.end("SECID")
 
         self.buildText("SUBACCTSEC", "OTHER")
-        self.buildText("SUBACCTFUND", "OTHER")
+        if line.trntype != "TRANSFER":
+            self.buildText("SUBACCTFUND", "OTHER")
 
         if line.fees:
             if line.trntype == "INCOME":

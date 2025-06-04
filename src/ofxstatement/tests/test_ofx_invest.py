@@ -147,7 +147,6 @@ NEWFILEUID:NONE
                             <UNIQUEIDTYPE>TICKER</UNIQUEIDTYPE>
                         </SECID>
                         <SUBACCTSEC>OTHER</SUBACCTSEC>
-                        <SUBACCTFUND>OTHER</SUBACCTFUND>
                         <UNITPRICE>225.63000</UNITPRICE>
                         <UNITS>4.00000</UNITS>
                     </TRANSFER>
