@@ -150,6 +150,20 @@ NEWFILEUID:NONE
                         <UNITPRICE>225.63000</UNITPRICE>
                         <UNITS>4.00000</UNITS>
                     </TRANSFER>
+                    <INVEXPENSE>
+                        <INVTRAN>
+                            <FITID>8</FITID>
+                            <DTTRADE>20250101</DTTRADE>
+                            <MEMO>NRA Tax Adj</MEMO>
+                        </INVTRAN>
+                        <SECID>
+                            <UNIQUEID>AAPL</UNIQUEID>
+                            <UNIQUEIDTYPE>TICKER</UNIQUEIDTYPE>
+                        </SECID>
+                        <SUBACCTSEC>OTHER</SUBACCTSEC>
+                        <SUBACCTFUND>OTHER</SUBACCTFUND>
+                        <TOTAL>-0.29</TOTAL>
+                    </INVEXPENSE>
                 </INVTRANLIST>
             </INVSTMTRS>
         </INVSTMTTRNRS>
@@ -230,6 +244,18 @@ class OfxInvestLinesWriterTest(TestCase):
         invest_line.security_id = "MSFT"
         invest_line.units = Decimal("4")
         invest_line.unit_price = Decimal("225.63")
+        invest_line.assert_valid()
+        statement.invest_lines.append(invest_line)
+
+        invest_line = InvestStatementLine(
+            "8",
+            datetime(2025, 1, 1),
+            "NRA Tax Adj",
+            "INVEXPENSE",
+            None,
+            "AAPL",
+            Decimal("-0.29"),
+        )
         invest_line.assert_valid()
         statement.invest_lines.append(invest_line)
 

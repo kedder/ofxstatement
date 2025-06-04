@@ -34,6 +34,7 @@ INVEST_TRANSACTION_TYPES = [
     "BUYMF",
     "BUYSTOCK",
     "INCOME",
+    "INVEXPENSE",
     "INVBANKTRAN",
     "SELLDEBT",
     "SELLMF",
@@ -303,6 +304,8 @@ class InvestStatementLine(Printable):
             self.assert_valid_income()
         elif self.trntype == "INVBANKTRAN":
             self.assert_valid_invbanktran()
+        elif self.trntype == "INVEXPENSE":
+            self.assert_valid_invexpense()
         elif self.trntype == "SELLDEBT":
             self.assert_valid_selldebt()
         elif self.trntype == "SELLMF" or self.trntype == "SELLSTOCK":
@@ -350,6 +353,13 @@ class InvestStatementLine(Printable):
             self.trntype_detailed,
             INVBANKTRAN_TYPES_DETAILED,
         )
+        assert self.amount
+
+    def assert_valid_invexpense(self):
+        assert (
+            self.trntype_detailed is None
+        ), f"trntype_detailed '{self.trntype_detailed}' should be empty for {self.trntype}"
+        assert self.security_id
         assert self.amount
 
     def assert_valid_selldebt(self):

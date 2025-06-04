@@ -240,15 +240,15 @@ class OfxWriter(object):
             inner_tran_type_tag_name = "INVSELL"
             if line.trntype == "SELLMF" or line.trntype == "SELLSTOCK":
                 tran_type_detailed_tag_name = "SELLTYPE"
-        elif line.trntype == "TRANSFER":
-            # Transfer transactions don't have details or an envelope
-            tran_type_detailed_tag_name = None
-            inner_tran_type_tag_name = None
-        else:
+        elif line.trntype == "INCOME":
             tran_type_detailed_tag_name = "INCOMETYPE"
             inner_tran_type_tag_name = (
                 None  # income transactions don't have an envelope element
             )
+        else:
+            # INVEXPENSE and TRANSFER transactions don't have details or an envelope
+            tran_type_detailed_tag_name = None
+            inner_tran_type_tag_name = None
 
         tb.start(line.trntype, {})
         if tran_type_detailed_tag_name:

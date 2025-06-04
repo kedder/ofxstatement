@@ -135,3 +135,21 @@ class StatementTests(unittest.TestCase):
         with self.assertRaises(AssertionError):
             line.unit_price = None
             line.assert_valid()
+
+    def test_invexpense_line_validation(self) -> None:
+        line = statement.InvestStatementLine("id", datetime(2020, 3, 25))
+        line.trntype = "INVEXPENSE"
+        line.amount = Decimal(1)
+        line.security_id = "AAPL"
+        line.assert_valid()
+        with self.assertRaises(AssertionError):
+            line.amount = None
+            line.assert_valid()
+        line.amount = Decimal(1)
+        with self.assertRaises(AssertionError):
+            line.trntype_detailed = "SOMETHING"
+            line.assert_valid()
+        line.trntype_detailed = None
+        with self.assertRaises(AssertionError):
+            line.security_id = None
+            line.assert_valid()
