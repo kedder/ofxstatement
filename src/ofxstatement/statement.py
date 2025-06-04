@@ -39,15 +39,22 @@ INVEST_TRANSACTION_TYPES = [
     "TRANSFER",
 ]
 
-INVEST_TRANSACTION_TYPES_DETAILED = [
+INVEST_TRANSACTION_BUYTYPES = [
     "BUY",
     "BUYTOCOVER",  # end short sale
+]
+
+INVEST_TRANSACTION_SELLTYPES = [
     "SELL",
     "SELLSHORT",  # open short sale
-    "DIV",  # only for INCOME
-    "INTEREST",  # only for INCOME
-    "CGLONG",  # only for INCOME
-    "CGSHORT",  # only for INCOME
+]
+
+INVEST_TRANSACTION_INCOMETYPES = [
+    "CGLONG",
+    "CGSHORT",
+    "DIV",
+    "INTEREST",
+    "MISC",
 ]
 
 INVBANKTRAN_TYPES_DETAILED = [
@@ -300,12 +307,26 @@ class InvestStatementLine(Printable):
             assert (
                 self.trntype_detailed is None
             ), f"trntype_detailed '{self.trntype_detailed}' should be empty for TRANSFERS"
-        else:
+        elif self.trntype == "BUYSTOCK":
             assert (
-                self.trntype_detailed in INVEST_TRANSACTION_TYPES_DETAILED
+                self.trntype_detailed in INVEST_TRANSACTION_BUYTYPES
             ), "trntype_detailed %s is not valid, must be one of %s" % (
                 self.trntype_detailed,
-                INVEST_TRANSACTION_TYPES_DETAILED,
+                INVEST_TRANSACTION_BUYTYPES,
+            )
+        elif self.trntype == "INCOME":
+            assert (
+                self.trntype_detailed in INVEST_TRANSACTION_INCOMETYPES
+            ), "trntype_detailed %s is not valid, must be one of %s" % (
+                self.trntype_detailed,
+                INVEST_TRANSACTION_INCOMETYPES,
+            )
+        elif self.trntype == "SELLSTOCK":
+            assert (
+                self.trntype_detailed in INVEST_TRANSACTION_SELLTYPES
+            ), "trntype_detailed %s is not valid, must be one of %s" % (
+                self.trntype_detailed,
+                INVEST_TRANSACTION_SELLTYPES,
             )
 
         assert self.id
