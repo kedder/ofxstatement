@@ -30,12 +30,14 @@ TRANSACTION_TYPES = [
 ]
 
 INVEST_TRANSACTION_TYPES = [
-    "BUYSTOCK",
     "BUYDEBT",
+    "BUYMF",
+    "BUYSTOCK",
     "INCOME",
     "INVBANKTRAN",
-    "SELLSTOCK",
     "SELLDEBT",
+    "SELLMF",
+    "SELLSTOCK",
     "TRANSFER",
 ]
 
@@ -301,7 +303,7 @@ class InvestStatementLine(Printable):
         )
 
         # Check transaction sub-types
-        if self.trntype == "BUYSTOCK":
+        if self.trntype == "BUYMF" or self.trntype == "BUYSTOCK":
             assert (
                 self.trntype_detailed in INVEST_TRANSACTION_BUYTYPES
             ), "trntype_detailed %s is not valid, must be one of %s" % (
@@ -323,7 +325,7 @@ class InvestStatementLine(Printable):
                     INVBANKTRAN_TYPES_DETAILED,
                 )
             )
-        elif self.trntype == "SELLSTOCK":
+        elif self.trntype == "SELLMF" or self.trntype == "SELLSTOCK":
             assert (
                 self.trntype_detailed in INVEST_TRANSACTION_SELLTYPES
             ), "trntype_detailed %s is not valid, must be one of %s" % (
