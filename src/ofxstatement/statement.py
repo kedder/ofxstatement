@@ -294,60 +294,97 @@ class InvestStatementLine(Printable):
         assert self.id
         assert self.date
 
-        # Check transaction types
-        assert (
-            self.trntype in INVEST_TRANSACTION_TYPES
-        ), "trntype %s is not valid, must be one of %s" % (
-            self.trntype,
-            INVEST_TRANSACTION_TYPES,
-        )
-
-        # Check transaction sub-types
+        # Each transaction type has slightly different requirements
+        if self.trntype == "BUYDEBT":
+            self.assert_valid_buydebt()
         if self.trntype == "BUYMF" or self.trntype == "BUYSTOCK":
-            assert (
-                self.trntype_detailed in INVEST_TRANSACTION_BUYTYPES
-            ), "trntype_detailed %s is not valid, must be one of %s" % (
-                self.trntype_detailed,
-                INVEST_TRANSACTION_BUYTYPES,
-            )
+            self.assert_valid_buystock()
         elif self.trntype == "INCOME":
-            assert (
-                self.trntype_detailed in INVEST_TRANSACTION_INCOMETYPES
-            ), "trntype_detailed %s is not valid, must be one of %s" % (
-                self.trntype_detailed,
-                INVEST_TRANSACTION_INCOMETYPES,
-            )
+            self.assert_valid_income()
         elif self.trntype == "INVBANKTRAN":
-            assert self.trntype_detailed in INVBANKTRAN_TYPES_DETAILED, (
-                "trntype_detailed %s is not valid for INVBANKTRAN, must be one of %s"
+            self.assert_valid_invbanktran()
+        elif self.trntype == "SELLDEBT":
+            self.assert_valid_selldebt()
+        elif self.trntype == "SELLMF" or self.trntype == "SELLSTOCK":
+            self.assert_valid_sellstock()
+        elif self.trntype == "TRANSFER":
+            self.assert_valid_transfer()
+        else:
+            raise AssertionError(
+                "trntype %s is not valid, must be one of %s"
                 % (
-                    self.trntype_detailed,
-                    INVBANKTRAN_TYPES_DETAILED,
+                    self.trntype,
+                    INVEST_TRANSACTION_TYPES,
                 )
             )
-        elif self.trntype == "SELLMF" or self.trntype == "SELLSTOCK":
-            assert (
-                self.trntype_detailed in INVEST_TRANSACTION_SELLTYPES
-            ), "trntype_detailed %s is not valid, must be one of %s" % (
-                self.trntype_detailed,
-                INVEST_TRANSACTION_SELLTYPES,
-            )
-        else:
-            assert (
-                self.trntype_detailed is None
-            ), f"trntype_detailed '{self.trntype_detailed}' should be empty for {self.trntype}"
 
-        assert self.trntype == "TRANSFER" or self.amount
-        assert self.trntype == "INVBANKTRAN" or self.security_id
+    def assert_valid_buydebt(self):
+        assert (
+            self.trntype_detailed is None
+        ), f"trntype_detailed '{self.trntype_detailed}' should be empty for {self.trntype}"
+        self.assert_valid_invbuy()
 
-        if self.trntype == "INVBANKTRAN":
-            pass
-        elif self.trntype == "INCOME":
-            assert self.security_id
-        else:
-            assert self.security_id
-            assert self.units
-            assert self.trntype == "TRANSFER" or self.unit_price
+    def assert_valid_buystock(self):
+        assert (
+            self.trntype_detailed in INVEST_TRANSACTION_BUYTYPES
+        ), "trntype_detailed %s is not valid, must be one of %s" % (
+            self.trntype_detailed,
+            INVEST_TRANSACTION_BUYTYPES,
+        )
+        self.assert_valid_invbuy()
+
+    def assert_valid_income(self):
+        assert (
+            self.trntype_detailed in INVEST_TRANSACTION_INCOMETYPES
+        ), "trntype_detailed %s is not valid, must be one of %s" % (
+            self.trntype_detailed,
+            INVEST_TRANSACTION_INCOMETYPES,
+        )
+        assert self.security_id
+        assert self.amount
+
+    def assert_valid_invbanktran(self):
+        assert (
+            self.trntype_detailed in INVBANKTRAN_TYPES_DETAILED
+        ), "trntype_detailed %s is not valid for INVBANKTRAN, must be one of %s" % (
+            self.trntype_detailed,
+            INVBANKTRAN_TYPES_DETAILED,
+        )
+        assert self.amount
+
+    def assert_valid_selldebt(self):
+        assert (
+            self.trntype_detailed is None
+        ), f"trntype_detailed '{self.trntype_detailed}' should be empty for {self.trntype}"
+        self.assert_valid_invsell()
+
+    def assert_valid_sellstock(self):
+        assert (
+            self.trntype_detailed in INVEST_TRANSACTION_SELLTYPES
+        ), "trntype_detailed %s is not valid, must be one of %s" % (
+            self.trntype_detailed,
+            INVEST_TRANSACTION_SELLTYPES,
+        )
+        self.assert_valid_invsell()
+
+    def assert_valid_transfer(self):
+        assert (
+            self.trntype_detailed is None
+        ), f"trntype_detailed '{self.trntype_detailed}' should be empty for {self.trntype}"
+        assert self.security_id
+        assert self.units
+
+    def assert_valid_invbuy(self):
+        assert self.security_id
+        assert self.units
+        assert self.unit_price
+        assert self.amount
+
+    def assert_valid_invsell(self):
+        assert self.security_id
+        assert self.units
+        assert self.unit_price
+        assert self.amount
 
 
 class BankAccount(Printable):
