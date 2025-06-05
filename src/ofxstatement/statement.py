@@ -288,6 +288,11 @@ class InvestStatementLine(Printable):
 
     def assert_valid(self) -> None:
         """Ensure that fields have valid values"""
+        # Every transaction needs an ID and date
+        assert self.id
+        assert self.date
+
+        # Check transaction types
         assert (
             self.trntype in INVEST_TRANSACTION_TYPES
         ), "trntype %s is not valid, must be one of %s" % (
@@ -295,19 +300,8 @@ class InvestStatementLine(Printable):
             INVEST_TRANSACTION_TYPES,
         )
 
-        if self.trntype == "INVBANKTRAN":
-            assert self.trntype_detailed in INVBANKTRAN_TYPES_DETAILED, (
-                "trntype_detailed %s is not valid for INVBANKTRAN, must be one of %s"
-                % (
-                    self.trntype_detailed,
-                    INVBANKTRAN_TYPES_DETAILED,
-                )
-            )
-        elif self.trntype == "TRANSFER":
-            assert (
-                self.trntype_detailed is None
-            ), f"trntype_detailed '{self.trntype_detailed}' should be empty for TRANSFERS"
-        elif self.trntype == "BUYSTOCK":
+        # Check transaction sub-types
+        if self.trntype == "BUYSTOCK":
             assert (
                 self.trntype_detailed in INVEST_TRANSACTION_BUYTYPES
             ), "trntype_detailed %s is not valid, must be one of %s" % (
@@ -321,6 +315,14 @@ class InvestStatementLine(Printable):
                 self.trntype_detailed,
                 INVEST_TRANSACTION_INCOMETYPES,
             )
+        elif self.trntype == "INVBANKTRAN":
+            assert self.trntype_detailed in INVBANKTRAN_TYPES_DETAILED, (
+                "trntype_detailed %s is not valid for INVBANKTRAN, must be one of %s"
+                % (
+                    self.trntype_detailed,
+                    INVBANKTRAN_TYPES_DETAILED,
+                )
+            )
         elif self.trntype == "SELLSTOCK":
             assert (
                 self.trntype_detailed in INVEST_TRANSACTION_SELLTYPES
@@ -328,9 +330,11 @@ class InvestStatementLine(Printable):
                 self.trntype_detailed,
                 INVEST_TRANSACTION_SELLTYPES,
             )
+        else:
+            assert (
+                self.trntype_detailed is None
+            ), f"trntype_detailed '{self.trntype_detailed}' should be empty for {self.trntype}"
 
-        assert self.id
-        assert self.date
         assert self.trntype == "TRANSFER" or self.amount
         assert self.trntype == "INVBANKTRAN" or self.security_id
 
