@@ -233,11 +233,13 @@ class OfxWriter(object):
         tran_type_detailed_tag_name = None
         inner_tran_type_tag_name = None
         if line.trntype.startswith("BUY"):
-            tran_type_detailed_tag_name = "BUYTYPE"
             inner_tran_type_tag_name = "INVBUY"
+            if line.trntype == "BUYMF" or line.trntype == "BUYSTOCK":
+                tran_type_detailed_tag_name = "BUYTYPE"
         elif line.trntype.startswith("SELL"):
-            tran_type_detailed_tag_name = "SELLTYPE"
             inner_tran_type_tag_name = "INVSELL"
+            if line.trntype == "SELLMF" or line.trntype == "SELLSTOCK":
+                tran_type_detailed_tag_name = "SELLTYPE"
         elif line.trntype == "TRANSFER":
             # Transfer transactions don't have details or an envelope
             tran_type_detailed_tag_name = None
