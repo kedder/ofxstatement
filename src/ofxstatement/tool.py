@@ -206,9 +206,16 @@ def convert(args: argparse.Namespace) -> int:
         out.write(writer.toxml(pretty=args.pretty, encoding=encoding))
 
     n_lines = len(statement.lines)
+    n_invest_lines = len(statement.invest_lines)
     log.info(
-        "Conversion completed: (%d line%s) %s"
-        % (n_lines, "s" if n_lines != 1 else "", args.input)
+        "Conversion completed: (%d line%s, %d invest-line%s) %s"
+        % (
+            n_lines,
+            "s" if n_lines != 1 else "",
+            n_invest_lines,
+            "s" if n_invest_lines != 1 else "",
+            args.input,
+        )
     )
     return 0  # success
 
