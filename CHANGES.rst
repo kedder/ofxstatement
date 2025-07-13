@@ -4,7 +4,9 @@ Changes
 0.9.3 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Better ofx spec compliance (#332)
+- Add support for INVEXPENSE (#346)
+- Conversion report now reports invest-lines too (#352)
 
 
 0.9.2 (2024-11-25)
@@ -28,7 +30,7 @@ Changes
 0.9.0 (2023-08-07)
 ==================
 
-- New `-c` (`--config`) option for `convert` command, allows to specify the 
+- New `-c` (`--config`) option for `convert` command, allows to specify the
   configuration file to use (#235).
 - Print the number of transactions in the output (#236).
 
