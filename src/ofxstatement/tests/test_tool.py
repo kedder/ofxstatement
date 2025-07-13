@@ -38,7 +38,7 @@ class ToolTests(unittest.TestCase):
         self.assertEqual(ret, 0)
         self.assertEqual(
             self.log.getvalue().splitlines(),
-            ["INFO: Conversion completed: (0 lines) %s" % inputfname],
+            ["INFO: Conversion completed: (0 lines, 0 invest-lines) %s" % inputfname],
         )
 
     def test_convert_noconf(self) -> None:
@@ -64,7 +64,7 @@ class ToolTests(unittest.TestCase):
 
         self.assertEqual(
             self.log.getvalue().splitlines(),
-            ["INFO: Conversion completed: (0 lines) %s" % inputfname],
+            ["INFO: Conversion completed: (0 lines, 0 invest-lines) %s" % inputfname],
         )
 
     def test_convert_parseerror(self) -> None:
