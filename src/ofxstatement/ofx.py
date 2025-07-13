@@ -25,7 +25,9 @@ class OfxWriter(object):
 
     def toxml(self, pretty: bool = False, encoding: str = "utf-8") -> str:
         et = self.buildDocument()
-        xmlstring = etree.tostring(et.getroot(), "unicode")
+        root = et.getroot()
+        assert root is not None
+        xmlstring = etree.tostring(root, "unicode")
         if pretty:
             dom = minidom.parseString(xmlstring)
             xmlstring = dom.toprettyxml(indent="  ", newl="\r\n")
