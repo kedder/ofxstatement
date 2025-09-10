@@ -1,4 +1,4 @@
-include CHANGES.rst README.rst
+include CHANGES.rst README.rst LICENSE.txt
 include src/ofxstatement/plugins/README.txt
 include src/ofxstatement/py.typed
 include Pipfile Pipfile.lock
