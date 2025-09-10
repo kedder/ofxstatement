@@ -11,7 +11,7 @@ authors = [
 description = "Tool to convert proprietary bank statement to OFX format, suitable for importing to GnuCash"
 readme = "README.rst"
 requires-python = ">=3.9"
-license-files = ["LICENSE.txt"]
+license = {file = "LICENSE.md"}
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Programming Language :: Python :: 3",
