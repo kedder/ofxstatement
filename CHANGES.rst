@@ -1,7 +1,7 @@
 Changes
 -------
 
-0.9.3 (unreleased)
+0.9.3 (2025-09-10)
 ==================
 
 - Better ofx spec compliance (#332)
