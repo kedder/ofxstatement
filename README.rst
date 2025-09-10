@@ -61,10 +61,10 @@ easy_install or pip, for example::
 Note that ofxstatement itself will be installed automatically this way. After
 the installation, the ``ofxstatement`` utility will be available.
 
-Users of *Ubuntu* and *Debian* operating systems can install ofxstatement from 
+Users of *Ubuntu* and *Debian* operating systems can install ofxstatement from
 official package repositories::
 
-  $ apt install ofxstatement ofxstatement-plugins 
+  $ apt install ofxstatement ofxstatement-plugins
 
 You can check that ofxstatement is working by running::
 
@@ -137,6 +137,7 @@ Plugin                            Description
 `ofxstatement-sp-freiburg`_       Sparkasse Freiburg-Nördlicher Breisgau (Germany)
 `ofxstatement-de-ing`_            Ing Diba Bank (Germany)
 `ofxstatement-mastercard-de`_     Mastercard PDF statements (Germany)
+`ofxstatement-fidelity`_          Fidelity CSV statements
 `ofxstatement-sparkasse-de`_      Sparkasse PDF statements (Germany)
 `ofxstatement-austrian`_          Plugins for several banks, operating in Austria:
                                   Easybank, ING-Diba, Livebank, Raiffeisenbank.
@@ -233,6 +234,7 @@ Plugin                            Description
 .. _ofxstatement-ee-swedbank: https://github.com/rsi2m/ofxstatement-ee-swedbank
 .. _ofxstatement-chebanca: https://github.com/3v1n0/ofxstatement-chebanca
 .. _ofxstatement-mastercard-de: https://github.com/FliegendeWurst/ofxstatement-mastercard-de
+.. _ofxstatement-fidelity: https://github.com/mooredan/ofxstatement-fidelity
 .. _ofxstatement-sparkasse-de: https://github.com/FliegendeWurst/ofxstatement-sparkasse-de
 .. _ofxstatement-bancoposta: https://github.com/lorenzogiudici5/ofxstatement-bancoposta
 .. _ofxstatement-hype: https://github.com/lorenzogiudici5/ofxstatement-hype
