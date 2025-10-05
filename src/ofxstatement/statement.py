@@ -9,7 +9,8 @@ from math import isclose
 
 from ofxstatement import exceptions
 
-TRANSACTION_TYPES = [
+# See section 11.4.4.3 of the OFX spec v2.3
+STMTTRN_TRNTYPES = [
     "CREDIT",  # Generic credit
     "DEBIT",  # Generic debit
     "INT",  # Interest earned or paid
@@ -29,6 +30,7 @@ TRANSACTION_TYPES = [
     "OTHER",  # Other
 ]
 
+# See section 13.9.2.4.4 of the OFX spec v2.3
 INVEST_TRANSACTION_TYPES = [
     "BUYDEBT",
     "BUYMF",
@@ -42,6 +44,7 @@ INVEST_TRANSACTION_TYPES = [
     "TRANSFER",
 ]
 
+# Buy/sell/income types from section 13.9.2.4.2 of the OFX spec v2.3
 INVEST_TRANSACTION_BUYTYPES = [
     "BUY",
     "BUYTOCOVER",  # end short sale
@@ -58,15 +61,6 @@ INVEST_TRANSACTION_INCOMETYPES = [
     "DIV",
     "INTEREST",
     "MISC",
-]
-
-INVBANKTRAN_TYPES_DETAILED = [
-    "INT",
-    "XFER",
-    "DEBIT",
-    "CREDIT",
-    "SRVCHG",
-    "OTHER",
 ]
 
 ACCOUNT_TYPE = [
@@ -158,7 +152,7 @@ class StatementLine(Printable):
     # addition to or instead of a check_no
     refnum: Optional[str]
 
-    # Transaction type, must be one of TRANSACTION_TYPES
+    # Transaction type, must be one of STMTTRN_TRNTYPES
     trntype: Optional[str] = "CHECK"
 
     # Optional BankAccount instance
@@ -205,10 +199,10 @@ class StatementLine(Printable):
     def assert_valid(self) -> None:
         """Ensure that fields have valid values"""
         assert (
-            self.trntype in TRANSACTION_TYPES
+            self.trntype in STMTTRN_TRNTYPES
         ), "trntype %s is not valid, must be one of %s" % (
             self.trntype,
-            TRANSACTION_TYPES,
+            STMTTRN_TRNTYPES,
         )
 
         if self.bank_account_to:
@@ -348,10 +342,10 @@ class InvestStatementLine(Printable):
 
     def assert_valid_invbanktran(self):
         assert (
-            self.trntype_detailed in INVBANKTRAN_TYPES_DETAILED
+            self.trntype_detailed in STMTTRN_TRNTYPES
         ), "trntype_detailed %s is not valid for INVBANKTRAN, must be one of %s" % (
             self.trntype_detailed,
-            INVBANKTRAN_TYPES_DETAILED,
+            STMTTRN_TRNTYPES,
         )
         assert self.amount
 
