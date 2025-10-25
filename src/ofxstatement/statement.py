@@ -93,6 +93,7 @@ class Statement(Printable):
 
     currency: Optional[str] = None
     bank_id: Optional[str] = None
+    branch_id: Optional[str] = None
     broker_id: Optional[str] = None
     account_id: Optional[str] = None
     # Type of account, must be one of ACCOUNT_TYPE
@@ -110,10 +111,12 @@ class Statement(Printable):
         account_id: Optional[str] = None,
         currency: Optional[str] = None,
         account_type: str = "CHECKING",
+        branch_id: Optional[str] = None,
     ) -> None:
         self.lines = []
         self.invest_lines = []
         self.bank_id = bank_id
+        self.branch_id = branch_id
         self.account_id = account_id
         self.currency = currency
         self.account_type = account_type

@@ -40,6 +40,7 @@ NEWFILEUID:NONE
                 <CURDEF>LTL</CURDEF>
                 <BANKACCTFROM>
                     <BANKID>BID</BANKID>
+                    <BRANCHID>BRID</BRANCHID>
                     <ACCTID>ACCID</ACCTID>
                     <ACCTTYPE>CHECKING</ACCTTYPE>
                 </BANKACCTFROM>
@@ -97,7 +98,9 @@ def prettyPrint(xmlstr: str) -> str:
 class OfxWriterTest(TestCase):
     def test_ofxWriter(self) -> None:
         # Create sample statement:
-        statement = Statement("BID", "ACCID", "LTL")
+        statement = Statement(
+            bank_id="BID", branch_id="BRID", account_id="ACCID", currency="LTL"
+        )
         statement.lines.append(
             StatementLine("1", datetime(2012, 2, 12), "Sample 1", Decimal("15.4"))
         )
