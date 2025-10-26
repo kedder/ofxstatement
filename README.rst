@@ -172,6 +172,8 @@ Plugin                            Description
 `ofxstatement-qif`_               Converts Quicken Interchange Format (QIF) formatted bank transaction files
 `ofxstatement-santander`_         Converts Santander transaction files
 `ofxstatement-santander-es`_      Converts Santander ES transaction files
+`ofxstatement-directa`_           Directa SIM Broker
+`ofxstatement-upday`_             UpDay
 ================================= ============================================
 
 
@@ -243,6 +245,8 @@ Plugin                            Description
 .. _ofxstatement-qif: https://github.com/robvadai/ofxstatement-qif
 .. _ofxstatement-santander: https://github.com/robvadai/ofxstatement-santander
 .. _ofxstatement-santander-es: https://github.com/M3lo00/ofxstatement-santander-es
+.. _ofxstatement-directa: https://github.com/Alfystar/ofxstatement-directa
+.. _ofxstatement-upday: https://github.com/Alfystar/ofxstatement-upday
 .. _ofxstatement-be-vdk-fr: https://github.com/Jibuus/ofxstatement-be-vdk-fr
 .. _ofxstatement-be-hellobank-fr: https://github.com/Jibuus/ofxstatement-be-hellobank-fr
 .. _ofxstatement-nordigen: https://github.com/jstammers/ofxstatement-nordigen
