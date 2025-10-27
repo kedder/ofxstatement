@@ -1,6 +1,6 @@
 import codecs
 from typing import Optional, Union
-from datetime import datetime, date
+from datetime import datetime, date, time
 from decimal import Decimal
 
 from xml.etree import ElementTree as etree
@@ -116,8 +116,8 @@ class OfxWriter(object):
         tb.end("BANKACCTFROM")
 
         tb.start("BANKTRANLIST", {})
-        self.buildDate("DTSTART", self.statement.start_date, False)
-        self.buildDate("DTEND", self.statement.end_date, False)
+        self.buildDateTime("DTSTART", self.statement.start_date, False, True)
+        self.buildDateTime("DTEND", self.statement.end_date, False, True)
 
         for line in self.statement.lines:
             self.buildBankTransaction(line)
@@ -138,8 +138,8 @@ class OfxWriter(object):
         tb.start("STMTTRN", {})
 
         self.buildText("TRNTYPE", line.trntype)
-        self.buildDate("DTPOSTED", line.date)
-        self.buildDate("DTUSER", line.date_user)
+        self.buildDateTime("DTPOSTED", line.date, omitEmptyTime=True)
+        self.buildDateTime("DTUSER", line.date_user, omitEmptyTime=True)
         self.buildAmount("TRNAMT", line.amount)
         self.buildText("FITID", line.id)
         self.buildText("CHECKNUM", line.check_no)
@@ -206,8 +206,8 @@ class OfxWriter(object):
         tb.end("INVACCTFROM")
 
         tb.start("INVTRANLIST", {})
-        self.buildDate("DTSTART", self.statement.start_date, False)
-        self.buildDate("DTEND", self.statement.end_date, False)
+        self.buildDateTime("DTSTART", self.statement.start_date, False, True)
+        self.buildDateTime("DTEND", self.statement.end_date, False, True)
 
         for line in self.statement.invest_lines:
             self.buildInvestTransaction(line)
@@ -262,7 +262,7 @@ class OfxWriter(object):
 
         tb.start("INVTRAN", {})
         self.buildText("FITID", line.id)
-        self.buildDate("DTTRADE", line.date, False)
+        self.buildDateTime("DTTRADE", line.date, False, True)
         self.buildText("MEMO", line.memo)
         tb.end("INVTRAN")
 
@@ -322,25 +322,28 @@ class OfxWriter(object):
         self.tb.data(text or "")
         self.tb.end(tag)
 
-    def buildDate(
-        self, tag: str, dt: Optional[Union[date, datetime]], skipEmpty: bool = True
-    ) -> None:
-        if not dt and skipEmpty:
-            return
-        if dt is None:
-            self.buildText(tag, "", skipEmpty)
-        else:
-            self.buildText(tag, dt.strftime("%Y%m%d"))
-
     def buildDateTime(
-        self, tag: str, dt: Optional[datetime], skipEmpty: bool = True
+        self,
+        tag: str,
+        dt: Optional[datetime],
+        skipEmpty: bool = True,
+        omitEmptyTime=False,
     ) -> None:
         if not dt and skipEmpty:
             return
         if dt is None:
             self.buildText(tag, "", skipEmpty)
         else:
-            self.buildText(tag, dt.strftime("%Y%m%d%H%M%S"))
+            utc_offset = dt.utcoffset()
+
+            format = "%Y%m%d"
+            if dt.time() != time.min or utc_offset or not omitEmptyTime:
+                format += "%H%M%S"
+            if dt.microsecond or utc_offset:
+                format += f".{(dt.microsecond // 1000):03d}"
+            if utc_offset is not None:
+                format += f"[{utc_offset.total_seconds() / 3600}]"
+            self.buildText(tag, dt.strftime(format))
 
     def buildAmount(
         self,
