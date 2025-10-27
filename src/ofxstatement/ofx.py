@@ -110,6 +110,7 @@ class OfxWriter(object):
         self.buildText("CURDEF", self.statement.currency)
         tb.start("BANKACCTFROM", {})
         self.buildText("BANKID", self.statement.bank_id, False)
+        self.buildText("BRANCHID", self.statement.branch_id)
         self.buildText("ACCTID", self.statement.account_id, False)
         self.buildText("ACCTTYPE", self.statement.account_type)
         tb.end("BANKACCTFROM")
