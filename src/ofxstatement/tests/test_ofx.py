@@ -2,7 +2,7 @@ from unittest import TestCase
 import xml.dom.minidom
 from decimal import Decimal
 
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 from ofxstatement.statement import Statement, StatementLine, BankAccount, Currency
 from ofxstatement import ofx
@@ -49,14 +49,14 @@ NEWFILEUID:NONE
                     <DTEND/>
                     <STMTTRN>
                         <TRNTYPE>CHECK</TRNTYPE>
-                        <DTPOSTED>20120212</DTPOSTED>
+                        <DTPOSTED>20120212013025.200[-2.5]</DTPOSTED>
                         <TRNAMT>15.40</TRNAMT>
                         <FITID>1</FITID>
                         <MEMO>Sample 1</MEMO>
                     </STMTTRN>
                     <STMTTRN>
                         <TRNTYPE>CHECK</TRNTYPE>
-                        <DTPOSTED>20120212</DTPOSTED>
+                        <DTPOSTED>20120212104000</DTPOSTED>
                         <TRNAMT>25.00</TRNAMT>
                         <FITID>2</FITID>
                         <BANKACCTTO>
@@ -102,9 +102,18 @@ class OfxWriterTest(TestCase):
             bank_id="BID", branch_id="BRID", account_id="ACCID", currency="LTL"
         )
         statement.lines.append(
-            StatementLine("1", datetime(2012, 2, 12), "Sample 1", Decimal("15.4"))
+            StatementLine(
+                "1",
+                datetime(
+                    2012, 2, 12, 1, 30, 25, 200950, timezone(timedelta(hours=-2.5))
+                ),
+                "Sample 1",
+                Decimal("15.4"),
+            )
         )
-        line = StatementLine("2", datetime(2012, 2, 12), "Sample 2", Decimal("25.0"))
+        line = StatementLine(
+            "2", datetime(2012, 2, 12, 10, 40, 0), "Sample 2", Decimal("25.0")
+        )
         line.payee = ""
         line.bank_account_to = BankAccount("SNORAS", "LT1232")
         line.bank_account_to.branch_id = "VNO"
