@@ -69,10 +69,10 @@ NEWFILEUID:NONE
                         <CURRENCY>
                             <CURSYM>USD</CURSYM>
                         </CURRENCY>
-                        <ORIG_CURRENCY>
+                        <ORIGCURRENCY>
                             <CURSYM>EUR</CURSYM>
                             <CURRATE>3.45</CURRATE>
-                        </ORIG_CURRENCY>
+                        </ORIGCURRENCY>
                     </STMTTRN>
                 </BANKTRANLIST>
                 <LEDGERBAL>

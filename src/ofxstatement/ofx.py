@@ -153,7 +153,7 @@ class OfxWriter(object):
         if line.currency is not None:
             self.buildCurrency("CURRENCY", line.currency)
         if line.orig_currency is not None:
-            self.buildCurrency("ORIG_CURRENCY", line.orig_currency)
+            self.buildCurrency("ORIGCURRENCY", line.orig_currency)
 
         tb.end("STMTTRN")
 
