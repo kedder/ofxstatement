@@ -160,7 +160,7 @@ class OfxWriter(object):
     def buildCurrency(self, tag: str, currency: Currency) -> None:
         self.tb.start(tag, {})
         self.buildText("CURSYM", currency.symbol)
-        self.buildAmount("CURRATE", currency.rate)
+        self.buildAmount("CURRATE", currency.rate, precision=4)
         self.tb.end(tag)
 
     def buildInvestTransactionList(self) -> None:

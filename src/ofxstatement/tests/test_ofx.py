@@ -71,7 +71,7 @@ NEWFILEUID:NONE
                         </CURRENCY>
                         <ORIGCURRENCY>
                             <CURSYM>EUR</CURSYM>
-                            <CURRATE>3.45</CURRATE>
+                            <CURRATE>3.4543</CURRATE>
                         </ORIGCURRENCY>
                     </STMTTRN>
                 </BANKTRANLIST>
