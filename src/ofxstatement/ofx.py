@@ -1,6 +1,7 @@
 import codecs
-from typing import Optional, Union
-from datetime import datetime, date, time
+import re
+from typing import Optional
+from datetime import datetime, time
 from decimal import Decimal
 
 from xml.etree import ElementTree as etree
@@ -174,16 +175,20 @@ class OfxWriter(object):
         ):
             if security_id is None:
                 continue
-            tb.start("STOCKINFO", {})
+
+            # Detect a CUSIP and assume this is a DEBTINFO bond if so.
+            is_cusip = re.match(r"^[0-9A-Z]{9}$", security_id) is not None
+            tb.start("DEBTINFO", {}) if is_cusip else tb.start("STOCKINFO", {})
             tb.start("SECINFO", {})
             tb.start("SECID", {})
             self.buildText("UNIQUEID", security_id)
-            self.buildText("UNIQUEIDTYPE", "TICKER")
+            self.buildText("UNIQUEIDTYPE", "CUSIP" if is_cusip else "TICKER")
             tb.end("SECID")
             self.buildText("SECNAME", security_id)
-            self.buildText("TICKER", security_id)
+            if not is_cusip:
+                self.buildText("TICKER", security_id)
             tb.end("SECINFO")
-            tb.end("STOCKINFO")
+            tb.end("DEBTINFO" if is_cusip else "STOCKINFO")
 
         tb.end("SECLIST")
         tb.end("SECLISTMSGSRSV1")
@@ -241,7 +246,7 @@ class OfxWriter(object):
                 tran_type_detailed_tag_name = "BUYTYPE"
         elif line.trntype.startswith("SELL"):
             inner_tran_type_tag_name = "INVSELL"
-            if line.trntype == "SELLMF" or line.trntype == "SELLSTOCK":
+            if line.trntype in ("SELLMF", "SELLSTOCK"):
                 tran_type_detailed_tag_name = "SELLTYPE"
         elif line.trntype == "INCOME":
             tran_type_detailed_tag_name = "INCOMETYPE"
@@ -268,7 +273,12 @@ class OfxWriter(object):
 
         tb.start("SECID", {})
         self.buildText("UNIQUEID", line.security_id, False)
-        self.buildText("UNIQUEIDTYPE", "TICKER")
+        # Detect a CUSIP and set id_type correctly, if so.
+        is_cusip = (
+            line.security_id
+            and re.match(r"^[0-9A-Z]{9}$", line.security_id) is not None
+        )
+        self.buildText("UNIQUEIDTYPE", "CUSIP" if is_cusip else "TICKER")
         tb.end("SECID")
 
         self.buildText("SUBACCTSEC", "OTHER")

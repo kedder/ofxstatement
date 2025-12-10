@@ -295,7 +295,7 @@ class InvestStatementLine(Printable):
         # Each transaction type has slightly different requirements
         if self.trntype == "BUYDEBT":
             self.assert_valid_buydebt()
-        if self.trntype == "BUYMF" or self.trntype == "BUYSTOCK":
+        elif self.trntype == "BUYMF" or self.trntype == "BUYSTOCK":
             self.assert_valid_buystock()
         elif self.trntype == "INCOME":
             self.assert_valid_income()

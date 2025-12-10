@@ -266,3 +266,70 @@ class OfxInvestLinesWriterTest(TestCase):
         writer.genTime = datetime(2021, 5, 1, 0, 0, 0)
 
         assert prettyPrint(writer.toxml()) == SIMPLE_OFX.lstrip().replace("\n", "\r\n")
+
+    def test_cusip_writes_debtinfo_and_cusip_type(self) -> None:
+        statement = Statement("BID", "ACCID", "USD")
+        statement.broker_id = "BROKERID"
+        statement.end_date = datetime(2024, 1, 1)
+
+        cusip_line = InvestStatementLine(
+            "1",
+            datetime(2023, 12, 15),
+            "Bond purchase",
+            "BUYDEBT",
+            None,
+            "123456ABC",
+            Decimal("-1000"),
+        )
+        cusip_line.units = Decimal("10")
+        cusip_line.unit_price = Decimal("100")
+        cusip_line.assert_valid()
+        statement.invest_lines.append(cusip_line)
+
+        stock_line = InvestStatementLine(
+            "2",
+            datetime(2023, 12, 20),
+            "Stock purchase",
+            "BUYSTOCK",
+            "BUY",
+            "MSFT",
+            Decimal("-200"),
+        )
+        stock_line.units = Decimal("1")
+        stock_line.unit_price = Decimal("200")
+        stock_line.assert_valid()
+        statement.invest_lines.append(stock_line)
+
+        writer = ofx.OfxWriter(statement)
+        writer.genTime = datetime(2024, 1, 1, 0, 0, 0)
+
+        _, _, payload = writer.toxml().partition("\r\n\r\n")
+        dom = xml.dom.minidom.parseString(payload)
+
+        def get_text(node, tag_name: str) -> str:
+            elems = node.getElementsByTagName(tag_name)
+            return (
+                elems[0].firstChild.nodeValue if elems and elems[0].firstChild else ""
+            )
+
+        # Security list should wrap CUSIP in DEBTINFO with UNIQUEIDTYPE CUSIP
+        debt_infos = dom.getElementsByTagName("DEBTINFO")
+        assert len(debt_infos) == 1
+        assert get_text(debt_infos[0], "UNIQUEID") == "123456ABC"
+        assert get_text(debt_infos[0], "UNIQUEIDTYPE") == "CUSIP"
+        assert not debt_infos[0].getElementsByTagName("TICKER")
+
+        stock_infos = dom.getElementsByTagName("STOCKINFO")
+        assert len(stock_infos) == 1
+        assert get_text(stock_infos[0], "UNIQUEID") == "MSFT"
+        assert get_text(stock_infos[0], "UNIQUEIDTYPE") == "TICKER"
+        assert get_text(stock_infos[0], "TICKER") == "MSFT"
+
+        # Transaction SECID blocks should also carry the correct id type
+        secid_nodes = dom.getElementsByTagName("SECID")
+        secids = {
+            get_text(node, "UNIQUEID"): get_text(node, "UNIQUEIDTYPE")
+            for node in secid_nodes
+        }
+        assert secids["123456ABC"] == "CUSIP"
+        assert secids["MSFT"] == "TICKER"
