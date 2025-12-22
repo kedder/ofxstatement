@@ -213,6 +213,16 @@ class OfxWriter(object):
             self.buildInvestTransaction(line)
 
         tb.end("INVTRANLIST")
+
+        tb.start("INVBAL", {})
+        self.buildAmount("AVAILCASH", self.statement.end_balance, False)
+        tb.start("BAL", {})
+        self.buildText("NAME", "TOTAL CASH")
+        self.buildAmount("VALUE", self.statement.end_balance, False)
+        self.buildDateTime("DTASOF", self.statement.end_date, False)
+        tb.end("BAL")
+        tb.end("INVBAL")
+
         tb.end("INVSTMTRS")
         tb.end("INVSTMTTRNRS")
         tb.end("INVSTMTMSGSRSV1")
