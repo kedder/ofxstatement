@@ -137,6 +137,7 @@ NEWFILEUID:NONE
                         <SUBACCTFUND>OTHER</SUBACCTFUND>
                     </INVBANKTRAN>
                     <TRANSFER>
+                        <TFERACTION>IN</TFERACTION>
                         <INVTRAN>
                             <FITID>7</FITID>
                             <DTTRADE>20210103</DTTRADE>
@@ -239,7 +240,7 @@ class OfxInvestLinesWriterTest(TestCase):
         statement.invest_lines.append(invest_line)
 
         invest_line = InvestStatementLine(
-            "7", datetime(2021, 1, 3), "Journaled Shares", "TRANSFER"
+            "7", datetime(2021, 1, 3), "Journaled Shares", "TRANSFER", "IN"
         )
         invest_line.security_id = "MSFT"
         invest_line.units = Decimal("4")
