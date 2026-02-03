@@ -174,6 +174,7 @@ Plugin                            Description
 `ofxstatement-santander-es`_      Converts Santander ES transaction files
 `ofxstatement-directa`_           Directa SIM Broker
 `ofxstatement-upday`_             UpDay
+`ofxstatement-bkk`_               Bangkok Bank
 ================================= ============================================
 
 
@@ -250,6 +251,7 @@ Plugin                            Description
 .. _ofxstatement-be-vdk-fr: https://github.com/Jibuus/ofxstatement-be-vdk-fr
 .. _ofxstatement-be-hellobank-fr: https://github.com/Jibuus/ofxstatement-be-hellobank-fr
 .. _ofxstatement-nordigen: https://github.com/jstammers/ofxstatement-nordigen
+.. _ofxstatement-bkk: https://github.com/mooredan/ofxstatement-bkk
 
 Advanced Configuration
 ======================
