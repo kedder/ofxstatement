@@ -55,6 +55,10 @@ INVEST_TRANSACTION_SELLTYPES = [
     "SELLSHORT",  # open short sale
 ]
 
+INVEST_TRANSACTION_TFERACTION = [
+    "IN",
+    "OUT",
+]
 INVEST_TRANSACTION_INCOMETYPES = [
     "CGLONG",
     "CGSHORT",
@@ -376,8 +380,11 @@ class InvestStatementLine(Printable):
 
     def assert_valid_transfer(self):
         assert (
-            self.trntype_detailed is None
-        ), f"trntype_detailed '{self.trntype_detailed}' should be empty for {self.trntype}"
+            self.trntype_detailed in INVEST_TRANSACTION_TFERACTION
+        ), "trntype_detailed %s is not valid, must be one of %s" % (
+            self.trntype_detailed,
+            INVEST_TRANSACTION_TFERACTION,
+        )
         assert self.security_id
         assert self.units
 

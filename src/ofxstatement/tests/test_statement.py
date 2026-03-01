@@ -54,6 +54,7 @@ class StatementTests(unittest.TestCase):
     def test_transfer_line_validation(self) -> None:
         line = statement.InvestStatementLine("id", datetime(2020, 3, 25))
         line.trntype = "TRANSFER"
+        line.trntype_detailed = "IN"
         line.security_id = "ABC"
         line.units = Decimal(2)
         line.assert_valid()

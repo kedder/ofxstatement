@@ -248,8 +248,11 @@ class OfxWriter(object):
             inner_tran_type_tag_name = (
                 None  # income transactions don't have an envelope element
             )
+        elif line.trntype == "TRANSFER":
+            tran_type_detailed_tag_name = "TFERACTION"
+            inner_tran_type_tag_name = None
         else:
-            # INVEXPENSE and TRANSFER transactions don't have details or an envelope
+            # INVEXPENSE transactions don't have details or an envelope
             tran_type_detailed_tag_name = None
             inner_tran_type_tag_name = None
 
