@@ -166,6 +166,14 @@ NEWFILEUID:NONE
                         <TOTAL>-0.29</TOTAL>
                     </INVEXPENSE>
                 </INVTRANLIST>
+                <INVBAL>
+                    <AVAILCASH/>
+                    <BAL>
+                        <NAME>TOTAL CASH</NAME>
+                        <VALUE/>
+                        <DTASOF>20210501000000</DTASOF>
+                    </BAL>
+                </INVBAL>
             </INVSTMTRS>
         </INVSTMTTRNRS>
     </INVSTMTMSGSRSV1>
