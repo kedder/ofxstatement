@@ -132,7 +132,7 @@ Plugin                            Description
 
 `ofxstatement-germany`_           Plugin for several german banks (1822direkt and Postbank at the moment)
 `ofxstatement-dab`_               DAB Bank (Germany)
-`ofxstatement-consors`_           Consorsbank (Germany)
+`ofxstatement-consorsbank`_       Consorsbank (Germany)
 `ofxstatement-de-triodos`_        German Triodos Bank CSV statements (also works for GLS Bank)
 `ofxstatement-sp-freiburg`_       Sparkasse Freiburg-Nördlicher Breisgau (Germany)
 `ofxstatement-de-ing`_            Ing Diba Bank (Germany)
@@ -212,7 +212,7 @@ Plugin                            Description
 .. _ofxstatement-polish: https://github.com/yay6/ofxstatement-polish
 .. _ofxstatement-russian: https://github.com/gerasiov/ofxstatement-russian
 .. _ofxstatement-dab: https://github.com/JohannesKlug/ofxstatement-dab
-.. _ofxstatement-consors: https://github.com/JohannesKlug/ofxstatement-consors
+.. _ofxstatement-consorsbank: https://github.com/eduralph/ofxstatement-consorsbank
 .. _ofxstatement-is-arionbanki: https://github.com/Dagur/ofxstatement-is-arionbanki
 .. _ofxstatement-be-triodos: https://github.com/renardeau/ofxstatement-be-triodos
 .. _ofxstatement-de-triodos: https://github.com/pianoslum/ofxstatement-de-triodos
