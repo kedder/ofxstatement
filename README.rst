@@ -156,7 +156,7 @@ Plugin                            Description
 `ofxstatement-simple`_            Simple (USA, defunct) JSON financial statement format
 
 `ofxstatement-mbank-sk`_          MBank.sk (Slovakia)
-`ofxstatement-rs-altabanka`_     Alta banka (Serbia)
+`ofxstatement-rs-altabanka`_      Alta banka (Serbia)
 `ofxstatement-latvian`_           Latvian banks
 `ofxstatement-ee-seb`_            SEB (Estonia), parses proprietary csv file
 `ofxstatement-ee-swedbank`_       Swedbank (Estonia), parses proprietary csv file
