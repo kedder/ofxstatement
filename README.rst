@@ -117,6 +117,7 @@ Plugin                            Description
 `banking.statements.nordea`_      Nordea bank (at least Finnish branch of it)
 `ofxstatement-seb`_               SEB (Sweden), it parses Export.xlsx for private accounts
 `ofxstatement-lansforsakringar`_  Länsförsäkringar (Sweden), it parses Kontoutdrag.xls for private accounts
+`ofxstatement-handelsbanken`_     Handelsbanken (Sweden)
 
 `ofxstatement-be-belfius`_        Belfius (Belgium)
 `ofxstatement-be-keytrade`_       KeytradeBank (Belgium)
@@ -217,6 +218,7 @@ Plugin                            Description
 .. _ofxstatement-be-triodos: https://github.com/renardeau/ofxstatement-be-triodos
 .. _ofxstatement-de-triodos: https://github.com/pianoslum/ofxstatement-de-triodos
 .. _ofxstatement-lansforsakringar: https://github.com/lbschenkel/ofxstatement-lansforsakringar
+.. _ofxstatement-handelsbanken: https://github.com/gurkodil/ofxstatement-handelsbanken
 .. _ofxstatement-revolut: https://github.com/mlaitinen/ofxstatement-revolut
 .. _ofxstatement-transferwise: https://github.com/kedder/ofxstatement-transferwise
 .. _ofxstatement-n26: https://github.com/3v1n0/ofxstatement-n26
