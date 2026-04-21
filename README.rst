@@ -156,6 +156,7 @@ Plugin                            Description
 `ofxstatement-simple`_            Simple (USA, defunct) JSON financial statement format
 
 `ofxstatement-mbank-sk`_          MBank.sk (Slovakia)
+`ofxstatement-rs-altabanka`_     Alta banka (Serbia)
 `ofxstatement-latvian`_           Latvian banks
 `ofxstatement-ee-seb`_            SEB (Estonia), parses proprietary csv file
 `ofxstatement-ee-swedbank`_       Swedbank (Estonia), parses proprietary csv file
@@ -196,6 +197,7 @@ Plugin                            Description
 .. _ofxstatement-austrian: https://github.com/nblock/ofxstatement-austrian
 .. _ofxstatement-postfinance: https://pypi.python.org/pypi/ofxstatement-postfinance
 .. _ofxstatement-mbank-sk: https://github.com/epitheton/ofxstatement-mbank-sk
+.. _ofxstatement-rs-altabanka: https://github.com/fertkir/ofxstatement-rs-altabanka
 .. _ofxstatement-be-belfius: https://github.com/renardeau/ofxstatement-be-belfius
 .. _ofxstatement-be-keytrade: https://github.com/Scotchy49/ofxstatement-be-keytrade
 .. _ofxstatement-be-ing: https://github.com/jbbandos/ofxstatement-be-ing
