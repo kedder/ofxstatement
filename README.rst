@@ -137,6 +137,7 @@ Plugin                            Description
 `ofxstatement-de-triodos`_        German Triodos Bank CSV statements (also works for GLS Bank)
 `ofxstatement-sp-freiburg`_       Sparkasse Freiburg-Nördlicher Breisgau (Germany)
 `ofxstatement-de-ing`_            Ing Diba Bank (Germany)
+`ofxstatement-spardabank`_        Regional variants of Sparda-Bank eG (Germany)
 `ofxstatement-mastercard-de`_     Mastercard PDF statements (Germany)
 `ofxstatement-fidelity`_          Fidelity CSV statements
 `ofxstatement-sparkasse-de`_      Sparkasse PDF statements (Germany)
@@ -216,6 +217,7 @@ Plugin                            Description
 .. _ofxstatement-russian: https://github.com/gerasiov/ofxstatement-russian
 .. _ofxstatement-dab: https://github.com/JohannesKlug/ofxstatement-dab
 .. _ofxstatement-consorsbank: https://github.com/eduralph/ofxstatement-consorsbank
+.. _ofxstatement-spardabank: https://github.com/Holzhaus/ofxstatement-spardabank
 .. _ofxstatement-is-arionbanki: https://github.com/Dagur/ofxstatement-is-arionbanki
 .. _ofxstatement-be-triodos: https://github.com/renardeau/ofxstatement-be-triodos
 .. _ofxstatement-de-triodos: https://github.com/pianoslum/ofxstatement-de-triodos
